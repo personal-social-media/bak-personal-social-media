@@ -1,0 +1,36 @@
+app:
+  tty: true
+  stdin_open: true
+  command: foreman start
+  build: "./.build/docker"
+  links:
+    - redis
+    - postgres
+    - mailcatcher
+  volumes:
+    - ./:/app
+    - ~/.bash_history:/root/.bash_history
+    - .build/.bundle-cache-dir/app:/usr/local/bundle/
+  ports:
+    - "3000:3000"
+    - "4035:4035"
+  environment:
+    - DOCKER=true
+    - RUBYOPT=-W:no-deprecated -W:no-experimental
+    - REDIS_URL=redis://redis:6379/4
+
+redis:
+  image: redis:alpine
+
+postgres:
+  image: postgres:12-alpine
+  volumes:
+    - .build/.db:/var/lib/postgresql/data
+  environment:
+    - POSTGRES_PASSWORD=1234
+
+mailcatcher:
+  image: schickling/mailcatcher
+  ports:
+    - '1080:1080'
+    - '1025'
