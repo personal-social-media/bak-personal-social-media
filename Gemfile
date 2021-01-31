@@ -28,10 +28,16 @@ group :development, :test do
   gem "rubocop-rails_config", "~> 1.2", ">= 1.2.1"
   gem "rspec-rails", "~> 4.0", ">= 4.0.2"
   gem "factory_bot_rails", "~> 6.1"
+  gem "bundler-audit"
+  gem "brakeman"
 end
 
 group :production do
-  gem 'dotenv', '~> 2.7', '>= 2.7.6'
+  gem "dotenv", "~> 2.7", ">= 2.7.6"
+end
+
+group :test do
+  gem "database_cleaner", "~> 1.8", ">= 1.8.5"
 end
 
 gem "snowpacker", github: "ParamagicDev/snowpacker"
@@ -41,5 +47,5 @@ gem "str_enum", "~> 0.2.0"
 gem "memoist", "~> 0.16.2"
 gem "auto_strip_attributes"
 gem "turbo-rails"
-gem 'falcon'
-gem 'http'
+gem "falcon"
+gem "http"
