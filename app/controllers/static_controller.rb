@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StaticController < ApplicationController
+class StaticController < ActionController::Base
   def public_key
     path = Rails.application.secrets.dig(:profile, :keys_location) + "/public_key.pem"
     return head 404 unless File.exist?(path)

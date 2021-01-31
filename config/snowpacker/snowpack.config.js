@@ -58,8 +58,21 @@ const plugins = [
       "input": [".js"],
       "output": [".js"]
     }
-  ],
+  ]
 ]
+
+if (process.env.RAILS_ENV === "production") {
+  plugins.push(
+    require('@fullhuman/postcss-purgecss')({
+      content: [
+        '../../app/**/*.html.erb',
+        '../../app/helpers/**/*.rb',
+        '../../app/snowpacker/**/*.js',
+      ],
+      defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+    })
+  )
+}
 
 module.exports = {
   mount,
@@ -67,5 +80,8 @@ module.exports = {
   installOptions,
   devOptions,
   buildOptions,
+  install: [
+    "@babel/runtime/regenerator"
+  ]
 }
 

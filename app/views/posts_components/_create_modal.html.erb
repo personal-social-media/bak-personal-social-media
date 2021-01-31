@@ -1,0 +1,38 @@
+<% content = capture do %>
+  <div>
+    <div class="grid grid-cols-3">
+      <div></div>
+      <div class="text-center">
+        <h1 class="text-gray-600">Create Post</h1>
+      </div>
+
+      <div>
+        <div class="bg-yellow-500 hover:bg-yellow-400 rounded-full h-8 w-8 flex justify-center items-center cursor-pointer float-right" data-action="click->modal#forceClose">
+          <%= fa_icon "close", class: "m-1 text-white" %>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <%= form_with model: Post.new, url: posts_path, id: "create-post" do |f| %>
+        <div class="px-8 overflow-y-scroll overflow-x-hidden mx-2" style="min-height: 20rem; max-height: 40rem;">
+          <%= f.text_area :content, placeholder: "What are thinking about, #{current_user.name}?",
+                          data: { create_post_modal_target: "textarea", controller: "textarea" },
+                          class: "w-full bg-transparent border-0 outline-none resize-none overflow-hidden text-lg"
+          %>
+
+          <div id="attachments-display-new-post" class="grid grid-cols-3 gap-4"></div>
+        </div>
+        <div class="my-2">
+          <%= render partial: "attachments_components/list", locals: { images_container: "attachments-display-new-post", submit_button: "create-post" } %>
+        </div>
+
+        <%= psm_button :primary, type: :submit, class: "w-full text-2xl mt-4", data: { disable_with: "Saving.." } do %>
+          Save
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render partial: "page/modal", locals: { button: button, content: content } %>

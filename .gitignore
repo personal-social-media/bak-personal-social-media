@@ -34,3 +34,4 @@ node_modules/
 .idea/
 .rakeTasks
 .build/thor/ssh.rb
+yarn-error.log

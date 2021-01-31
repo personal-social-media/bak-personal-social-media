@@ -7,23 +7,23 @@
     <%= csp_meta_tag %>
     <%= snowpacker_hmr_tag %>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
     <%= yield :head %>
     <%= javascript_include_tag "turbo", type: "module" %>
-    <%= stylesheet_snow_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_snow_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_snow_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_snow_tag 'application', 'data-turbo-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="font-sans">
     <div class="flex flex-col justify-between min-h-screen">
       <div>
         <% if signed_in? %>
           <%= render partial: "page/navbar" %>
         <% end %>
-        <div class="p-4">
+        <div class="px-4">
           <%= yield %>
         </div>
       </div>
@@ -32,5 +32,7 @@
         <%= render partial: "page/footer" %>
       <% end %>
     </div>
+
+    <%= render partial: "page/flash" %>
   </body>
 </html>

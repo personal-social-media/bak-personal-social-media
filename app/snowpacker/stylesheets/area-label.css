@@ -1,0 +1,37 @@
+[aria-label]{
+    position:relative;
+}
+
+[aria-label]:before{
+    content: attr(aria-label);
+    background-color: #1F2937;
+    color: #E5E7EB;
+    min-width: 4rem;
+    min-height: 2em;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.15rem;
+    position:absolute;
+    font-size: 0.5rem;
+    bottom: 0;
+    margin-bottom: 2.4rem;
+    text-align:center;
+    visibility: hidden;
+    display: flex;
+    opacity: 0;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: 0s;
+}
+
+[aria-label].tooltip-bottom:before{
+    top: 0;
+    margin-top: 2.4rem;
+}
+
+
+[aria-label]:hover:before{
+    visibility: visible;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    transition-delay: 0.5s;
+}

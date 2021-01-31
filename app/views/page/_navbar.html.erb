@@ -1,24 +1,53 @@
-<div class="fixed top-0 left-0 right-0 bg-blue-300 px-2 py-4 pl-12">
-  <div class="flex justify-between font-bold">
-    <div>
-      <%= link_to "Your social media", root_path, class: "text-white hover:text-gray-200 text-4xl" %>
+<div class="fixed top-0 left-0 right-0 bg-yellow-300 h-12 flex items-center border-0 border-b-2 border-red-300 border-solid shadow-xl">
+  <div class="flex justify-between font-bold items-center w-full">
+    <div class="ml-2 md:ml-16">
+      <%= link_to "Your social media", root_path, class: "text-2xl no-underline text-gray-700 hover:text-gray-900" %>
     </div>
 
-    <div class="text-right">
-      <div data-controller="utils-drop-down" class="mr-12 relative">
-        <div data-action="click->utils-drop-down#toggleOpen" class="cursor-pointer">
-          <%= current_user.username %>
+    <div class="flex">
+      <div class="mx-4">
+        <%= link_to current_user.username, profile_path(current_user) %>
+      </div>
+
+      <div class="mx-4">
+        <div data-controller="utils-drop-down relative">
+
+          <%= psm_rounded data: { action: "click->utils-drop-down#toggleOpen" }, "aria-label": "Create", class: "tooltip-bottom" do %>
+            <%= fa_icon "plus", class: "m-1 text-white" %>
+          <% end %>
+
+          <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white px-4 py-2 shadow-xl mt-2" style="width: 10rem">
+            <div class="text-2xl text-gray-400">
+              Create
+            </div>
+
+            <div class="mb-2" data-controller="create-post-modal">
+              <% button = capture do %>
+                <%= psm_button :primary, data: { action: "click->modal#toggle click->create-post-modal#open" }, class: "text-sm" do %>
+                  Create new post
+                <% end %>
+              <% end %>
+
+              <%= render partial: "posts_components/create_modal", locals: { button: button } %>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div data-controller="utils-drop-down" class="mr-12 relative">
+        <a data-action="click->utils-drop-down#toggleOpen" class="cursor-pointer shadow-inner bg-blue-400 rounded border border-solid border-gray-300 p-2 px-16 text-gray-100 hover:text-gray-300">
+          <%= current_user.username %>
+        </a>
 
         <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 16rem">
-          <div>
-            <%= link_to "Logout", logout_sessions_path, method: :delete %>
+          <div class="mb-2">
+            <%= link_to "Logout", logout_sessions_path, method: :delete, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
-          <div>
-            <%= link_to "Account", profile_sessions_path %>
+          <div class="my-2">
+            <%= link_to "Account", profile_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
-          <div>
-            <%= link_to "Settings", settings_sessions_path %>
+          <div class="mt-2">
+            <%= link_to "Settings", settings_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
         </div>
       </div>
@@ -26,7 +55,7 @@
   </div>
 </div>
 
-<div class="mt-16"></div>
+<div class="mt-4"></div>
 
 <div class="py-4">
   <% unless current_user.recover_key_saved? %>

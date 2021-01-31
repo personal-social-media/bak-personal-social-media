@@ -23,4 +23,5 @@
 #  fk_rails_...  (image_album_id => image_albums.id)
 #
 class ImageFile < ApplicationRecord
+  include ImageUploader::Attachment(:image)
 end

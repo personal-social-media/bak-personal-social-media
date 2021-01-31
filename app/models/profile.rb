@@ -19,7 +19,7 @@ class Profile < ApplicationRecord
   validates :gender, presence: true
   auto_strip_attributes :name, :username, squish: true
 
-  str_enum :gender, %i(female male   anything)
+  str_enum :gender, %i(female male agender genderqueer nonbinary other)
 
   before_create :regenerate_recover_key
 

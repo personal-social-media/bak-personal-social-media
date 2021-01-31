@@ -1,0 +1,13 @@
+<div class="px-2 py-4 border border-solid border-gray-200">
+  <div class="flex justify-between items-center">
+    <div class="text-gray-600">
+      Add to Your Post
+    </div>
+
+    <div data-controller="form-attachment-image" data-images-container="<%= images_container %>" data-submit-button="<%= submit_button %>">
+      <%= psm_rounded "aria-label": "Picture", data: { action: "click->form-attachment-image#addImage" } do %>
+        <%= fa_icon "image", class: "text-lg m-1 text-white" %>
+      <% end %>
+    </div>
+  </div>
+</div>

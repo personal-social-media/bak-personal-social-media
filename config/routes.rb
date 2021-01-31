@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   root "home#index"
   get "/public_key", to: "static#public_key"
 
+  resources :profiles, path: "/u", only: :show do
+
+  end
+
+  resources :posts
+
   resource :sessions, only: [] do
     collection do
       get "/profile", action: :profile
