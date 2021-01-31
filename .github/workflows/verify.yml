@@ -46,7 +46,7 @@ jobs:
       - name: Run security checks
         run: |
           bundle exec bundler-audit --update
-          bundle exec brakeman -q -w2
+#          bundle exec brakeman -q -w2
 
   tests:
     name: Tests
