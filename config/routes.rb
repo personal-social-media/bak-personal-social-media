@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    post "/server_proof_of_work", to: "server_proof_of_works#show"
+
     resources :posts, only: :show do
       resources :comments, only: %i(index show) do
         resources :reactions, only: :index

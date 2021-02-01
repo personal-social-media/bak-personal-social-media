@@ -4,11 +4,17 @@ class PostsController < ApplicationController
   before_action :require_current_user
 
   def create
-    p params
+    @post = Post.create!(post_params)
+    AttachmentsService::Attach.new(@post, files_params[:files]).call!
+
     head :ok
   end
 
-  def create_permitted_params
-    params.require(:post).permit(:content, files: [])
+  def files_params
+    params.require(:post).permit(files: [])
+  end
+
+  def post_params
+    params.require(:post).permit(:content)
   end
 end

@@ -1,7 +1,9 @@
 module SyncService
   class BaseSync
     include Rails.application.routes.url_helpers
+    include IdentityService::SignedRequest
     extend Memoist
+
     attr_reader :method, :url, :body
     class ResponseError < Exception; end
 
@@ -80,26 +82,8 @@ module SyncService
       raise ResponseError, response.status if response.status > 399
     end
 
-    memoize def default_headers
-      {
-        "User-Agent": "Personal Social Media",
-        "Url-Signed": private_key.sign(OpenSSL::Digest::SHA256.new, url),
-        "Public-Key": public_key,
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-    end
-
-    def private_key
-      return @@private_key if defined? @@private_key
-      key = File.read(Rails.application.secrets.dig(:profile, :keys_location) + "/private_key.pem")
-
-      @@private_key = OpenSSL::PKey::RSA.new(key)
-    end
-
-    def public_key
-      return @@public_key if defined? @@public_key
-      @@public_key = File.read(Rails.application.secrets.dig(:profile, :keys_location) + "/public_key.pem")
+    def default_headers
+      signed_headers(url)
     end
 
     def ssl_ctx

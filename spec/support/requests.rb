@@ -13,8 +13,13 @@ module RequestsHelper
   def clear_json!
     @json = nil
   end
+
+  def generate_url(url)
+    "http://www.example.com#{url}"
+  end
 end
 
 RSpec.configure do |config|
-  config.include RequestsHelper
+  config.include RequestsHelper, type: :request
+  config.include IdentityService::SignedRequest, type: :request
 end

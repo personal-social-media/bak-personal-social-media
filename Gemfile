@@ -34,6 +34,7 @@ end
 
 group :production do
   gem "dotenv", "~> 2.7", ">= 2.7.6"
+  gem "bugsnag"
 end
 
 group :test do
@@ -51,3 +52,7 @@ gem "falcon"
 gem "http"
 gem "font-awesome-rails"
 gem "shrine", "~> 3.3"
+gem "hiredis", "~> 0.6.3", require: %w(redis redis/connection/hiredis)
+gem "sidekiq", "~> 6.1", ">= 6.1.2", require: %w(sidekiq/web)
+gem "rack-cors"
+gem "oj"

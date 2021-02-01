@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require "shrine/storage/memory"
 
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
@@ -51,6 +52,11 @@ Rails.application.configure do
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
+
+  Shrine.storages = {
+    cache: Shrine::Storage::Memory.new,
+    store: Shrine::Storage::Memory.new,
+  }
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

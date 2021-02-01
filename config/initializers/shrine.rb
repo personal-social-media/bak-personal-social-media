@@ -1,10 +1,11 @@
-require "shrine"
-require "shrine/storage/file_system"
+unless Rails.env.test?
+  require "shrine/storage/file_system"
 
-Shrine.storages = {
-  cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
-  store: Shrine::Storage::FileSystem.new("public", prefix: "uploads"),       # permanent
-}
+  Shrine.storages = {
+    cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
+    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads"),       # permanent
+  }
+end
 
 Shrine.plugin :activerecord           # loads Active Record integration
 Shrine.plugin :cached_attachment_data # enables retaining cached file across form redisplays

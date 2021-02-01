@@ -15,8 +15,9 @@
 #
 FactoryBot.define do
   factory :profile do
-    name { "MyText" }
-    username { "MyString" }
-    gender { "MyString" }
+    name { "Name" }
+    username { "username" }
+    gender { :female }
+    recover_key_saved { true }
   end
 end
