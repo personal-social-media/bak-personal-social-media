@@ -65,7 +65,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
       - name: Ruby gem cache
@@ -98,6 +97,9 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
+      - name: Install ubuntu deps
+        run: |
+          apt-get install -y libvips libvips-dev libvips-tools
       - name: Setup test database
         env:
           RAILS_ENV: test
