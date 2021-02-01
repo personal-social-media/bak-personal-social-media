@@ -43,7 +43,7 @@ group :production do
 end
 
 group :test do
-  gem "database_cleaner", "~> 1.8", ">= 1.8.5"
+  gem "database_cleaner", "~> 2.0"
 end
 
 gem "bcrypt", "~> 3.1", ">= 3.1.16"
