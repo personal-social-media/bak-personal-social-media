@@ -4,10 +4,10 @@
       Add to Your Post
     </div>
 
-    <div data-controller="form-attachment-image" data-images-container="<%= images_container %>" data-submit-button="<%= submit_button %>">
-      <%= psm_rounded "aria-label": "Picture", data: { action: "click->form-attachment-image#addImage" } do %>
+    <%= stimulus_controller :div, "form_attachments/image", data: { images_container: images_container, submit_button: submit_button } do %>
+      <%= psm_rounded "aria-label": "Picture", data: { action: "click->form-attachments--image#addImage" } do %>
         <%= fa_icon "image", class: "text-lg m-1 text-white" %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

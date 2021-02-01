@@ -1,9 +1,9 @@
 module.exports = function(api) {
-  const validEnv = ['development', 'test', 'production']
-  const currentEnv = process.env.NODE_ENV
-  const isDevelopmentEnv = (currentEnv === "development")
-  const isProductionEnv = (currentEnv === 'production')
-  const isTestEnv = (currentEnv === 'test')
+  const validEnv = ['development', 'test', 'production'];
+  const currentEnv = api.env();
+  const isDevelopmentEnv = api.env('development');
+  const isProductionEnv = api.env('production');
+  const isTestEnv = api.env('test');
 
   if (!validEnv.includes(currentEnv)) {
     throw new Error(
@@ -15,10 +15,6 @@ module.exports = function(api) {
     )
   }
 
-  // Cached based on the value of some function. If this function returns a value different from
-  // a previously-encountered value, the plugins will re-evaluate.
-  api.cache(() => currentEnv);
-
   return {
     presets: [
       isTestEnv && [
@@ -26,8 +22,10 @@ module.exports = function(api) {
         {
           targets: {
             node: 'current'
-          }
-        }
+          },
+          modules: 'commonjs'
+        },
+        '@babel/preset-react'
       ],
       (isProductionEnv || isDevelopmentEnv) && [
         '@babel/preset-env',
@@ -37,6 +35,14 @@ module.exports = function(api) {
           corejs: 3,
           modules: false,
           exclude: ['transform-typeof-symbol']
+        }
+      ],
+      [
+        '@babel/preset-react',
+        {
+          development: isDevelopmentEnv || isTestEnv,
+          useBuiltIns: true,
+          runtime: "automatic"
         }
       ]
     ].filter(Boolean),
@@ -69,6 +75,12 @@ module.exports = function(api) {
         '@babel/plugin-transform-regenerator',
         {
           async: false
+        }
+      ],
+      isProductionEnv && [
+        'babel-plugin-transform-react-remove-prop-types',
+        {
+          removeImport: true
         }
       ]
     ].filter(Boolean)

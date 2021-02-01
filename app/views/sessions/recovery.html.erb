@@ -13,9 +13,7 @@
   <div>
     2) Take a picture of this qr code, and keep it safe
 
-    <div data-controller="utils-qr-code" data-qr-code="<%= @recover_key %>" class="text-center">
-
-    </div>
+    <%= stimulus_controller "utils/qr_code", data: { qr_code: @recover_key }, class: "text-center" %>
   </div>
 
   <div class="mt-4">

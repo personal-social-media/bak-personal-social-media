@@ -13,7 +13,7 @@ app:
     - .build/.bundle-cache-dir/app:/usr/local/bundle/
   ports:
     - "3000:3000"
-    - "4035:4035"
+    - "3035:3035"
   environment:
     - DOCKER=true
     - RUBYOPT=-W:no-deprecated -W:no-experimental

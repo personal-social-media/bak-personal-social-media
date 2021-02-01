@@ -7,9 +7,10 @@
       </div>
 
       <div>
-        <div class="bg-yellow-500 hover:bg-yellow-400 rounded-full h-8 w-8 flex justify-center items-center cursor-pointer float-right" data-action="click->modal#forceClose">
-          <%= fa_icon "close", class: "m-1 text-white" %>
-        </div>
+        <%= stimulus_action :div, "click->utils/modal#forceClose",
+                            class: "bg-yellow-500 hover:bg-yellow-400 rounded-full h-8 w-8 flex justify-center items-center cursor-pointer float-right" do %>
+          <%= fa_icon "times", class: "m-1 text-white" %>
+        <% end %>
       </div>
     </div>
     <hr>
@@ -17,7 +18,7 @@
       <%= form_with model: Post.new, url: posts_path, id: "create-post" do |f| %>
         <div class="px-8 overflow-y-scroll overflow-x-hidden mx-2" style="min-height: 20rem; max-height: 40rem;">
           <%= f.text_area :content, placeholder: "What are thinking about, #{current_user.name}?",
-                          data: { create_post_modal_target: "textarea", controller: "textarea" },
+                          data: { "posts--create-modal-target": "textarea", controller: "textarea" },
                           class: "w-full bg-transparent border-0 outline-none resize-none overflow-hidden text-lg"
           %>
 

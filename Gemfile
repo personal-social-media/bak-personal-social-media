@@ -45,13 +45,11 @@ group :test do
   gem "database_cleaner", "~> 1.8", ">= 1.8.5"
 end
 
-gem "snowpacker", github: "ParamagicDev/snowpacker"
 gem "bcrypt", "~> 3.1", ">= 3.1.16"
 gem "jb", "~> 0.8.0"
 gem "str_enum", "~> 0.2.0"
 gem "memoist", "~> 0.16.2"
 gem "auto_strip_attributes"
-gem "turbo-rails"
 gem "falcon"
 gem "http"
 gem "font-awesome-rails"
@@ -70,3 +68,4 @@ gem "toastr-rails"
 gem "jquery-rails", "~> 4.4"
 gem "view_component", require: "view_component/engine"
 gem "react-rails"
+gem 'webpacker', '~> 5.2', '>= 5.2.1'

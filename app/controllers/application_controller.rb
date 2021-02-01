@@ -3,4 +3,5 @@
 class ApplicationController < ActionController::Base
   include SessionHelper
   include PsmHelper
+  include StimulusHelper
 end

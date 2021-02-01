@@ -15,21 +15,20 @@
       </div>
 
       <div class="mx-4">
-        <div data-controller="utils-drop-down relative">
-
-          <%= psm_rounded data: { action: "click->utils-drop-down#toggleOpen" }, "aria-label": "Create", class: "tooltip-bottom" do %>
+        <%= stimulus_controller :div, "utils/drop_down", class: "relative" do %>
+          <%= psm_rounded data: { action: "click->utils--drop-down#toggleOpen" }, "aria-label": "Create", class: "tooltip-bottom" do %>
             <%= fa_icon "plus", class: "m-1 text-white" %>
           <% end %>
 
-          <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 20rem">
+          <div data-utils--drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 20rem">
             <div class="text-2xl text-gray-400 mb-6">
               Create
             </div>
 
-            <div class="mb-2" data-controller="create-post-modal">
+            <%= stimulus_controller :div, "posts/create-modal", class: "mb-2" do %>
               <% button = capture do %>
                 <div class="flex items-center">
-                  <%= psm_rounded data: { action: "click->modal#toggle click->create-post-modal#open" } do %>
+                  <%= psm_rounded data: { action: "click->utils--modal#toggle click->posts--create-modal#open" } do %>
                     <%= fa_icon "edit", class: "m-1 text-white" %>
                   <% end %>
                   <div class="text-xs font-thin ml-3">
@@ -40,17 +39,17 @@
               <% end %>
 
               <%= render partial: "posts_components/create_modal", locals: { button: button } %>
-            </div>
+            <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
 
-      <div data-controller="utils-drop-down" class="mr-12 relative">
-        <%= psm_rounded data: { action: "click->utils-drop-down#toggleOpen" }, "aria-label": "Settings", class: "tooltip-bottom" do %>
+      <%= stimulus_controller :div, "utils/drop_down", class: "mr-12 relative" do %>
+        <%= psm_rounded data: { action: "click->utils--drop-down#toggleOpen" }, "aria-label": "Settings", class: "tooltip-bottom" do %>
           <%= fa_icon "angle-down", class: "m-1 text-white" %>
         <% end %>
 
-        <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 16rem">
+        <div data-utils--drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 16rem">
           <div class="mb-2">
             <%= link_to "Logout", logout_sessions_path, method: :delete, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
@@ -61,7 +60,7 @@
             <%= link_to "Settings", settings_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
