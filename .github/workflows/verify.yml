@@ -99,7 +99,7 @@ jobs:
 
       - name: Install ubuntu deps
         run: |
-          apt-get install -y libvips libvips-dev libvips-tools
+          sudo apt-get install -y libvips libvips-dev libvips-tools
       - name: Setup test database
         env:
           RAILS_ENV: test
