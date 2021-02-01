@@ -1,5 +1,7 @@
 import {Controller} from "stimulus";
 import {uniqBy} from 'lodash';
+import EventBus from 'eventing-bus';
+import { feedbackSuccess } from '../../events/feedback';
 
 export default class FormAttachmentsImage extends Controller {
   images = [];
@@ -59,6 +61,8 @@ export default class FormAttachmentsImage extends Controller {
 
   watchSubmit(){
     const form = document.querySelector(`#${this.element.dataset.submitButton}`);
+    const submit = form.querySelector("button[type='submit']");
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -67,12 +71,28 @@ export default class FormAttachmentsImage extends Controller {
       this.images.forEach((image, i) => {
         formData.append("post[files][]", image);
       });
+      submit.disabled = true;
+      submit.textContent = "Saving...";
 
       try{
-        const response = fetch(form.action, { method: "POST", body: formData});
+        fetch(form.action, { method: "POST", body: formData});
       }catch (e){
         debugger;
+      }finally {
+        submit.disabled = false;
       }
+
+      this.saved(form, submit);
     });
+  }
+
+  saved(form, submit){
+    submit.textContent = submit.dataset.initialText;
+    this.images = [];
+    this.handleNewFiles([]);
+
+    EventBus.publish("MODAL/CLOSE");
+    feedbackSuccess("Post created");
+    form.reset();
   }
 }
