@@ -51,7 +51,7 @@ jobs:
 
   tests:
     name: Tests
-    runs-on: ubuntu:bionic
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgres:12
