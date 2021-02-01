@@ -23,5 +23,7 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 RUN npm install -g yarn
 
+RUN apt-get install -y libvips libvips-dev libvips-tools
+
 RUN mkdir -p /app
 WORKDIR /app

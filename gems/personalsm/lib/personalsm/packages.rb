@@ -58,6 +58,7 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
     def packages
       %w(
 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+libvips libvips-dev libvips-tools
 gcc g++ make
 libpq-dev
 libmagickwand-dev

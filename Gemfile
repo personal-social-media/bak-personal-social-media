@@ -30,6 +30,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.1"
   gem "bundler-audit"
   gem "brakeman"
+  gem "pry-rails", "~> 0.3.9"
 end
 
 group :production do
@@ -56,3 +57,9 @@ gem "hiredis", "~> 0.6.3", require: %w(redis redis/connection/hiredis)
 gem "sidekiq", "~> 6.1", ">= 6.1.2", require: %w(sidekiq/web)
 gem "rack-cors"
 gem "oj"
+gem "ruby-vips"
+gem "image_processing", "~> 1.12", ">= 1.12.1"
+gem "fastimage", "~> 2.2", ">= 2.2.2"
+gem "marcel", "~> 0.3.3"
+gem "exiftool_vendored"
+gem "exiftool"

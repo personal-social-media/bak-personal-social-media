@@ -17,7 +17,7 @@
 #
 class Post < ApplicationRecord
   include UidConcern
-
+  has_many :attached_files, as: :subject, dependent: :destroy
   after_commit :sync_create, on: :create
 
   private

@@ -24,4 +24,5 @@
 #
 class ImageFile < ApplicationRecord
   include ImageUploader::Attachment(:image)
+  belongs_to :image_album
 end

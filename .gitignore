@@ -35,3 +35,4 @@ node_modules/
 .rakeTasks
 .build/thor/ssh.rb
 yarn-error.log
+public/uploads

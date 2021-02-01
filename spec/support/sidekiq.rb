@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-# require "sidekiq/testing"
-# Sidekiq::Testing.inline!
+require "sidekiq/testing"
+Sidekiq::Testing.inline!
