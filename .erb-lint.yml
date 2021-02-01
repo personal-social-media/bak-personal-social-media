@@ -1,5 +1,7 @@
 ---
 EnableDefaultLinters: true
+exclude:
+  - "vendor/bundle/**"
 linters:
   ErbSafety:
     enabled: true
