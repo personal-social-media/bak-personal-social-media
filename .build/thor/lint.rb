@@ -8,12 +8,5 @@ class Lint < Thor
     run "yarn lint"
   end
 
-  desc "test", "lint test everything"
-  def test
-    run "bundle exec rubocop --parallel"
-    run "bundle exec erblint --lint-all"
-    run "yarn eslint --ext .js --ext .jsx app/javascript"
-  end
-
   default_task :default
 end

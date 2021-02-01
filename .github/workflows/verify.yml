@@ -42,7 +42,9 @@ jobs:
 
       - name: Run linters
         run: |
-          bundle exec thor lint:test
+          bundle exec rubocop --parallel
+          bundle exec erblint --lint-all
+          yarn eslint --ext .js --ext .jsx app/javascript
       - name: Run security checks
         run: |
           bundle exec bundler-audit --update
