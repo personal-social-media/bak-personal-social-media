@@ -62,6 +62,9 @@ jobs:
         ports: ["5432:5432"]
 
     steps:
+      - name: Install ubuntu deps
+        run: |
+          sudo apt update && sudo apt-get install -y libvips libvips-dev libvips-tools
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Ruby
@@ -95,34 +98,6 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
-
-      - name: Install ubuntu deps
-        env:
-          VIPS_VERSION: 8.10.2
-          VIPS_URL: https://github:com/libvips/libvips/releases/download
-        run: |
-          sudo apt-get update -y && sudo apt-get install -y \
-          	wget \
-          	glib-2.0-dev \
-          	libexpat-dev \
-          	librsvg2-dev \
-          	libpng-dev \
-          	libgif-dev \
-          	libjpeg-dev \
-          	libexif-dev \
-          	liblcms2-dev \
-          	libheif-dev \
-          	liborc-dev \
-          	time
-
-          sudo cd /usr/local/src \
-            && sudo wget ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz \
-          	&& tar xzf vips-${VIPS_VERSION}.tar.gz \
-          	&& sudo cd vips-${VIPS_VERSION} \
-          	&& sudo ./configure \
-          	&& sudo make \
-          	&& sudo make install \
-          	&& sudo ldconfig
       - name: Setup test database
         env:
           RAILS_ENV: test
