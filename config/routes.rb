@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  Rails.application.routes.default_url_options[:host] = Rails.application.secrets.dig(:load_balancer_address)
+
   root "home#index"
   get "/public_key", to: "static#public_key"
 

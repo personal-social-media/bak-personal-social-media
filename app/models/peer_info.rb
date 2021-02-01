@@ -19,5 +19,5 @@
 #  index_peer_infos_on_username_and_ip  (username,ip)
 #
 class PeerInfo < ApplicationRecord
-  str_enum :friend_ship_status, %i(requested pending declined)
+  str_enum :friend_ship_status, %i(requested pending declined self)
 end

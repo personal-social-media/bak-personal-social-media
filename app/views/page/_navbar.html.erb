@@ -4,9 +4,14 @@
       <%= link_to "Your social media", root_path, class: "text-2xl no-underline text-gray-700 hover:text-gray-900" %>
     </div>
 
-    <div class="flex">
-      <div class="mx-4">
-        <%= link_to current_user.username, profile_path(current_user) %>
+    <div class="flex items-center">
+      <div class="mx-4 hover:bg-yellow-400 px-2 rounded shadow-inner">
+        <%= link_to profile_path(current_user.peer_info), class: "text-gray-700 hover:text-gray-900 no-underline" do %>
+          <div class="flex items-center">
+            <%= render Person::AvatarComponent.new(url: current_user.profile_image&.image_url(:desktop), class_name: "h-10 w-10 rounded-full object-cover") %>
+            <span><%= current_user.username %></span>
+          </div>
+        <% end %>
       </div>
 
       <div class="mx-4">
@@ -16,16 +21,22 @@
             <%= fa_icon "plus", class: "m-1 text-white" %>
           <% end %>
 
-          <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white px-4 py-2 shadow-xl mt-2" style="width: 10rem">
-            <div class="text-2xl text-gray-400">
+          <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 20rem">
+            <div class="text-2xl text-gray-400 mb-6">
               Create
             </div>
 
             <div class="mb-2" data-controller="create-post-modal">
               <% button = capture do %>
-                <%= psm_button :primary, data: { action: "click->modal#toggle click->create-post-modal#open" }, class: "text-sm" do %>
-                  Create new post
-                <% end %>
+                <div class="flex items-center">
+                  <%= psm_rounded data: { action: "click->modal#toggle click->create-post-modal#open" } do %>
+                    <%= fa_icon "edit", class: "m-1 text-white" %>
+                  <% end %>
+                  <div class="text-xs font-thin ml-3">
+                    <div>Post</div>
+                    <div>Write a new Post on your feed.</div>
+                  </div>
+                </div>
               <% end %>
 
               <%= render partial: "posts_components/create_modal", locals: { button: button } %>
@@ -35,9 +46,9 @@
       </div>
 
       <div data-controller="utils-drop-down" class="mr-12 relative">
-        <a data-action="click->utils-drop-down#toggleOpen" class="cursor-pointer shadow-inner bg-blue-400 rounded border border-solid border-gray-300 p-2 px-16 text-gray-100 hover:text-gray-300">
-          <%= current_user.username %>
-        </a>
+        <%= psm_rounded data: { action: "click->utils-drop-down#toggleOpen" }, "aria-label": "Settings", class: "tooltip-bottom" do %>
+          <%= fa_icon "angle-down", class: "m-1 text-white" %>
+        <% end %>
 
         <div data-utils-drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 16rem">
           <div class="mb-2">

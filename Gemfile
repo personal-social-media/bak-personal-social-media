@@ -22,6 +22,9 @@ group :development do
   gem "annotate", "~> 3.1", ">= 3.1.1"
   gem "foreman", "~> 0.87.2"
   gem "spring-commands-rspec"
+  gem "rack-mini-profiler"
+  gem "memory_profiler"
+  gem "stackprof"
 end
 
 group :development, :test do
@@ -65,3 +68,5 @@ gem "exiftool_vendored"
 gem "exiftool"
 gem "toastr-rails"
 gem "jquery-rails", "~> 4.4"
+gem "view_component", require: "view_component/engine"
+gem "react-rails"

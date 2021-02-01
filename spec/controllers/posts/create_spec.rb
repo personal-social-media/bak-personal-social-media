@@ -43,7 +43,6 @@ describe PostsController do
         .and change { ImageFile.count }.by(1)
 
         expect(response).to have_http_status(:ok)
-        binding.pry
       end
     end
   end

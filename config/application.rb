@@ -37,6 +37,7 @@ module Personal
     config.generators.system_tests = nil
     config.time_zone = Rails.application.secrets[:time_zone]
     config.active_record.default_timezone = :local
-    # config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :sidekiq
+    Rails.autoloaders.main.ignore(Rails.root.join('app/snowpacker'))
   end
 end

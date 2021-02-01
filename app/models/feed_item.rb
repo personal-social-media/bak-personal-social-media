@@ -24,4 +24,5 @@
 #
 class FeedItem < ApplicationRecord
   belongs_to :peer_info
+  str_enum :feed_item_type, %i(post story)
 end
