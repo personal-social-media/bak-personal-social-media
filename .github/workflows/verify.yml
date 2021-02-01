@@ -43,7 +43,6 @@ jobs:
       - name: Run linters
         run: |
           bundle exec rubocop --parallel
-          bundle exec erblint --lint-all app/
           yarn eslint --ext .js --ext .jsx app/javascript
       - name: Run security checks
         run: |
@@ -99,7 +98,7 @@ jobs:
 
       - name: Install ubuntu deps
         run: |
-          sudo apt-get update && sudo apt-get install -y libvips libvips-dev
+          sudo apt-get update && sudo apt-get upgrade && sudo apt-get install -y libvips libvips-dev
       - name: Setup test database
         env:
           RAILS_ENV: test
