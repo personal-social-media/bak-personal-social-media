@@ -34,6 +34,7 @@ group :development, :test do
   gem "bundler-audit"
   gem "brakeman"
   gem "pry-rails", "~> 0.3.9"
+  gem "erb_lint", require: false
 end
 
 group :production do
@@ -68,4 +69,4 @@ gem "toastr-rails"
 gem "jquery-rails", "~> 4.4"
 gem "view_component", require: "view_component/engine"
 gem "react-rails"
-gem 'webpacker', '~> 5.2', '>= 5.2.1'
+gem "webpacker", "~> 5.2", ">= 5.2.1"

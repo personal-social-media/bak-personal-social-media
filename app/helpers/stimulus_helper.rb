@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StimulusHelper
   def stimulus_controller(tag, name, data: {}, **options)
     data[:controller] = __format_stimulus_string(name)

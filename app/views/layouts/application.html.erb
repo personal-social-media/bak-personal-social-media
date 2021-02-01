@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_include_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_packs_with_chunks_tag 'application', 'data-turbo-track': 'reload' %>
-    <%= stylesheet_packs_with_chunks_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
+    <%= javascript_include_tag "application", media: "all", 'data-turbo-track': "reload" %>
+    <%= javascript_packs_with_chunks_tag "application", 'data-turbo-track': "reload" %>
+    <%= stylesheet_packs_with_chunks_tag "application", 'data-turbo-track': "reload" %>
     <%= yield :head %>
   </head>
 
