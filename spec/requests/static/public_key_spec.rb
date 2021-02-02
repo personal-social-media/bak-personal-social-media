@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 describe "/public_key" do
+  include ExternalApiHelpers
+  let(:controller) { StaticController }
+
+  before do
+    request_as_verified
+  end
+
   subject do
     get "/public_key"
   end

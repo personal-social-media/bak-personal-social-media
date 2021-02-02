@@ -31,6 +31,12 @@ module SessionsTestHelper
   end
 end
 
+module ExternalApiHelpers
+  def request_as_verified
+    allow_any_instance_of(controller).to receive(:verify_node_request)
+  end
+end
+
 module IdentitiesTestHelper
   def verify_with_private_key(signed, raw)
     private_key.verify(OpenSSL::Digest::SHA256.new, Base64.decode64(signed), raw)

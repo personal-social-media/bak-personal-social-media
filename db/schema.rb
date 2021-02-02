@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_041509) do
+ActiveRecord::Schema.define(version: 2021_02_02_204522) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "attached_files", force: :cascade do |t|
@@ -121,6 +122,8 @@ ActiveRecord::Schema.define(version: 2021_01_30_041509) do
     t.boolean "friend", default: false, null: false
     t.text "avatar_url"
     t.string "friend_ship_status"
+    t.text "name"
+    t.index ["name"], name: "index_peer_infos_on_name", opclass: :gin_trgm_ops, using: :gin
     t.index ["username", "ip"], name: "index_peer_infos_on_username_and_ip"
   end
 

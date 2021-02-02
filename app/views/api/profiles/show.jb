@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+fields = %i(username)
+if is_friend?
+  fields += %i(name gender)
+end
+
+json = {
+  profile: @profile.as_json(only: fields)
+}
+
+json[:profile][:public_key] = @public_key
+
+json

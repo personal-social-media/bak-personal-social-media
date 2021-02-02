@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class StaticController < ActionController::Base
+  include NodeVerifyRequest
+  before_action :verify_node_request
+
   def public_key
     path = Rails.application.secrets.dig(:profile, :keys_location) + "/public_key.pem"
     return head 404 unless File.exist?(path)

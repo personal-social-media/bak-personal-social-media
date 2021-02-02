@@ -31,18 +31,21 @@ Rails.application.routes.draw do
   namespace :api do
     post "/server_proof_of_work", to: "server_proof_of_works#show"
 
+    resource :friendship, only: %i(show create destroy update)
+    resource :profile, only: :show
+
     resources :posts, only: :show do
       resources :comments, only: %i(index show) do
-        resources :reactions, only: :index
+        resources :reactions, only: %i(index create destroy)
       end
-      resources :reactions, only: :index
+      resources :reactions, only: %i(index create destroy)
     end
 
     resources :stories, only: :show do
       resources :comments, only: %i(index show) do
-        resources :reactions, only: :index
+        resources :reactions, only: %i(index create destroy)
       end
-      resources :reactions, only: :index
+      resources :reactions, only: %i(index create destroy)
     end
   end
 end

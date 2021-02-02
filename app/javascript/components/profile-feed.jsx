@@ -1,19 +1,26 @@
-import {createState, useState} from "@hookstate/core";
-import {useEffect} from "react";
+import {buildRemoteAxios} from '../lib/http/build-axios';
+import {createState, useState} from '@hookstate/core';
+import {useEffect} from 'react';
 
 export const profileFeedState = createState({
-  peerIp: null
+  peerId: null,
+  peerIp: null,
+  remoteAxios: null,
 });
 
-export default function ProfileFeed({peer_id: peerId}){
+export default function ProfileFeed({peer_id: peerId, peer_ip: peerIp}) {
   const state = useState(profileFeedState);
   useEffect(() => {
-    state.merge({peerId});
-  }, [peerId]);
+    state.merge({
+      peerId,
+      peerIp,
+      remoteAxios: buildRemoteAxios(peerIp),
+    });
+  }, [peerId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return(
+  return (
     <div>
       {state.peerIp.get()}
     </div>
-  )
+  );
 }
