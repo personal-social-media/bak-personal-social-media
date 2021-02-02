@@ -3,14 +3,17 @@
   "private": true,
   "dependencies": {
     "@cheprasov/qrcode": "^0.1.0",
+    "@hookstate/core": "^3.0.4",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
+    "axios": "^0.21.1",
     "eventing-bus": "^2.0.1",
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react_ujs": "^2.6.1",
     "stimulus": "^2.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "turbolinks": "^5.2.0"
