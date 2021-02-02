@@ -9,6 +9,7 @@
     "@rails/ujs": "^6.0.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "axios": "^0.21.1",
+    "axios-case-converter": "^0.7.0",
     "eventing-bus": "^2.0.1",
     "lodash": "^4.17.20",
     "react": "^17.0.1",

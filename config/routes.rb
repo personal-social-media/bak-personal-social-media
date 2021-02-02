@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "home#index"
   get "/public_key", to: "static#public_key"
-  match "/proxy/*proxy_rails_path", to: "proxy#index", via: :all
+  post "/sign", to: "signatures#create"
 
   resources :profiles, path: "/u", only: :show do
 

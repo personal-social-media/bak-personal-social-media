@@ -5,11 +5,11 @@ export const profileFeedState = createState({
   peerIp: null
 });
 
-export default function ProfileFeed({peer_ip: peerIp}){
+export default function ProfileFeed({peer_id: peerId}){
   const state = useState(profileFeedState);
   useEffect(() => {
-    state.merge({peerIp});
-  }, [peerIp]);
+    state.merge({peerId});
+  }, [peerId]);
 
   return(
     <div>

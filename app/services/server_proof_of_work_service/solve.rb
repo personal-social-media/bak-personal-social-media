@@ -24,7 +24,7 @@ module ServerProofOfWorkService
       end
 
       def handle_sign_string
-        Base64.encode64(private_key.sign(OpenSSL::Digest::SHA256.new, sign_string))
+        SignaturesService::Sign.new(sign_string).call!
       end
   end
 end

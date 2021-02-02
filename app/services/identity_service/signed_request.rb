@@ -7,9 +7,13 @@ module IdentityService
     def signed_headers(url)
       {
         "User-Agent": "Personal Social Media",
-        "Url-Signed": private_key.sign(OpenSSL::Digest::SHA256.new, url),
+        "Url-Signed": sign(url),
         "Public-Key": private_key.public_key.to_pem,
       }.merge!(extra_headers)
+    end
+
+    def sign(text)
+      private_key.sign(OpenSSL::Digest::SHA256.new, text)
     end
 
     def private_key
