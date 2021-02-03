@@ -1,3 +1,5 @@
 # frozen_string_literal: true
 
-@peer_info.as_json(only: %i(friend_ship_status))
+{
+  friendship: @peer_info.as_json(only: %i(friend_ship_status))
+}

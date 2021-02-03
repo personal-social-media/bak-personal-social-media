@@ -35,6 +35,10 @@ module ExternalApiHelpers
   def request_as_verified
     allow_any_instance_of(controller).to receive(:verify_node_request)
   end
+
+  def request_as_server
+    allow_any_instance_of(controller).to receive(:require_server)
+  end
 end
 
 module IdentitiesTestHelper

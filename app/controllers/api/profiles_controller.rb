@@ -5,6 +5,7 @@ module Api
     include NodeVerifyRequest
     include IdentityService::SignedRequest
     before_action :verify_node_request
+    before_action :verify_not_blocked
 
     def show
       @profile = Profile.first

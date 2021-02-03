@@ -120,9 +120,9 @@ ActiveRecord::Schema.define(version: 2021_02_02_204522) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "friend", default: false, null: false
-    t.text "avatar_url"
     t.string "friend_ship_status"
     t.text "name"
+    t.text "avatars"
     t.index ["name"], name: "index_peer_infos_on_name", opclass: :gin_trgm_ops, using: :gin
     t.index ["username", "ip"], name: "index_peer_infos_on_username_and_ip"
   end

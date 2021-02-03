@@ -11,4 +11,8 @@ json = {
 
 json[:profile][:public_key] = @public_key
 
+if is_friend? && @profile.profile_image.present?
+  json[:profile][:avatar_urls] = all_uploaded_image_urls(@profile.profile_image)
+end
+
 json

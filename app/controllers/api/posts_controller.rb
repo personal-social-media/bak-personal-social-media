@@ -3,6 +3,7 @@
 module Api
   class PostsController < BaseController
     before_action :verify_node_request
+    before_action :verify_not_blocked
     before_action :require_friend
 
     def index

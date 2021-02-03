@@ -5,7 +5,7 @@
 # Table name: peer_infos
 #
 #  id                 :bigint           not null, primary key
-#  avatar_url         :text
+#  avatars            :text
 #  friend             :boolean          default(FALSE), not null
 #  friend_ship_status :string
 #  ip                 :string           not null
@@ -22,4 +22,12 @@
 #
 class PeerInfo < ApplicationRecord
   str_enum :friend_ship_status, %i(requested pending declined self accepted blocked)
+  after_commit :fetch_more_information if Rails.env.production?
+  validates :username, exclusion: { in: %w(UNKNOWN) }, on: :update
+
+  def fetch_more_information
+    PeerInfoWorker::FetchInfo.perform_async(id)
+  end
+
+  serialize :avatars, JSON
 end

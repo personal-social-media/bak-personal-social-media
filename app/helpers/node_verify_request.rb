@@ -16,6 +16,10 @@ module NodeVerifyRequest
     end
   end
 
+  def verify_not_blocked
+    head 403 if friend&.blocked?
+  end
+
   def require_friend
     head 403 unless is_friend?
   end

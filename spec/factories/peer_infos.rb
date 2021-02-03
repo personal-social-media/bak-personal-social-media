@@ -5,7 +5,7 @@
 # Table name: peer_infos
 #
 #  id                 :bigint           not null, primary key
-#  avatar_url         :text
+#  avatars            :text
 #  friend             :boolean          default(FALSE), not null
 #  friend_ship_status :string
 #  ip                 :string           not null
@@ -22,8 +22,8 @@
 #
 FactoryBot.define do
   factory :peer_info do
-    username { "MyText" }
-    ip { "MyString" }
-    public_key { "MyText" }
+    username { "username" }
+    ip { "0.0.0.0" }
+    public_key { "public key" }
   end
 end
