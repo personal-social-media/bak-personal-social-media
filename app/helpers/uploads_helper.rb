@@ -10,7 +10,17 @@ module UploadsHelper
     }
   end
 
+  def url_image_for_device(image)
+    type = case request.headers["Client"]
+           when "desktop"
+             :desktop
+           else
+             :mobile
+    end
+    root + image.image_url(type)
+  end
+
   memoize def root
-    Rails.application.secrets(:load_balancer_address)
+    Rails.application.secrets.dig(:load_balancer_address)
   end
 end

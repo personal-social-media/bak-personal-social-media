@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_204522) do
+ActiveRecord::Schema.define(version: 2021_02_03_145321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -123,6 +123,11 @@ ActiveRecord::Schema.define(version: 2021_02_02_204522) do
     t.string "friend_ship_status"
     t.text "name"
     t.text "avatars"
+    t.text "about"
+    t.string "country_code"
+    t.text "city_name"
+    t.index ["city_name"], name: "index_peer_infos_on_city_name"
+    t.index ["country_code"], name: "index_peer_infos_on_country_code"
     t.index ["name"], name: "index_peer_infos_on_name", opclass: :gin_trgm_ops, using: :gin
     t.index ["username", "ip"], name: "index_peer_infos_on_username_and_ip"
   end
@@ -147,6 +152,9 @@ ActiveRecord::Schema.define(version: 2021_02_02_204522) do
     t.boolean "recover_key_saved", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "about"
+    t.string "country_code"
+    t.text "city_name"
   end
 
   create_table "reactions", force: :cascade do |t|

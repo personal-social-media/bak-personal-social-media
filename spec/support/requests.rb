@@ -43,7 +43,7 @@ end
 
 module IdentitiesTestHelper
   def verify_with_private_key(signed, raw)
-    private_key.verify(OpenSSL::Digest::SHA256.new, Base64.decode64(signed), raw)
+    private_key.verify(OpenSSL::Digest::SHA256.new, Base32.decode(signed), raw)
   end
 end
 

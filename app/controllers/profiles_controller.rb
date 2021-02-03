@@ -5,6 +5,10 @@ class ProfilesController < ApplicationController
   before_action :require_current_user
   before_action :require_current_peer
 
+  def show
+    @title = current_peer.name
+  end
+
   def require_current_peer
     head 404 if current_peer.blank?
   end

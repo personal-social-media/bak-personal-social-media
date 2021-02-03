@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+default_fields = %i(uid content like_count location_name love_count mood wow_count created_at)
+fields = default_fields
+
+json = post.as_json(only: fields)
+json[:images] = post.attached_files.select(&:image?).map do |attachment|
+  image = attachment.attachment
+
+  {
+    url: url_image_for_device(image)
+  }
+end
+
+json

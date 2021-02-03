@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = Post.create!(post_params)
     time = Time.zone.now
     album_title = "Posts #{time.strftime("%B %Y")}"
-    AttachmentsService::Attach.new(@post, files_params[:files], album_title).call!
+    AttachmentsService::Attach.new(@post, files_params[:files], album_title, false).call!
 
     head :ok
   end

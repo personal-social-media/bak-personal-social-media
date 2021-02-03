@@ -5,6 +5,9 @@
 # Table name: profiles
 #
 #  id                :bigint           not null, primary key
+#  about             :text
+#  city_name         :text
+#  country_code      :string
 #  gender            :string           not null
 #  name              :text             not null
 #  recover_key       :text             not null

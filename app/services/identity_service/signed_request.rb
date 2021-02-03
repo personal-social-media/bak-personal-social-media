@@ -6,7 +6,7 @@ module IdentityService
 
     def signed_headers(url)
       {
-        "User-Agent": "Personal Social Media",
+        "Real-User-Agent": "Personal Social Media",
         "Url-Signed": sign(url),
         "Public-Key": private_key.public_key.to_pem,
         "Client": "server"

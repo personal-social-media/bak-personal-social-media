@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   end
 
   resources :posts
+  resources :cities, only: %i(index)
 
   resource :sessions, only: [] do
     collection do
       get "/profile", action: :profile
+      post "/profile", action: :profile_post
       get "/settings", action: :settings
 
       get "/login", action: :login
@@ -34,7 +36,7 @@ Rails.application.routes.draw do
     resource :friendship, only: %i(show create destroy update)
     resource :profile, only: :show
 
-    resources :posts, only: :show do
+    resources :posts, only: %i(show index) do
       resources :comments, only: %i(index show) do
         resources :reactions, only: %i(index create destroy)
       end

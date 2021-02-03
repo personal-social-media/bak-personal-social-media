@@ -10,7 +10,7 @@ module SignaturesService
     end
 
     def call!
-      Base64.encode64(sign(content))
+      Base32.encode(sign(content))
     end
   end
 end

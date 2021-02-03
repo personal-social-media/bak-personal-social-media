@@ -1,1 +1,3 @@
-<div class="hidden" id="notice"><%= flash[:notice] %></div>
+<% if flash[:notice].present? %>
+  <meta name="flash-notice" content="<%= flash[:notice] %>">
+<% end %>

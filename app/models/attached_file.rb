@@ -20,4 +20,8 @@
 class AttachedFile < ApplicationRecord
   belongs_to :attachment, polymorphic: true
   belongs_to :subject, polymorphic: true
+
+  def image?
+    attachment_type == "ImageFile"
+  end
 end

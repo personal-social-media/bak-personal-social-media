@@ -5,7 +5,7 @@ describe "/api/server_proof_of_work" do
     let(:url) { "/api/server_proof_of_work" }
     let(:headers) { signed_headers(generate_url(url)) }
     let(:test_string) {  SecureRandom.hex }
-    let(:decoded_test_string) { Base64.decode64(json[:test][:sign_string]) }
+    let(:decoded_test_string) { Base32.decode(json[:test][:sign_string]) }
     let(:params) { { test: { sign_string: test_string, multiply: [2, 2] } } }
 
     subject do

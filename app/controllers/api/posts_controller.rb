@@ -2,12 +2,14 @@
 
 module Api
   class PostsController < BaseController
+    include UploadsHelper
+    extend Memoist
     before_action :verify_node_request
     before_action :verify_not_blocked
     before_action :require_friend
 
     def index
-      base_query.includes(attached_files: :attachment).page(params[:page]).per(20)
+      @posts = base_query.includes(attached_files: :attachment).page(params[:page]).per(20)
     end
 
     def show

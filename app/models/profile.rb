@@ -5,6 +5,9 @@
 # Table name: profiles
 #
 #  id                :bigint           not null, primary key
+#  about             :text
+#  city_name         :text
+#  country_code      :string
 #  gender            :string           not null
 #  name              :text             not null
 #  recover_key       :text             not null
@@ -18,6 +21,7 @@ class Profile < ApplicationRecord
   validates :name, presence: true
   validates :username, presence: true
   validates :gender, presence: true
+  validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   has_one :profile_picture_attachment, class_name: "AttachedFile", dependent: :destroy, as: :subject
   has_one :profile_image, through: :profile_picture_attachment, source_type: "ImageFile", source: :attachment
   auto_strip_attributes :name, :username, squish: true

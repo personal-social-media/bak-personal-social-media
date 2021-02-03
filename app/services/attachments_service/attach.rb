@@ -3,12 +3,13 @@
 module AttachmentsService
   class Attach
     IMAGES_EXTENSIONS = %w(jpg jpeg png webp tiff).freeze
-    attr_reader :files, :subject, :album_name
+    attr_reader :files, :subject, :album_name, :is_private
 
-    def initialize(subject, files, album_name)
+    def initialize(subject, files, album_name, is_private)
       @subject = subject
       @files = files
       @album_name = album_name
+      @is_private = is_private
     end
 
     def call!
@@ -27,7 +28,7 @@ module AttachmentsService
       end
 
       def handle_image(file)
-        attachment = ImageFile.create!(image: file, image_album: image_album)
+        attachment = ImageFile.create!(image: file, image_album: image_album, private: is_private)
         AttachedFile.create!(attachment: attachment, subject: subject)
       end
 

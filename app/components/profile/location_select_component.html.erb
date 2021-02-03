@@ -1,0 +1,18 @@
+<%= stimulus_controller :div, "profile/country_select" do %>
+  <div class="my-3">
+    <%= f.label :country_code, "Country:" %>
+    <div class="pt-1">
+      <%= f.select :country_code, ISO3166::Country.translations.invert.to_a, { include_blank: true }, class: "w-full", data: {
+        action: "change->profile--country-select#setCountry"
+      } %>
+    </div>
+  </div>
+  <div class="my-3">
+    <%= f.label :city_name, "City:" %>
+    <div class="pt-1">
+      <%= f.text_field :city_name, class: "w-full", disabled: true, data: {
+        "profile--country-select-target": "cities"
+      } %>
+    </div>
+  </div>
+<% end %>

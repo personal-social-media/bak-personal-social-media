@@ -8,7 +8,8 @@ module NodeVerifyRequest
       request.original_url,
       request.headers["Public-Key"],
       request.headers["Url-Signed"],
-      request.headers["User-Agent"],
+      request.headers["Real-User-Agent"],
+      request.headers["Client"]
     ).call!
       IdentityService::Register.new(request).call! unless respond_to?(:ignore_register)
     else
@@ -30,7 +31,7 @@ module NodeVerifyRequest
   end
 
   memoize def friend
-    PeerInfo.find_by(public_key: request.headers["Public-Key"])
+    IdentityService::GetFriend.new(request).call!
   end
 
   def is_server?

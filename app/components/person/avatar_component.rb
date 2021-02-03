@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Person::AvatarComponent < ViewComponent::Base
-  attr_reader :url, :class_name
-  def initialize(url:, class_name: "")
+  attr_reader :url, :options
+  def initialize(url:, **options)
     @url = url
-    @class_name = class_name
+    @options = options
   end
 
   def real_url

@@ -10,11 +10,17 @@ module ProfileService
     end
 
     def call!
-      PeerInfo.create!(friend_ship_status: :self, ip: ip, friend: false, username: profile.username, public_key: public_key)
+      PeerInfo.create!(
+        friend_ship_status: :self,
+        ip: ip, friend: false,
+        username: profile.username,
+        public_key: public_key,
+        name: profile.username
+      )
     end
 
     def ip
-      Rails.application.secrets.dig(:load_balancer_address)
+      URI.parse(Rails.application.secrets.dig(:load_balancer_address)).host
     end
   end
 end

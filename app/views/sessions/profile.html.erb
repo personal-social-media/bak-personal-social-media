@@ -1,3 +1,52 @@
+<div class="text-center">
+  <h3>Your Profile</h3>
+</div>
 
+<div class="mx-auto md:w-1/3 w-full">
+  <%= form_with url: profile_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", data: { controller: "profile--update" } do |f| %>
+    <div class="text-center">
+      <%= render Person::AvatarComponent.new(url: nil, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover",
+                                             data: {
+                                               "profile--update-target": :image,
+                                               action: "click->profile--update#change"
+                                             }) %>
+    </div>
 
-<h3>Profile</h3>
+    <% if current_user.profile_image.present? %>
+      <%= f.hidden_field :image, value: current_user.profile_image.cached_image_data %>
+    <% end %>
+    <%= f.file_field :image, accept: "image/*", class: "hidden", data: { "profile--update-target": :imageFile } %>
+
+    <div class="my-3">
+      <%= f.label :name, "Name:" %>
+      <div class="pt-1">
+        <%= f.text_field :name, value: current_user.name, required: true, class: "w-full" %>
+      </div>
+    </div>
+
+    <div class="my-3">
+      <%= f.label :gender, "Gender:", class: "pb-2" %>
+      <div class="pt-1">
+        <%= f.select :gender, Profile.genders, {}, { class: "w-full" } %>
+      </div>
+    </div>
+
+    <div class="my-3">
+      <%= f.label :about, "About:" %>
+
+      <div class="pt-1">
+        <%= f.text_area :about, placeholder: "Intro",
+                        data: { controller: "forms--textarea" },
+                        class: "w-full" %>
+      </div>
+    </div>
+
+    <div class="my-3">
+      <%= render Profile::LocationSelectComponent.new(country: current_user.country_code, city: current_user.city_name, f: f) %>
+    </div>
+
+    <div class="my-3">
+      <%= f.submit "Update", class: "pure-button pure-button-primary w-full", data: { disable_with: "Saving.." } %>
+    </div>
+  <% end %>
+</div>

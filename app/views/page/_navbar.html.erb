@@ -8,7 +8,7 @@
       <div class="mx-4 hover:bg-yellow-400 px-2 rounded shadow-inner">
         <%= link_to profile_path(current_user.peer_info), class: "text-gray-700 hover:text-gray-900 no-underline" do %>
           <div class="flex items-center">
-            <%= render Person::AvatarComponent.new(url: current_user.profile_image&.image_url(:desktop), class_name: "h-10 w-10 rounded-full object-cover") %>
+            <%= render Person::AvatarComponent.new(url: current_user.profile_image&.image_url(:desktop), class: "h-10 w-10 rounded-full object-cover") %>
             <span><%= current_user.username %></span>
           </div>
         <% end %>
