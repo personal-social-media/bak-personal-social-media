@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :cities, only: %i(index)
+  resources :identities, only: :create
 
   resource :sessions, only: [] do
     collection do

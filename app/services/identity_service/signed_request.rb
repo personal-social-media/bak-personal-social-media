@@ -7,8 +7,9 @@ module IdentityService
     def signed_headers(url)
       {
         "Real-User-Agent": "Personal Social Media",
-        "Url-Signed": sign(url),
-        "Public-Key": private_key.public_key.to_pem,
+        "Url-Signed": Base32.encode(sign(url)),
+        "Public-Key": Base32.encode(private_key.public_key.to_pem),
+        "Gateway": gateway,
         "Client": "server"
       }.merge!(extra_headers)
     end
@@ -27,6 +28,11 @@ module IdentityService
     def public_key
       return @@public_key if defined? @@public_key
       @@public_key = private_key.public_key.to_pem
+    end
+
+    def gateway
+      return @@gateway if defined? @@gateway
+      @@gateway = URI.parse(Rails.application.secrets.dig(:load_balancer_address)).host
     end
   end
 end

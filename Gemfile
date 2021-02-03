@@ -44,6 +44,8 @@ end
 
 group :test do
   gem "database_cleaner", "~> 2.0"
+  gem "vcr", "~> 6.0"
+  gem "webmock"
 end
 
 gem "bcrypt", "~> 3.1", ">= 3.1.16"
@@ -70,8 +72,12 @@ gem "jquery-rails", "~> 4.4"
 gem "view_component", require: "view_component/engine"
 gem "react-rails"
 gem "webpacker", "~> 5.2", ">= 5.2.1"
-gem "async-http"
+gem "typhoeus", "~> 1.4"
 gem "kaminari"
 gem "base32", "~> 0.3.4"
 gem "cities", "~> 0.3.1"
 gem "countries", "~> 3.0", ">= 3.0.1"
+
+if ENV["PUMA"]
+  gem "puma"
+end

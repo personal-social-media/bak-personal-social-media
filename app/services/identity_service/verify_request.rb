@@ -22,12 +22,10 @@ module IdentityService
     end
 
     def real_signed_original_url
-      return signed_original_url if client == "server"
       Base32.decode(signed_original_url)
     end
 
     def real_public_key
-      return public_key if client == "server"
       Base32.decode(public_key)
     end
   end

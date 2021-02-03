@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://registry.personalsocialmedia.net/identities
+    body:
+      encoding: UTF-8
+      string: identity%5Bavatars%5D&identity%5Bname%5D&identity%5Busername%5D=username
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - S2Y2JXHYVKAEFQOS3KZ55OYFXG7J2SZFRT32VKW5RHQ7HSUUAG5I3G7L7CVMGRQUFOT3WJHXQXBZ3ITKJL3DQKUVB3PTZPENBIZFM5L5IJBRNG4AVKGEK5NBJXEJ4VT7K2NOEQVU4YO3NBIDZRTDYQDMSYO6WAHQ6O24GBLPRIPMITQFTEJ6D3TKWDBFL4FDOUMYWO2S225CHZLLN7IT44BA4BXNB5O5NK3HKIJHMY6DCYDSM7PWHUNS42FAMGOQWOCMTJY2WG2LUNCUFUJWXDQJHF5QJGHLYMOPDN5X54GW25B2GMWJXSJDCIZ6S3UQJT2ZOMUE6UV7ZGS56PXHFTDTZWLT6AEXHMLE7OGJ6V4FCYO65E5NEPLGBEVCQNVSR7PR6JNUPRDAQJ5FPOKNZHK54Y======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Client:
+      - server
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Wed, 03 Feb 2021 20:07:49 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - __cfduid=dec0768549782342f40cb7eda9654b3d71612382869; expires=Fri, 05-Mar-21
+        20:07:49 GMT; path=/; domain=.personalsocialmedia.net; HttpOnly; SameSite=Lax;
+        Secure
+      Vary:
+      - Accept-Encoding
+      - Origin
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Etag:
+      - W/"81b0e798b205d76e119a7d89c5ccd755"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 43398955-ea32-463a-87e8-b04713c9154d
+      X-Runtime:
+      - '0.572409'
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - '080b1b2e040000d46b08371000000001'
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=6yWsTLmwrt4atCPSnL%2BUFQHcZf%2Bz5%2BlGmrnLYLhv2gg4jeGr%2F14bLPe2rZyCwoWIEbEZbOeGaDB4aM38weuvev8Ftc3TT5dl%2FunL6YMa5YwAwAYKF6wNYkTl%2B8JQAn6M3g%3D%3D"}],"max_age":604800,"group":"cf-nel"}'
+      Nel:
+      - '{"max_age":604800,"report_to":"cf-nel"}'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 61bec7c33d57d46b-HAM
+    body:
+      encoding: UTF-8
+      string: '{"identity":{"name":"","server_ip":"152.89.163.116","username":"username"}}'
+  recorded_at: Wed, 03 Feb 2021 20:07:49 GMT
+recorded_with: VCR 6.0.0
