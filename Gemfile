@@ -77,7 +77,3 @@ gem "kaminari"
 gem "base32", "~> 0.3.4"
 gem "cities", "~> 0.3.1"
 gem "countries", "~> 3.0", ">= 3.0.1"
-
-if ENV["PUMA"]
-  gem "puma"
-end

@@ -6,3 +6,12 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+def initialize(host, user, password, app_name, ssh = nil, sftp = nil)
+  @host = host
+  @user = user
+  @password = password
+  @app_name = app_name.gsub(/\s/, "")
+  @ssh = ssh
+  @sftp = sftp
+end
