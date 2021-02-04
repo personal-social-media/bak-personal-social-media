@@ -18,6 +18,7 @@ app:
     - DOCKER=true
     - RUBYOPT=-W:no-deprecated -W:no-experimental
     - REDIS_URL=redis://redis:6379/4
+    - RAILS_ENV=development
 
 redis:
   image: redis:alpine
