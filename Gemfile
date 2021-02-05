@@ -46,6 +46,8 @@ group :test do
   gem "database_cleaner", "~> 2.0"
   gem "vcr", "~> 6.0"
   gem "webmock"
+  gem "cuprite"
+  gem "capybara"
 end
 
 gem "bcrypt", "~> 3.1", ">= 3.1.16"
@@ -53,7 +55,6 @@ gem "jb", "~> 0.8.0"
 gem "str_enum", "~> 0.2.0"
 gem "memoist", "~> 0.16.2"
 gem "auto_strip_attributes"
-gem "http"
 gem "font-awesome-rails"
 gem "shrine", "~> 3.3"
 gem "hiredis", "~> 0.6.3", require: %w(redis redis/connection/hiredis)

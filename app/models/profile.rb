@@ -25,6 +25,7 @@ class Profile < ApplicationRecord
   has_one :profile_picture_attachment, class_name: "AttachedFile", dependent: :destroy, as: :subject
   has_one :profile_image, through: :profile_picture_attachment, source_type: "ImageFile", source: :attachment
   auto_strip_attributes :name, :username, squish: true
+  before_save { username.downcase! }
 
   str_enum :gender, %i(female male agender genderqueer nonbinary other)
 

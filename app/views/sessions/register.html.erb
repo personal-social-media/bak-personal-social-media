@@ -1,21 +1,37 @@
-<div class="p-4 pt-10">
-  <%= form_with url: register_sessions_path, class: "w-full md:w-1/3 mx-auto", scope: :profile do |f| %>
+<div class="mb-4 text-center mt-10 text-4xl font-bold text-gray-700">
+  Personal Social Media
+</div>
+
+<div class="p-4 pt-4">
+  <%= form_with url: register_sessions_path, class: "w-full md:w-1/3 mx-auto pure-form", scope: :profile, id: "register" do |f| %>
     <div class="text-center">
-      <h3>Create your profile</h3>
+      <h3 class="text-gray-700">Create your profile</h3>
     </div>
     <fieldset>
       <input type="hidden" value="<%= params[:login_token] %>" name="login_token">
 
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true, placeholder: "Your name" %>
+      <div class="mb-2">
+        <div>
+          <%= f.label :name, "Name:" %>
+        </div>
+        <%= f.text_field :name, required: true, placeholder: "Your name", class: "w-full" %>
+      </div>
 
-      <%= f.label :username %>
-      <%= f.text_field :username, required: true, placeholder: "Your username you wish" %>
+      <div class="mb-2">
+        <div>
+          <%= f.label :username, "Username:" %>
+        </div>
+        <%= f.text_field :username, required: true, placeholder: "Your username you wish", class: "w-full" %>
+      </div>
 
-      <%= f.label :gender %>
-      <%= f.select :gender, Profile.genders %>
+      <div class="mb-4">
+        <div>
+          <%= f.label :gender, "Gender:" %>
+        </div>
+        <%= f.select :gender, Profile.genders, {}, class: "w-full", required: true %>
+      </div>
 
-      <%= f.submit "Save profile", class: "button-primary w-full" %>
+      <%= f.submit "Create profile", class: "pure-button pure-button-primary w-full" %>
     </fieldset>
   <% end %>
 </div>
