@@ -5,7 +5,6 @@ module SetupService
     attr_reader :cert
 
     def generate
-
     end
   end
 end
