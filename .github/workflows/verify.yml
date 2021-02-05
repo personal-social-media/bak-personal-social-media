@@ -180,7 +180,11 @@ jobs:
           DEV_PG_PASSWORD: 1234
         run: |
           bundle exec rails db:setup
-
+      - name: Compile assets
+        env:
+          RAILS_ENV: test
+        run: |
+          bundle exec rake assets:precompile
       - name: Run tests
         env:
           RAILS_ENV: test
@@ -189,7 +193,6 @@ jobs:
           DEV_PG_PASSWORD: 1234
           CI: TRUE
         run: |
-          bundle exec rake assets:precompile
           FEATURES=true bundle exec rspec
 
   deploy:
