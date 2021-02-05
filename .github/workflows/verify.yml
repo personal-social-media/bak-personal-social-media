@@ -129,4 +129,4 @@ jobs:
     steps:
       - name: Deploy app
         run: |
-          curl "TEST_DEPLOY_1"
+          curl "$TEST_DEPLOY_1"
