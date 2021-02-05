@@ -17,6 +17,7 @@ module SetupService
       File.open(path, "w") do |f|
         f.write(cert)
       end
+      p "new ssl certificate added"
     end
 
     def path
