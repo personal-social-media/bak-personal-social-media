@@ -117,6 +117,7 @@ jobs:
           DEV_PG_HOST: localhost
           DEV_PG_USER: myapp
           DEV_PG_PASSWORD: 1234
+          CI: TRUE
         run: |
           bundle exec rspec
   tests_features:
@@ -186,7 +187,9 @@ jobs:
           DEV_PG_HOST: localhost
           DEV_PG_USER: myapp
           DEV_PG_PASSWORD: 1234
+          CI: TRUE
         run: |
+          bundle exec rake assets:precompile
           FEATURES=true bundle exec rspec
 
   deploy:
@@ -194,7 +197,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TEST_DEPLOY_1: ${{ secrets.TEST_DEPLOY_1 }}
-    needs: tests_features
+    needs: [tests_features,tests,linters]
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Deploy test apps

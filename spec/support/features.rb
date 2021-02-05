@@ -11,6 +11,7 @@ end
 RSpec.configure do |config|
   config.before(:suite) do
     next unless RUN_FEATURES
+    next if ENV["CI"]
     `bin/webpack`
     Timeout.timeout(300) do
       loop until Webpacker.config.public_manifest_path.exist?
