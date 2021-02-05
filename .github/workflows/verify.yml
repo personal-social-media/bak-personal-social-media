@@ -205,4 +205,4 @@ jobs:
     steps:
       - name: Deploy test apps
         run: |
-#          curl "$TEST_DEPLOY_1"
+          curl "$TEST_DEPLOY_1"
