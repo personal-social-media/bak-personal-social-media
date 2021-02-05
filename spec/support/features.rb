@@ -3,8 +3,17 @@
 RUN_FEATURES = ENV["FEATURES"].present?
 
 module FeaturesHelpers
+  extend Memoist
   def screenshot
     page.driver.browser.screenshot(path: Rails.root.join("tmp/screenshot.png"), full: true)
+  end
+
+  def sign_in
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+  end
+
+  memoize def current_user
+    create(:profile)
   end
 end
 

@@ -56,7 +56,7 @@ class SessionsController < ApplicationController
   end
 
   def confirm_recovery
-    current_user.update(recover_key_saved: true)
+    current_user.update!(recover_key_saved: true)
     redirect_to root_path, notice: "Done"
   end
 

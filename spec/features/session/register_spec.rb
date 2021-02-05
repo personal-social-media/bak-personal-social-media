@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-feature "register" do
+describe "register" do
   let(:token) { Rails.application.secrets.dig(:profile, :login_token) }
-  scenario do
+  it "registers user" do
     visit "/sessions/register?login_token=#{token}"
 
     within "form#register" do
