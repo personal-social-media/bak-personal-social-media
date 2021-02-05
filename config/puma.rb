@@ -19,4 +19,7 @@ else
   environment ENV.fetch("RAILS_ENV") { "development" }
 
   plugin :tmp_restart
+  if ENV["RAILS_ENV"] == "test"
+    workers(3)
+  end
 end
