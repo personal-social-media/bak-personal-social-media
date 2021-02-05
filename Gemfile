@@ -48,6 +48,7 @@ group :test do
   gem "webmock"
   gem "cuprite"
   gem "capybara"
+  gem "rspec-retry"
 end
 
 gem "bcrypt", "~> 3.1", ">= 3.1.16"
