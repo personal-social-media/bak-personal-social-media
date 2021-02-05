@@ -6,7 +6,7 @@ module SetupService
 
     def fetch
       @cert = HTTP.post("https://registry.personalsocialmedia.net/ssl")
-      raise "error request" if cert.response > 399
+      raise "error request" if cert.status > 399
 
       @cert = @cert.body.to_s
       self
