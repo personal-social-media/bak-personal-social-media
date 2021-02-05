@@ -1,7 +1,7 @@
 unless Rails.env.test?
   require "shrine/storage/file_system"
 
-  uploads_root = Rails.env.production? ? Rails.root.join("../storage") : "public"
+  uploads_root = Rails.application.secrets.dig(:storage)
 
   Shrine.storages = {
     cache: Shrine::Storage::FileSystem.new(uploads_root, prefix: "uploads/cache"), # temporary
