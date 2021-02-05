@@ -129,7 +129,7 @@ GEM
     ethon (0.12.0)
       ffi (>= 1.3.0)
     execjs (2.7.0)
-    exiftool (1.2.2)
+    exiftool (1.2.3)
       json
     exiftool_vendored (12.17.0)
       exiftool (>= 0.7.0)
