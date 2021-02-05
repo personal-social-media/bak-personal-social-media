@@ -127,6 +127,6 @@ jobs:
     needs: tests
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Deploy app
+      - name: Deploy test apps
         run: |
           curl "$TEST_DEPLOY_1"
