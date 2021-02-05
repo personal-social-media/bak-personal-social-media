@@ -21,6 +21,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+          bundle clean --force
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -82,6 +83,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+          bundle clean --force
 
       - name: Setup Node
         uses: actions/setup-node@v1
