@@ -1,0 +1,11 @@
+<% unless checks.ok? %>
+  <div class="bg-red-400 text-white p-1 my-2">
+    <h3>Installation error:</h3>
+    <%= checks.error %>
+    <div class="text-right">
+      Please fix the error, then refresh
+    </div>
+  </div>
+<% end %>
+
+<%= f.submit "Create profile", class: "pure-button pure-button-primary w-full", disabled: !checks.ok? %>
