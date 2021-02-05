@@ -1,4 +1,6 @@
-s# frozen_string_literal: true
+# frozen_string_literal: true
+
+s # frozen_string_literal: true
 
 class IdentitiesController < ActionController::Base
   include NodeVerifyRequest

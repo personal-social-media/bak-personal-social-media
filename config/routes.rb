@@ -51,4 +51,8 @@ Rails.application.routes.draw do
       resources :reactions, only: %i(index create destroy)
     end
   end
+
+  constraints LoggedIn do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
