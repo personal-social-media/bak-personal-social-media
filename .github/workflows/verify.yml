@@ -119,14 +119,84 @@ jobs:
           DEV_PG_PASSWORD: 1234
         run: |
           bundle exec rspec
+  tests_features:
+    name: Test Features
+    runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: myapp
+          POSTGRES_DB: myapp_test
+          POSTGRES_PASSWORD: "1234"
+        ports: [ "5432:5432" ]
+
+    steps:
+      - name: Install ubuntu deps
+        run: |
+          sudo apt update && sudo apt-get install -y libvips libvips-dev libvips-tools wget
+          wget http://mirrors.kernel.org/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb
+          sudo apt install -y ./libffi6_3.2.1-8_amd64.deb
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Ruby gem cache
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Install gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+          bundle clean --force
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.15.4
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: JS package cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install packages
+        run: |
+          yarn install --pure-lockfile
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          DEV_PG_HOST: localhost
+          DEV_PG_USER: myapp
+          DEV_PG_PASSWORD: 1234
+        run: |
+          bundle exec rails db:setup
+
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+          DEV_PG_HOST: localhost
+          DEV_PG_USER: myapp
+          DEV_PG_PASSWORD: 1234
+        run: |
+          FEATURES=true bundle exec rspec
+
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     env:
       TEST_DEPLOY_1: ${{ secrets.TEST_DEPLOY_1 }}
-    needs: tests
+    needs: tests_features
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Deploy test apps
         run: |
-          curl "$TEST_DEPLOY_1"
+#          curl "$TEST_DEPLOY_1"
