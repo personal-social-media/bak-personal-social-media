@@ -4,13 +4,9 @@
   </h3>
 
   <div>
-    <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" }, multipart: true do |f| %>
+    <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" } do |f| %>
       <%= f.label :recovery_code %>
       <%= f.text_field :recovery_code, placeholder: "Your recovery code", required: true, class: "w-full", data: { "utils--qr-code-file-scanner-target": :output } %>
-
-      <%= f.form_for do |file| %>
-
-      <% end %>
       <div class="my-3">
         <div>
           <%= f.label :file, "Or QR Code image" %>

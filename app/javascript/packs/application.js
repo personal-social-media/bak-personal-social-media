@@ -1,6 +1,6 @@
+import '../events/main';
 import '../stylesheets/main.scss';
 import '../stylesheets/tailwind.css';
-import '../events/main';
 
 import {Application} from 'stimulus';
 import {definitionsFromContext} from 'stimulus/webpack-helpers';
