@@ -44,6 +44,18 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def login_post
+    login_params = params.require(:login).permit(:recovery_code, :file)
+    profile = Profile.find_by(recover_key: login_params[:recovery_code])
+
+    unless profile
+      flash[:notice] = "Invalid code"
+      return render :login
+    end
+
+    redirect_to root_path, notice: "Welcome"
+  end
+
   def recovery
     @title = "Account Recovery"
 

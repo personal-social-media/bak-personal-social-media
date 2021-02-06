@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get "/settings", action: :settings
 
       get "/login", action: :login
+      post "/login", action: :login_post
 
       get "/register", action: :register
       post "/register", action: :register_post
