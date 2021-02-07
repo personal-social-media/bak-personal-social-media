@@ -43,4 +43,5 @@ public/uploads
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-vendor/cities
+/vendor/cities/*
+!/vendor/cities/.keep

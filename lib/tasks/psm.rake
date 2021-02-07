@@ -15,4 +15,9 @@ namespace :psm do
   task renew_ssl: :environment do
     ZeroSslService::Renew.new.call!
   end
+
+  desc "Download cities"
+  task download_cities: :environment do
+    SetupService::DownloadCities.new.call!
+  end
 end
