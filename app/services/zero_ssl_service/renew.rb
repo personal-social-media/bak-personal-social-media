@@ -82,7 +82,7 @@ module ZeroSslService
       end
 
       def directory
-        "https://acme-v02.api.letsencrypt.org/directory"
+        "https://acme.zerossl.com/v2/DV90"
       end
 
       def ssl_cert_path
