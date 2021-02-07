@@ -22,7 +22,7 @@ export default class extends Controller {
     e.target.disabled = true;
     let response;
     try {
-      response = await axios.get(`/city?q=${country}`);
+      response = await axios.get(`/cities?q=${country}`);
     } finally {
       e.target.disabled = false;
     }
