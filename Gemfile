@@ -25,6 +25,8 @@ group :development do
   gem "rack-mini-profiler"
   gem "memory_profiler"
   gem "stackprof"
+  gem "binding_of_caller", "~> 1.0"
+  gem "better_errors", "~> 2.9", ">= 2.9.1"
 end
 
 group :development, :test do
@@ -81,4 +83,4 @@ gem "countries", "~> 3.0", ">= 3.0.1"
 gem "puma", "~> 5.2"
 gem "http"
 gem "acme-client"
-gem 'pghero'
+gem "pghero"

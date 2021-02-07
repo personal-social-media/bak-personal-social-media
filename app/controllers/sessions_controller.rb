@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
     profile_params = params.require(:profile).permit(:image, :name, :gender, :about, :country_code, :city_name)
     ProfileService::Update.new(profile_params, current_user).call!
     redirect_to profile_sessions_path, notice: "Saved"
-  rescue
   end
 
   def settings

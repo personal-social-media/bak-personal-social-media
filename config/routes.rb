@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resource :sessions, only: [] do
     collection do
       get "/profile", action: :profile
-      post "/profile", action: :profile_post
+      patch "/profile", action: :profile_post
       get "/settings", action: :settings
 
       get "/login", action: :login

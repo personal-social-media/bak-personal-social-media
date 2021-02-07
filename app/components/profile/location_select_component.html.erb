@@ -3,15 +3,15 @@
     <%= f.label :country_code, "Country:" %>
     <div class="pt-1">
       <%= f.select :country_code, ISO3166::Country.translations.invert.to_a, { include_blank: true }, class: "w-full", data: {
-        action: "change->profile--country-select#setCountry"
+        action: "change->profile--country-select#setCountry", "profile--country-select-target": :country
       } %>
     </div>
   </div>
   <div class="my-3">
     <%= f.label :city_name, "City:" %>
     <div class="pt-1">
-      <%= f.text_field :city_name, class: "w-full", disabled: true, data: {
-        "profile--country-select-target": "cities"
+      <%= f.text_field :city_name, class: "w-full", data: {
+        "profile--country-select-target": :city
       } %>
     </div>
   </div>

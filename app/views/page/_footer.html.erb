@@ -1,1 +1,19 @@
-<h3>footer</h3>
+<div class="mx-auto px-4 w-full md:w-2/3 mb-6">
+  <div class="text-center">
+  </div>
+  <div class="flex justify-center text-center">
+    <%= link_to "https://github.com/personal-social-media/personal-social-media", class: "text-black mx-1", target: :_blank do %>
+      <%= fa_icon "github 2x" %>
+      <div>
+        Source
+      </div>
+    <% end %>
+
+    <%= link_to "https://raw.githubusercontent.com/personal-social-media/personal-social-media/master/LICENSE", class: "text-black", target: :_blank do %>
+      <%= fa_icon "file 2x" %>
+      <div>
+        License
+      </div>
+    <% end %>
+  </div>
+</div>
