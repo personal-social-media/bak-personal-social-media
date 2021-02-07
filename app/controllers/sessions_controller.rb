@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Invalid code"
       return render :login
     end
-
+    session[:user_id] = profile.id
     redirect_to root_path, notice: "Welcome"
   end
 
