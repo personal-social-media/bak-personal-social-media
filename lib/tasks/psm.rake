@@ -10,4 +10,9 @@ namespace :psm do
     service.generate_keys.write_keys!
     p "keys generated"
   end
+
+  desc "Renew ssl"
+  task renew_ssl: :environment do
+    ZeroSslService::Renew.new.call!
+  end
 end
