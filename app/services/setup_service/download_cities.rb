@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SetupService
   class DownloadCities
     def call!
