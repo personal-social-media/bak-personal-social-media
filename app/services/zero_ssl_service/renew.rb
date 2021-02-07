@@ -56,7 +56,7 @@ module ZeroSslService
       memoize def client
         Acme::Client.new(private_key: private_key, directory: directory).tap do |c|
           next unless is_new
-          c.new_account(contact: "mailto:mail@drgcms.org", terms_of_service_agreed: true)
+          c.new_account(contact: "mailto:#{email}", terms_of_service_agreed: true)
         end
       end
 
@@ -95,6 +95,10 @@ module ZeroSslService
 
       def root_ssl
         Rails.application.secrets.dig(:profile, :keys_location)
+      end
+
+      def email
+        Rails.application.secrets.dig(:profile, :zerossl_email)
       end
   end
 end
