@@ -55,5 +55,6 @@ Rails.application.routes.draw do
 
   constraints LoggedIn do
     mount Sidekiq::Web => '/sidekiq'
+    mount PgHero::Engine => "pghero"
   end
 end

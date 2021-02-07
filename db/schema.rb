@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_145321) do
+ActiveRecord::Schema.define(version: 2021_02_07_174303) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
@@ -79,7 +80,6 @@ ActiveRecord::Schema.define(version: 2021_02_03_145321) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["peer_info_id", "uid"], name: "index_feed_items_on_peer_info_id_and_uid", unique: true
-    t.index ["peer_info_id"], name: "index_feed_items_on_peer_info_id"
     t.index ["url"], name: "index_feed_items_on_url", unique: true
   end
 
@@ -165,7 +165,6 @@ ActiveRecord::Schema.define(version: 2021_02_03_145321) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["peer_info_id", "subject_id"], name: "index_reactions_on_peer_info_id_and_subject_id", unique: true
-    t.index ["peer_info_id"], name: "index_reactions_on_peer_info_id"
     t.index ["subject_type", "subject_id"], name: "index_reactions_on_subject"
   end
 

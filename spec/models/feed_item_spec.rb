@@ -14,7 +14,6 @@
 #
 # Indexes
 #
-#  index_feed_items_on_peer_info_id          (peer_info_id)
 #  index_feed_items_on_peer_info_id_and_uid  (peer_info_id,uid) UNIQUE
 #  index_feed_items_on_url                   (url) UNIQUE
 #

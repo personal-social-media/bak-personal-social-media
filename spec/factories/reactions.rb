@@ -14,7 +14,6 @@
 #
 # Indexes
 #
-#  index_reactions_on_peer_info_id                 (peer_info_id)
 #  index_reactions_on_peer_info_id_and_subject_id  (peer_info_id,subject_id) UNIQUE
 #  index_reactions_on_subject                      (subject_type,subject_id)
 #
