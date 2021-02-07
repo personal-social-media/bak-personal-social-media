@@ -28,9 +28,9 @@ export default class extends Controller {
     }
     if (!response) return;
 
-    const {city} = response.data;
+    const {cities} = response.data;
     cityTarget.disabled = false;
-    this.typeahead.data = city;
+    this.typeahead.data = cities;
   }
 
   disableCityDefault() {
