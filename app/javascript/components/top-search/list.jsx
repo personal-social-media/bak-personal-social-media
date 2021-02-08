@@ -5,7 +5,7 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import SearchListItem from './list-item';
 import useInputIntervalHook from '../../lib/hooks/input-interval-hook';
 
-export default function SearchList() {
+export default function SearchList({inputRef}) {
   const state = useState(topSearchStore);
   const listOpened = state.listOpened.get();
 
@@ -13,10 +13,12 @@ export default function SearchList() {
     search(val, state);
   });
 
-  function closeList() {
-    if (!listOpened) {
-      return;
-    }
+  function closeList(e) {
+    const {current} = inputRef;
+    const target = e.target;
+    if (current === target) return;
+
+    if (!listOpened) return;
 
     state.merge({listOpened: false});
   }
@@ -28,38 +30,40 @@ export default function SearchList() {
     <OutsideClickHandler onOutsideClick={closeList}>
       {
         listOpened &&
-        <div className="absolute top-0 mt-12 py-2 px-1 bg-yellow-300 w-64 overflow-y-hidden" style={{minHeight: '30rem'}}>
-          <div className="text-gray-700 text-sm">
-            Known peers:
+        <div className="absolute top-0 mt-12 py-2 px-1 bg-yellow-300 w-64 overflow-y-hidden">
+          <div style={{minHeight: '5rem'}}>
+            <div className="text-gray-700 text-sm">
+              Known peers:
+            </div>
+
+            {
+              <FadeIn>
+                {localSearches.map((identity) => {
+                  return (
+                    <div key={identity.id} className="my-2">
+                      <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`} closeList={closeList}/>
+                    </div>
+                  );
+                })}
+              </FadeIn>
+            }
           </div>
 
-          {
+          <div style={{minHeight: '5rem'}}>
+            <div className="text-gray-700 text-sm">
+              Registry peers:
+            </div>
+
             <FadeIn>
-              {localSearches.map((identity) => {
+              {registrySearches.map((identity) => {
                 return (
-                  <div key={identity.id} className="my-2">
-                    <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`} closeList={closeList}/>
+                  <div key={identity.publicKey} className="my-2">
+                    <SearchListItem identity={identity} displayName={`@${identity.username}`} closeList={closeList}/>
                   </div>
                 );
               })}
             </FadeIn>
-          }
-
-
-          <div className="text-gray-700 text-sm">
-            Registry peers:
           </div>
-
-
-          <FadeIn>
-            {registrySearches.map((identity) => {
-              return (
-                <div key={identity.publicKey} className="my-2">
-                  <SearchListItem identity={identity} displayName={`@${identity.username}`} closeList={closeList}/>
-                </div>
-              );
-            })}
-          </FadeIn>
         </div>
       }
     </OutsideClickHandler>

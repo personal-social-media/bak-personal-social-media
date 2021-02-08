@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
-fields = %i(username)
-if is_friend?
-  fields += %i(name gender)
-end
+fields = %i(username name gender)
 
 json = {
   profile: @profile.as_json(only: fields)
 }
 
-json[:profile][:public_key] = @public_key
-
-if is_friend? && @profile.profile_image.present?
+if @profile.profile_image.present?
   json[:profile][:avatar_urls] = all_uploaded_image_urls(@profile.profile_image)
 end
+
+json[:profile][:account] = {
+  public_key: @public_key,
+  posts_count: @post_count,
+  friends_count: @friends_count
+}
 
 json

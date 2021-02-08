@@ -7,9 +7,6 @@ module UploadsHelper
       mobile: root_path + image.image_url(:mobile),
       thumbnail: root_path + image.image_url(:thumbnail),
     }
-
-  rescue Exception
-    binding.pry
   end
 
   def url_image_for_device(image)
@@ -21,6 +18,17 @@ module UploadsHelper
     end
     root_path + image.image_url(type)
   end
+
+  def url_image_for_device_hash(hash)
+    type = case request.headers["Client"]
+           when "desktop"
+             "desktop"
+           else
+             "mobile"
+    end
+    hash[type]
+  end
+
 
   def root_path
     @root_path ||= Rails.application.secrets.dig(:load_balancer_address)

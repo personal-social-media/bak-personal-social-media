@@ -1,0 +1,13 @@
+<div>
+  <div class="font-thin text-5xl">
+    <%= current_peer.username %>
+  </div>
+  <div>
+    <%= react_component "profile-stats", peer_ip: current_peer.ip %>
+  </div>
+  <%= stimulus_controller :div, "utils/dropdown_text", class: "h-32 border-b border-black w-full overflow-y-hidden cursor-pointer", data: { height: "h-32" } do %>
+    <div data-action="click->utils--dropdown-text#toggleShow">
+      <%= simple_format current_peer.about %>
+    </div>
+  <% end %>
+</div>
