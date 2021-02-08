@@ -39,5 +39,9 @@ module Personal
     config.active_record.default_timezone = :local
     config.active_job.queue_adapter = :sidekiq
     Rails.autoloaders.main.ignore(Rails.root.join('app/snowpacker'))
+
+    config.assets.configure do |env|
+      env.export_concurrent = false
+    end if ENV["DEVELOPER"].present?
   end
 end
