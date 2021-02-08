@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+is_dev = !!ENV["DEVELOPER"]
 
 ruby "2.7.2"
 
@@ -84,3 +85,4 @@ gem "puma", "~> 5.2"
 gem "http"
 gem "acme-client"
 gem "pghero"
+gem "rails_admin", require: is_dev

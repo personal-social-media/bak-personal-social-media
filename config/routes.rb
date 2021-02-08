@@ -61,5 +61,6 @@ Rails.application.routes.draw do
   constraints LoggedIn do
     mount Sidekiq::Web => '/sidekiq'
     mount PgHero::Engine => "pghero"
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin' if ENV["DEVELOPER"].present?
   end
 end
