@@ -49,7 +49,7 @@ group :test do
   gem "database_cleaner", "~> 2.0"
   gem "vcr", "~> 6.0"
   gem "webmock"
-  gem "cuprite"
+  gem "poltergeist"
   gem "capybara"
   gem "rspec-retry"
 end

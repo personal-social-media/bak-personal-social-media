@@ -37,7 +37,7 @@ export default function SearchList({inputRef}) {
             </div>
 
             {
-              <FadeIn>
+              <FadeIn className="local-searches-list">
                 {localSearches.map((identity) => {
                   return (
                     <div key={identity.id} className="my-2">
@@ -54,7 +54,7 @@ export default function SearchList({inputRef}) {
               Registry peers:
             </div>
 
-            <FadeIn>
+            <FadeIn className="registry-searches-list">
               {registrySearches.map((identity) => {
                 return (
                   <div key={identity.publicKey} className="my-2">

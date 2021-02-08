@@ -19,6 +19,7 @@ app:
     - RUBYOPT=-W:no-deprecated -W:no-experimental
     - REDIS_URL=redis://redis:6379/4
     - DEVELOPER=true
+    - OPENSSL_CONF=/etc/ssl/
 
 redis:
   image: redis:alpine

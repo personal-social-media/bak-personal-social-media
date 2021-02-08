@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "profile" do
+describe "profile", js: true do
   include FilesSpecHelper
 
   context "update profile" do
@@ -15,7 +15,6 @@ describe "profile" do
       visit url
       fill_form
       submit_form
-      current_user.reload
     end
 
     context "no picture" do
@@ -38,7 +37,7 @@ describe "profile" do
 
       it "updates profile" do
         subject
-        expect(page).to have_content "Saved"
+        current_user.reload
         expect(current_user.name).to eq(new_name)
         expect(current_user.gender).to eq(new_gender)
         expect(current_user.about).to eq(new_about)
@@ -62,7 +61,6 @@ describe "profile" do
 
       it "changes image" do
         subject
-        expect(page).to have_content "Saved"
       end
     end
 
@@ -79,7 +77,7 @@ describe "profile" do
 
       it "sets image" do
         subject
-        expect(page).to have_content "Saved"
+        expect(current_user.profile_image).to be_present
       end
     end
   end

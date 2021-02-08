@@ -126,9 +126,6 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    cuprite (0.11)
-      capybara (>= 2.1, < 4)
-      ferrum (~> 0.9.0)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.0)
@@ -169,11 +166,6 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.1)
     fastimage (2.2.2)
-    ferrum (0.9)
-      addressable (~> 2.5)
-      cliver (~> 0.3)
-      concurrent-ruby (~> 1.1)
-      websocket-driver (>= 0.6, < 0.8)
     ffi (1.14.2)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -258,6 +250,10 @@ GEM
     pg (1.2.3)
     pghero (2.7.4)
       activerecord (>= 5)
+    poltergeist (1.18.1)
+      capybara (>= 2.1, < 4)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -471,7 +467,6 @@ DEPENDENCIES
   capybara
   cities (~> 0.3.1)
   countries (~> 3.0, >= 3.0.1)
-  cuprite
   database_cleaner (~> 2.0)
   dotenv (~> 2.7, >= 2.7.6)
   erb_lint
@@ -494,6 +489,7 @@ DEPENDENCIES
   oj
   pg (~> 1.1)
   pghero
+  poltergeist
   pry-rails (~> 0.3.9)
   puma (~> 5.2)
   rack-cors

@@ -172,6 +172,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.15.4
+      - name: Install phantomjs
+        run: |
+          npm install -g phantomjs-prebuilt-that-works --unsafe-perm
+
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -204,6 +208,7 @@ jobs:
           DEV_PG_HOST: localhost
           DEV_PG_USER: myapp
           DEV_PG_PASSWORD: 1234
+          OPENSSL_CONF: /etc/ssl/
           CI: TRUE
         run: |
           FEATURES=true bundle exec rspec

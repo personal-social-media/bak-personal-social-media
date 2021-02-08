@@ -25,5 +25,7 @@ RUN npm install -g yarn
 
 RUN apt-get install -y libvips libvips-dev libvips-tools
 
+RUN npm install -g phantomjs-prebuilt-that-works --unsafe-perm
+
 RUN mkdir -p /app
 WORKDIR /app

@@ -22,6 +22,7 @@ class Profile < ApplicationRecord
   validates :username, presence: true
   validates :gender, presence: true
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
+  validates :about, allow_blank: true, length: { maximum: 2000 }
   has_one :profile_picture_attachment, class_name: "AttachedFile", dependent: :destroy, as: :subject
   has_one :profile_image, through: :profile_picture_attachment, source_type: "ImageFile", source: :attachment
   auto_strip_attributes :name, :username, squish: true

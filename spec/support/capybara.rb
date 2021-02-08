@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "capybara/cuprite"
-Capybara.javascript_driver = :cuprite
-Capybara.default_driver = :cuprite
-Capybara.register_driver(:cuprite) do |app|
-  Capybara::Cuprite::Driver.new(app, window_size: [1200, 800],
-                                browser_options: { 'no-sandbox': nil },
-                                process_timeout: 10
-  )
-end
+require "capybara/poltergeist"
 
-Capybara.default_max_wait_time = ENV["CI"] ? 30 : 5
+Capybara.register_driver :poltergeist do |app|
+  options = {
+    js_errors: true,
+    phantomjs_options: %w[--load-images=false --ignore-ssl-errors=yes --ssl-protocol=any],
+    timeout: 60,
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+Capybara.javascript_driver = :poltergeist

@@ -20,7 +20,7 @@ export const TopSearchInput = forwardRef((_, ref) => { // eslint-disable-line re
 
   return (
     <form className="pure-form">
-      <input type="text" placeholder="Search" className="bg-yellow-200 w-48 focus:w-64 text-gray-700" onChange={type} onFocus={open} ref={ref}/>
+      <input name="query" type="text" placeholder="Search" className="bg-yellow-200 w-48 focus:w-64 text-gray-700" onChange={type} onFocus={open} ref={ref}/>
     </form>
   );
 });

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails_helper"
+
 describe "recovery" do
   before do
     current_user.update(recover_key_saved: false)
@@ -8,9 +10,7 @@ describe "recovery" do
 
   it "sets the recovery for user" do
     visit "/sessions/recovery"
-    accept_prompt do
-      click_button "Confirm that you saved this information"
-    end
+    click_button "Confirm that you saved this information"
 
     expect(page).to have_current_path "/"
     expect(current_user.reload.recover_key_saved).to be_truthy

@@ -5,7 +5,8 @@ RUN_FEATURES = ENV["FEATURES"].present?
 module FeaturesHelpers
   extend Memoist
   def screenshot
-    page.driver.browser.screenshot(path: Rails.root.join("tmp/screenshot.png"), full: true)
+    page.driver.save_screenshot Rails.root.join("tmp/screenshot.png"), format: :png
+    raise "screenshot"
   end
 
   def sign_in
