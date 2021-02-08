@@ -18,7 +18,7 @@ export default function ProfileStats({peer_ip: peerIp}) {
         remoteAxios: axiosClient,
       });
     });
-  }, [peerIp]);
+  }, [peerIp]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="h-10 my-4">

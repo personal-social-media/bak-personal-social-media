@@ -2,7 +2,7 @@ import {forwardRef} from 'react';
 import {topSearchStore} from './store';
 import {useState} from '@hookstate/core';
 
-export default forwardRef((_, ref) => {
+export const TopSearchInput = forwardRef((_, ref) => { // eslint-disable-line react/display-name
   const state = useState(topSearchStore);
   const inputValue = state.inputValue.get();
 
