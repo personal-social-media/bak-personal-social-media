@@ -10,8 +10,7 @@ export function buildLocalAxios() {
       'X-CSRF-Token': document.querySelector('meta[name=\'csrf-token\']').content,
     },
   });
-  instance = applyCaseMiddleware(instance);
-  return instance;
+  return applyCaseMiddleware(instance);
 }
 
 export function buildRemoteAxios(target) {
@@ -30,5 +29,13 @@ export function buildRemoteAxios(target) {
   });
   instance = applyCaseMiddleware(instance);
   return signedRequestAxios(instance);
+}
+
+export function buildSimpleAxios(target){
+  let instance = axios.create({
+    baseURL: target,
+  });
+
+  return applyCaseMiddleware(instance);
 }
 

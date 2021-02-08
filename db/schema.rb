@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_174303) do
+ActiveRecord::Schema.define(version: 2021_02_08_123256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -144,6 +144,13 @@ ActiveRecord::Schema.define(version: 2021_02_07_174303) do
     t.string "uid", null: false
   end
 
+  create_table "previous_searches", force: :cascade do |t|
+    t.bigint "peer_info_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["peer_info_id"], name: "index_previous_searches_on_peer_info_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.text "name", null: false
     t.string "username", null: false
@@ -205,6 +212,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_174303) do
   add_foreign_key "feed_items", "peer_infos"
   add_foreign_key "image_files", "image_albums"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "previous_searches", "peer_infos"
   add_foreign_key "reactions", "peer_infos"
   add_foreign_key "video_files", "image_albums"
 end

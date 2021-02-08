@@ -16,7 +16,9 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      width: ['focus']
+    },
   },
   plugins: [],
   corePlugins: {

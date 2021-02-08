@@ -14,7 +14,7 @@ module SetupService
     end
 
     def generate_keys
-      @private_key = OpenSSL::PKey::RSA.new(2048)
+      @private_key = OpenSSL::PKey::RSA.new(4096)
       self
     end
 

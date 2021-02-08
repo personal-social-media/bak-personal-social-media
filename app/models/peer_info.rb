@@ -27,8 +27,8 @@
 #
 class PeerInfo < ApplicationRecord
   str_enum :friend_ship_status, %i(requested pending declined self accepted blocked)
-  after_commit :fetch_more_information, if: -> { friend_ship_status != "self" } if Rails.env.production?
-  after_commit :propagate_updates, if: -> { friend_ship_status == "self" } if Rails.env.production?
+  after_commit :fetch_more_information, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production?
+  after_commit :propagate_updates, on: %i(create update), if: -> { friend_ship_status == "self" } if Rails.env.production?
 
   validates :username, exclusion: { in: %w(UNKNOWN) }, on: :update
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
