@@ -2,6 +2,7 @@
 
 module SessionHelper
   extend Memoist
+
   memoize def current_user
     user_id = session[:user_id]
     return nil if user_id.blank?

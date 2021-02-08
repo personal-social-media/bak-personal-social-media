@@ -12,6 +12,12 @@ module FeaturesHelpers
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
   end
 
+  def click_invisible
+    Capybara.ignore_hidden_elements = false
+    yield
+    Capybara.ignore_hidden_elements = true
+  end
+
   memoize def current_user
     create(:profile)
   end
@@ -21,7 +27,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     next unless RUN_FEATURES
     next if ENV["CI"]
-    `bin/webpack`
+    next if Dir.exist?(Rails.root.join("public/packs")) && ENV["COMPILE"].blank?
+    `bundle exec rake assets:precompile`
     Timeout.timeout(300) do
       loop until Webpacker.config.public_manifest_path.exist?
     end

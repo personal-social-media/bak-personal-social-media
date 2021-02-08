@@ -3,7 +3,7 @@
 </div>
 
 <div class="mx-auto md:w-1/3 w-full">
-  <%= form_with model: current_user, url: profile_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", data: { controller: "profile--update" } do |f| %>
+  <%= form_with model: current_user, url: profile_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", id: "profile-form", data: { controller: "profile--update" } do |f| %>
     <div class="text-center">
       <%= render Person::AvatarComponent.new(profile: current_user, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover",
                                              data: {
@@ -46,7 +46,7 @@
     </div>
 
     <div class="my-3">
-      <%= f.submit "Update", class: "pure-button pure-button-primary w-full", data: { disable_with: "Saving.." } %>
+      <%= f.submit "Update Profile", class: "pure-button pure-button-primary w-full", data: { disable_with: "Saving.." } %>
     </div>
   <% end %>
 </div>

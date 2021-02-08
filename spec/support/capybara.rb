@@ -10,4 +10,4 @@ Capybara.register_driver(:cuprite) do |app|
   )
 end
 
-Capybara.default_max_wait_time = 30
+Capybara.default_max_wait_time = ENV["CI"] ? 30 : 5

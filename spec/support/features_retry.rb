@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rspec/retry"
+
 RSpec.configure do |config|
   config.around :each, :feature do |ex|
     ex.run_with_retry retry: 3

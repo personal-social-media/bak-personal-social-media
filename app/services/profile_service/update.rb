@@ -21,7 +21,7 @@ module ProfileService
 
     private
       memoize def profile_image
-        current_user.profile_image || ImageFile.new(private: false, image_album: image_album)
+        ImageFile.new(private: false, image_album: image_album)
       end
 
       memoize def image_album
