@@ -108,6 +108,11 @@ jobs:
           path: vendor/cities
           key: vendor/cities
       - name: Install cities
+        env:
+          RAILS_ENV: test
+          DEV_PG_HOST: localhost
+          DEV_PG_USER: myapp
+          DEV_PG_PASSWORD: 1234
         run: |
           bundle exec rake psm:download_cities
       - name: Setup test database
