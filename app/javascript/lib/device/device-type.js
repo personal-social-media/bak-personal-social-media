@@ -1,7 +1,10 @@
-export function getDeviceType() {
-  if (!window.orientation) {
-    return 'desktop';
-  }
+import _userPlaceholder from '../../images/profiles/placeholder.svg';
 
-  return 'mobile';
+export const deviceType = window.orientation ? 'mobile' : 'desktop';
+
+export function getImageForDevice(image, placeholder) {
+  if (!image) return placeholder;
+  return image[deviceType];
 }
+
+export const userPlaceholder = _userPlaceholder;

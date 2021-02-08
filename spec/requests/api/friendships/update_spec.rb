@@ -21,7 +21,7 @@ describe "/api/friendship" do
     end
 
     context "pending" do
-      let(:peer_info) { create(:peer_info, friend_ship_status: :pending) }
+      let(:peer_info) { create(:peer_info, friend_ship_status: :pending_accept) }
       before do
         allow_any_instance_of(controller).to receive(:current_peer_info).and_return(peer_info)
       end

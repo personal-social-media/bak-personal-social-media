@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_123256) do
+ActiveRecord::Schema.define(version: 2021_02_08_153857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_123256) do
     t.index ["city_name"], name: "index_peer_infos_on_city_name"
     t.index ["country_code"], name: "index_peer_infos_on_country_code"
     t.index ["name"], name: "index_peer_infos_on_name", opclass: :gin_trgm_ops, using: :gin
+    t.index ["public_key"], name: "index_peer_infos_on_public_key", unique: true
     t.index ["username", "ip"], name: "index_peer_infos_on_username_and_ip"
   end
 

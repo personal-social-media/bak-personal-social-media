@@ -12,8 +12,6 @@ export default function TopSearchInput() {
   return (
     <form className="pure-form">
       <input type="text" placeholder="Search" className="bg-yellow-200 w-48 focus:w-64 text-gray-700" onChange={type}/>
-
-      {state.inputValue.get()}
     </form>
   );
 }

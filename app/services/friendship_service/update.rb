@@ -18,7 +18,7 @@ module FriendshipService
 
     private
       def is_permitted?
-        current_peer_info.pending?
+        current_peer_info.pending_accept?
       end
 
       def is_permitted_state?

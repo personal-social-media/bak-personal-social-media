@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   resources :posts
   resources :cities, only: %i(index)
   resources :identities, only: :create
+  resources :peer_infos, only: %i(index show create update destroy) do
+    collection do
+      post "/search_public_keys", action: :search_public_keys
+    end
+  end
 
   resource :sessions, only: [] do
     collection do

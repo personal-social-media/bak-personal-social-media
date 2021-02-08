@@ -1,0 +1,4 @@
+# frozen_string_literal: true
+
+fields = %i(id friend_ship_status name username avatars)
+peer_info.as_json(only: fields)

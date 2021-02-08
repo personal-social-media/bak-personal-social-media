@@ -12,7 +12,7 @@ module SyncService
       propagate_to_registry
       add_friend_fields
 
-      PeerInfo.find_in_batches(batch_size: 200) do |group|
+      PeerInfo.not_blocked.find_in_batches(batch_size: 200) do |group|
         handle_group(group)
       end
     end

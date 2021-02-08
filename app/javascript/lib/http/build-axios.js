@@ -1,10 +1,10 @@
-import {getDeviceType} from '../device/device-type';
+import {deviceType} from '../device/device-type';
 import applyCaseMiddleware from 'axios-case-converter';
 import axios from 'axios';
 import signedRequestAxios from './signed-request-axios';
 
 export function buildLocalAxios() {
-  let instance = axios.create({
+  const instance = axios.create({
     baseURL: '',
     headers: {
       'X-CSRF-Token': document.querySelector('meta[name=\'csrf-token\']').content,
@@ -22,7 +22,7 @@ export function buildRemoteAxios(target) {
   let instance = axios.create({
     baseURL: `${protocol}://${target}/api`,
     headers: {
-      'Client': getDeviceType(),
+      'Client': deviceType,
       'Public-Key': document.querySelector('meta[name=\'public-key\']').content,
       'Real-User-Agent': 'Personal Social Media',
     },
@@ -31,8 +31,8 @@ export function buildRemoteAxios(target) {
   return signedRequestAxios(instance);
 }
 
-export function buildSimpleAxios(target){
-  let instance = axios.create({
+export function buildSimpleAxios(target) {
+  const instance = axios.create({
     baseURL: target,
   });
 

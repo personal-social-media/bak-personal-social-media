@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  peer_infos: render(partial: "peer_infos/peer_info", collection: @peer_infos, as: :peer_info)
+}
