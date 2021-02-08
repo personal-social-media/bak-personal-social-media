@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module NodeVerifyRequest
-  extend Memoist
-
   def verify_node_request
     if IdentityService::VerifyRequest.new(
       request.original_url,
@@ -25,13 +23,15 @@ module NodeVerifyRequest
     head 403 unless is_friend?
   end
 
-  memoize def is_friend?
-    return false if friend.blank?
-    friend.self? || friend.accepted?
+  def is_friend?
+    return @is_friend if defined? @is_friend
+    return @is_friend = false if friend.blank?
+    @is_friend = friend.self? || friend.accepted?
   end
 
-  memoize def friend
-    IdentityService::GetFriend.new(request).call!
+  def friend
+    return @friend if defined? @friend
+    @friend = IdentityService::GetFriend.new(request).call!
   end
 
   def is_server?

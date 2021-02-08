@@ -38,13 +38,12 @@ describe "profile" do
 
       it "updates profile" do
         subject
-
+        expect(page).to have_content "Saved"
         expect(current_user.name).to eq(new_name)
         expect(current_user.gender).to eq(new_gender)
         expect(current_user.about).to eq(new_about)
         expect(current_user.country_code).to eq("PL")
         expect(current_user.city_name).to eq(new_city)
-        expect(page).to have_content "Saved"
       end
     end
 

@@ -52,7 +52,9 @@ module ProfileService
           country_code: current_user.country_code,
           name: current_user.name
         )
-        peer_info.avatars = all_uploaded_image_urls(current_user.profile_image)
+        if current_user.profile_image.present?
+          peer_info.avatars = all_uploaded_image_urls(current_user.profile_image)
+        end
 
         peer_info.save!
       end

@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 module UploadsHelper
-  extend Memoist
   def all_uploaded_image_urls(image)
     {
-      desktop: root + image.image_url(:desktop),
-      mobile: root + image.image_url(:mobile),
-      thumbnail: root + image.image_url(:thumbnail),
+      desktop: root_path + image.image_url(:desktop),
+      mobile: root_path + image.image_url(:mobile),
+      thumbnail: root_path + image.image_url(:thumbnail),
     }
+
+  rescue Exception
+    binding.pry
   end
 
   def url_image_for_device(image)
@@ -17,10 +19,10 @@ module UploadsHelper
            else
              :mobile
     end
-    root + image.image_url(type)
+    root_path + image.image_url(type)
   end
 
-  memoize def root
-    Rails.application.secrets.dig(:load_balancer_address)
+  def root_path
+    @root_path ||= Rails.application.secrets.dig(:load_balancer_address)
   end
 end
