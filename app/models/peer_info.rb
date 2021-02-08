@@ -48,6 +48,7 @@ class PeerInfo < ApplicationRecord
   validates :username, exclusion: { in: %w(UNKNOWN) }, on: :update
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   validates :public_key, presence: true, uniqueness: true
+  validate :is_public_key_for_real, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production?
   has_many :feed_items, dependent: :destroy
   has_many :conversation, dependent: :destroy
   has_many :comment, dependent: :destroy
@@ -59,6 +60,10 @@ class PeerInfo < ApplicationRecord
 
   def propagate_updates
     PeerInfoWorker::PropagateChanges.perform_async(id)
+  end
+
+  def is_public_key_for_real
+    errors.add(:public_key, "Fake public key") unless IdentityService::CheckPublicKey.new(public_key, ip).call!
   end
 
   serialize :avatars, JSON

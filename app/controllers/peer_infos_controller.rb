@@ -19,6 +19,9 @@ class PeerInfosController < ActionController::Base
   end
 
   def create
+    peer_info_params = params.require(:peer_info).permit(:public_key, :username, :name, :ip, avatars: {})
+    @peer_info = PeerInfoService::Create.new(peer_info_params).call!
+    render :show
   end
 
   def update

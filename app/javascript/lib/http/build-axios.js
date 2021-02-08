@@ -14,9 +14,10 @@ export function buildLocalAxios() {
 }
 
 export function buildRemoteAxios(target) {
-  const protocol = process.env.RAILS_ENV === 'production' ? 'https' : 'http';
+  let protocol = 'https';
   if (process.env.RAILS_ENV !== 'production' && target === 'localhost') {
     target = 'localhost:3000';
+    protocol = 'http';
   }
 
   let instance = axios.create({

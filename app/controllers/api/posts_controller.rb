@@ -6,7 +6,7 @@ module Api
     extend Memoist
     before_action :verify_node_request
     before_action :verify_not_blocked
-    before_action :require_friend
+    before_action :require_friend, except: %i(index show)
 
     def index
       @posts = base_query.includes(attached_files: :attachment).page(params[:page]).per(20)

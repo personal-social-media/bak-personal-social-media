@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://161.97.64.223/public_key
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - 3Y672LKXQG7RWTTASJ5EKXR32DD4G2LYIOSIYWJMGGRILS3MBZS2EZMEYYWKMOPYKPE33B2IRRHJRMZHWXIAW2P7LVGII7GWCKKKT7MHDVZIXDUOL3DUVGMOHGOGVKP7ADB7MBFNBMQCXCQ4L3QJ7BXCVCA33HXLDG3SFG7SDIKVNFI5IP5ZWQYESJ2JJBRG3KJVALQXEBWPMEDD4YP7MM6N55F7FYCOKLORLRRGDMOZCYYSAKDWY4BGW3OEWQNQONSJAUC7OBUITACZTNGQRNJ7SUG5JMND4WVID6LOOJBNLGSNO2745HJSDY6ZWCPYKVZFJMWF23EEHUTOI2PSRKYZBHUA5A7DMUIE5CB4AQFHHBNFMLPY7V3WEUPYDDC7KIHHJWHADSSEP2P7TC54OKJNJI======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Connection:
+      - close
+      Host:
+      - 161.97.64.223
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.18.0
+      Date:
+      - Mon, 08 Feb 2021 17:42:06 GMT
+      Content-Type:
+      - text/plain
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Origin
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Etag:
+      - W/"956669882066f9b7569865287327ca94"
+      Last-Modified:
+      - Sat, 01 Jan 2011 00:00:00 GMT
+      Content-Disposition:
+      - attachment; filename="public_key.pem"; filename*=UTF-8''public_key.pem
+      Content-Transfer-Encoding:
+      - binary
+      Cache-Control:
+      - max-age=3155695200, public
+      X-Request-Id:
+      - f1578bc5-5dde-447e-a5aa-79b3c2013a43
+      X-Runtime:
+      - '0.283219'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsDb+Etz52K21M/NshvTJ
+        /436gOi3J6aF7d2iGGtztae1XtvaP6c5YP7qcv9aHF3JPgnRsDGLbQvKXxIIzrsa
+        /rre6qD6Sg6gV9TV56ews1rcZ6GHM+bWT9hHwdGovU0o50529G313eNMFfAly54k
+        754No3JlQI5vxkP9XRGdFh7z3EgoRQpv4iGxV9VnaRO0xT9OGMTnzfpNjSWLEEwN
+        FUXoA5El484OITk/oqfTKO9KjINbCR38wZWhfNOjRF8/p1hM0lxaHEqdBRjifONI
+        NF30WUR962uQ4GVG73W2oxPc8BDJ24J/XMwbJtdR/vRjQ4m78tuuil5Yn3Rse5Qk
+        CQIDAQAB
+        -----END PUBLIC KEY-----
+  recorded_at: Mon, 08 Feb 2021 17:42:06 GMT
+recorded_with: VCR 6.0.0

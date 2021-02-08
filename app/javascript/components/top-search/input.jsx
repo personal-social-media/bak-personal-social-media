@@ -6,7 +6,7 @@ export default function TopSearchInput() {
 
   function type(e) {
     const {value} = e.target;
-    state.merge({inputValue: value});
+    state.merge({inputValue: value, listOpened: true});
   }
 
   return (

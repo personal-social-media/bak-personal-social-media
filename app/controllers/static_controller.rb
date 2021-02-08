@@ -12,4 +12,8 @@ class StaticController < ActionController::Base
       send_file(path, type: "text/plain", filename: "public_key.pem")
     end
   end
+
+  def ignore_register
+    true
+  end
 end
