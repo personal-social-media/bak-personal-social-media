@@ -12,8 +12,10 @@ module ProfileService
 
     def call!
       Profile.transaction do
-        current_user.update!(profile_params.slice(:name, :gender, :city_name, :about, :country_code))
+        update_attributes
+
         next update_peer_info if profile_image_params.blank?
+
         @has_changed = true
         profile_image.image = profile_image_params
         profile_image.save!
