@@ -83,6 +83,6 @@ class SessionsController < ApplicationController
     end
 
     def check_recovery
-      head 404 if current_user.recover_key_saved?
+      render json: { error: "recovery key already saved" }, status: 422 if current_user.recover_key_saved?
     end
 end

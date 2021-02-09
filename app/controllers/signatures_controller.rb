@@ -15,6 +15,6 @@ class SignaturesController < ActionController::Base
   end
 
   def require_permitted_params
-    head 403 if permitted_params.blank?
+    render json: { error: "no params passed, inside {content: { :text, :url }" }, status: 422 if permitted_params.blank?
   end
 end

@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   end
 
   def require_current_peer
-    head 404 if current_peer.blank?
+    render json: { error: "peer not found" }, status: 404 if current_peer.blank?
   end
 
   memoize def current_peer

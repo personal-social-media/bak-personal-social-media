@@ -29,7 +29,7 @@ module Api
       end
 
       def require_current_post(post)
-        head 404 if post.blank?
+        render json: { error: "post not found" }, status: 404 if post.blank?
         post.present?
       end
   end

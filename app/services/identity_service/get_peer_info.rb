@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module IdentityService
-  class GetFriend
+  class GetPeerInfo
     extend Memoist
     attr_reader :request
 

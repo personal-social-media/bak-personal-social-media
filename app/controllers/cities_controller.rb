@@ -14,6 +14,6 @@ class CitiesController < ActionController::Base
   end
 
   def require_current_country
-    head 404 if current_country.blank?
+    render json: { error: "country not found" }, status: 404 if current_country.blank?
   end
 end

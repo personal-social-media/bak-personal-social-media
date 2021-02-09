@@ -3,7 +3,7 @@
 module Api
   class FriendshipsController < BaseController
     extend Memoist
-    before_action :require_server
+    before_action :require_server, only: %i(create update destroy)
     before_action :verify_node_request
     before_action :verify_not_blocked
     before_action :require_current_peer_info, only: %i(show destroy update)
@@ -14,7 +14,7 @@ module Api
 
     # FriendshipClientService::Create
     def create
-      @peer_info = FriendshipService::Create.new(request, current_peer_info).call!
+      @peer_info = FriendshipService::Create.new(request, current_peer_info, node_verification).call!
       render :show
     end
 
@@ -33,14 +33,6 @@ module Api
     end
 
     private
-      def current_peer_info
-        friend
-      end
-
-      def require_current_peer_info
-        head 404 if current_peer_info.blank?
-      end
-
       def update_params
         params.require(:friendship).permit(:friend_ship_status)
       end

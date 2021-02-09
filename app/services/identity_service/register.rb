@@ -2,15 +2,16 @@
 
 module IdentityService
   class Register
-    attr_reader :request
+    attr_reader :verification, :request
 
-    def initialize(request)
+    def initialize(verification, request)
+      @verification = verification
       @request = request
     end
 
     def call!
       return unless server?
-      PeerInfo.find_or_initialize_by(public_key: public_key).tap do |peer_info|
+      PeerInfo.find_or_initialize_by(public_key: verification.real_public_key).tap do |peer_info|
         next if peer_info.persisted?
         peer_info.ip = ip
         peer_info.username = "UNKNOWN"
@@ -23,12 +24,8 @@ module IdentityService
       request.headers["Gateway"]
     end
 
-    def public_key
-      request.headers["Public-Key"]
-    end
-
     def server?
-      request.headers["Client"] == "server"
+      verification.client == "server"
     end
   end
 end

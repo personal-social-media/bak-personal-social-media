@@ -2,11 +2,12 @@
 
 module FriendshipService
   class Create
-    attr_reader :request, :current_peer_info, :new_record
+    attr_reader :request, :current_peer_info, :new_record, :node_verification
 
-    def initialize(request, current_peer_info)
+    def initialize(request, current_peer_info, node_verification)
       @request = request
       @current_peer_info = current_peer_info
+      @node_verification = node_verification
     end
 
     def call!
@@ -34,12 +35,12 @@ module FriendshipService
         current_peer_info.stranger?
       end
 
-      def public_key
-        request.headers["Public-Key"]
-      end
-
       def ip
         request.headers["Gateway"]
+      end
+
+      def public_key
+        node_verification.real_public_key
       end
   end
 end
