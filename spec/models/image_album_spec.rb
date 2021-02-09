@@ -8,6 +8,7 @@
 #  description   :text
 #  location_name :text
 #  name          :text             not null
+#  privacy       :string           default("public_access"), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

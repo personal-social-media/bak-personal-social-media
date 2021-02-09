@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_185538) do
+ActiveRecord::Schema.define(version: 2021_02_09_215250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_185538) do
     t.text "location_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "privacy", default: "public_access", null: false
   end
 
   create_table "image_files", force: :cascade do |t|
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_185538) do
     t.integer "love_count", default: 0, null: false
     t.integer "wow_count", default: 0, null: false
     t.string "uid", null: false
+    t.string "privacy", default: "public_access", null: false
   end
 
   create_table "previous_searches", force: :cascade do |t|
@@ -191,6 +193,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_185538) do
     t.integer "love_count", default: 0, null: false
     t.integer "wow_count", default: 0, null: false
     t.string "uid", null: false
+    t.string "privacy", default: "public_access", null: false
   end
 
   create_table "unblock_requests", force: :cascade do |t|

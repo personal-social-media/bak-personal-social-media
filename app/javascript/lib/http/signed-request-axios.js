@@ -1,4 +1,5 @@
 import {Service} from 'axios-middleware';
+import {addSignedUrlToCache, findSignedUrlFromCache} from './cache-signed-urls';
 import {buildLocalAxios} from './build-axios';
 
 const localAxios = buildLocalAxios();
@@ -24,7 +25,11 @@ export default function signedRequestAxios(instance) {
 
 async function getSignedUrl(config) {
   const url = config.baseURL + config.url;
+  const cached = findSignedUrlFromCache(url);
+  if (cached) return cached;
+
   const response = await localAxios.post('/sign', {content: {url}});
   const {result} = response.data;
+  addSignedUrlToCache(url, result);
   return result;
 }

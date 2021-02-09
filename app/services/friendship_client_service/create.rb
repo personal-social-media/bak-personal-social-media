@@ -15,6 +15,7 @@ module FriendshipClientService
         peer_info.update!(friend_ship_status: :requested)
         response = HTTP.timeout(timeout).headers(signed_headers(url)).post(url)
         raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
+        handle_dev_accept(response)
       end
       peer_info
     end
@@ -26,6 +27,14 @@ module FriendshipClientService
 
       def url
         "https://#{peer_info.ip}/api/friendship"
+      end
+
+      def handle_dev_accept(response)
+        return if ENV["DEVELOPER"].blank?
+        json = JSON.parse(response.body.to_s)
+        friend_ship_status = json["friendship"]["friend_ship_status"]
+
+        peer_info.update!(friend_ship_status: :accepted) if friend_ship_status == "accepted"
       end
   end
 end

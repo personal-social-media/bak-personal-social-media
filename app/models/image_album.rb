@@ -8,10 +8,12 @@
 #  description   :text
 #  location_name :text
 #  name          :text             not null
+#  privacy       :string           default("public_access"), not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 class ImageAlbum < ApplicationRecord
+  include PrivacyConcern
   has_many :image_files, dependent: :destroy
   has_many :video_files, dependent: :destroy
 end

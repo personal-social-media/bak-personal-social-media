@@ -10,6 +10,7 @@
 #  location_name :text
 #  love_count    :integer          default(0), not null
 #  mood          :string
+#  privacy       :string           default("public_access"), not null
 #  uid           :string           not null
 #  wow_count     :integer          default(0), not null
 #  created_at    :datetime         not null

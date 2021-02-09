@@ -15,11 +15,10 @@ export default function SearchList({inputRef}) {
 
   function closeList(e) {
     const {current} = inputRef;
-    const target = e.target;
+    const target = e?.target;
     if (current === target) return;
 
     if (!listOpened) return;
-
     state.merge({listOpened: false});
   }
 

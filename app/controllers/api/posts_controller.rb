@@ -19,7 +19,7 @@ module Api
 
     private
       def base_query
-        Post
+        @base_query ||= PrivacyService::PrivacyBaseQuery.new(Post, is_friend?).call!
       end
 
       memoize def current_post(**includes)

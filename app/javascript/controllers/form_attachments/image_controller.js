@@ -77,7 +77,7 @@ export default class extends Controller {
       try {
         fetch(form.action, {body: formData, method: 'POST'});
       } catch (e) {
-        debugger;
+        console.log(e);
       } finally {
         submit.disabled = false;
       }

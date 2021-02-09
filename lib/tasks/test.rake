@@ -11,7 +11,7 @@ namespace :test do
     begin
       FriendshipClientService::Destroy.new(peer, "destroy").call!
     rescue FriendshipClientService::Destroy::Error => e
-      p "unable to delete"
+      p "unable to delete, #{e}"
     end
     FriendshipClientService::Create.new(peer.dup).call!
   end
