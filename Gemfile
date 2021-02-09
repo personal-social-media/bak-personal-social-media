@@ -9,7 +9,7 @@ ruby "2.7.2"
 gem "rails", "~> 6.1.1"
 gem "pg", "~> 1.1"
 gem "sass-rails", ">= 6"
-gem "bootsnap", "~> 1.7.1", require: false
+gem "bootsnap", "~> 1.7.2", require: false
 
 group :development do
   gem "web-console", ">= 4.1.0"
