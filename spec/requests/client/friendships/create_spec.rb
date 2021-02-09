@@ -16,7 +16,7 @@ describe "/client/friendships", vcr: { record: :once } do
     post url, params: params
   end
 
-  xit "updates the friendship" do
+  it "updates the friendship" do
     subject
   end
 end
