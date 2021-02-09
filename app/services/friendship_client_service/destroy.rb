@@ -18,7 +18,7 @@ module FriendshipClientService
 
       if option == "block"
         peer_info.update!(friend_ship_status: :blocked)
-      elsif peer_info == "destroy"
+      elsif option == "destroy"
         peer_info.destroy
       end
     end

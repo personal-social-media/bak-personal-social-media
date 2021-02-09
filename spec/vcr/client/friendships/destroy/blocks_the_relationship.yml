@@ -1,11 +1,11 @@
 ---
 http_interactions:
 - request:
-    method: post
+    method: delete
     uri: https://161.97.64.223/api/friendship
     body:
       encoding: UTF-8
-      string: ''
+      string: '{"option":"destroy"}'
     headers:
       Real-User-Agent:
       - Personal Social Media
@@ -19,6 +19,8 @@ http_interactions:
       - server
       Connection:
       - close
+      Content-Type:
+      - application/json; charset=UTF-8
       Host:
       - 161.97.64.223
       User-Agent:
@@ -31,9 +33,9 @@ http_interactions:
       Server:
       - nginx/1.18.0
       Date:
-      - Tue, 09 Feb 2021 04:37:10 GMT
+      - Tue, 09 Feb 2021 04:38:25 GMT
       Content-Type:
-      - application/json; charset=utf-8
+      - text/html
       Transfer-Encoding:
       - chunked
       Connection:
@@ -53,16 +55,14 @@ http_interactions:
       - none
       Referrer-Policy:
       - strict-origin-when-cross-origin
-      Etag:
-      - W/"8834cc8643b40b6625b4d864fcc6bac6"
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache
       X-Request-Id:
-      - 0057ebfd-8825-4845-ae98-99e0ea512c8f
+      - e7eadbcd-9c30-47db-be19-56da227292c5
       X-Runtime:
-      - '0.056825'
+      - '0.047087'
     body:
-      encoding: UTF-8
-      string: '{"friendship":{"friend_ship_status":"pending"}}'
-  recorded_at: Tue, 09 Feb 2021 04:37:10 GMT
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Tue, 09 Feb 2021 04:38:25 GMT
 recorded_with: VCR 6.0.0

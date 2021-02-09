@@ -27,4 +27,16 @@ describe "/client/friendships", vcr: { record: :once } do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  context "destroy" do
+    let(:option) { :destroy }
+    it "blocks the relationship" do
+      peer_info
+      expect do
+        subject
+      end.to change { PeerInfo.count }.by(-1)
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end

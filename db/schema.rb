@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_153857) do
+ActiveRecord::Schema.define(version: 2021_02_09_044045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -194,6 +194,15 @@ ActiveRecord::Schema.define(version: 2021_02_08_153857) do
     t.string "uid", null: false
   end
 
+  create_table "unblock_requests", force: :cascade do |t|
+    t.bigint "peer_info_id", null: false
+    t.bigint "peer_info_requester_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["peer_info_id"], name: "index_unblock_requests_on_peer_info_id"
+    t.index ["peer_info_requester_id"], name: "index_unblock_requests_on_peer_info_requester_id"
+  end
+
   create_table "video_files", force: :cascade do |t|
     t.string "cover_image_data"
     t.string "dominant_color"
@@ -215,5 +224,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_153857) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "previous_searches", "peer_infos"
   add_foreign_key "reactions", "peer_infos"
+  add_foreign_key "unblock_requests", "peer_infos"
+  add_foreign_key "unblock_requests", "peer_infos", column: "peer_info_requester_id"
   add_foreign_key "video_files", "image_albums"
 end
