@@ -3,17 +3,16 @@
 namespace :test do
   desc "Recreates the test account"
   task recreate_account: :environment do
-    raise "Only in TEST env, please run with RAILS_ENV=test" if Rails.env.production?
-    Rails.env = "test"
-    ENV["RAILS_ENV"] = "test"
+    include IdentityService::SignedRequest
+    raise "Only in TEST env, please run with RAILS_ENV=test" unless Rails.env.test?
 
     ip = "161.97.64.223"
-    peer = FactoryBot.build(:peer_info, ip: ip, friend_ship_status: :stranger)
+    peer = FactoryBot.create(:peer_info, ip: ip, friend_ship_status: :stranger)
     begin
       FriendshipClientService::Destroy.new(peer, "destroy").call!
     rescue FriendshipClientService::Destroy::Error => e
-      p e
+      p "unable to delete"
     end
-    FriendshipClientService::Create.new(peer).call!
+    FriendshipClientService::Create.new(peer.dup).call!
   end
 end

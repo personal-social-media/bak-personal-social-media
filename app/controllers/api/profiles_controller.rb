@@ -15,6 +15,10 @@ module Api
       @public_key = public_key
     end
 
+    def ignore_register
+      true
+    end
+
     helper_method :is_friend?
   end
 end

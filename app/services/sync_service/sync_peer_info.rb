@@ -10,6 +10,11 @@ module SyncService
 
     def call!
       propagate_to_registry
+      propagate_to_friends
+    end
+
+    def propagate_to_friends
+      peer_info_body
       add_friend_fields
 
       PeerInfo.not_blocked.find_in_batches(batch_size: 200) do |group|

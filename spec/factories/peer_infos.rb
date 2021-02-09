@@ -9,7 +9,6 @@
 #  avatars            :text
 #  city_name          :text
 #  country_code       :string
-#  friend             :boolean          default(FALSE), not null
 #  friend_ship_status :string
 #  ip                 :string           not null
 #  name               :text

@@ -19,7 +19,7 @@ module FriendshipService
       return current_peer_info unless unknown?
 
       current_peer_info.tap do |unknown|
-        unknown.update_attribute(:friend_ship_status, :pending)
+        unknown.update_attribute(:friend_ship_status, friend_ship_status)
         unknown.fetch_more_information
       end
     end
@@ -41,6 +41,14 @@ module FriendshipService
 
       def public_key
         node_verification.real_public_key
+      end
+
+      def friend_ship_status
+        ENV["DEVELOPER"].present? ? :accepted : :pending
+      end
+
+      def default_username
+        ENV["DEVELOPER"].present? ? "UNKNOWN" : "UNKNOWN-test-#{SecureRandom.hex}"
       end
   end
 end

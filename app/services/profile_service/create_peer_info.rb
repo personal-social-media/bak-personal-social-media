@@ -12,7 +12,7 @@ module ProfileService
     def call!
       @peer_info = PeerInfo.create!(
         friend_ship_status: :self,
-        ip: ip, friend: false,
+        ip: ip,
         username: profile.username,
         public_key: public_key,
         name: profile.username

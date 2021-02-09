@@ -9,10 +9,11 @@ module FriendshipService
     end
 
     def call!
-      return current_peer_info unless is_permitted?
-      return current_peer_info unless is_permitted_state?
-
-      current_peer_info.update_attribute(:friend_ship_status, friend_ship_status)
+      current_peer_info.tap do |peer_info|
+        next unless is_permitted?
+        next unless is_permitted_state?
+        peer_info.update_attribute(:friend_ship_status, friend_ship_status)
+      end
     end
 
     private

@@ -18,7 +18,7 @@ describe "/client/friendships", vcr: { record: :once } do
 
   context "declined" do
     let(:option) { :declined }
-    xit "declines the friendship" do
+    it "declines the friendship" do
       expect do
         subject
       end.to change { peer_info.reload.friend_ship_status }.to "declined"
@@ -28,10 +28,10 @@ describe "/client/friendships", vcr: { record: :once } do
 
   context "accepted" do
     let(:option) { :accepted }
-    xit "accepts the friendship" do
+    it "accepts the friendship" do
       expect do
         subject
-      end.to change { peer_info.reload.friend_ship_status }.to "declined"
+      end.to change { peer_info.reload.friend_ship_status }.to "accepted"
       expect(response).to have_http_status(:ok)
     end
   end
