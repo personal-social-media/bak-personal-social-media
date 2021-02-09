@@ -45,4 +45,3 @@ yarn-debug.log*
 .yarn-integrity
 /vendor/cities/*
 !/vendor/cities/.keep
-.yarnclean
