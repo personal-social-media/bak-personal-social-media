@@ -18,8 +18,17 @@ module Api
       render :show
     end
 
+    # FriendshipClientService::Destroy
     def destroy
-      current_peer_info.destroy
+      case params[:option]
+      when "destroy"
+        current_peer_info.destroy
+      when "block"
+        current_peer_info.update!(friend_ship_status: :blocked)
+      else
+        return render json: { error: "invalid action" }, status: 422
+      end
+
       head :ok
     end
 

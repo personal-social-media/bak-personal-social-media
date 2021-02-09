@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails_helper"
+
 describe "/api/friendship" do
   include ExternalApiHelpers
   let(:controller) { Api::FriendshipsController }
@@ -7,7 +9,6 @@ describe "/api/friendship" do
   describe "PUT /api/friendship" do
     let(:url) { "/api/friendship" }
     let(:peer_info) { create(:peer_info) }
-    let(:params) { { friendship: { friend_ship_status: friend_ship_status } } }
 
     before do
       request_as_verified
@@ -17,7 +18,7 @@ describe "/api/friendship" do
     subject do
       peer_info
 
-      delete url
+      delete url, params: { option: option }
     end
 
     context "accepted" do
@@ -27,12 +28,26 @@ describe "/api/friendship" do
       end
 
       context "accepted" do
-        it "deletes relationship" do
-          expect do
-            subject
-          end.to change { PeerInfo.count }.by(-1)
+        context "destroy" do
+          let(:option) { :destroy }
+          it "deletes relationship" do
+            expect do
+              subject
+            end.to change { PeerInfo.count }.by(-1)
 
-          expect(response).to have_http_status(:ok)
+            expect(response).to have_http_status(:ok)
+          end
+        end
+
+        context "block" do
+          let(:option) { :block }
+          it "blocks the relationship" do
+            expect do
+              subject
+            end.to change { peer_info.reload.friend_ship_status }.to "blocked"
+
+            expect(response).to have_http_status(:ok)
+          end
         end
       end
     end

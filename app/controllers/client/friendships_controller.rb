@@ -6,6 +6,16 @@ module Client
 
     def create
       @peer_info = FriendshipClientService::Create.new(current_peer).call!
+    rescue FriendshipClientService::Create::Error, TimeoutError => e
+      render json: { error: e.message }, status: 422
+    end
+
+    def destroy
+      FriendshipClientService::Destroy.new(current_peer, params[:option]).call!
+
+      head :ok
+    rescue FriendshipClientService::Create::Error, TimeoutError => e
+      render json: { error: e.message }, status: 422
     end
 
     private

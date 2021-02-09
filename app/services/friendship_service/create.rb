@@ -19,7 +19,7 @@ module FriendshipService
       return current_peer_info unless unknown?
 
       current_peer_info.tap do |unknown|
-        unknown.update_attribute(:friend_ship_status, :requested)
+        unknown.update_attribute(:friend_ship_status, :pending)
         unknown.fetch_more_information
       end
     end
