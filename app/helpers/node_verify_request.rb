@@ -31,7 +31,7 @@ module NodeVerifyRequest
   end
 
   def is_server?
-    request["Client"] == "server"
+    request.headers["Client"] == "server"
   end
 
   def require_server
