@@ -11,9 +11,11 @@ module FriendshipClientService
 
     def call!
       return peer_info unless peer_info.stranger?
-      response = HTTP.timeout(timeout).headers(signed_headers(url)).post(url)
-      raise Error, "bad server response" if response.status > 399
-      peer_info.update!(friend_ship_status: :requested)
+      PeerInfo.transaction do
+        peer_info.update!(friend_ship_status: :requested)
+        response = HTTP.timeout(timeout).headers(signed_headers(url)).post(url)
+        raise Error, "bad server response" if response.status > 399
+      end
       peer_info
     end
 

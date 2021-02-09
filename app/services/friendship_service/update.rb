@@ -12,13 +12,12 @@ module FriendshipService
       return current_peer_info unless is_permitted?
       return current_peer_info unless is_permitted_state?
 
-
       current_peer_info.update_attribute(:friend_ship_status, friend_ship_status)
     end
 
     private
       def is_permitted?
-        current_peer_info.pending_accept?
+        current_peer_info.requested?
       end
 
       def is_permitted_state?

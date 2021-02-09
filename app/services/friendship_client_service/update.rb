@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module FriendshipClientService
-  class Destroy
+  class Update
     class Error < Exception; end
     include IdentityService::SignedRequest
 
@@ -12,18 +12,20 @@ module FriendshipClientService
     end
 
     def call!
-      return peer_info if peer_info.blocked?
+      return peer_info unless peer_info.pending_accept?
 
       PeerInfo.transaction do
-        if option == "block"
-          peer_info.update!(friend_ship_status: :blocked)
-        elsif option == "destroy"
-          peer_info.destroy
+        if option == "accepted"
+          peer_info.update!(friend_ship_status: :declined)
+        elsif option == "declined"
+          peer_info.update!(friend_ship_status: :accepted)
         end
 
-        response = HTTP.timeout(timeout).headers(signed_headers(url)).delete(url, json: data)
+        response = HTTP.timeout(timeout).headers(signed_headers(url)).patch(url, json: data)
         raise Error, "bad server response" if response.status > 399
       end
+
+      peer_info
     end
 
     private
@@ -37,7 +39,9 @@ module FriendshipClientService
 
       def data
         {
-          option: option
+          friendship: {
+            friend_ship_status: option
+          }
         }
       end
   end

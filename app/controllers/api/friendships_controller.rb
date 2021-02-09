@@ -32,6 +32,7 @@ module Api
       head :ok
     end
 
+    # FriendshipClientService::Update
     def update
       @peer_info = FriendshipService::Update.new(current_peer_info, update_params).call!
       render :show
