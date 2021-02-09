@@ -19,7 +19,7 @@ module FriendshipService
       return current_peer_info unless unknown?
 
       current_peer_info.tap do |unknown|
-        unknown.update_attribute(:friend_ship_status, friend_ship_status)
+        unknown.update_attribute(:friend_ship_status, :pending_accept)
         unknown.fetch_more_information
       end
     end
@@ -28,7 +28,7 @@ module FriendshipService
       def build_new_current_peer_info
         return current_peer_info if current_peer_info.present?
         @new_record = true
-        PeerInfo.create!(ip: ip, username: "UNKNOWN", public_key: public_key, friend_ship_status: :pending_accept)
+        PeerInfo.create!(ip: ip, username: "UNKNOWN", public_key: public_key, friend_ship_status: default_friend_ship_status)
       end
 
       def unknown?
@@ -43,8 +43,8 @@ module FriendshipService
         node_verification.real_public_key
       end
 
-      def friend_ship_status
-        ENV["DEVELOPER"].present? ? :accepted : :pending
+      def default_friend_ship_status
+        ENV["DEVELOPER"].present? ? :accepted : :pending_accept
       end
 
       def default_username
