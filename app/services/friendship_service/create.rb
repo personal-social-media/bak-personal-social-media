@@ -28,7 +28,7 @@ module FriendshipService
       def build_new_current_peer_info
         return current_peer_info if current_peer_info.present?
         @new_record = true
-        PeerInfo.create!(ip: ip, username: "UNKNOWN", public_key: public_key, friend_ship_status: default_friend_ship_status)
+        PeerInfo.create!(ip: ip, username: default_username, public_key: public_key, friend_ship_status: default_friend_ship_status)
       end
 
       def unknown?
