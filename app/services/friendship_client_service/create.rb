@@ -14,7 +14,7 @@ module FriendshipClientService
       PeerInfo.transaction do
         peer_info.update!(friend_ship_status: :requested)
         response = HTTP.timeout(timeout).headers(signed_headers(url)).post(url)
-        raise Error, "bad server response" if response.status > 399
+        raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
       end
       peer_info
     end

@@ -19,6 +19,8 @@ module Client
 
     def update
       @peer_info = FriendshipClientService::Update.new(current_peer, params[:option]).call!
+
+      render :create
     rescue FriendshipClientService::Update::Error, TimeoutError => e
       render json: { error: e.message }, status: 422
     end

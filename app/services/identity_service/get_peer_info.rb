@@ -18,7 +18,6 @@ module IdentityService
       key = request.headers["Public-Key"]
       return nil if key.blank?
 
-      return key if request["Client"] == "server"
       Base32.decode(key)
     end
   end

@@ -22,7 +22,7 @@ module FriendshipClientService
         end
 
         response = HTTP.timeout(timeout).headers(signed_headers(url)).delete(url, json: data)
-        raise Error, "bad server response" if response.status > 399
+        raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
       end
     end
 

@@ -16,13 +16,13 @@ module FriendshipClientService
 
       PeerInfo.transaction do
         if option == "accepted"
-          peer_info.update!(friend_ship_status: :declined)
-        elsif option == "declined"
           peer_info.update!(friend_ship_status: :accepted)
+        elsif option == "declined"
+          peer_info.update!(friend_ship_status: :declined)
         end
 
         response = HTTP.timeout(timeout).headers(signed_headers(url)).patch(url, json: data)
-        raise Error, "bad server response" if response.status > 399
+        raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
       end
 
       peer_info

@@ -16,26 +16,22 @@ describe "/client/friendships", vcr: { record: :once } do
     patch url, params: params
   end
 
-  context "accepted" do
-    let(:option) { :block }
-    xit "accepts the friendship" do
-      subject
-      # expect do
-      #   subject
-      # end.to change { peer_info.reload.friend_ship_status }.to "blocked"
-      #
-      # expect(response).to have_http_status(:ok)
+  context "declined" do
+    let(:option) { :declined }
+    xit "declines the friendship" do
+      expect do
+        subject
+      end.to change { peer_info.reload.friend_ship_status }.to "declined"
+      expect(response).to have_http_status(:ok)
     end
   end
 
-  context "declined" do
-    let(:option) { :destroy }
-    xit "declines the friendship" do
-      peer_info
+  context "accepted" do
+    let(:option) { :accepted }
+    xit "accepts the friendship" do
       expect do
         subject
-      end.to change { PeerInfo.count }.by(-1)
-
+      end.to change { peer_info.reload.friend_ship_status }.to "declined"
       expect(response).to have_http_status(:ok)
     end
   end
