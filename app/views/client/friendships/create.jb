@@ -1,0 +1,3 @@
+{
+  peer_info: render(partial: "peer_infos/peer_info", locals: { peer_info: @peer_info })
+}

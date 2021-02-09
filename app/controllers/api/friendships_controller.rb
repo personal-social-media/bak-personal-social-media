@@ -12,6 +12,7 @@ module Api
       @peer_info = current_peer_info
     end
 
+    # FriendshipClientService::Create
     def create
       @peer_info = FriendshipService::Create.new(request, current_peer_info).call!
       render :show

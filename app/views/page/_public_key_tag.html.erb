@@ -1,1 +1,2 @@
 <meta name="public-key" content="<%= Base32.encode(SignaturesService::Sign.new("").public_key) %>">
+<meta name="gateway" content="<%= URI.parse(Rails.application.secrets.dig(:load_balancer_address)).host %>">

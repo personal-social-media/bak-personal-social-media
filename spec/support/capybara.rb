@@ -5,7 +5,7 @@ require "capybara/poltergeist"
 Capybara.register_driver :poltergeist do |app|
   options = {
     js_errors: true,
-    phantomjs_options: %w[--load-images=false --ignore-ssl-errors=yes --ssl-protocol=any],
+    phantomjs_options: %w[--ignore-ssl-errors=yes --ssl-protocol=any],
     timeout: 60,
   }
   Capybara::Poltergeist::Driver.new(app, options)

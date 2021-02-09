@@ -58,6 +58,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :client do
+    resources :friendships, only: %i(create destroy update)
+  end
+
   constraints LoggedIn do
     mount Sidekiq::Web => '/sidekiq' if ENV["DEVELOPER"].present?
     mount PgHero::Engine => "/pghero"

@@ -212,15 +212,3 @@ jobs:
           CI: TRUE
         run: |
           FEATURES=true bundle exec rspec
-
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    env:
-      TEST_DEPLOY_1: ${{ secrets.TEST_DEPLOY_1 }}
-    needs: [tests_features,tests,linters]
-    if: github.ref == 'refs/heads/master'
-    steps:
-      - name: Deploy test apps
-        run: |
-          curl "$TEST_DEPLOY_1"

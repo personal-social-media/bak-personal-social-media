@@ -9,7 +9,12 @@
     </div>
   </div>
 
-  <div class="mx-auto bg-gray-100 w-1/3 min-h-screen">
+  <div>
+    Stories
+  </div>
+
+  <div class="mx-auto bg-gray-100 w-1/3">
+    Feed
     <%= react_component("profile-feed",
                         peer: current_peer.as_json(only: %i(name username ip avatars)).deep_transform_keys! { |key| key.camelize(:lower) }
         ) %>

@@ -14,12 +14,13 @@ module IdentityService
         next if peer_info.persisted?
         peer_info.ip = ip
         peer_info.username = "UNKNOWN"
+        peer_info.friend_ship_status = :stranger
         peer_info.save!
       end
     end
 
     def ip
-      request.remote_ip
+      request.headers["Gateway"]
     end
 
     def public_key

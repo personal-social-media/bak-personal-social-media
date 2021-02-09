@@ -27,15 +27,19 @@ module FriendshipService
       def build_new_current_peer_info
         return current_peer_info if current_peer_info.present?
         @new_record = true
-        PeerInfo.create!(ip: request.remote_ip, username: "UNKNOWN", public_key: public_key, friend_ship_status: :requested)
+        PeerInfo.create!(ip: ip, username: "UNKNOWN", public_key: public_key, friend_ship_status: :requested)
       end
 
       def unknown?
-        current_peer_info.username == "UNKNOWN"
+        current_peer_info.stranger?
       end
 
       def public_key
         request.headers["Public-Key"]
+      end
+
+      def ip
+        request.headers["Gateway"]
       end
   end
 end

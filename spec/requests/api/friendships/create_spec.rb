@@ -36,6 +36,7 @@ describe "/api/friendship" do
     context "new" do
       before do
         allow_any_instance_of(FriendshipService::Create).to receive(:public_key).and_return(:key)
+        allow_any_instance_of(FriendshipService::Create).to receive(:ip).and_return("0.0.0.0")
       end
 
       context "brand new" do

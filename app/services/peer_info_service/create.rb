@@ -9,8 +9,9 @@ module PeerInfoService
 
     def call!
       PeerInfo.find_or_initialize_by(public_key: peer_info_params[:public_key]).tap do |peer_info|
-        # next if peer_info.persisted?
+        next if peer_info.persisted?
         peer_info.assign_attributes(peer_info_params)
+        peer_info.friend_ship_status = :stranger
         peer_info.save!
       end
     end
