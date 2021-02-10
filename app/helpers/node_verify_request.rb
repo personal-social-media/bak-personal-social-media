@@ -8,7 +8,8 @@ module NodeVerifyRequest
   end
 
   def verify_not_blocked
-    render json: { error: "you are blocked" }, status: 403 if current_peer_info&.blocked?
+    return render json: { error: "you are blocked" }, status: 403 if current_peer_info&.blocked?
+    render json: { error: "you are fake" }, status: 403 if current_peer_info&.fake?
   end
 
   def require_friend

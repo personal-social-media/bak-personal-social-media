@@ -40,7 +40,7 @@ class PeerInfo < ApplicationRecord
     where.not(friend_ship_status: :blocked)
   end
 
-  str_enum :friend_ship_status, %i(requested pending_accept declined self stranger accepted blocked)
+  str_enum :friend_ship_status, %i(requested pending_accept declined fake self stranger accepted blocked)
   after_commit :fetch_more_information, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production?
   after_commit :propagate_updates, on: %i(create update), if: -> { friend_ship_status == "self" } if Rails.env.production?
 
@@ -48,7 +48,7 @@ class PeerInfo < ApplicationRecord
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   validates :public_key, presence: true, uniqueness: true
   validates :about, allow_blank: true, length: { maximum: 2000 }
-  validate :is_public_key_for_real, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production? && ENV["DEVELOPER"].blank?
+  after_commit :verify_if_real_peer, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production? && ENV["DEVELOPER"].blank?
   has_many :feed_items, dependent: :destroy
   has_many :conversation, dependent: :destroy
   has_many :comment, dependent: :destroy
@@ -62,8 +62,8 @@ class PeerInfo < ApplicationRecord
     PeerInfoWorker::PropagateChanges.perform_async(id)
   end
 
-  def is_public_key_for_real
-    errors.add(:public_key, "Fake public key") unless IdentityService::CheckPublicKey.new(public_key, ip).call!
+  def verify_if_real_peer
+    PeerInfoWorker::VerifyPeer.perform_async(id)
   end
 
   serialize :avatars, JSON
