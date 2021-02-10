@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  previous_searches: render(partial: "previous_searches/previous_search", collection: @previous_searches, as: :previous_search)
+}

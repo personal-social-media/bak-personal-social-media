@@ -86,3 +86,4 @@ gem "http"
 gem "acme-client"
 gem "pghero"
 gem "rails_admin", require: is_dev
+gem "bullet", "~> 6.1", ">= 6.1.3"

@@ -19,6 +19,8 @@
 #
 FactoryBot.define do
   factory :previous_search do
-    peer_info { nil }
+    before(:create) do |r|
+      r.peer_info ||= create(:peer_info)
+    end
   end
 end
