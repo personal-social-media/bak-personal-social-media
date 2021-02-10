@@ -6,7 +6,7 @@ is_dev = !!ENV["DEVELOPER"]
 
 ruby "2.7.2"
 
-gem "rails", "~> 6.1.1"
+gem "rails", "~> 6.1.2"
 gem "pg", "~> 1.1"
 gem "sass-rails", ">= 6"
 gem "bootsnap", "~> 1.7.2", require: false
