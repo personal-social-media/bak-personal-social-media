@@ -48,7 +48,7 @@ module FriendshipService
       end
 
       def default_username
-        ENV["DEVELOPER"].present? ? "UNKNOWN" : "UNKNOWN-test-#{SecureRandom.hex}"
+        "UNKNOWN-test-#{SecureRandom.hex}"
       end
   end
 end

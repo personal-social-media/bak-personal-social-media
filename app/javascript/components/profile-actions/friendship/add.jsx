@@ -8,7 +8,7 @@ const initialButtonState = {
   text: 'Add',
 };
 
-const _buttonState = createState(initialButtonState);
+const _buttonState = createState({...initialButtonState});
 
 export default function AddFriendship() {
   const state = useState(profileActionsStore);

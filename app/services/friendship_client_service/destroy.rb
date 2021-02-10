@@ -21,7 +21,7 @@ module FriendshipClientService
           peer_info.destroy
         end
 
-        response = HTTP.timeout(timeout).headers(signed_headers(url)).delete(url, json: data)
+        response = HTTP.timeout(timeout).headers(signed_headers(url)).delete(url)
         raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
       end
     end
@@ -32,13 +32,7 @@ module FriendshipClientService
       end
 
       def url
-        "https://#{peer_info.ip}/api/friendship"
-      end
-
-      def data
-        {
-          option: option
-        }
+        "https://#{peer_info.ip}/api/friendship?option=#{option}"
       end
   end
 end
