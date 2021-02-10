@@ -11,6 +11,7 @@
 #
 # Indexes
 #
+#  index_previous_searches_on_created_at    (created_at)
 #  index_previous_searches_on_peer_info_id  (peer_info_id)
 #
 # Foreign Keys

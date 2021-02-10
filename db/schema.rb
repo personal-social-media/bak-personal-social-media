@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_215250) do
+ActiveRecord::Schema.define(version: 2021_02_10_195310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_215250) do
     t.bigint "peer_info_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at"], name: "index_previous_searches_on_created_at"
     t.index ["peer_info_id"], name: "index_previous_searches_on_peer_info_id"
   end
 

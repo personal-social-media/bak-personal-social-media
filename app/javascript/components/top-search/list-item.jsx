@@ -1,9 +1,9 @@
-import {createNewPeerInfo} from './store';
-import {feedBackError} from '../../events/feedback';
+import {createNewPreviousSearch} from '../../lib/peer-to-peer-actions/search/create-new-previous-search';
 import {getImageForDevice, userPlaceholder} from '../../lib/device/device-type';
+import {handleNewPeer} from '../../lib/peer-to-peer-actions/search/new-peer';
 import {useRef, useState} from 'react';
 
-export default function SearchListItem({link = '#', identity, displayName, closeList}) {
+export default function SearchListItem({link = '#', identity, displayName}) {
   const [state, setState] = useState({realDisplayName: displayName, realLink: link});
   const avatar = getImageForDevice(identity.avatars, userPlaceholder);
   const anchor = useRef();
@@ -11,22 +11,11 @@ export default function SearchListItem({link = '#', identity, displayName, close
   const {realLink, realDisplayName} = state;
 
   async function handleOpen(e) {
-    let peerInfo;
     const {href} = anchor.current;
-    if (href.indexOf('#') === -1) return closeList();
-
-    e.stopPropagation();
-    e.preventDefault();
-    setState({...state, realDisplayName: 'Fetching server information'});
-
-    try {
-      peerInfo = await createNewPeerInfo(identity);
-    } catch (e) {
-      return feedBackError(`Unable to fetch server information for ${identity.username}`);
+    if (href.indexOf('#') === -1) {
+      return await createNewPreviousSearch(identity);
     }
-    closeList();
-    const url = `/u/${peerInfo.id}`;
-    Turbolinks.visit(url);
+    await handleNewPeer(e, identity, state, setState);
   }
 
   return (

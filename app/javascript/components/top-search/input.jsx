@@ -1,10 +1,10 @@
 import {forwardRef} from 'react';
 import {topSearchStore} from './store';
+import {useEffect} from 'react';
 import {useState} from '@hookstate/core';
 
 export const TopSearchInput = forwardRef((_, ref) => { // eslint-disable-line react/display-name
   const state = useState(topSearchStore);
-  const inputValue = state.inputValue.get();
 
   function type(e) {
     const {value} = e.target;
@@ -12,11 +12,14 @@ export const TopSearchInput = forwardRef((_, ref) => { // eslint-disable-line re
   }
 
   function open() {
-    if (inputValue.length < 1) {
-      return;
-    }
     state.merge({listOpened: true});
   }
+
+  useEffect(() => {
+    return () => {
+      state.merge({inputValue: '', listOpened: false});
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <form className="pure-form">

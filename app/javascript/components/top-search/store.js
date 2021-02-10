@@ -9,6 +9,7 @@ export const topSearchStore = createState({
   listOpened: false,
   localSearches: [],
   localSearching: false,
+  previousSearches: null,
   registrySearches: [],
   registrySearching: false,
 });

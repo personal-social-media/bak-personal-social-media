@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  previous_search: render(partial: "previous_searches/previous_search", locals: { previous_search: @previous_search })
+}

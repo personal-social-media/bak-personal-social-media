@@ -7,7 +7,12 @@ class PreviousSearchesController < ActionController::Base
   before_action :require_current_previous_search, only: %i(destroy)
 
   def index
-    @previous_searches = PreviousSearch.order(id: :desc).page(params[:page]).per(8)
+    @previous_searches = PreviousSearch.order(updated_at: :desc).page(params[:page]).per(8)
+  end
+
+  def create
+    create_params = params.require(:peer_info).permit(:id)
+    @previous_search = PreviousSearchesService::Create.new(create_params).call!
   end
 
   def destroy

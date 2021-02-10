@@ -8,27 +8,28 @@ import useInputIntervalHook from '../../lib/hooks/input-interval-hook';
 export default function SearchList({inputRef}) {
   const state = useState(topSearchStore);
   const listOpened = state.listOpened.get();
+  const inputValue = state.inputValue.get();
 
   useInputIntervalHook(state.inputValue, 500, '', (val) => {
     search(val, state);
   });
 
   function closeList(e) {
+    if (!listOpened) return;
+    if (inputValue.length < 1) return;
+
     const {current} = inputRef;
     const target = e?.target;
     if (current === target) return;
-
-    if (!listOpened) return;
     state.merge({listOpened: false});
   }
 
   const localSearches = state.localSearches.get();
   const registrySearches = state.registrySearches.get();
-
   return (
     <OutsideClickHandler onOutsideClick={closeList}>
       {
-        listOpened &&
+        listOpened && inputValue.length > 0 &&
         <div className="absolute top-0 mt-12 py-2 px-1 bg-yellow-300 w-64 overflow-y-hidden">
           <div style={{minHeight: '5rem'}}>
             <div className="text-gray-700 text-sm">
@@ -40,7 +41,7 @@ export default function SearchList({inputRef}) {
                 {localSearches.map((identity) => {
                   return (
                     <div key={identity.id} className="my-2">
-                      <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`} closeList={closeList}/>
+                      <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`}/>
                     </div>
                   );
                 })}
@@ -57,7 +58,7 @@ export default function SearchList({inputRef}) {
               {registrySearches.map((identity) => {
                 return (
                   <div key={identity.publicKey} className="my-2">
-                    <SearchListItem identity={identity} displayName={`@${identity.username}`} closeList={closeList}/>
+                    <SearchListItem identity={identity} displayName={`@${identity.username}`}/>
                   </div>
                 );
               })}

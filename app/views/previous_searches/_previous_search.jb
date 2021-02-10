@@ -2,5 +2,5 @@
 
 {
   id: previous_search.id,
-  peer_info: previous_search.peer_info.as_json(only: %i(id avatars))
+  peer_info: previous_search.peer_info.as_json(only: %i(id avatars name))
 }
