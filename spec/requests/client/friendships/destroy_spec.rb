@@ -30,7 +30,7 @@ describe "/client/friendships", vcr: { record: :once } do
 
   context "destroy" do
     let(:option) { :destroy }
-    it "blocks the relationship" do
+    it "destroys the relationship" do
       peer_info
       expect do
         subject
