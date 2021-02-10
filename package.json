@@ -13,7 +13,7 @@
     "@fullhuman/postcss-purgecss": "^4.0.0",
     "@hookstate/core": "^3.0.4",
     "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
+    "@rails/activestorage": "^6.1.2",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.3",
