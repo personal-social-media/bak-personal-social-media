@@ -19,8 +19,6 @@ class ImageUploader < Shrine
   plugin :versions
   # The delete_raw plugin will automatically delete raw files that have been uploaded. This is especially useful when doing processing, to ensure that temporary files have been deleted after upload.
   plugin :delete_raw
-  # The cached_attachment_data plugin adds the ability to retain the cached file across form redisplays, which means the file doesn't have to be reuploaded in case of validation errors.
-  plugin :cached_attachment_data
   plugin :recache
 
   # Define validations
@@ -31,17 +29,19 @@ class ImageUploader < Shrine
   end
 
   # Process additional versions in background.
-  process(:store) do |io|
-    versions = { original: io }
+  process(:store) do |io, ctx|
+    versions = {}
     io.download do |original|
       pipeline = ImageProcessing::Vips.source(original)
                                       .saver(interlace: true, strip: true)
                                       .convert("webp")
                                       .saver(quality: 95)
 
-      versions[:desktop] = pipeline.resize_to_limit!(1920, 1920)
+      versions[:original] = pipeline.resize_to_limit!(1920, 1920)
       versions[:mobile] = pipeline.resize_to_limit!(720, 720)
       versions[:thumbnail] = pipeline.resize_to_limit!(160, 160)
+
+      ImagesService::AddMetadataToImage.new(original, ctx[:record]).call!
     end
     versions
   end

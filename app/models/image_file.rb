@@ -9,6 +9,7 @@
 #  dominant_color :string
 #  image_data     :string
 #  location_name  :text
+#  metadata       :text
 #  most_recent    :boolean          default(FALSE), not null
 #  private        :boolean          default(TRUE), not null
 #  created_at     :datetime         not null
@@ -28,6 +29,7 @@ class ImageFile < ApplicationRecord
   include MostRecentConcern
   belongs_to :image_album
   has_many :attached_files, dependent: :delete_all, as: :attachment
+  serialize :metadata, JSON
 
   private
     def most_recent_query

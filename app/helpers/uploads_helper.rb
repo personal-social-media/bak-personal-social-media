@@ -12,7 +12,7 @@ module UploadsHelper
   def url_image_for_device(image)
     type = case request.headers["Client"]
            when "desktop"
-             :desktop
+             :original
            else
              :mobile
     end

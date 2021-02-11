@@ -9,6 +9,7 @@
 #  artist      :text
 #  description :text
 #  file_data   :text
+#  metadata    :text
 #  title       :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

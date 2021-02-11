@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_212533) do
+ActiveRecord::Schema.define(version: 2021_02_11_214641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_212533) do
     t.text "file_data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "metadata"
   end
 
   create_table "cache_reactions", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_212533) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "most_recent", default: false, null: false
+    t.text "metadata"
     t.index ["image_album_id"], name: "index_image_files_on_image_album_id"
   end
 
@@ -227,6 +229,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_212533) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "most_recent", default: false, null: false
+    t.text "metadata"
     t.index ["image_album_id"], name: "index_video_files_on_image_album_id"
   end
 
