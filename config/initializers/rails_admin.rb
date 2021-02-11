@@ -24,6 +24,8 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
+  config.parent_controller = "BaseRailsAdminController"
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -38,5 +40,18 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+end
+
+
+RailsAdmin::Config::Fields::Types::MultipleFileUpload::AbstractAttachment.instance_exec do
+  register_instance_option :image? do
+    (url = resource_url.to_s) && url.split('.').last =~ /jpg|jpeg|png|gif|svg|webp/i
+  end
+end
+
+RailsAdmin::Config::Fields::Types::FileUpload.instance_exec do
+  register_instance_option :image? do
+    (url = resource_url.to_s) && url.split('.').last =~ /jpg|jpeg|png|gif|svg|webp/i
   end
 end
