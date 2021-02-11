@@ -9,6 +9,7 @@
 #  dominant_color :string
 #  image_data     :string
 #  location_name  :text
+#  most_recent    :boolean          default(FALSE), not null
 #  private        :boolean          default(TRUE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -24,6 +25,16 @@
 #
 class ImageFile < ApplicationRecord
   include ImageUploader::Attachment(:image)
+  include MostRecentConcern
   belongs_to :image_album
-  has_many :attached_files, as: :attachment
+  has_many :attached_files, dependent: :delete_all, as: :attachment
+
+  private
+    def most_recent_query
+      image_album.image_files
+    end
+
+    def most_recent_limit
+      5
+    end
 end

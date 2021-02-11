@@ -14,6 +14,9 @@
 #
 class ImageAlbum < ApplicationRecord
   include PrivacyConcern
+  include PgSearch::Model
   has_many :image_files, dependent: :destroy
   has_many :video_files, dependent: :destroy
+
+  multisearchable against: [:name, :location_name, :description]
 end

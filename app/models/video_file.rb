@@ -9,6 +9,7 @@
 #  dominant_color   :string
 #  duration_seconds :integer
 #  location_name    :text
+#  most_recent      :boolean          default(FALSE), not null
 #  private          :boolean
 #  video_data       :text
 #  created_at       :datetime         not null
@@ -24,5 +25,15 @@
 #  fk_rails_...  (image_album_id => image_albums.id)
 #
 class VideoFile < ApplicationRecord
-  belongs_to :album
+  include MostRecentConcern
+  belongs_to :image_album
+
+  private
+    def most_recent_query
+      image_album.video_files
+    end
+
+    def most_recent_limit
+      5
+    end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_195310) do
+ActiveRecord::Schema.define(version: 2021_02_10_212533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_195310) do
     t.bigint "image_album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "most_recent", default: false, null: false
     t.index ["image_album_id"], name: "index_image_files_on_image_album_id"
   end
 
@@ -131,6 +132,15 @@ ActiveRecord::Schema.define(version: 2021_02_10_195310) do
     t.index ["name"], name: "index_peer_infos_on_name", opclass: :gin_trgm_ops, using: :gin
     t.index ["public_key"], name: "index_peer_infos_on_public_key", unique: true
     t.index ["username", "ip"], name: "index_peer_infos_on_username_and_ip"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -216,6 +226,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_195310) do
     t.bigint "image_album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "most_recent", default: false, null: false
     t.index ["image_album_id"], name: "index_video_files_on_image_album_id"
   end
 

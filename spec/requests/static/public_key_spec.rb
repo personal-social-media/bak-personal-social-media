@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails_helper"
+
 describe "/public_key" do
   include ExternalApiHelpers
   let(:controller) { StaticController }
