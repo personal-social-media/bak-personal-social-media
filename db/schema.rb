@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_174705) do
+ActiveRecord::Schema.define(version: 2021_02_12_175710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_174705) do
     t.boolean "private", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "most_recent", default: false, null: false
     t.text "metadata"
   end
 
@@ -237,7 +236,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_174705) do
     t.boolean "private"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "most_recent", default: false, null: false
     t.text "metadata"
   end
 

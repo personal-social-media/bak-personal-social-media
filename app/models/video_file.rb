@@ -10,22 +10,12 @@
 #  duration_seconds :integer
 #  location_name    :text
 #  metadata         :text
-#  most_recent      :boolean          default(FALSE), not null
 #  private          :boolean
 #  video_data       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
 class VideoFile < ApplicationRecord
-  include MostRecentConcern
-  belongs_to :image_album, counter_cache: true
-
-  private
-    def most_recent_query
-      image_album.video_files
-    end
-
-    def most_recent_limit
-      5
-    end
+  has_many :gallery_elements, dependent: :delete_all, as: :element
+  has_many :attached_files, dependent: :delete_all, as: :attachment
 end

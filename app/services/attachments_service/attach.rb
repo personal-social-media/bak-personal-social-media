@@ -28,7 +28,8 @@ module AttachmentsService
       end
 
       def handle_image(file)
-        attachment = ImageFile.create!(image: file, image_album: image_album, private: is_private)
+        attachment = ImageFile.create!(image: file, private: is_private)
+        GalleryElement.create(element: attachment, image_album: image_album)
         AttachedFile.create!(attachment: attachment, subject: subject)
       end
 

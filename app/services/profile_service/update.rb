@@ -26,7 +26,11 @@ module ProfileService
 
     private
       memoize def profile_image
-        ImageFile.new(private: false, image_album: image_album)
+        ImageFile.new(private: false)
+      end
+
+      memoize def gallery_element
+        GalleryElement.create!(element: profile_image, image_album: image_album)
       end
 
       memoize def image_album

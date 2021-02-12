@@ -10,7 +10,6 @@
 #  duration_seconds :integer
 #  location_name    :text
 #  metadata         :text
-#  most_recent      :boolean          default(FALSE), not null
 #  private          :boolean
 #  video_data       :text
 #  created_at       :datetime         not null

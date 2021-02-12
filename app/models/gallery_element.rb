@@ -20,6 +20,16 @@
 #  fk_rails_...  (image_album_id => image_albums.id)
 #
 class GalleryElement < ApplicationRecord
+  include MostRecentConcern
   belongs_to :image_album, counter_cache: true
   belongs_to :element, polymorphic: true
+
+  private
+    def most_recent_query
+      image_album.gallery_elements
+    end
+
+    def most_recent_limit
+      11
+    end
 end

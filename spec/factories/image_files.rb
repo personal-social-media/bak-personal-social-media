@@ -10,7 +10,6 @@
 #  image_data     :string
 #  location_name  :text
 #  metadata       :text
-#  most_recent    :boolean          default(FALSE), not null
 #  private        :boolean          default(TRUE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
