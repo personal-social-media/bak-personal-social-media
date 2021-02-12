@@ -16,7 +16,7 @@ export default function SearchListItem({link = '#', identity, displayName, store
       const response = await createNewPreviousSearch(identity);
       const {previousSearch} = response.data;
 
-      storeState.merge((s) => {
+      return storeState.merge((s) => {
         const previousSearches = s.previousSearches.filter((prev) => {
           prev.id !== previousSearch.id;
         });

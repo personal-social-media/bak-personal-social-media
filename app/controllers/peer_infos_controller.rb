@@ -22,6 +22,9 @@ class PeerInfosController < ActionController::Base
     peer_info_params = params.require(:peer_info).permit(:public_key, :username, :name, :ip, avatars: {})
     @peer_info = PeerInfoService::Create.new(peer_info_params).call!
     render :show
+
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { error: "unable to create peer info" }, status: 422
   end
 
   def update
