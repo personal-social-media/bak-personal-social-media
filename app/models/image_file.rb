@@ -19,6 +19,8 @@ class ImageFile < ApplicationRecord
   include PgSearch::Model
   has_many :gallery_elements, dependent: :delete_all, as: :element
   has_many :attached_files, dependent: :delete_all, as: :attachment
+  has_many :image_albums, through: :gallery_elements
+
   serialize :metadata, JSON
   multisearchable against: [:location_name], if: ->(r) { r.location_name.present? }
 end

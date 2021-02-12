@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: gallery_elements
@@ -21,7 +23,9 @@
 #
 FactoryBot.define do
   factory :gallery_element do
-    image_album { nil }
-    element { nil }
+    before(:create) do |r|
+      r.image_album ||= create(:image_album)
+      r.element ||= create(:image_file)
+    end
   end
 end

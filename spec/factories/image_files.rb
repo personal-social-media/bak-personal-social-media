@@ -16,7 +16,11 @@
 #
 FactoryBot.define do
   factory :image_file do
-    image_data { "MyString" }
+    image do
+      new_image_path = "/tmp/image-#{SecureRandom.hex}.png"
+      `cp #{Rails.root.join("spec/support/resources/image.png")} #{new_image_path}`
+      File.open(new_image_path)
+    end
     dominant_color { "MyString" }
     location_name { "MyText" }
     description { "MyText" }

@@ -31,18 +31,16 @@ module ImageAlbumsService
       end
 
       memoize def base_query
-        ImageAlbum.includes(:image_files).where(image_files: { most_recent: true }).order("image_files.id": :desc)
+        ImageAlbum.includes(:gallery_elements).preload(gallery_elements: :element).where(gallery_elements: { most_recent: true })
       end
 
       def convert_to_list
         image_albums
-        # return image_albums if base_query == ImageAlbum
-        # image_albums.map(&:searchable)
       end
 
       memoize def images_location
-        ImageFile.where(image_album_id: image_albums.map(&:id))
-                 .group(:image_album_id, "location_name").where.not(location_name: nil)
+        ImageFile.joins(:gallery_elements).where("gallery_elements.image_album_id": image_albums.map(&:id))
+                 .group("gallery_elements.image_album_id", "location_name").where.not(location_name: nil)
                  .count
                  .keys
       end
