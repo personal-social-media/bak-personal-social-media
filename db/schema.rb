@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_170109) do
+ActiveRecord::Schema.define(version: 2021_02_12_174705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 2021_02_12_170109) do
     t.index ["url"], name: "index_feed_items_on_url", unique: true
   end
 
+  create_table "gallery_elements", force: :cascade do |t|
+    t.bigint "image_album_id", null: false
+    t.string "element_type", null: false
+    t.bigint "element_id", null: false
+    t.boolean "most_recent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["element_type", "element_id"], name: "index_gallery_elements_on_element"
+    t.index ["image_album_id"], name: "index_gallery_elements_on_image_album_id"
+  end
+
   create_table "image_albums", force: :cascade do |t|
     t.text "name", null: false
     t.text "description"
@@ -91,8 +102,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_170109) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "privacy", default: "public_access", null: false
-    t.integer "image_files_count", default: 0, null: false
-    t.integer "video_files_count", default: 0, null: false
+    t.integer "gallery_elements_count", default: 0, null: false
   end
 
   create_table "image_files", force: :cascade do |t|
@@ -101,12 +111,10 @@ ActiveRecord::Schema.define(version: 2021_02_12_170109) do
     t.text "location_name"
     t.text "description"
     t.boolean "private", default: true, null: false
-    t.bigint "image_album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "most_recent", default: false, null: false
     t.text "metadata"
-    t.index ["image_album_id"], name: "index_image_files_on_image_album_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -227,23 +235,20 @@ ActiveRecord::Schema.define(version: 2021_02_12_170109) do
     t.text "location_name"
     t.text "video_data"
     t.boolean "private"
-    t.bigint "image_album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "most_recent", default: false, null: false
     t.text "metadata"
-    t.index ["image_album_id"], name: "index_video_files_on_image_album_id"
   end
 
   add_foreign_key "comments", "comments", column: "parent_comment_id"
   add_foreign_key "comments", "peer_infos"
   add_foreign_key "conversations", "peer_infos"
   add_foreign_key "feed_items", "peer_infos"
-  add_foreign_key "image_files", "image_albums"
+  add_foreign_key "gallery_elements", "image_albums"
   add_foreign_key "messages", "conversations"
   add_foreign_key "previous_searches", "peer_infos"
   add_foreign_key "reactions", "peer_infos"
   add_foreign_key "unblock_requests", "peer_infos"
   add_foreign_key "unblock_requests", "peer_infos", column: "peer_info_requester_id"
-  add_foreign_key "video_files", "image_albums"
 end

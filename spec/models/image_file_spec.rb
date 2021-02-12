@@ -14,15 +14,6 @@
 #  private        :boolean          default(TRUE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  image_album_id :bigint           not null
-#
-# Indexes
-#
-#  index_image_files_on_image_album_id  (image_album_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (image_album_id => image_albums.id)
 #
 require "rails_helper"
 

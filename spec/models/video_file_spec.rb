@@ -15,15 +15,6 @@
 #  video_data       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  image_album_id   :bigint           not null
-#
-# Indexes
-#
-#  index_video_files_on_image_album_id  (image_album_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (image_album_id => image_albums.id)
 #
 require "rails_helper"
 
