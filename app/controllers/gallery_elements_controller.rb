@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GalleryElements < ApplicationController
+class GalleryElementsController < ApplicationController
   before_action :require_current_user
 
   def index
