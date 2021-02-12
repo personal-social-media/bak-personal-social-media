@@ -11,6 +11,8 @@
 #  location_name    :text
 #  metadata         :text
 #  private          :boolean
+#  real_created_at  :datetime
+#  real_file_name   :string
 #  video_data       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

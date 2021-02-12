@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+element = gallery_element.element
+
+json = {
+  id: gallery_element.id,
+  element: {
+    id: element.id,
+    type: element.class.name.downcase,
+  }
+}
+
+if element.is_a?(ImageFile)
+  json[:element][:url] = element.image_url(:original)
+end
+
+json

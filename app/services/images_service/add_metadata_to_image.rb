@@ -3,11 +3,12 @@
 module ImagesService
   class AddMetadataToImage
     extend Memoist
-    attr_reader :tmp_file, :record
+    attr_reader :tmp_file, :ctx, :metadata
 
-    def initialize(tmp_file, record)
+    def initialize(tmp_file, ctx, metadata)
       @tmp_file = tmp_file
-      @record = record
+      @ctx = ctx
+      @metadata = metadata
     end
 
     def call!
@@ -19,6 +20,8 @@ module ImagesService
         {}.tap do |f|
           f[:location_name] = lat_lng.present? ? location_name : nil
           f[:metadata] = exif
+          f[:real_file_name] = filename if filename.present?
+          f[:real_created_at] = created_at
         end.compact
       end
 
@@ -26,6 +29,18 @@ module ImagesService
         search = geocoder.search(*lat_lng)
         fields = search.slice(:name, :admin1, :admin2, :country).values
         fields.compact.uniq.join(" ")
+      end
+
+      def record
+        ctx[:record]
+      end
+
+      def filename
+        metadata["filename"]
+      end
+
+      def created_at
+        exif[:gps_date_time]
       end
 
       memoize def exif

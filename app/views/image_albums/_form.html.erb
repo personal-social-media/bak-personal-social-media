@@ -1,0 +1,36 @@
+<%= form_for image_album, html: { class: "pure-form" } do |f| %>
+  <div>
+    <div>
+      <%= f.label :name %>
+    </div>
+    <%= f.text_field :name, class: "w-full", required: true %>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :location_name %>
+    </div>
+    <%= f.text_field :location_name, class: "w-full" %>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :privacy %>
+    </div>
+    <%= f.select :privacy, ImageAlbum.privacies, { include_blank: false }, class: "w-full" %>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :description %>
+    </div>
+
+    <%= f.text_area :description, placeholder: "album description",
+                    data: { controller: "forms--textarea" },
+                    class: "w-full bg-transparent border-0 outline-none resize-none overflow-hidden" %>
+  </div>
+
+  <div class="mt-4">
+    <%= f.submit "Save", class: "pure-button pure-button-primary w-full", data: { disable_with: "Saving" } %>
+  </div>
+<% end %>

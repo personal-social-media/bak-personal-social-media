@@ -23,7 +23,7 @@
 #
 class GalleryElement < ApplicationRecord
   include MostRecentConcern
-  belongs_to :image_album, counter_cache: true
+  belongs_to :image_album, counter_cache: true, touch: true
   belongs_to :element, polymorphic: true
 
   private

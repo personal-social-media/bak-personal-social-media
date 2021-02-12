@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  gallery_elements: render(partial: "gallery_elements/gallery_element", collection: @gallery_elements, as: :gallery_element)
+}

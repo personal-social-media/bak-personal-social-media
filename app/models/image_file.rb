@@ -4,20 +4,22 @@
 #
 # Table name: image_files
 #
-#  id             :bigint           not null, primary key
-#  description    :text
-#  dominant_color :string
-#  image_data     :string
-#  location_name  :text
-#  metadata       :text
-#  private        :boolean          default(TRUE), not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :bigint           not null, primary key
+#  description     :text
+#  dominant_color  :string
+#  image_data      :string
+#  location_name   :text
+#  metadata        :text
+#  private         :boolean          default(TRUE), not null
+#  real_created_at :datetime
+#  real_file_name  :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 class ImageFile < ApplicationRecord
   include ImageUploader::Attachment(:image)
   include PgSearch::Model
-  has_many :gallery_elements, dependent: :delete_all, as: :element
+  has_many :gallery_elements, dependent: :destroy, as: :element
   has_many :attached_files, dependent: :delete_all, as: :attachment
   has_many :image_albums, through: :gallery_elements
 

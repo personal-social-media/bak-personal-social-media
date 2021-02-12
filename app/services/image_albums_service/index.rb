@@ -16,14 +16,7 @@ module ImageAlbumsService
       self
     end
 
-    def locations_for_image_album(image_album)
-      id = image_album.id
-      images_location.select do |row|
-        row[0] == id
-      end.map do |row|
-        row[1]
-      end
-    end
+
 
     private
       def apply_pagination
@@ -39,14 +32,13 @@ module ImageAlbumsService
       end
 
       memoize def images_location
-        ImageFile.joins(:gallery_elements).where("gallery_elements.image_album_id": image_albums.map(&:id))
-                 .group("gallery_elements.image_album_id", "location_name").where.not(location_name: nil)
-                 .count
-                 .keys
+        LocationsForImageAlbums.new(image_albums.map(&:id))
       end
 
       memoize def search
         params[:q]
       end
+
+      delegate :locations_for_image_album, to: :images_location
   end
 end
