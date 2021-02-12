@@ -18,5 +18,7 @@ class ImageAlbum < ApplicationRecord
   has_many :image_files, dependent: :destroy
   has_many :video_files, dependent: :destroy
 
+  scope :latest_images, -> { joins(:image_files).where(image_files: { most_recent: true }) }
+
   multisearchable against: [:name, :location_name, :description]
 end

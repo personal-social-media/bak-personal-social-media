@@ -32,14 +32,12 @@ class ImageUploader < Shrine
   process(:store) do |io, ctx|
     versions = {}
     io.download do |original|
-      pipeline = ImageProcessing::Vips.source(original)
-                                      .saver(interlace: true, strip: true)
-                                      .convert("webp")
-                                      .saver(quality: 95)
-
-      versions[:original] = pipeline.resize_to_limit!(1920, 1920)
-      versions[:mobile] = pipeline.resize_to_limit!(720, 720)
-      versions[:thumbnail] = pipeline.resize_to_limit!(160, 160)
+      record = ctx[:record]
+      if record.private
+        versions = ImagesService::ResizePrivate.new(versions, original).call!
+      else
+        versions = ImagesService::ResizePublic.new(versions, original).call!
+      end
 
       ImagesService::AddMetadataToImage.new(original, ctx[:record]).call!
     end

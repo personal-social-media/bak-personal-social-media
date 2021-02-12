@@ -4,7 +4,7 @@
 #
 # Table name: image_files
 #
-#  id             :bigint           not null, primary key
+#  id             :bigint           not null, mary key
 #  description    :text
 #  dominant_color :string
 #  image_data     :string
@@ -26,10 +26,12 @@
 #
 class ImageFile < ApplicationRecord
   include ImageUploader::Attachment(:image)
+  include PgSearch::Model
   include MostRecentConcern
   belongs_to :image_album
   has_many :attached_files, dependent: :delete_all, as: :attachment
   serialize :metadata, JSON
+  multisearchable against: [:location_name], if: ->(r) { r.location_name.present? }
 
   private
     def most_recent_query

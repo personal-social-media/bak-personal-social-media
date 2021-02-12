@@ -6,6 +6,5 @@ class ImageAlbumsController < ApplicationController
   def index
     service = ImageAlbumsService::Index.new(params.permit!)
     @image_albums = service.image_albums
-    @preview_images = service.preview_images
   end
 end

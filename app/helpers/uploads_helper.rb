@@ -3,7 +3,7 @@
 module UploadsHelper
   def all_uploaded_image_urls(image)
     {
-      desktop: root_path + image.image_url(:desktop),
+      desktop: root_path + image.image_url(:original),
       mobile: root_path + image.image_url(:mobile),
       thumbnail: root_path + image.image_url(:thumbnail),
     }
@@ -22,7 +22,7 @@ module UploadsHelper
   def url_image_for_device_hash(hash)
     type = case request.headers["Client"]
            when "desktop"
-             "desktop"
+             "original"
            else
              "mobile"
     end

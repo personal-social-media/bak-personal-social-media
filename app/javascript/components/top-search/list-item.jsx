@@ -3,7 +3,7 @@ import {getImageForDevice, userPlaceholder} from '../../lib/device/device-type';
 import {handleNewPeer} from '../../lib/peer-to-peer-actions/search/new-peer';
 import {useRef, useState} from 'react';
 
-export default function SearchListItem({link = '#', identity, displayName}) {
+export default function SearchListItem({link = '#', identity, displayName, storeState}) {
   const [state, setState] = useState({realDisplayName: displayName, realLink: link});
   const avatar = getImageForDevice(identity.avatars, userPlaceholder);
   const anchor = useRef();
@@ -13,7 +13,18 @@ export default function SearchListItem({link = '#', identity, displayName}) {
   async function handleOpen(e) {
     const {href} = anchor.current;
     if (href.indexOf('#') === -1) {
-      return await createNewPreviousSearch(identity);
+      const response = await createNewPreviousSearch(identity);
+      const {previousSearch} = response.data;
+
+      storeState.merge((s) => {
+        const previousSearches = s.previousSearches.filter((prev) => {
+          prev.id !== previousSearch.id;
+        });
+        previousSearches.unshift(previousSearch);
+        return {
+          previousSearches,
+        };
+      });
     }
     await handleNewPeer(e, identity, state, setState);
   }

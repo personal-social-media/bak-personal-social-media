@@ -21,7 +21,8 @@ module ImageAlbumsService
       end
 
       memoize def base_query
-        search.present? ? PgSearch.multisearch(search).includes(:searchable) : ImageAlbum
+        ImageAlbum.latest_images
+        # search.present? ? PgSearch.multisearch(search).includes(:searchable) : ImageAlbum
       end
 
       def convert_to_list
@@ -31,9 +32,6 @@ module ImageAlbumsService
 
       memoize def search
         params[:q]
-      end
-
-      def preview_images
       end
   end
 end

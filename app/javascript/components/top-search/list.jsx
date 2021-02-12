@@ -41,7 +41,7 @@ export default function SearchList({inputRef}) {
                 {localSearches.map((identity) => {
                   return (
                     <div key={identity.id} className="my-2">
-                      <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`}/>
+                      <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`} storeState={state}/>
                     </div>
                   );
                 })}
@@ -58,7 +58,7 @@ export default function SearchList({inputRef}) {
               {registrySearches.map((identity) => {
                 return (
                   <div key={identity.publicKey} className="my-2">
-                    <SearchListItem identity={identity} displayName={`@${identity.username}`}/>
+                    <SearchListItem identity={identity} displayName={`@${identity.username}`} storeState={state}/>
                   </div>
                 );
               })}

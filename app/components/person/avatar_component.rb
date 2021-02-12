@@ -24,7 +24,7 @@ class Person::AvatarComponent < ViewComponent::Base
     def handle_profile
       return nil unless profile&.profile_image
 
-      url_image_for_device(profile.profile_image)
+      profile.profile_image.image_url(:original)
     end
 
     def handle_peer_info

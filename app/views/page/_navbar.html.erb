@@ -54,14 +54,19 @@
         <% end %>
 
         <div data-utils--drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 16rem">
-          <div class="mb-2">
-            <%= link_to "Logout", logout_sessions_path, method: :delete, class: "text-gray-700 hover:text-gray-900 no-underline" %>
+          <div class="my-2">
+            <%= link_to "Photos", image_albums_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
+          <hr>
           <div class="my-2">
             <%= link_to "Account", profile_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
           <div class="mt-2">
             <%= link_to "Settings", settings_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
+          </div>
+
+          <div class="mb-6">
+            <%= link_to "Logout", logout_sessions_path, method: :delete, class: "text-gray-700 hover:text-gray-900 no-underline" %>
           </div>
         </div>
       <% end %>
