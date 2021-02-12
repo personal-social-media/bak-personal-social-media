@@ -27,7 +27,7 @@
 #
 class VideoFile < ApplicationRecord
   include MostRecentConcern
-  belongs_to :image_album
+  belongs_to :image_album, counter_cache: true
 
   private
     def most_recent_query

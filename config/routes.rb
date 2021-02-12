@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :previous_searches, only: %i(index create destroy)
-  resources :image_albums, only: %i(index show create update destroy)
+  resources :image_albums, only: %i(index show create update destroy) do
+    resources :gallery_elements, only: %i(index create destroy)
+  end
   resources :cities, only: %i(index)
   resources :identities, only: :create
   resources :peer_infos, only: %i(index show create update destroy) do

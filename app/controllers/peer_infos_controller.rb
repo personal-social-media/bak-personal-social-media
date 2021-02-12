@@ -24,7 +24,7 @@ class PeerInfosController < ActionController::Base
     render :show
 
   rescue ActiveRecord::RecordInvalid => e
-    render json: { error: "unable to create peer info" }, status: 422
+    render json: { error: "unable to create peer info, #{e.message}" }, status: 422
   end
 
   def update

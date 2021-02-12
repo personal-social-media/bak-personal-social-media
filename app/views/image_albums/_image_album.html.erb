@@ -1,0 +1,21 @@
+<div class="rounded overflow-hidden shadow-xl hover:bg-gray-100">
+  <%= link_to image_album_path(image_album) do %>
+    <div class="grid grid-cols-4">
+      <div class="flex items-center justify-center">
+        <div class="text-center">
+          <div>
+            <%= image_album.name %>
+          </div>
+          <div>
+            <%= image_album.location_name %>
+          </div>
+        </div>
+      </div>
+      <%= render partial: "image_albums/image_album/thumbnails", collection: image_album.image_files, as: :image_file %>
+    </div>
+
+    <div class="text-center py-1">
+      <%= @image_albums_service.locations_for_image_album(image_album).first(10).join(",") %>
+    </div>
+  <% end %>
+</div>

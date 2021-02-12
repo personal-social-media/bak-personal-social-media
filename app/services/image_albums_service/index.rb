@@ -13,6 +13,16 @@ module ImageAlbumsService
       @image_albums = base_query
       @image_albums = apply_pagination
       convert_to_list
+      self
+    end
+
+    def locations_for_image_album(image_album)
+      id = image_album.id
+      images_location.select do |row|
+        row[0] == id
+      end.map do |row|
+        row[1]
+      end
     end
 
     private
@@ -21,13 +31,20 @@ module ImageAlbumsService
       end
 
       memoize def base_query
-        ImageAlbum.latest_images
-        # search.present? ? PgSearch.multisearch(search).includes(:searchable) : ImageAlbum
+        ImageAlbum.includes(:image_files).where(image_files: { most_recent: true }).order("image_files.id": :desc)
       end
 
       def convert_to_list
-        return image_albums if base_query == ImageAlbum
-        image_albums.map(&:searchable)
+        image_albums
+        # return image_albums if base_query == ImageAlbum
+        # image_albums.map(&:searchable)
+      end
+
+      memoize def images_location
+        ImageFile.where(image_album_id: image_albums.map(&:id))
+                 .group(:image_album_id, "location_name").where.not(location_name: nil)
+                 .count
+                 .keys
       end
 
       memoize def search

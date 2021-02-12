@@ -1,0 +1,8 @@
+<div class="text-center mb-20">
+  <h1 class="text-4xl">Photos</h1>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3">
+  <%= render partial: "image_albums/image_album", collection: @image_albums, as: :image_album %>
+</div>
+
+<%= paginate @image_albums %>
