@@ -1,1 +1,7 @@
-<%= image_tag real_url, alt: "avatar", **options %>
+<% if is_video? %>
+  <%= content_tag :video, **video_options do %>
+    <source src="<%= real_video_url %>" type="video/mp4">
+  <% end %>
+<% else %>
+  <%= image_tag real_image_url, alt: "avatar", **options.except(:video) %>
+<% end %>

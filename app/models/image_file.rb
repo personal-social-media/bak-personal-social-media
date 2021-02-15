@@ -18,6 +18,7 @@
 #  updated_at      :datetime         not null
 #
 class ImageFile < ApplicationRecord
+  IMAGES_EXTENSIONS = %w(jpg jpeg png webp tiff).freeze
   include ImageUploader::Attachment(:image)
   include PgSearch::Model
   has_many :gallery_elements, dependent: :destroy, as: :element

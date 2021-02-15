@@ -23,8 +23,10 @@ class Profile < ApplicationRecord
   validates :gender, presence: true
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   validates :about, allow_blank: true, length: { maximum: 2000 }
-  has_one :profile_picture_attachment, class_name: "AttachedFile", dependent: :destroy, as: :subject
+  has_one :profile_picture_attachment, -> { where(attachment_type: "ImageFile") }, class_name: "AttachedFile", dependent: :destroy, as: :subject
+  has_one :profile_video_attachment, -> { where(attachment_type: "VideoFile") }, class_name: "AttachedFile", dependent: :destroy, as: :subject
   has_one :profile_image, through: :profile_picture_attachment, source_type: "ImageFile", source: :attachment
+  has_one :profile_video, through: :profile_video_attachment, source_type: "VideoFile", source: :attachment
   auto_strip_attributes :name, :username, squish: true
   before_save { username.downcase! }
 

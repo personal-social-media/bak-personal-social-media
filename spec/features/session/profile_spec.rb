@@ -91,7 +91,7 @@ describe "profile" do
 
       it "sets image" do
         subject
-        expect(current_user.profile_image).to be_present
+        expect(current_user.reload.profile_image).to be_present
       end
     end
   end

@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-class ImageUploader < Shrine
+class VideoUploader < Shrine
   include ImageProcessing::Vips
   plugin :add_metadata
 
   plugin :backgrounding
   # The determine_mime_type plugin allows you to determine and store the actual MIME type of the file analyzed from file content.
   plugin :determine_mime_type
-  # The store_dimensions plugin extracts and stores dimensions of the uploaded image using the fastimage gem, which has built-in protection against image bombs.
-  plugin :store_dimensions
   # The validation_helpers plugin provides helper methods for validating attached files.
   plugin :validation_helpers
   # The pretty_location plugin attempts to generate a nicer folder structure for uploaded files.
@@ -24,23 +22,16 @@ class ImageUploader < Shrine
   # Define validations
   # For a complete list of all validation helpers, see AttacherMethods. http://shrinerb.com/rdoc/classes/Shrine/Plugins/ValidationHelpers/AttacherMethods.html
   Attacher.validate do
-    validate_max_size 15.megabytes, message: "is too large (max is 15 MB)"
-    validate_mime_type_inclusion %w[image/jpeg image/jpg image/png image/gif image/webp]
+    validate_max_size 10.gigabytes, message: "is too large (max is 10 GB)"
+    # validate_mime_type_inclusion %w[video/mp4 video/webm video/ogg]
   end
 
   # Process additional versions in background.
   process(:store) do |io, ctx|
-    versions = {}
+    versions = { original: io }
     io.download do |original|
-      if Rails.env.test?
-        versions[:original] = io
-      else
-        record = ctx[:record]
-        if record.private
-          versions = ImagesService::ResizePrivate.new(versions, original).call!
-        else
-          versions = ImagesService::ResizePublic.new(versions, original).call!
-        end
+      unless Rails.env.test?
+        versions = VideoService::ResizePrivate.new(versions, original).call!
       end
       ImagesService::AddMetadataToImage.new(original, ctx, io.metadata).call!
     end
