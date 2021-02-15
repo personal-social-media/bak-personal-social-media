@@ -12,7 +12,7 @@ class CreateGalleryElements < ActiveRecord::Migration[6.1]
 
     ImageFile.all.includes(:image_album).each do |file|
       GalleryElement.create(image_album: file.image_album, element: file)
-    end
+    end rescue ActiveRecord::AssociationNotFoundError
 
     remove_column :image_albums, :image_files_count
     remove_column :image_albums, :video_files_count
