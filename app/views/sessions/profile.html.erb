@@ -3,7 +3,7 @@
 </div>
 
 <div class="mx-auto md:w-1/3 w-full">
-  <%= form_with model: current_user, url: profile_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", id: "profile-form", data: { controller: "profile--update" } do |f| %>
+  <%= form_with model: current_user, url: profile_upload_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", id: "profile-form", data: { controller: "profile--update" } do |f| %>
     <div class="text-center">
       <%= render Person::AvatarComponent.new(profile: current_user, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover",
                                              data: {
@@ -13,9 +13,9 @@
     </div>
 
     <% if current_user.profile_image.present? %>
-      <%= f.hidden_field :image, value: current_user.profile_image.cached_image_data %>
+      <%= f.hidden_field :uploaded_file, value: current_user.profile_image.cached_image_data %>
     <% end %>
-    <%= f.file_field :image, accept: "image/*", class: "hidden", data: { "profile--update-target": :imageFile } %>
+    <%= f.file_field :uploaded_file, accept: "image/*", class: "hidden", data: { "profile--update-target": :imageFile } %>
 
     <div class="my-3">
       <%= f.label :name, "Name:" %>

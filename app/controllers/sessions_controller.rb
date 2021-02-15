@@ -21,8 +21,11 @@ class SessionsController < ApplicationController
   end
 
   def profile_post
-    profile_params = params.require(:profile).permit(:image, :name, :gender, :about, :country_code, :city_name)
-    ProfileService::Update.new(profile_params, current_user).call!
+    uploaded_file_params = params.require(:profile).permit(uploaded_file: {})[:uploaded_file]
+    uploaded_file = uploaded_file_params ? UploadsService::HandleSingleUpload.new(uploaded_file_params).call! : nil
+
+    profile_params = params.require(:profile).permit(:name, :gender, :about, :country_code, :city_name)
+    ProfileService::Update.new(uploaded_file, profile_params, current_user).call!
     redirect_to profile_sessions_path, notice: "Saved"
   end
 

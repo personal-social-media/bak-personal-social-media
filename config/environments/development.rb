@@ -84,4 +84,7 @@ Rails.application.configure do
     Bullet.add_footer = true
     Bullet.skip_html_injection = false
   end
+
+  config.public_file_server.enabled = true
+  config.hosts.clear if ENV["DOCKER"]
 end

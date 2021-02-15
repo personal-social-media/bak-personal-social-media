@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root "home#index"
   get "/public_key", to: "static#public_key"
+  get "/authorize_upload", to: "static#authorize_upload"
   post "/sign", to: "signatures#create"
 
   resources :profiles, path: "/u", only: :show do
@@ -14,7 +15,13 @@ Rails.application.routes.draw do
   resources :image_albums, only: %i(index show create update destroy) do
     resources :gallery_elements, only: %i(index create)
   end
-  resources :gallery_element, only: :destroy
+
+  resources :gallery_elements, only: :destroy do
+    collection do
+      get "/all_private_file_names", action: :all_private_file_names
+      get "/all_md5_checksums", action: :all_md5_checksums
+    end
+  end
 
   resources :cities, only: %i(index)
   resources :identities, only: :create
@@ -27,7 +34,7 @@ Rails.application.routes.draw do
   resource :sessions, only: [] do
     collection do
       get "/profile", action: :profile
-      patch "/profile", action: :profile_post
+      patch "/profile_upload", action: :profile_post
       get "/settings", action: :settings
 
       get "/login", action: :login

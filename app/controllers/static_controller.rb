@@ -2,7 +2,9 @@
 
 class StaticController < ActionController::Base
   include NodeVerifyRequest
-  before_action :verify_node_request
+  include SessionHelper
+  before_action :verify_node_request, only: :public_key
+  # before_action :require_current_user, only: :authorize_upload
 
   def public_key
     path = Rails.application.secrets.dig(:profile, :keys_location) + "/public_key.pem"
@@ -11,6 +13,10 @@ class StaticController < ActionController::Base
     http_cache_forever(public: true) do
       send_file(path, type: "text/plain", filename: "public_key.pem")
     end
+  end
+
+  def authorize_upload
+    head :ok
   end
 
   def ignore_register

@@ -1,6 +1,7 @@
 import '../events/main';
 import '../stylesheets/main.scss';
 import '../stylesheets/tailwind.css';
+import 'react-virtualized/styles.css';
 
 import {Application} from 'stimulus';
 import {definitionsFromContext} from 'stimulus/webpack-helpers';

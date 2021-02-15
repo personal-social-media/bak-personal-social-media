@@ -12,6 +12,7 @@ module ImagesService
     end
 
     def call!
+      return unless allow_call?
       record.update!(saved_fields)
     end
 
@@ -20,7 +21,6 @@ module ImagesService
         {}.tap do |f|
           f[:location_name] = lat_lng.present? ? location_name : nil
           f[:metadata] = exif
-          f[:real_file_name] = filename if filename.present?
           f[:real_created_at] = created_at
         end.compact
       end
@@ -56,6 +56,10 @@ module ImagesService
 
       memoize def geocoder
         OfflineGeocoder.new
+      end
+
+      def allow_call?
+        !Rails.env.test?
       end
   end
 end

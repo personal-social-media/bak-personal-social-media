@@ -11,8 +11,8 @@ app:
     - ./:/app
     - ~/.bash_history:/root/.bash_history
     - .build/.bundle-cache-dir/app:/usr/local/bundle/
+    - /tmp:/tmp
   ports:
-    - "3000:3000"
     - "3035:3035"
   environment:
     - DOCKER=true
@@ -30,6 +30,17 @@ postgres:
     - .build/.db:/var/lib/postgresql/data
   environment:
     - POSTGRES_PASSWORD=1234
+
+nginx:
+  build: "./.build/nginx"
+  ports:
+    - "3000:80"
+  volumes:
+    - .build/nginx/sites-enabled:/etc/nginx/sites-enabled
+    - ./public:/app/public
+    - /tmp:/tmp
+  links:
+    - app
 
 mailcatcher:
   image: schickling/mailcatcher

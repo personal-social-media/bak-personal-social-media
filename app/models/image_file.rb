@@ -9,6 +9,7 @@
 #  dominant_color  :string
 #  image_data      :string
 #  location_name   :text
+#  md5_checksum    :string
 #  metadata        :text
 #  private         :boolean          default(TRUE), not null
 #  real_created_at :datetime

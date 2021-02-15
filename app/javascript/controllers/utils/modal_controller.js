@@ -15,7 +15,6 @@ export default class extends Controller {
     this.backgroundTarget.classList.toggle('hidden');
     this.contentTarget.classList.toggle('inset-0');
     this.contentTarget.classList.toggle('hidden');
-    document.body.classList.toggle('overflow-y-hidden');
   }
 
   close(e) {

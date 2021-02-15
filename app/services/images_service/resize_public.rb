@@ -28,7 +28,7 @@ module ImagesService
       end
 
       def thumbnail
-        pipeline.saver(strip: true, quality: 50).resize_to_limit!(160, 160)
+        pipeline.saver(strip: true, quality: 75).resize_to_limit!(160, 160)
       end
 
       memoize def pipeline

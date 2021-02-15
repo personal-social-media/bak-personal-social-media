@@ -4,8 +4,9 @@ module ProfileService
   class Update
     include UploadsHelper
     extend Memoist
-    attr_reader :profile_params, :current_user, :has_changed
-    def initialize(profile_params, current_user)
+    attr_reader :uploaded_file, :profile_params, :current_user, :has_changed
+    def initialize(uploaded_file, profile_params, current_user)
+      @uploaded_file = uploaded_file
       @profile_params = profile_params
       @current_user = current_user
     end
@@ -14,11 +15,13 @@ module ProfileService
       Profile.transaction do
         update_attributes
 
-        next update_peer_info if profile_image_params.blank?
+        next update_peer_info if uploaded_file.blank?
 
         @has_changed = true
-        profile_image.image = profile_image_params
+        profile_image.image = File.open(uploaded_file.path)
+        assign_image_attributes
         profile_image.save!
+        gallery_element.save!
         current_user.profile_image = profile_image
         update_peer_info
       end
@@ -30,7 +33,7 @@ module ProfileService
       end
 
       memoize def gallery_element
-        GalleryElement.create!(element: profile_image, image_album: image_album)
+        GalleryElement.new(element: profile_image, image_album: image_album)
       end
 
       memoize def image_album
@@ -61,6 +64,10 @@ module ProfileService
         end
 
         peer_info.save!
+      end
+
+      def assign_image_attributes
+        profile_image.assign_attributes(real_file_name: uploaded_file.name, md5_checksum: uploaded_file.md5)
       end
   end
 end

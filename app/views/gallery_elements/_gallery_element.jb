@@ -7,11 +7,17 @@ json = {
   element: {
     id: element.id,
     type: element.class.name.downcase,
+    real_file_name: element.real_file_name,
+    real_created_at: element.real_created_at,
+    md5_checksum: element.md5_checksum,
+    location_name: element.location_name,
+    created_at: element.created_at
   }
 }
 
 if element.is_a?(ImageFile)
-  json[:element][:url] = element.image_url(:original)
+  json[:element][:url] = element.image_url(:thumbnail)
+  json[:element][:original_url] = element.image_url(:original)
 end
 
 json

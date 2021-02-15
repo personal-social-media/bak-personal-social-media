@@ -9,6 +9,7 @@
 #  dominant_color   :string
 #  duration_seconds :integer
 #  location_name    :text
+#  md5_checksum     :string
 #  metadata         :text
 #  private          :boolean
 #  real_created_at  :datetime

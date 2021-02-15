@@ -1,5 +1,6 @@
 import {Controller} from 'stimulus';
 import {QRCodeCanvas} from '@cheprasov/qrcode';
+import {downloadFile} from '../../lib/utils/download-file';
 
 export default class extends Controller {
   connect() {
@@ -19,11 +20,6 @@ export default class extends Controller {
   }
 
   downloadFile(canvasWithQRCode) {
-    const a = document.createElement('a');
-    a.href = canvasWithQRCode.toDataURL();
-    a.download = 'psm-recovery-code.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    downloadFile(canvasWithQRCode.toDataURL(), 'psm-recovery-code.png');
   }
 }

@@ -1,5 +1,6 @@
 import {createState, useState} from '@hookstate/core';
 import {useEffect, useRef} from 'react';
+import {useHotkeys} from 'react-hotkeys-hook';
 
 const defaultState = {
   background: {
@@ -9,10 +10,14 @@ const defaultState = {
     className: 'hidden fixed modal-container overflow-y-scroll pb-32',
   },
 };
-const _state = createState({...defaultState});
 export default function Modal({setOpened, opened, children}) {
-  const state = useState(_state);
+  const _state = useRef(createState({...defaultState}));
+  const state = useState(_state.current);
   const containerRef = useRef();
+
+  useHotkeys('escape', () => {
+    if (!opened) setOpened(false);
+  });
 
   useEffect(() => {
     if (!opened) {
@@ -40,7 +45,7 @@ export default function Modal({setOpened, opened, children}) {
   return (
     <div>
       <div className={state.content.className.get()} style={{zIndex: 1001}} onClick={close} ref={containerRef}>
-        <div className="mx-auto mt-32 w-1/3 bg-white shadow-xl rounded border border-solid border-gray-200 p-4">
+        <div className="mx-auto mt-32 md:w-1/3 w-full bg-white shadow-xl rounded border border-solid border-gray-200 p-4">
           {children}
         </div>
       </div>

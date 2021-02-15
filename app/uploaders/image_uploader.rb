@@ -31,20 +31,20 @@ class ImageUploader < Shrine
   # Process additional versions in background.
   process(:store) do |io, ctx|
     versions = {}
-    if Rails.env.test?
-      versions[:original] = io
-    else
-      io.download do |original|
+    io.download do |original|
+      if Rails.env.test?
+        versions[:original] = io
+      else
         record = ctx[:record]
         if record.private
           versions = ImagesService::ResizePrivate.new(versions, original).call!
         else
           versions = ImagesService::ResizePublic.new(versions, original).call!
         end
-
-        ImagesService::AddMetadataToImage.new(original, ctx, io.metadata).call!
       end
+      ImagesService::AddMetadataToImage.new(original, ctx, io.metadata).call!
     end
+
     versions
   end
 
