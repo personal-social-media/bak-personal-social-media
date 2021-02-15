@@ -15,9 +15,10 @@ module ProfileService
       Profile.transaction do
         update_attributes
 
-        next update_peer_info if uploaded_file.blank?
+        next update_peer_info if uploaded_file.blank? || !File.exist?(uploaded_file.path)
 
         @has_changed = true
+
         profile_image.image = File.open(uploaded_file.path)
         assign_image_attributes
         profile_image.save!

@@ -70,5 +70,5 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.bullet_logger = true
     Bullet.raise = true
-  end
+  end unless ENV["FEATURES"]
 end

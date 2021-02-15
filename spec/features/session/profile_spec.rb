@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "profile", js: true do
+describe "profile" do
   include FilesSpecHelper
 
   context "update profile" do
@@ -47,16 +47,23 @@ describe "profile", js: true do
     end
 
     context "existing picture" do
+      let(:sample_uploaded_file) do
+        UploadsService::UploadedFile.new(sample_image_tmp, "md5", "name.png")
+      end
       let(:add_image) do
-        image = ImageFile.create(image: sample_image_tmp)
+        image = ImageFile.create(image: File.open(sample_image_tmp))
         current_user.profile_image = image
       end
       let(:fill_form) do
         within form do
           click_invisible do
-            attach_file("profile_image", sample_image_tmp.path)
+            attach_file("profile[uploaded_file]", sample_image_tmp)
           end
         end
+      end
+
+      before do
+        allow_any_instance_of(ProfileService::Update).to receive(:uploaded_file).and_return(sample_uploaded_file)
       end
 
       it "changes image" do
@@ -66,13 +73,20 @@ describe "profile", js: true do
 
     context "new picture" do
       let(:add_image) { nil }
+      let(:sample_uploaded_file) do
+        UploadsService::UploadedFile.new(sample_image_tmp, "md5", "name.png")
+      end
 
       let(:fill_form) do
         within form do
           click_invisible do
-            attach_file("profile_image", sample_image_tmp.path)
+            attach_file("profile[uploaded_file]", sample_image_tmp)
           end
         end
+      end
+
+      before do
+        allow_any_instance_of(ProfileService::Update).to receive(:uploaded_file).and_return(sample_uploaded_file)
       end
 
       it "sets image" do

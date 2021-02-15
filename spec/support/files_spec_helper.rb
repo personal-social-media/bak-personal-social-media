@@ -6,9 +6,15 @@ module FilesSpecHelper
   end
 
   def sample_image_tmp
-    Tempfile.new(%w[image .png]).tap do |t|
-      t.write(File.read(sample_image))
-      t.rewind
+    "/tmp/sample-test-image-#{SecureRandom.hex}.png".tap do |path|
+      `cp #{sample_image} #{path}`
     end
+  end
+end
+
+
+RSpec.configure do |config|
+  config.after(:suite) do
+    `rm /tmp/sample-test-image-*`
   end
 end
