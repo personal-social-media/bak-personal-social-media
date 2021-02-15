@@ -23,7 +23,7 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 RUN npm install -g yarn
 
-RUN apt-get install -y libvips libvips-dev libvips-tools
+RUN apt-get install -y libvips libvips-dev libvips-tools libcurl4 libcurl3-gnutls libcurl4-openssl-dev
 
 RUN npm install -g phantomjs-prebuilt-that-works --unsafe-perm
 
