@@ -1040,10 +1040,10 @@
   dependencies:
     purgecss "^4.0.0"
 
-"@hookstate/core@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@hookstate/core/-/core-3.0.4.tgz#1d53a365dfd0512ba0df73469ca38db4d5704d9d"
-  integrity sha512-RIQcqeZdjqAeaF2bEiLkv+tt3xWQNr97NYWHwpzpFmmiXx8ayiESM49jyAMruYFvZKmTLT1ebMcKg6nvYbepUg==
+"@hookstate/core@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@hookstate/core/-/core-3.0.5.tgz#d14baac7ac005a289d7150ae2c35bb3d4aea454c"
+  integrity sha512-zdhsNNrmARYcQnqrUbNYVSLDlslhMiuVSbXl9lIAWBDQQ4oivm+/fQPAMmoQgga++RX2BFcfXm37BvZtTVm/IA==
 
 "@npmcli/move-file@^1.0.1":
   version "1.1.1"
