@@ -1,4 +1,4 @@
-import {feedbackSuccess} from '../../snowpacker/events/feedback';
+import {feedbackSuccess} from './feedback';
 import domReady from './dom-ready';
 
 domReady(() => {

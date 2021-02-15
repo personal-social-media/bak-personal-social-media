@@ -16,6 +16,7 @@ module AttachmentsService
       return if files.blank?
       ImageFile.transaction do
         files.each do |file|
+          next unless File.exist?(file.path)
           extension = get_extension(file)
           next handle_image(file) if check_if_image?(extension)
         end
@@ -28,13 +29,13 @@ module AttachmentsService
       end
 
       def handle_image(file)
-        attachment = ImageFile.create!(image: file, private: is_private)
+        attachment = ImageFile.create!(image: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
         GalleryElement.create(element: attachment, image_album: image_album)
         AttachedFile.create!(attachment: attachment, subject: subject)
       end
 
       def get_extension(file)
-        file.original_filename.split(".").last.downcase
+        file.name.split(".").last.downcase
       end
 
       def image_album

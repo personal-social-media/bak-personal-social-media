@@ -1,8 +1,7 @@
 import QrScanner from 'qr-scanner';
 QrScanner.WORKER_PATH = '/qr-scanner-worker.min.js';
 import {Controller} from 'stimulus';
-import {feedBackError} from '../../events/feedback';
-import {feedbackSuccess} from '../../../snowpacker/events/feedback';
+import {feedBackError, feedbackSuccess} from '../../events/feedback';
 
 export default class extends Controller {
   static targets = ['output'];

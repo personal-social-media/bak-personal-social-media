@@ -68,8 +68,8 @@ export default class extends Controller {
 
       const formData = new FormData(form);
 
-      this.images.forEach((image, i) => {
-        formData.append('post[files][]', image);
+      this.images.forEach((image) => {
+        formData.append('post[uploaded_files][]', image);
       });
       submit.disabled = true;
       submit.textContent = 'Saving...';

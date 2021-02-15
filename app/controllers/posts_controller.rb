@@ -4,19 +4,22 @@ class PostsController < ApplicationController
   before_action :require_current_user
 
   def create
-    @post = Post.create!(post_params)
-    time = Time.zone.now
-    album_title = "Posts #{time.strftime("%B %Y")}"
-    AttachmentsService::Attach.new(@post, files_params[:files], album_title, false).call!
+    Post.transaction do
+      @post = Post.create!(post_params.except(:uploaded_files))
+      time = Time.zone.now
+      album_title = "Posts #{time.strftime("%B %Y")}"
+      uploaded_files_params = post_params[:uploaded_files]
+
+      if uploaded_files_params
+        uploaded_files = UploadsService::HandleMultipleUpload.new(uploaded_files_params).call!
+        AttachmentsService::Attach.new(@post, uploaded_files, album_title, false).call!
+      end
+    end
 
     head :ok
   end
 
-  def files_params
-    params.require(:post).permit(files: [])
-  end
-
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit!.slice(:content, :uploaded_files)
   end
 end

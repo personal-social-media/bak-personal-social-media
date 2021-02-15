@@ -32,8 +32,12 @@ describe PostsController do
       let(:post_params) do
         {
           content: "new post",
-          files: [
-            Rack::Test::UploadedFile.new(sample_image)
+          uploaded_files: [
+            {
+              ".name": "a.png",
+              ".path": sample_image_tmp,
+              ".md5": "md5"
+            }
           ]
         }
       end

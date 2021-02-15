@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   end
 
-  resources :posts
+  resources :posts, except: :create do
+    collection do
+      post "/upload", action: :create
+    end
+  end
   resources :previous_searches, only: %i(index create destroy)
   resources :image_albums, only: %i(index show create update destroy) do
     resources :gallery_elements, only: %i(index create)

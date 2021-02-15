@@ -15,6 +15,6 @@ end
 
 RSpec.configure do |config|
   config.after(:suite) do
-    `rm /tmp/sample-test-image-*`
+    `rm -rf /tmp/sample-test-image-*`
   end
 end
