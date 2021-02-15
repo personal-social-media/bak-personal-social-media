@@ -157,7 +157,7 @@ GEM
     execjs (2.7.0)
     exiftool (1.2.3)
       json
-    exiftool_vendored (12.17.1)
+    exiftool_vendored (12.18.0)
       exiftool (>= 0.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
