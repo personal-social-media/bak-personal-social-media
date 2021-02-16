@@ -2,11 +2,13 @@
 
 require "rails_helper"
 
-describe PostsController do
+describe PostsController, vcr: { record: :once } do
   include FilesSpecHelper
+  let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
 
   describe "POST :create" do
     subject do
+      peer_info
       login
       post :create, params: { post: post_params }
     end

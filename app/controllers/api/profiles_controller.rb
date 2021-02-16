@@ -11,7 +11,7 @@ module Api
     def show
       @profile = Profile.first
       @post_count = Post.count
-      @friends_count = PeerInfo.active.count
+      @friends_count = PeerInfo.accepted.count
       return head 404 if @profile.blank?
       @public_key = public_key
     end
