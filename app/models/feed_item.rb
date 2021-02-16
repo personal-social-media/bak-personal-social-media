@@ -31,4 +31,11 @@ class FeedItem < ApplicationRecord
   else
     validates :url, url: true
   end
+
+  validate :url_matches_peer
+
+  def url_matches_peer
+    host = URI.parse(url).host
+    errors.add(:url, "Url mismatch with peer info url") unless host == peer_info.ip
+  end
 end

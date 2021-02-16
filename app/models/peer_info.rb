@@ -49,6 +49,10 @@ class PeerInfo < ApplicationRecord
   after_commit :fetch_more_information, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production?
   after_commit :propagate_updates, on: %i(create update), if: -> { friend_ship_status == "self" } if Rails.env.production?
 
+  if Rails.env.production? && ENV["DEVELOPER"].blank?
+    validates :ip, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex) }
+  end
+
   validates :username, exclusion: { in: %w(UNKNOWN) }, on: :update
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   validates :public_key, presence: true, uniqueness: true

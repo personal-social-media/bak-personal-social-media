@@ -9,7 +9,7 @@ describe "/api/feed_items" do
 
   describe "POST /api/feed_items" do
     let(:url) { "/api/feed_items" }
-    let(:peer_info) { create(:peer_info, friend_ship_status: :accepted) }
+    let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
 
     before do
       allow_any_instance_of(controller).to receive(:current_peer_info).and_return(peer_info)

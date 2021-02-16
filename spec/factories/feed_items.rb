@@ -23,8 +23,12 @@
 #
 FactoryBot.define do
   factory :feed_item do
-    feed_item_type { "MyString" }
-    url { "MyText" }
-    peer_info { nil }
+    feed_item_type { :post }
+    uid { SecureRandom.hex }
+
+    before(:create) do |r|
+      r.peer_info ||= create(:peer_info)
+      r.url = "https://#{r.peer_info.ip}/"
+    end
   end
 end

@@ -2,7 +2,11 @@
 
 module NodeVerifyRequest
   def verify_node_request
-    return head 403 unless node_verification.call!
+    if Rails.env.test? && !node_verification.call!
+      return render json: { error: "url not passing verify_node_request, -> #{request.path}" }, status: 422
+    else
+      return head 403 unless node_verification.call!
+    end
 
     IdentityService::Register.new(node_verification, request).call! unless respond_to?(:ignore_register)
   end
