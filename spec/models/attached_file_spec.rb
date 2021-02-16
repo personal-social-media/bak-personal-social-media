@@ -6,7 +6,7 @@
 #
 #  id                :bigint           not null, primary key
 #  attachment_type   :string           not null
-#  processing_status :string
+#  processing_status :string           default("processing")
 #  subject_type      :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null

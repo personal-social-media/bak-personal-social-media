@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# internal use
 class PeerInfosController < ActionController::Base
   include SessionHelper
   before_action :require_current_user

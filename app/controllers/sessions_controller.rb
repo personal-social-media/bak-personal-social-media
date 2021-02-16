@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# internal use
 class SessionsController < ApplicationController
   before_action :check_register, only: [:register, :register_post]
   before_action :check_recovery, only: [:recovery, :confirm_recovery]

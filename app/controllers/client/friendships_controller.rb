@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# internal use
 module Client
   class FriendshipsController < BaseController
     before_action :require_current_peer

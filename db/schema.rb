@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_063424) do
+ActiveRecord::Schema.define(version: 2021_02_16_155549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_063424) do
     t.bigint "subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "processing_status"
+    t.string "processing_status", default: "processing"
     t.index ["attachment_type", "attachment_id"], name: "index_attached_files_on_attachment"
     t.index ["subject_type", "subject_id"], name: "index_attached_files_on_subject"
   end
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_063424) do
     t.boolean "most_recent"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "processing_status"
+    t.string "processing_status", default: "processing"
     t.index ["element_type", "element_id"], name: "index_gallery_elements_on_element"
     t.index ["image_album_id"], name: "index_gallery_elements_on_image_album_id"
   end
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_063424) do
     t.text "about"
     t.string "country_code"
     t.text "city_name"
+    t.datetime "server_last_seen"
     t.index ["city_name"], name: "index_peer_infos_on_city_name"
     t.index ["country_code"], name: "index_peer_infos_on_country_code"
     t.index ["name"], name: "index_peer_infos_on_name", opclass: :gin_trgm_ops, using: :gin

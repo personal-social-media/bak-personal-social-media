@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# external use
 module Api
   class FriendshipsController < BaseController
     extend Memoist

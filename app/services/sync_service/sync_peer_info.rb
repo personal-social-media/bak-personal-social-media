@@ -17,7 +17,7 @@ module SyncService
       peer_info_body
       add_friend_fields
 
-      PeerInfo.not_blocked.find_in_batches(batch_size: 200) do |group|
+      PeerInfo.not_blocked.not_self.find_in_batches(batch_size: 200) do |group|
         handle_group(group)
       end
     end
@@ -64,10 +64,6 @@ module SyncService
           country_code: peer_info.country_code,
           about: peer_info.about,
         )
-      end
-
-      def build_url(peer_info)
-        peer_info.ip + "/api/sync_peer"
       end
   end
 end

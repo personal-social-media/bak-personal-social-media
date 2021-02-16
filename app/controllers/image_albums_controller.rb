@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# internal use
 class ImageAlbumsController < ApplicationController
   extend Memoist
   before_action :require_current_user

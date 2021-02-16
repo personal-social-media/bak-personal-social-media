@@ -13,6 +13,7 @@
 #  ip                 :string           not null
 #  name               :text
 #  public_key         :text             not null
+#  server_last_seen   :datetime
 #  username           :text             not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -38,6 +39,10 @@ class PeerInfo < ApplicationRecord
 
   scope :not_blocked, -> do
     where.not(friend_ship_status: :blocked)
+  end
+
+  scope :not_self, -> do
+    where.not(friend_ship_status: :self)
   end
 
   str_enum :friend_ship_status, %i(requested pending_accept declined self stranger accepted blocked)

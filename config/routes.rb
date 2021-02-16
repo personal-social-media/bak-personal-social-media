@@ -28,7 +28,11 @@ Rails.application.routes.draw do
   end
 
   resources :cities, only: %i(index)
-  resources :identities, only: :create
+  resources :identities, only: :create do
+    collection do
+      post "/ping", action: :ping
+    end
+  end
   resources :peer_infos, only: %i(index show create update destroy) do
     collection do
       post "/search_public_keys", action: :search_public_keys

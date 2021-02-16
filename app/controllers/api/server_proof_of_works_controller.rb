@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# external use
 module Api
   class ServerProofOfWorksController < BaseController
     before_action :verify_node_request

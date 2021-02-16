@@ -13,6 +13,7 @@
 #  ip                 :string           not null
 #  name               :text
 #  public_key         :text             not null
+#  server_last_seen   :datetime
 #  username           :text             not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

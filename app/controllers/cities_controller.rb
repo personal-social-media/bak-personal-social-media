@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# internal use
 class CitiesController < ActionController::Base
   include SessionHelper
   before_action :require_current_user

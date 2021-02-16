@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# internal use
 class PreviousSearchesController < ActionController::Base
   extend Memoist
   include SessionHelper
