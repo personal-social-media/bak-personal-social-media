@@ -12,7 +12,5 @@ describe PeerInfoWorker::Ping, vcr: { record: :once } do
   it "pings the server" do
     peer_info
     subject
-
-    binding.pry
   end
 end
