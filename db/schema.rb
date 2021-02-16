@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_115932) do
+ActiveRecord::Schema.define(version: 2021_02_16_063424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_115932) do
     t.bigint "subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "processing_status"
     t.index ["attachment_type", "attachment_id"], name: "index_attached_files_on_attachment"
     t.index ["subject_type", "subject_id"], name: "index_attached_files_on_subject"
   end
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_115932) do
     t.boolean "most_recent"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "processing_status"
     t.index ["element_type", "element_id"], name: "index_gallery_elements_on_element"
     t.index ["image_album_id"], name: "index_gallery_elements_on_image_album_id"
   end

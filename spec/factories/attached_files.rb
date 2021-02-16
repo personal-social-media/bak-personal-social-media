@@ -4,13 +4,14 @@
 #
 # Table name: attached_files
 #
-#  id              :bigint           not null, primary key
-#  attachment_type :string           not null
-#  subject_type    :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  attachment_id   :bigint           not null
-#  subject_id      :bigint           not null
+#  id                :bigint           not null, primary key
+#  attachment_type   :string           not null
+#  processing_status :string
+#  subject_type      :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  attachment_id     :bigint           not null
+#  subject_id        :bigint           not null
 #
 # Indexes
 #

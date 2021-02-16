@@ -345,6 +345,7 @@ GEM
       railties (>= 3.2)
       tilt
     redis (4.2.5)
+    redis-prescription (1.0.0)
     regexp_parser (2.0.3)
     remotipart (1.4.4)
     rexml (3.2.4)
@@ -416,6 +417,10 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    sidekiq-throttled (0.13.0)
+      concurrent-ruby
+      redis-prescription
+      sidekiq
     sixarm_ruby_unaccent (1.2.0)
     smart_properties (1.15.0)
     spring (2.1.1)
@@ -529,6 +534,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   shrine (~> 3.3)
   sidekiq (~> 6.1, >= 6.1.2)
+  sidekiq-throttled
   spring
   spring-commands-rspec
   stackprof

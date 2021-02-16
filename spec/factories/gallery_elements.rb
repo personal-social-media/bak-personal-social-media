@@ -4,13 +4,14 @@
 #
 # Table name: gallery_elements
 #
-#  id             :bigint           not null, primary key
-#  element_type   :string           not null
-#  most_recent    :boolean
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  element_id     :bigint           not null
-#  image_album_id :bigint           not null
+#  id                :bigint           not null, primary key
+#  element_type      :string           not null
+#  most_recent       :boolean
+#  processing_status :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  element_id        :bigint           not null
+#  image_album_id    :bigint           not null
 #
 # Indexes
 #

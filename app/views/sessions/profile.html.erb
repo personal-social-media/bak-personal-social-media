@@ -3,6 +3,14 @@
 </div>
 
 <div class="mx-auto md:w-1/3 w-full">
+  <% if current_user.profile_video.present? %>
+    <div class="flex justify-end">
+      <%= button_to profile_remove_video_sessions_path, method: :post, class: "pure-button", "aria-label": "Remove video from profile" do %>
+        <%= fa_icon "times" %>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= form_with model: current_user, url: profile_upload_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", id: "profile-form", data: { controller: "profile--update" } do |f| %>
     <div class="text-center">
       <%= render Person::AvatarComponent.new(profile: current_user, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover",

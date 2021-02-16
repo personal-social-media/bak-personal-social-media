@@ -39,7 +39,7 @@ module AttachmentsService
         attachment = VideoFile.create!(video: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
         gallery_element = GalleryElement.create(element: attachment, image_album: image_album)
         attached_file = subject.present? ? AttachedFile.create!(attachment: attachment, subject: subject) : nil
-        clear_existing(attached_file)
+        clear_existing(attached_file, VideoFile)
 
         output_files.push(
           attachment: attachment,
@@ -52,7 +52,7 @@ module AttachmentsService
         attachment = ImageFile.create!(image: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
         gallery_element = GalleryElement.create(element: attachment, image_album: image_album)
         attached_file = subject.present? ? AttachedFile.create!(attachment: attachment, subject: subject) : nil
-        clear_existing(attached_file)
+        clear_existing(attached_file, ImageFile)
 
         output_files.push(
           attachment: attachment,
@@ -61,9 +61,9 @@ module AttachmentsService
         )
       end
 
-      def clear_existing(new)
+      def clear_existing(new, klass)
         return unless remove_existing
-        AttachedFile.where(subject: subject).where.not(id: new.id).destroy_all
+        AttachedFile.where(subject: subject, attachment_type: klass.name).where.not(id: new.id).destroy_all
       end
 
       def get_extension(file)

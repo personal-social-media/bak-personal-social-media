@@ -30,6 +30,12 @@ class SessionsController < ApplicationController
     redirect_to profile_sessions_path, notice: "Saved"
   end
 
+  def profile_remove_video
+    current_user.profile_video_attachment&.destroy
+
+    redirect_to profile_sessions_path, notice: "Removed"
+  end
+
   def settings
     @title = "Settings"
   end

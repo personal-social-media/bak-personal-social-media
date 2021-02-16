@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     collection do
       get "/profile", action: :profile
       patch "/profile_upload", action: :profile_post
+      post "/profile_remove_video", action: :profile_remove_video
+
       get "/settings", action: :settings
 
       get "/login", action: :login

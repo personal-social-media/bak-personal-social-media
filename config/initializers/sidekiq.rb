@@ -1,5 +1,6 @@
-return if Rails.env.test?
+Sidekiq::Throttled.setup!
 
+return if Rails.env.test?
 Redis.exists_returns_integer = false
 
 Sidekiq.configure_server do |config|
