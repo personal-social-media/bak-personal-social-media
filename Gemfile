@@ -64,6 +64,7 @@ gem "font-awesome-rails"
 gem "shrine", "~> 3.3"
 gem "hiredis", "~> 0.6.3", require: %w(redis redis/connection/hiredis)
 gem "sidekiq", "~> 6.1", ">= 6.1.2", require: %w(sidekiq/web)
+gem "sidekiq-cron", "~> 1.2"
 gem "rack-cors"
 gem "oj"
 gem "ruby-vips"

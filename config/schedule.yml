@@ -1,0 +1,3 @@
+PeerInfoWorker/Ping:
+  cron: "0 0 * * *"
+  class: "PeerInfoWorker::Ping"

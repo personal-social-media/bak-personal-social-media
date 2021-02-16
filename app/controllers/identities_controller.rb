@@ -6,6 +6,7 @@ class IdentitiesController < ActionController::Base
   before_action :verify_node_request
   before_action :require_current_peer_info, only: :ping
   before_action :verify_not_blocked, only: :ping
+  skip_before_action :verify_authenticity_token, only: :ping
 
   def create
     public_key = Base32.decode(request.headers["Public-Key"])
@@ -25,7 +26,7 @@ class IdentitiesController < ActionController::Base
     head :ok
   rescue ActiveRecord::RecordInvalid => e
     render json: { error: e.message }, status: 422
-  end
+end
 
   def ping
     current_peer_info.update(server_last_seen: Time.zone.now)
