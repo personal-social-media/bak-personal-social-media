@@ -4,7 +4,7 @@ unless ENV["FEATURES"]
   require "simplecov"
   SimpleCov.start "rails"
 
-  if ENV["CI"].present?
+  if ENV["CI"]
     require "codecov"
     SimpleCov.formatter = SimpleCov::Formatter::Codecov
   end
