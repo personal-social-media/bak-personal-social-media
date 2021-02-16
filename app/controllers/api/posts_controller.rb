@@ -8,6 +8,7 @@ module Api
     before_action :verify_node_request
     before_action :verify_not_blocked
     before_action :require_friend, except: %i(index show)
+    skip_before_action :verify_node_request, only: :show
 
     def index
       @posts = base_query.includes(attached_files: :attachment).page(params[:page]).per(20)

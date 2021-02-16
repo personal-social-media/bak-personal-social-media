@@ -5,6 +5,8 @@ class SyncWorker < ApplicationWorker
     record = model.constantize.find_by(id: id)
     return if record.blank?
 
-    service.constantize.new(record).send(method)
+    service.constantize.new(record).tap do |s|
+      s.send(method)
+    end
   end
 end

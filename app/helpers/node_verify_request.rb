@@ -12,13 +12,13 @@ module NodeVerifyRequest
   end
 
   def require_friend
-    render json: { error: "you are are not my friend" }, status: 403 if is_friend?
+    render json: { error: "you are are not my friend" }, status: 403 unless is_friend?
   end
 
   def is_friend?
     return @is_friend if defined? @is_friend
     return @is_friend = false if current_peer_info.blank?
-    @is_friend = current_peer_info.self? || current_peer_info.accepted?
+    @is_friend = current_peer_info.self? || current_peer_info.accepted? || current_peer_info.requested?
   end
 
   def current_peer_info

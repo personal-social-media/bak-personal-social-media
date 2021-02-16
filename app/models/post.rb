@@ -20,14 +20,13 @@ class Post < ApplicationRecord
   include PrivacyConcern
   include UidConcern
   has_many :attached_files, as: :subject, dependent: :destroy
-  after_commit :sync_create, on: :create if Rails.env.production?
   after_create :add_feed_item
 
-  private
-    def sync_create
-      SyncWorker.perform_async(Post, id, SyncService::SyncPost, :call_create!)
-    end
+  def sync_create
+    SyncWorker.perform_async(Post, id, SyncService::SyncPost, :call_create!)
+  end
 
+  private
     def add_feed_item
       PostService::CreateSelfFeedItem.new(self).call!
     end

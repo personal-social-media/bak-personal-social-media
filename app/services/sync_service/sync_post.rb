@@ -2,31 +2,48 @@
 
 module SyncService
   class SyncPost < BaseSync
-    attr_reader :post
+    attr_reader :post, :requests
 
     def initialize(post)
       @post = post
+      @requests = []
     end
 
     def call_create!
-      friends.in_groups_of(10).each do |friend|
-        wrap_make_request_thread do
-          make_request(:post, build_url_create(friend), body)
-        end
+      return true
+      friends.find_in_batches(batch_size: 200) do |group|
+        handle_group(group)
       end
     end
 
-    def build_url_create(friend)
-      "https://#{friend.ip}/api/sync/feed_item"
-    end
+    private
+      def handle_group(group)
+        hydra = Typhoeus::Hydra.hydra
+        @requests += group.map do |peer_info|
+          url = "https://#{peer_info.ip}/identities/ping"
+          Typhoeus::Request.new(url, method: :post, headers: default_headers(url)).tap do |r|
+            hydra.queue(r)
+          end
+        end
 
-    memoize def body
-      {
-        feed_item: {
-          feed_item_type: :post,
-          url: api_post_url(post)
+        hydra.run
+      end
+
+      def build_url_create(friend)
+        "https://#{friend.ip}/api/sync/feed_item"
+      end
+
+      def friends
+        PeerInfo.active
+      end
+
+      memoize def body
+        {
+          feed_item: {
+            feed_item_type: :post,
+            url: api_post_url(post)
+          }
         }
-      }
-    end
+      end
   end
 end

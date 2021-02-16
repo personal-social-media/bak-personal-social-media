@@ -14,6 +14,8 @@ class PostsController < ApplicationController
       if uploaded_files_params
         uploaded_files = UploadsService::HandleMultipleUpload.new(uploaded_files_params).call!
         AttachmentsService::Attach.new(@post, uploaded_files, album_title, false).call!
+      else
+        @post.sync_create
       end
     end
 

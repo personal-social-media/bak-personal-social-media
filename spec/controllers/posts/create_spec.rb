@@ -23,6 +23,7 @@ describe PostsController do
         expect do
           subject
         end.to change { Post.count }.by(1)
+          .and change { FeedItem.count }.by(1)
 
         expect(response).to have_http_status(:ok)
       end

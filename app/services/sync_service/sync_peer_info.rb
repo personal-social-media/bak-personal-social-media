@@ -2,7 +2,7 @@
 
 module SyncService
   class SyncPeerInfo < BaseSync
-    attr_reader :peer_info, :response
+    attr_reader :peer_info
 
     def initialize(peer_info)
       @peer_info = peer_info

@@ -469,6 +469,9 @@ GEM
     unicode-display_width (2.0.0)
     unicode_utils (1.4.0)
     uniform_notifier (1.13.2)
+    validate_url (1.0.13)
+      activemodel (>= 3.0.0)
+      public_suffix
     vcr (6.0.0)
     view_component (2.25.1)
       activesupport (>= 5.0.0, < 7.0)
@@ -562,6 +565,7 @@ DEPENDENCIES
   streamio-ffmpeg!
   toastr-rails
   typhoeus (~> 1.4)
+  validate_url
   vcr (~> 6.0)
   view_component
   web-console (>= 4.1.0)
