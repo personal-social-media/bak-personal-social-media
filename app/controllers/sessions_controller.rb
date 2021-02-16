@@ -4,7 +4,8 @@
 class SessionsController < ApplicationController
   before_action :check_register, only: [:register, :register_post]
   before_action :check_recovery, only: [:recovery, :confirm_recovery]
-  before_action :require_current_user, except: %i(register register_post login login_post)
+  before_action :require_current_user
+  skip_before_action :require_current_user, only: %i(register register_post login login_post)
 
   def register
     @title = "Register"
