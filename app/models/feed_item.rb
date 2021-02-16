@@ -25,7 +25,10 @@ class FeedItem < ApplicationRecord
   belongs_to :peer_info
   str_enum :feed_item_type, %i(post story video_only)
   validates :uid, presence: true, uniqueness: { scope: :peer_info_id }
-  validates :url, presence: true, uniqueness: true
 
-  validates :url, url: { schemes: ["https"] } if Rails.env.production? && ENV["DEVELOPER"].blank?
+  if Rails.env.production? && ENV["DEVELOPER"].blank?
+    validates :url, url: { schemes: ["https"], no_local: true }
+  else
+    validates :url, url: true
+  end
 end
