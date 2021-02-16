@@ -52,6 +52,7 @@ group :test do
   gem "poltergeist"
   gem "capybara"
   gem "rspec-retry"
+  gem 'simplecov', require: false
 end
 
 gem "bcrypt", "~> 3.1", ">= 3.1.16"
@@ -92,4 +93,3 @@ gem "curb"
 gem "offline_geocoder", "~> 0.2.1"
 gem "streamio-ffmpeg", github: "streamio/streamio-ffmpeg"
 gem "sidekiq-throttled", require: "sidekiq/throttled"
-gem "coveralls", require: false

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-if ENV["CI"]
-  require "coveralls"
-  Coveralls.wear!("rails")
+unless ENV["FEATURES"]
+  require 'simplecov'
+  SimpleCov.start 'rails'
 end
 
 RSpec.configure do |config|
