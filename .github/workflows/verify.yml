@@ -139,7 +139,6 @@ jobs:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
           bundle exec rspec
-          bundle exec coveralls push
   tests_features:
     name: Test Features
     runs-on: ubuntu-20.04
