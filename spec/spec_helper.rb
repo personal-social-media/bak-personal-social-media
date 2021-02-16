@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 unless ENV["FEATURES"]
-  require 'simplecov'
-  SimpleCov.start 'rails'
+  require "simplecov"
+  SimpleCov.start "rails"
+
+  if ENV["CI"].present?
+    require "codecov"
+    SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  end
 end
 
 RSpec.configure do |config|
