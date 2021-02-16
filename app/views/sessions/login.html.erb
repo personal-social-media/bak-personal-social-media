@@ -4,7 +4,7 @@
   </h3>
 
   <div>
-    <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" } do |f| %>
+    <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" }, id: "login" do |f| %>
       <%= f.label :recovery_code %>
       <%= f.text_field :recovery_code, placeholder: "Your recovery code", required: true, class: "w-full", data: { "utils--qr-code-file-scanner-target": :output } %>
       <div class="my-3">

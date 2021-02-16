@@ -90,4 +90,11 @@ Rails.application.routes.draw do
     mount PgHero::Engine => "/pghero"
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin' if ENV["DEVELOPER"].present?
   end
+  get "/*match", to: "static#not_found", constraints: ->(req) do
+    req.path.exclude?('auth/auth0') &&
+      req.path.exclude?('packs') &&
+      req.path.exclude?('rails')
+  end
+
+  match "*path", to: "application#custom_action", via: :all
 end

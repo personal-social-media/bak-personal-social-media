@@ -1,3 +1,6 @@
 <% if flash[:notice].present? %>
   <meta name="flash-notice" content="<%= flash[:notice] %>">
 <% end %>
+<% if flash[:error].present? %>
+  <meta name="flash-error" content="<%= flash[:error] %>">
+<% end %>

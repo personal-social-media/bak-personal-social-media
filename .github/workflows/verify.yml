@@ -136,6 +136,7 @@ jobs:
           DEV_PG_USER: myapp
           DEV_PG_PASSWORD: 1234
           CI: TRUE
+          COVERALLS_REPO_TOKEN: {{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
           bundle exec rspec
   tests_features:
@@ -215,5 +216,6 @@ jobs:
           DEV_PG_PASSWORD: 1234
           OPENSSL_CONF: /etc/ssl/
           CI: TRUE
+          COVERALLS_REPO_TOKEN: { { secrets.COVERALLS_REPO_TOKEN } }
         run: |
           FEATURES=true bundle exec rspec

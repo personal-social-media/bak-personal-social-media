@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
 
     profile = Profile.find_by(recover_key: recover_key)
 
-    return flash[:notice] = "Invalid login" if profile.blank?
+    return redirect_to login_sessions_path, error: "Invalid login" if profile.blank?
 
     session[:user_id] = profile.id
     redirect_to root_path

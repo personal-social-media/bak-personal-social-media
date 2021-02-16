@@ -32,7 +32,7 @@ class ImageAlbumsController < ApplicationController
     end
 
     def require_current_image_album
-      redirect_to root_path, "Album not found" if current_image_album.blank?
+      render_not_found if current_image_album.blank?
     end
 
     memoize def current_image_album

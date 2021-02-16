@@ -92,3 +92,4 @@ gem "curb"
 gem "offline_geocoder", "~> 0.2.1"
 gem "streamio-ffmpeg", github: "streamio/streamio-ffmpeg"
 gem "sidekiq-throttled", require: "sidekiq/throttled"
+gem "coveralls", require: false

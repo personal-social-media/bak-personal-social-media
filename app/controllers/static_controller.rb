@@ -5,7 +5,7 @@ class StaticController < ActionController::Base
   include NodeVerifyRequest
   include SessionHelper
   before_action :verify_node_request, only: :public_key
-  before_action :require_current_user, only: :authorize_upload
+  before_action :require_current_user, only: %i(authorize_upload not_found)
 
   # external use
   def public_key
@@ -20,6 +20,12 @@ class StaticController < ActionController::Base
   # internal use
   def authorize_upload
     head :ok
+  end
+
+  # mix use
+  def not_found
+    @title = "Page not found"
+    render(layout: "layouts/application")
   end
 
   private
