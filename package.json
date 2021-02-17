@@ -11,7 +11,7 @@
     "@babel/preset-react": "^7.12.13",
     "@cheprasov/qrcode": "^0.1.0",
     "@fullhuman/postcss-purgecss": "^4.0.0",
-    "@hookstate/core": "^3.0.5",
+    "@hookstate/core": "^3.0.6",
     "@rails/actioncable": "^6.1.2",
     "@rails/activestorage": "^6.1.2",
     "@rails/ujs": "^6.1.2",
