@@ -31,7 +31,11 @@ module NodeVerifyRequest
   end
 
   def require_current_peer_info
-    render json: { error: "peer info not found" }, status: 404 if current_peer_info.blank?
+    if current_peer_info.blank?
+      render json: { error: "peer info not found" }, status: 404
+    else
+      logger.info "Processing as peer_info #{current_peer_info.username} / #{current_peer_info.friend_ship_status}"
+    end
   end
 
   def is_server?

@@ -25,7 +25,6 @@ module SyncService
         hydra = Typhoeus::Hydra.hydra
         @requests += group.map do |peer_info|
           url = "https://#{peer_info.ip}/api/feed_items/#{post_uid}"
-          binding.pry
           Typhoeus::Request.new(url, method: :delete, headers: default_headers(url)).tap do |r|
             hydra.queue(r)
           end
