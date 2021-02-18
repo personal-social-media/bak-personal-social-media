@@ -93,7 +93,6 @@ Rails.application.routes.draw do
   match "/*match", to: "static#not_found", via: :all, constraints: ->(req) do
     req.path.exclude?('auth/auth0') &&
       req.path.exclude?('packs') &&
-      req.path.exclude?('rails') &&
-      req.path.exclude?('sidekiq')
+      req.path.exclude?('rails')
   end
 end
