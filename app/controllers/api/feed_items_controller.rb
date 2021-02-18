@@ -36,7 +36,7 @@ module Api
       end
 
       def require_current_feed_item
-        head 404 if current_feed_item.blank?
+        render json: { error: "feed item not found" }, status: 404 if current_feed_item.blank?
       end
 
       def current_feed_item

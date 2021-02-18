@@ -3,6 +3,7 @@
 # internal use
 class PostsController < ApplicationController
   before_action :require_current_user
+  before_action :require_current_post, only: :destroy
 
   def create
     Post.transaction do
@@ -22,7 +23,21 @@ class PostsController < ApplicationController
     head :ok
   end
 
-  def post_params
-    params.require(:post).permit!.slice(:content, :uploaded_files)
+  def destroy
+    current_post.destroy
+    head :ok
   end
+
+  private
+    def current_post
+      @current_post ||= Post.find_by(id: params[:id])
+    end
+
+    def require_current_post
+      render_not_found if current_post.blank?
+    end
+
+    def post_params
+      params.require(:post).permit!.slice(:content, :uploaded_files)
+    end
 end

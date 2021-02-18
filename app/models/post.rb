@@ -21,9 +21,14 @@ class Post < ApplicationRecord
   include UidConcern
   has_many :attached_files, as: :subject, dependent: :destroy
   after_create :add_feed_item
+  after_commit :sync_destroy, on: :destroy
 
   def sync_create
     SyncWorker.perform_async(Post, id, SyncService::SyncPost, :call_create!)
+  end
+
+  def sync_destroy
+    SyncService::SyncPostDestroy.perform_async_service(:call_destroy!, uid)
   end
 
   private

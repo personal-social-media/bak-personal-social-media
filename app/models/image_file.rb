@@ -24,7 +24,6 @@ class ImageFile < ApplicationRecord
   has_many :gallery_elements, dependent: :destroy, as: :element
   has_many :attached_files, dependent: :delete_all, as: :attachment
   has_many :image_albums, through: :gallery_elements
-  has_many :subjects, through: :attached_files
 
   serialize :metadata, JSON
   multisearchable against: [:location_name], if: ->(r) { r.location_name.present? }
