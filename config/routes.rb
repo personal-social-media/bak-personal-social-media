@@ -1,3 +1,6 @@
+require "sidekiq/web"
+require "sidekiq/cron/web"
+
 Rails.application.routes.draw do
   Rails.application.routes.default_url_options[:host] = Rails.application.secrets.dig(:load_balancer_address)
 
