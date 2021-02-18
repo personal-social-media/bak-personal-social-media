@@ -1,6 +1,3 @@
-require "sidekiq/web"
-require "sidekiq/cron/web"
-
 Rails.application.routes.draw do
   Rails.application.routes.default_url_options[:host] = Rails.application.secrets.dig(:load_balancer_address)
 
@@ -96,6 +93,7 @@ Rails.application.routes.draw do
   match "/*match", to: "static#not_found", via: :all, constraints: ->(req) do
     req.path.exclude?('auth/auth0') &&
       req.path.exclude?('packs') &&
-      req.path.exclude?('rails')
+      req.path.exclude?('rails') &&
+      req.path.exclude?('sidekiq')
   end
 end
