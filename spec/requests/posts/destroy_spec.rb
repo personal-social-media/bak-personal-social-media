@@ -14,15 +14,18 @@ describe "DELETE /posts/:id", vcr: { record: :once } do
   end
 
   subject do
-    self_peer_info
-    post
-    peer_info
-
     delete url
   end
 
-  xit "destroys the post" do
-    subject
+  it "destroys the post" do
+    self_peer_info
+    peer_info
+    post
+
+    expect do
+      subject
+    end.to change { Post.count }.by(-1)
+      .and change { FeedItem.count }.by(-1)
 
     expect(response).to have_http_status(:ok)
   end

@@ -9,6 +9,8 @@ module UidConcern
 
   private
     def generate_uid
-      self.uid = SecureRandom.hex(24)
+      new = SecureRandom.hex(24)
+      return self.uid = new unless Rails.env.test?
+      self.uid ||= new
     end
 end

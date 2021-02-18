@@ -28,11 +28,16 @@ class Post < ApplicationRecord
   end
 
   def sync_destroy
+    remove_feed_item
     SyncService::SyncPostDestroy.perform_async_service(:call_destroy!, uid)
   end
 
   private
     def add_feed_item
       PostService::CreateSelfFeedItem.new(self).call!
+    end
+
+    def remove_feed_item
+      PostService::RemoveSelfFeedItem.new(self).call!
     end
 end
