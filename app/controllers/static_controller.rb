@@ -6,6 +6,7 @@ class StaticController < ActionController::Base
   include SessionHelper
   before_action :verify_node_request, only: :public_key
   before_action :require_current_user, only: %i(authorize_upload not_found)
+  skip_before_action :verify_authenticity_token, only: :not_found
 
   # external use
   def public_key

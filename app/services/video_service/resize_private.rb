@@ -12,9 +12,24 @@ module VideoService
 
     def call!
       versions.tap do |v|
-        v[:screenshot] = File.open(video.screenshot(screenshot.path).path)
+        v[:original_screenshot] = original_image
+        v[:thumbnail_screenshot] = thumbnail
         v[:short] = File.open(video.transcode(transcoded_original.path, short_options).path)
       end
+    end
+
+    private
+
+    def original_image
+      image_pipeline.saver(strip: true, quality: 89).resize_to_limit!(1200, 1200)
+    end
+
+    def thumbnail
+      image_pipeline.saver(strip: true, quality: 75).resize_to_limit!(160, 160)
+    end
+
+    memoize def video_screenshot_default
+      video.screenshot(screenshot.path).path
     end
 
     memoize def pipeline
@@ -31,10 +46,9 @@ module VideoService
 
     def short_options
       default_transcode_options.merge(
-        resolution: "120x120",
+        resolution: "240x240",
         video_bitrate: 300, video_bitrate_tolerance: 100,
-        frame_rate: 2,
-        custom: %w(-vcodec copy -crf 23 -t 10)
+        custom: %w(-crf 23 -t 5 -an)
       )
     end
 
@@ -46,8 +60,12 @@ module VideoService
       {
         threads: 1,
         video_codec: "libx264",
-        x264_preset: "veryfast",
+        x264_preset: "ultrafast",
       }
+    end
+
+    memoize def image_pipeline
+      ImageProcessing::Vips.source(video_screenshot_default).convert("webp")
     end
 
     memoize def video

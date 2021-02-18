@@ -3,13 +3,14 @@
 class Person::AvatarComponent < ViewComponent::Base
   include UploadsHelper
   extend Memoist
-  attr_reader :url, :options, :profile, :is_video, :image_size, :video_size
-  def initialize(url: nil, profile: nil, image_size: :original, video_size: :short, **options)
+  attr_reader :url, :options, :profile, :is_video, :image_size, :video_size, :upload
+  def initialize(url: nil, profile: nil, image_size: :original, upload: false, video_size: :short, **options)
     @url = url
     @options = options
     @image_size = image_size
     @profile = profile
     @video_size = video_size
+    @upload = upload
   end
 
   memoize def is_video?
@@ -35,11 +36,11 @@ class Person::AvatarComponent < ViewComponent::Base
   end
 
   def video_options
-    (options[:video] || {}).tap do |opts|
+    (image_options).tap do |opts|
       opts[:muted] = true
       opts[:loop] = true
       opts[:poster] = video_poster
-      opts.merge!(image_options)
+      opts.merge!(options[:video] || {})
     end
   end
 

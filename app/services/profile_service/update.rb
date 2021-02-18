@@ -4,7 +4,7 @@ module ProfileService
   class Update
     include UploadsHelper
     extend Memoist
-    attr_reader :uploaded_file, :profile_params, :current_user, :has_changed
+    attr_reader :uploaded_file, :profile_params, :current_user, :has_changed, :attach
     def initialize(uploaded_file, profile_params, current_user)
       @uploaded_file = uploaded_file
       @profile_params = profile_params
@@ -18,7 +18,8 @@ module ProfileService
         next update_peer_info if uploaded_file.blank? || !File.exist?(uploaded_file.path)
 
         @has_changed = true
-        AttachmentsService::Attach.new(current_user, [uploaded_file], "Profile pictures", false, remove_existing: true).call!
+        @attach = AttachmentsService::Attach.new(current_user, [uploaded_file], "Profile pictures", false, remove_existing: true).call!
+        create_post!
         update_peer_info
       end
     end
@@ -44,6 +45,14 @@ module ProfileService
         end
 
         peer_info.save!
+      end
+
+      def create_post!
+        post = Post.create!(content: "Changed profile picture")
+        uploaded_attachment = attach.output_files.first[:attached_file]
+        dup = uploaded_attachment.dup
+        dup.subject = post
+        dup.save!
       end
   end
 end

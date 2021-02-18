@@ -13,9 +13,13 @@
 
   <%= form_with model: current_user, url: profile_upload_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", id: "profile-form", data: { controller: "profile--update" } do |f| %>
     <div class="text-center">
-      <%= render Person::AvatarComponent.new(profile: current_user, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover",
+      <%= render Person::AvatarComponent.new(profile: current_user, upload: true, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover hidden",
                                              video: {
                                                autoplay: true,
+                                               data: {
+                                                 "profile--update-target": :video,
+                                                 action: "click->profile--update#change"
+                                               }
                                              },
                                              data: {
                                                "profile--update-target": :image,
