@@ -67,11 +67,11 @@
         <%= f.submit "Update Profile", class: "pure-button pure-button-primary w-full", data: { "forms--with-progress-target": :submit } %>
       </div>
 
-      <div class="relative pt-3 hidden" data-forms--with-progress-target="progress">
+      <div class="relative mt-3 hidden" data-forms--with-progress-target="progress">
         <div class="overflow-hidden mb-4 text-xs flex rounded bg-green-200">
-          <div style="width: 0" class="count shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-green-500">
+          <div style="width: 0" class="count shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-green-500 absolute inset-0">
           </div>
-          <div class="counter text-center py-1 text-gray-600 w-full">
+          <div class="counter text-center py-1 text-white w-full z-10 font-bold">
           </div>
         </div>
       </div>
