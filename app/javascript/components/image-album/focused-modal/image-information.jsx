@@ -1,14 +1,8 @@
-import {downloadFile} from '../../../lib/utils/download-file';
 import {format as formatDate} from 'date-fns';
 
-export default function ImageInformation({currentGalleryElement}) {
+export default function ImageInformation({currentGalleryElement, download, destroy}) {
   const {element} = currentGalleryElement;
-  const {realCreatedAt, realFileName, createdAt, originalUrl} = element;
-
-  function download(e) {
-    e.preventDefault();
-    downloadFile(originalUrl, realFileName);
-  }
+  const {realCreatedAt, realFileName, createdAt} = element;
 
   return (
     <div style={{width: '30rem'}} className="mx-auto">
@@ -41,9 +35,13 @@ export default function ImageInformation({currentGalleryElement}) {
         </tbody>
       </table>
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-between mt-4">
         <button onClick={download} aria-label="Download">
           <i className="fa fa-download fa-3x text-gray-700 hover:text-gray-600"></i>
+        </button>
+
+        <button onClick={destroy} aria-label="Delete">
+          <i className="fa fa-times fa-3x text-red-600 hover:text-gray-600"></i>
         </button>
       </div>
     </div>

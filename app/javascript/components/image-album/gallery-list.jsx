@@ -7,6 +7,7 @@ import {imageAlbumStore} from './store';
 import {useMemo} from 'react';
 import {useState} from '@hookstate/core';
 import GalleryImageFile from './gallery-image-file';
+import GalleryVideoFile from './gallery-video-file';
 
 export default function GalleryList({realWidth, columns, width, height}) {
   const state = useState(imageAlbumStore);
@@ -46,7 +47,15 @@ export default function GalleryList({realWidth, columns, width, height}) {
             parent={parent}
           >
             <div style={style}>
-              <GalleryImageFile state={state} galleryElement={galleryElement} columns={columns} realWidth={realWidth - 10}/>
+              {
+                galleryElement.element.type === 'imagefile' &&
+                <GalleryImageFile state={state} galleryElement={galleryElement} realWidth={realWidth - 10}/>
+              }
+
+              {
+                galleryElement.element.type === 'videofile' &&
+                <GalleryVideoFile state={state} galleryElement={galleryElement} realWidth={realWidth - 10}/>
+              }
             </div>
           </CellMeasurer>
         );

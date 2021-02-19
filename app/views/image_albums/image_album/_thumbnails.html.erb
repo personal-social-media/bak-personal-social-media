@@ -1,3 +1,7 @@
 <div>
-  <%= image_tag gallery_element.element.image_url(:thumbnail), class: "w-full h-32 object-cover" %>
+  <% if gallery_element.element.is_a?(ImageFile) %>
+    <%= image_tag gallery_element.element.image_url(:thumbnail), class: "w-full h-32 object-cover" %>
+  <% elsif gallery_element.element.is_a?(VideoFile) %>
+    <%= image_tag gallery_element.element.video_url(:original_screenshot), class: "w-full h-32 object-cover" %>
+  <% end %>
 </div>

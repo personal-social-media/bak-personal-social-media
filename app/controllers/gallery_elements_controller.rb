@@ -9,6 +9,11 @@ class GalleryElementsController < ApplicationController
     @gallery_elements = GalleryElementsService::Index.new(params.permit!).call!
   end
 
+  def destroy
+    current_gallery_element.element.destroy
+    head :ok
+  end
+
   def all_private_file_names
     names = ImageFile.where(private: true).distinct.pluck(:real_file_name)
 
@@ -20,4 +25,13 @@ class GalleryElementsController < ApplicationController
 
     render json: { md5_checksums: md5s }
   end
+
+  private
+    def require_current_gallery_element
+      render json: { error: "gallery element not found" } if current_gallery_element.blank?
+    end
+
+    def current_gallery_element
+      @current_gallery_element ||= GalleryElement.find_by(id: params[:id])
+    end
 end

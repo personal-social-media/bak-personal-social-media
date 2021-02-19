@@ -15,7 +15,6 @@ export default function ImageAlbum({image_album_id: imageAlbumId}) {
 
   useEffect(() => {
     fetchGalleryElements(imageAlbumId).then(({data: {galleryElements}}) => {
-      console.log(galleryElements);
       state.merge({
         galleryElements,
       });

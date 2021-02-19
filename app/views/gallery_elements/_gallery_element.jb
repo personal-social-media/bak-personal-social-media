@@ -15,9 +15,14 @@ json = {
   }
 }
 
-if element.is_a?(ImageFile)
+if element.is_a? ImageFile
   json[:element][:url] = element.image_url(:thumbnail)
   json[:element][:original_url] = element.image_url(:original)
+elsif element.is_a? VideoFile
+  json[:element][:screenshot_url] = element.video_url(:original_screenshot)
+  json[:element][:short_url] = element.video_url(:short)
+  json[:element][:original_url] = element.video_url(:original)
+  json[:element][:duration_seconds] = element.duration_seconds
 end
 
 json

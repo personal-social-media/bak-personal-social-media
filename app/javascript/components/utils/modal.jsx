@@ -45,7 +45,7 @@ export default function Modal({setOpened, opened, children}) {
   return (
     <div>
       <div className={state.content.className.get()} style={{zIndex: 1001}} onClick={close} ref={containerRef}>
-        <div className="mx-auto mt-32 md:w-1/3 w-full bg-white shadow-xl rounded border border-solid border-gray-200 p-4">
+        <div className="mx-auto mt-32 md:w-1/2 w-full bg-white shadow-xl rounded border border-solid border-gray-200 p-4">
           {children}
         </div>
       </div>
