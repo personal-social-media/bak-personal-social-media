@@ -13,8 +13,13 @@ module VideoService
     def call!
       versions.tap do |v|
         v[:original_screenshot] = original_image
+        screenshot.rewind
         v[:thumbnail_screenshot] = thumbnail
-        v[:short] = File.open(video.transcode(transcoded_original.path, short_options).path)
+
+        video.transcode(transcoded_original.path, short_options)
+        transcoded_original.rewind
+
+        v[:short] = transcoded_original
       end
     end
 
