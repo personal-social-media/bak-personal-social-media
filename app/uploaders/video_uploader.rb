@@ -23,7 +23,7 @@ class VideoUploader < Shrine
   # For a complete list of all validation helpers, see AttacherMethods. http://shrinerb.com/rdoc/classes/Shrine/Plugins/ValidationHelpers/AttacherMethods.html
   Attacher.validate do
     validate_max_size 10.gigabytes, message: "is too large (max is 10 GB)"
-    # validate_mime_type_inclusion %w[video/mp4 video/webm video/ogg]
+    validate_mime_type_inclusion %w[video/mp4 video/webm video/ogg]
   end
 
   # Process additional versions in background.
