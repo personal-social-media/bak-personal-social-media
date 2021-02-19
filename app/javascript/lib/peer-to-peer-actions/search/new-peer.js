@@ -16,5 +16,5 @@ export async function handleNewPeer(e, identity, state, setState) {
 
   await createNewPreviousSearch(peerInfo);
   const url = `/u/${peerInfo.id}`;
-  Turbolinks.visit(url);
+  window.Turbolinks.visit(url);
 }

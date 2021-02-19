@@ -2,6 +2,7 @@ import {Controller} from 'stimulus';
 import {feedbackSuccess} from '../../events/feedback';
 import {uniqBy} from 'lodash';
 import EventBus from 'eventing-bus';
+import axios from 'axios';
 
 export default class extends Controller {
   images = [];
@@ -62,8 +63,12 @@ export default class extends Controller {
   watchSubmit() {
     const form = document.querySelector(`#${this.element.dataset.submitButton}`);
     const submit = form.querySelector('button[type=\'submit\']');
+    const progress = form.querySelector('.upload-progress');
+    const count = progress.querySelector('.count');
+    const counter = progress.querySelector('.counter');
 
     form.addEventListener('submit', async (e) => {
+      progress.classList.remove('hidden');
       e.preventDefault();
 
       const formData = new FormData(form);
@@ -75,11 +80,20 @@ export default class extends Controller {
       submit.textContent = 'Saving...';
 
       try {
-        fetch(form.action, {body: formData, method: 'POST'});
+        await axios.post(form.action, formData, {
+          onUploadProgress(progressEvent) {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            count.style.width = `${percentCompleted}%`;
+            counter.textContent = `${percentCompleted}%`;
+          },
+        });
       } catch (e) {
         console.log(e);
       } finally {
         submit.disabled = false;
+        progress.classList.add('hidden');
+        count.style.width = '0%';
+        counter.textContent= '';
       }
 
       this.saved(form, submit);

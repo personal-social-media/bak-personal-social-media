@@ -39,7 +39,7 @@ export default function Unfriend() {
       feedBackError('Unable to unfriend');
     }
 
-    Turbolinks.visit('/');
+    window.Turbolinks.visit('/');
   }
 
   return (

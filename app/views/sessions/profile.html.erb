@@ -11,57 +11,70 @@
     </div>
   <% end %>
 
-  <%= form_with model: current_user, url: profile_upload_sessions_path, html: { multipart: true }, scope: :profile, class: "pure-form", id: "profile-form", data: { controller: "profile--update" } do |f| %>
-    <div class="text-center">
-      <%= render Person::AvatarComponent.new(profile: current_user, upload: true, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover hidden",
-                                             video: {
-                                               autoplay: true,
+  <%= stimulus_controller :div, "forms/with_progress", data: { after: "reload" } do %>
+    <%= form_with model: current_user, url: profile_upload_sessions_path, html: { multipart: true }, scope: :profile,
+                  class: "pure-form", id: "profile-form",
+                  data: { controller: "profile--update", action: "submit->forms--with-progress#submit" } do |f| %>
+      <div class="text-center">
+        <%= render Person::AvatarComponent.new(profile: current_user, upload: true, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover hidden",
+                                               video: {
+                                                 autoplay: true,
+                                                 data: {
+                                                   "profile--update-target": :video,
+                                                   action: "click->profile--update#change"
+                                                 }
+                                               },
                                                data: {
-                                                 "profile--update-target": :video,
+                                                 "profile--update-target": :image,
                                                  action: "click->profile--update#change"
-                                               }
-                                             },
-                                             data: {
-                                               "profile--update-target": :image,
-                                               action: "click->profile--update#change"
-                                             }) %>
-    </div>
+                                               }) %>
+      </div>
 
-    <% if current_user.profile_image.present? %>
-      <%= f.hidden_field :uploaded_file, value: current_user.profile_image.cached_image_data %>
+      <% if current_user.profile_image.present? %>
+        <%= f.hidden_field :uploaded_file, value: current_user.profile_image.cached_image_data %>
+      <% end %>
+      <%= f.file_field :uploaded_file, accept: "image/*,video/*", class: "hidden", data: { "profile--update-target": :imageFile } %>
+
+      <div class="my-3">
+        <%= f.label :name, "Name:" %>
+        <div class="pt-1">
+          <%= f.text_field :name, required: true, class: "w-full" %>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <%= f.label :gender, "Gender:", class: "pb-2" %>
+        <div class="pt-1">
+          <%= f.select :gender, Profile.genders, {}, { class: "w-full" } %>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <%= f.label :about, "About:" %>
+
+        <div class="pt-1">
+          <%= f.text_area :about, placeholder: "Intro",
+                          data: { controller: "forms--textarea" },
+                          class: "w-full" %>
+        </div>
+      </div>
+
+      <div class="my-3">
+        <%= render Profile::LocationSelectComponent.new(country: current_user.country_code, city: current_user.city_name, f: f) %>
+      </div>
+
+      <div class="my-3">
+        <%= f.submit "Update Profile", class: "pure-button pure-button-primary w-full", data: { "forms--with-progress-target": :submit } %>
+      </div>
+
+      <div class="relative pt-3 hidden" data-forms--with-progress-target="progress">
+        <div class="overflow-hidden mb-4 text-xs flex rounded bg-green-200">
+          <div style="width: 0" class="count shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-green-500">
+          </div>
+          <div class="counter text-center py-1 text-gray-600 w-full">
+          </div>
+        </div>
+      </div>
     <% end %>
-    <%= f.file_field :uploaded_file, accept: "image/*,video/*", class: "hidden", data: { "profile--update-target": :imageFile } %>
-
-    <div class="my-3">
-      <%= f.label :name, "Name:" %>
-      <div class="pt-1">
-        <%= f.text_field :name, required: true, class: "w-full" %>
-      </div>
-    </div>
-
-    <div class="my-3">
-      <%= f.label :gender, "Gender:", class: "pb-2" %>
-      <div class="pt-1">
-        <%= f.select :gender, Profile.genders, {}, { class: "w-full" } %>
-      </div>
-    </div>
-
-    <div class="my-3">
-      <%= f.label :about, "About:" %>
-
-      <div class="pt-1">
-        <%= f.text_area :about, placeholder: "Intro",
-                        data: { controller: "forms--textarea" },
-                        class: "w-full" %>
-      </div>
-    </div>
-
-    <div class="my-3">
-      <%= render Profile::LocationSelectComponent.new(country: current_user.country_code, city: current_user.city_name, f: f) %>
-    </div>
-
-    <div class="my-3">
-      <%= f.submit "Update Profile", class: "pure-button pure-button-primary w-full", data: { disable_with: "Saving.." } %>
-    </div>
   <% end %>
 </div>

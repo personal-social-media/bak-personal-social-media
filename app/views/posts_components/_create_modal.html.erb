@@ -30,6 +30,15 @@
         <%= psm_button :primary, type: :submit, class: "w-full text-2xl mt-4", data: { initial_text: "Save" } do %>
           Save
         <% end %>
+
+        <div class="upload-progress relative pt-3 hidden">
+          <div class="overflow-hidden mb-4 text-xs flex rounded bg-green-200">
+            <div style="width: 0" class="count shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-green-500">
+            </div>
+            <div class="counter text-center py-1 text-gray-600 w-full">
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
