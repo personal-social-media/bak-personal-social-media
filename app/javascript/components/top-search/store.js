@@ -1,8 +1,7 @@
-import {buildLocalAxios, buildSimpleAxios} from '../../lib/http/build-axios';
+import {buildSimpleAxios, localAxios} from '../../lib/http/build-axios';
 import {createState} from '@hookstate/core';
-const registryAxios = buildSimpleAxios('https://registry.personalsocialmedia.net');
-const localAxios = buildLocalAxios();
 import {pick} from 'lodash';
+const registryAxios = buildSimpleAxios('https://registry.personalsocialmedia.net');
 
 export const topSearchStore = createState({
   inputValue: '',

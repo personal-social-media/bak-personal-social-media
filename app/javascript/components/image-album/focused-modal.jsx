@@ -1,5 +1,8 @@
+import {destroyItem} from '../../lib/grid/controls';
 import {downloadFile} from '../../lib/utils/download-file';
+import {feedBackError, feedbackSuccess} from '../../events/feedback';
 import {imageAlbumStore} from './store';
+import {removeGalleryElement} from '../../lib/actions/gallery-elements/remove-element';
 import {useState} from '@hookstate/core';
 import FocusedModalPicture from './focused-modal/picture';
 import FocusedModalVideo from './focused-modal/video';
@@ -11,6 +14,7 @@ import VideoInformation from './focused-modal/video-information';
 export default function ImageAlbumFocusedModal() {
   const state = useState(imageAlbumStore);
   const currentGalleryElement = state.currentGalleryElement.get();
+  const galleryElements = state.galleryElements.get();
 
   function setModalOpened(modalOpened) {
     state.merge({
@@ -24,8 +28,18 @@ export default function ImageAlbumFocusedModal() {
     downloadFile(originalUrl, realFileName);
   }
 
-  function destroy(e) {
+  async function destroy(e) {
     e.preventDefault();
+    try {
+      await removeGalleryElement(currentGalleryElement);
+    } catch {
+      return feedBackError('Unable to remove gallery element');
+    }
+
+    destroyItem(currentGalleryElement, galleryElements, 'galleryElements', 'id', state,
+        'currentGalleryElement', 'destroyed', 'modalOpened');
+
+    feedbackSuccess('Deleted');
   }
 
   return (

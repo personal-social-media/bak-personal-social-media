@@ -3,19 +3,12 @@ import applyCaseMiddleware from 'axios-case-converter';
 import axios from 'axios';
 import signedRequestAxios from './signed-request-axios';
 
-let _localAxios;
-export function buildLocalAxios() {
-  if (_localAxios) {
-    return _localAxios;
-  }
-  _localAxios = axios.create({
-    baseURL: '',
-    headers: {
-      'X-CSRF-Token': document.querySelector('meta[name=\'csrf-token\']').content,
-    },
-  });
-  return _localAxios = applyCaseMiddleware(_localAxios);
-}
+export const localAxios = applyCaseMiddleware(axios.create({
+  baseURL: '',
+  headers: {
+    'X-CSRF-Token': document.querySelector('meta[name=\'csrf-token\']').content,
+  },
+}));
 
 export function buildRemoteAxios(target) {
   let protocol = 'https';
@@ -38,10 +31,7 @@ export function buildRemoteAxios(target) {
 }
 
 export function buildSimpleAxios(target) {
-  const instance = axios.create({
+  axios.create({
     baseURL: target,
   });
-
-  return applyCaseMiddleware(instance);
 }
-

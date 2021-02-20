@@ -1,11 +1,10 @@
-import {buildLocalAxios} from '../../lib/http/build-axios';
+import {localAxios} from '../../lib/http/build-axios';
 import {topSearchStore} from './store';
 import {useEffect} from 'react';
 import {useState} from '@hookstate/core';
 import OutsideClickHandler from 'react-outside-click-handler';
 import PreviousSearchListItem from './previous-searches-list-item';
 
-const localAxios = buildLocalAxios();
 export default function PreviousSearchesList({inputRef}) {
   const state = useState(topSearchStore);
 

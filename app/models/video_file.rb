@@ -21,8 +21,8 @@
 class VideoFile < ApplicationRecord
   IMAGES_EXTENSIONS = %w(mp4 webm).freeze
   include VideoUploader::Attachment(:video)
-  has_many :gallery_elements, dependent: :delete_all, as: :element
-  has_many :attached_files, dependent: :delete_all, as: :attachment
+  has_many :gallery_elements, dependent: :destroy, as: :element
+  has_many :attached_files, dependent: :destroy, as: :attachment
 
   serialize :metadata, JSON
 end

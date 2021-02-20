@@ -22,7 +22,7 @@ class ImageFile < ApplicationRecord
   include ImageUploader::Attachment(:image)
   include PgSearch::Model
   has_many :gallery_elements, dependent: :destroy, as: :element
-  has_many :attached_files, dependent: :delete_all, as: :attachment
+  has_many :attached_files, dependent: :destroy, as: :attachment
   has_many :image_albums, through: :gallery_elements
 
   serialize :metadata, JSON

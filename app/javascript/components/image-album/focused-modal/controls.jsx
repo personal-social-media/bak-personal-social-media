@@ -1,4 +1,4 @@
-import {findIndex} from 'lodash';
+import {goBackButton, goNextButton} from '../../../lib/grid/controls';
 import {imageAlbumStore} from '../store';
 import {useHotkeys} from 'react-hotkeys-hook';
 import {useState} from '@hookstate/core';
@@ -18,27 +18,14 @@ export default function ImageAlbumFocusControls({children}) {
 
   function goBack(e) {
     e?.preventDefault();
-    const index = findIndex(galleryElements, (el) => {
-      return el.id === currentGalleryElement.id;
-    });
-    let nextIndex = index - 1;
-    if (nextIndex === -1) nextIndex = galleryElements.length - 1;
-    state.merge({
-      currentGalleryElement: galleryElements[nextIndex],
-    });
+    goBackButton(currentGalleryElement, galleryElements, 'id', state,
+        'currentGalleryElement', 'destroyed');
   }
 
   function goNext(e) {
     e?.preventDefault();
-    const index = findIndex(galleryElements, (el) => {
-      return el.id === currentGalleryElement.id;
-    });
-    let nextIndex = index + 1;
-    if (nextIndex === galleryElements.length) nextIndex = 0;
-
-    state.merge({
-      currentGalleryElement: galleryElements[nextIndex],
-    });
+    goNextButton(currentGalleryElement, galleryElements, 'id', state,
+        'currentGalleryElement', 'destroyed');
   }
 
   return (

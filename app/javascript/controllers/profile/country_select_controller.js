@@ -1,7 +1,6 @@
 import {Controller} from 'stimulus';
-import {buildLocalAxios} from '../../lib/http/build-axios';
+import {localAxios} from '../../lib/http/build-axios';
 import Suggestions from 'suggestions';
-const axios = buildLocalAxios();
 
 export default class extends Controller {
   static targets = ['city', 'country'];
@@ -22,7 +21,7 @@ export default class extends Controller {
     e.target.disabled = true;
     let response;
     try {
-      response = await axios.get(`/cities?q=${country}`);
+      response = await localAxios.get(`/cities?q=${country}`);
     } finally {
       e.target.disabled = false;
     }

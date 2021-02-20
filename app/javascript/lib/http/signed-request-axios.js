@@ -1,8 +1,6 @@
 import {Service} from 'axios-middleware';
 import {addSignedUrlToCache, findSignedUrlFromCache} from './cache-signed-urls';
-import {buildLocalAxios} from './build-axios';
-
-const localAxios = buildLocalAxios();
+import {localAxios} from './build-axios';
 
 export default function signedRequestAxios(instance) {
   const service = new Service(instance);

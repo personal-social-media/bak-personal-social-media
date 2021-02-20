@@ -1,7 +1,7 @@
 import {format as formatDate} from 'date-fns';
 
 export default function ImageInformation({currentGalleryElement, download, destroy}) {
-  const {element} = currentGalleryElement;
+  const {id, element} = currentGalleryElement;
   const {realCreatedAt, realFileName, createdAt} = element;
 
   return (
@@ -9,6 +9,9 @@ export default function ImageInformation({currentGalleryElement, download, destr
       <table className="pure-table text-sm h-32">
         <thead>
           <tr>
+            <th>
+              Id
+            </th>
             <th>
               Name
             </th>
@@ -22,6 +25,9 @@ export default function ImageInformation({currentGalleryElement, download, destr
         </thead>
         <tbody>
           <tr>
+            <td>
+              {id}
+            </td>
             <td>
               {realFileName}
             </td>

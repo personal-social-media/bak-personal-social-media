@@ -1,7 +1,7 @@
-import {buildLocalAxios} from '../../lib/http/build-axios';
 import {createState} from '@hookstate/core';
+import {localAxios} from '../../lib/http/build-axios';
 
 export const profileActionsStore = createState({
-  localAxios: buildLocalAxios(),
+  localAxios: localAxios,
   peerInfo: null,
 });

@@ -1,8 +1,7 @@
-import {buildLocalAxios} from '../../lib/http/build-axios';
 import {createContext} from 'react';
 import {createState} from '@hookstate/core';
+import {localAxios} from '../../lib/http/build-axios';
 
-const localAxios = buildLocalAxios();
 export const imageAlbumStore = createState({
   currentGalleryElement: null,
   galleryElements: null,

@@ -36,6 +36,7 @@
     "eslint-plugin-sort-keys-fix": "^1.1.1",
     "eventing-bus": "^2.0.1",
     "lodash": "^4.17.20",
+    "masonic": "^3.4.0",
     "postcss": "^7",
     "qr-scanner": "^1.2.0",
     "react": "^17.0.1",

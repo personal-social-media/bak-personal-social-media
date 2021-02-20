@@ -1,6 +1,5 @@
-export default function GalleryImageFile({galleryElement, realWidth, state}) {
+export default function GalleryImageFile({galleryElement, state, cellHeight}) {
   const {element} = galleryElement;
-  const width = `${realWidth}px`;
 
   function open() {
     state.merge({
@@ -10,8 +9,8 @@ export default function GalleryImageFile({galleryElement, realWidth, state}) {
   }
 
   return (
-    <div className="relative" style={{height: width, width: width}} onClick={open}>
-      <img src={element.url} className="object-cover w-full h-full cursor-pointer"/>
+    <div className="relative" onClick={open}>
+      <img src={element.url} className="object-cover w-full cursor-pointer" style={{height: cellHeight}}/>
     </div>
   );
 }

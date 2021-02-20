@@ -1,7 +1,7 @@
 import {format as formatDate, intervalToDuration} from 'date-fns';
 
 export default function VideoInformation({currentGalleryElement, download, destroy}) {
-  const {element} = currentGalleryElement;
+  const {id, element} = currentGalleryElement;
   const {realCreatedAt, realFileName, createdAt, durationSeconds} = element;
   const formattedDuration = '';
   if (durationSeconds) {
@@ -14,6 +14,9 @@ export default function VideoInformation({currentGalleryElement, download, destr
       <table className="pure-table text-sm h-32">
         <thead>
           <tr>
+            <th>
+              Id
+            </th>
             <th>
               Name
             </th>
@@ -30,6 +33,9 @@ export default function VideoInformation({currentGalleryElement, download, destr
         </thead>
         <tbody>
           <tr>
+            <td>
+              {id}
+            </td>
             <td>
               {realFileName}
             </td>

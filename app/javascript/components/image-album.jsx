@@ -1,4 +1,3 @@
-import {AutoSizer} from 'react-virtualized';
 import {FilesPendingContext, fetchGalleryElements, imageAlbumStore} from './image-album/store';
 import {feedBackError} from '../events/feedback';
 import {useState as reactUseState} from 'react';
@@ -11,7 +10,6 @@ import ImageAlbumUpload from './image-album/upload';
 export default function ImageAlbum({image_album_id: imageAlbumId}) {
   const state = useState(imageAlbumStore);
   const [pendingFilesForUpload, setPendingFilesForUpload] = reactUseState([]);
-  const columns = 12;
 
   useEffect(() => {
     fetchGalleryElements(imageAlbumId).then(({data: {galleryElements}}) => {
@@ -38,14 +36,7 @@ export default function ImageAlbum({image_album_id: imageAlbumId}) {
           <ImageAlbumUpload/>
         </div>
 
-        <div style={{height: '100vh', width: '100%'}}>
-          <AutoSizer>
-            {({width, height}) => {
-              if (height < 1 || width < 1) return null;
-              return <GalleryList realWidth={width / columns} columns={columns} width={width} height={height}/>;
-            }}
-          </AutoSizer>
-        </div>
+        <GalleryList/>
 
         <ImageAlbumFocusedModal/>
       </div>
