@@ -473,7 +473,7 @@ GEM
       activemodel (>= 3.0.0)
       public_suffix
     vcr (6.0.0)
-    view_component (2.25.1)
+    view_component (2.26.0)
       activesupport (>= 5.0.0, < 7.0)
     web-console (4.1.0)
       actionview (>= 6.0.0)
