@@ -6,7 +6,7 @@
     "lint": "yarn eslint --fix --ext .js --ext .jsx app/javascript"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.13.2",
     "@babel/preset-react": "^7.12.13",
     "@cheprasov/qrcode": "^0.1.0",
