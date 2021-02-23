@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import imageVideo from '../../images/actions/play-button.svg';
 
-export default function GalleryVideoFile({galleryElement, state, cellHeight}) {
+export default function GalleryVideoFile({galleryElement, state, imageHeight}) {
   const {element} = galleryElement;
   const [localState, setLocalState] = useState({
     showVideo: false,
@@ -28,11 +28,11 @@ export default function GalleryVideoFile({galleryElement, state, cellHeight}) {
     >
       {
         localState.showVideo ?
-          <video src={element.shortUrl} className="w-full object-cover cursor-pointer" autoPlay loop style={{height: cellHeight}}>
+          <video src={element.shortUrl} className="w-full object-cover cursor-pointer" autoPlay loop style={{height: imageHeight}}>
 
           </video> :
           <div>
-            <img src={element.screenshotUrl} className="object-cover w-full cursor-pointer" style={{height: cellHeight}}/>
+            <img src={element.screenshotUrl} className="object-cover w-full cursor-pointer" style={{height: imageHeight}}/>
             <img src={imageVideo} className="absolute h-10 w-10" style={{bottom: '2px', left: '2px'}}/>
           </div>
       }

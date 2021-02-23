@@ -1,4 +1,4 @@
-export default function GalleryImageFile({galleryElement, state, cellHeight}) {
+export default function GalleryImageFile({galleryElement, state, imageHeight}) {
   const {element} = galleryElement;
 
   function open() {
@@ -10,7 +10,7 @@ export default function GalleryImageFile({galleryElement, state, cellHeight}) {
 
   return (
     <div className="relative" onClick={open}>
-      <img src={element.url} className="object-cover w-full cursor-pointer" style={{height: cellHeight}}/>
+      <img src={element.url} className="object-cover w-full cursor-pointer" style={{height: imageHeight}}/>
     </div>
   );
 }
