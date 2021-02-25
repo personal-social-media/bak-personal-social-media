@@ -1,14 +1,14 @@
 import {imageAlbumStore} from './store';
+import {shortFileName} from '../../lib/utils/string/short-file-name';
 import {useState} from '@hookstate/core';
 import GalleryImageFile from './gallery-image-file';
 import GalleryVideoFile from './gallery-video-file';
-import {shortFileName} from "../../lib/utils/string/short-file-name";
 
 export default function GalleryListItem({data: galleryElement}) {
   const state = useState(imageAlbumStore);
   const cellHeight = '150px';
   const imageHeight = '122px';
-  const { realFileName } = galleryElement.element;
+  const {realFileName} = galleryElement.element;
 
   if (galleryElement.destroyed) {
     return null;
