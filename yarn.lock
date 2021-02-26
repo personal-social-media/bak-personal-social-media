@@ -5520,10 +5520,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-masonic@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/masonic/-/masonic-3.4.0.tgz#e941ec32b6bd74a928a89cbdb9666b3eaddda3d0"
-  integrity sha512-IkFtHe69zp70pHJWxg+maaTYJ7kA4NpkLZmbJoowp9xuVtHr0wqJ4ClRFfECxN0LvL65O692mLo1PIRh+kXzrA==
+masonic@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/masonic/-/masonic-3.4.1.tgz#ed11231533ecfa26729308020aa5a4996287ec22"
+  integrity sha512-rHUHpzJJr++5Ogkbq0d1/1CA99wZPfHBu8OFOlHdTZuUEGI6PAV4+APkp1tnAPrZ/u+wm5V1STqfHN1IP7u0VA==
   dependencies:
     "@essentials/memoize-one" "^1.1.0"
     "@essentials/one-key-map" "^1.2.0"
