@@ -88,7 +88,7 @@ gem "http"
 gem "acme-client"
 gem "pghero"
 gem "rails_admin", require: is_dev
-gem "bullet", "~> 6.1", ">= 6.1.3"
+gem "bullet", "~> 6.1"
 gem "pg_search"
 gem "curb"
 gem "offline_geocoder", "~> 0.2.1"
