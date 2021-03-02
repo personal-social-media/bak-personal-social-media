@@ -18,7 +18,6 @@ module ImagesService
     private
       def saved_fields
         {}.tap do |f|
-          f[:real_file_name] = filename
           next unless allow_call?
           f[:location_name] = lat_lng.present? ? location_name : nil
           f[:metadata] = exif
@@ -34,10 +33,6 @@ module ImagesService
 
       def record
         ctx[:record]
-      end
-
-      def filename
-        metadata["filename"]
       end
 
       def created_at
