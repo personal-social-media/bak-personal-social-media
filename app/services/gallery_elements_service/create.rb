@@ -10,7 +10,7 @@ module GalleryElementsService
     end
 
     def call!
-      @attach = AttachmentsService::Attach.new(nil, upload_files, true, image_album: image_album).call!
+      @attach = AttachmentsService::Attach.new(nil, upload_files, nil, true, image_album: image_album).call!
       self
     end
   end
