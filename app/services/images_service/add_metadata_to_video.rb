@@ -12,13 +12,14 @@ module ImagesService
     end
 
     def call!
-      return unless allow_call?
       record.update!(saved_fields)
     end
 
     private
       def saved_fields
         {}.tap do |f|
+          f[:real_file_name] = filename
+          next unless allow_call?
           f[:location_name] = lat_lng.present? ? location_name : nil
           f[:metadata] = exif
           f[:real_created_at] = created_at
@@ -64,7 +65,7 @@ module ImagesService
       end
 
       def duration_seconds
-        movie.duration
+        movie.duration.to_i
       end
 
       memoize def movie

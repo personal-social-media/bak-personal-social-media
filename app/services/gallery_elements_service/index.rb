@@ -19,7 +19,7 @@ module GalleryElementsService
       end
 
       def base_query
-        GalleryElement.where(image_album_id: image_album_id).includes(:element)
+        GalleryElement.order(id: :desc).where(image_album_id: image_album_id).includes(:element)
       end
   end
 end

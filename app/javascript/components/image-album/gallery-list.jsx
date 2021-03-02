@@ -8,19 +8,20 @@ import useWindowSize from '../../lib/hooks/use-window-size';
 export default function GalleryList() {
   const state = useState(imageAlbumStore);
   const galleryElements = state.galleryElements.get();
-  const {isMobile, height: windowWidth, width: windowHeight} = useWindowSize();
+  const {isMobile, height: windowHeight, width: windowWidth} = useWindowSize();
   const containerRef = useRef(null);
   const columns = isMobile ? 2 : 12;
 
   const {offset, width} = useContainerPosition(containerRef, [
-    windowWidth,
     windowHeight,
+    windowWidth,
   ]);
 
   const positioner = usePositioner(
-      {columnCount: columns, columnGutter: 4, estimateHeight: 150, width},
+      {columnCount: columns, columnGutter: 4, estimateHeight: 100, width},
       []);
   const resizeObserver = useResizeObserver(positioner);
+
 
   return (
     <MasonryScroller

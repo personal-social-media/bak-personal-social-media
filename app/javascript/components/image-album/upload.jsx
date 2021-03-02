@@ -1,13 +1,26 @@
-import {AutoSizer} from 'react-virtualized';
-import {imageAlbumStore} from './store';
+import {FilesPendingContext, fetchAllMd5Files, imageAlbumStore} from './store';
+import {feedBackError} from '../../events/feedback';
+import {useContext, useEffect} from 'react';
 import {useState} from '@hookstate/core';
 import Modal from '../utils/modal';
-import SelectedFilesList from './upload/seleted-files-list';
+import SelectedFilesList from './upload/selected-files-list';
 import UploadFileSelector from './upload/file-selector';
 
-export default function ImageAlbumUpload() {
+export default function ImageAlbumUpload({imageAlbumId}) {
+  const [pendingFiles, setPendingFiles] = useContext(FilesPendingContext);
   const state = useState(imageAlbumStore);
-  const columns = 4;
+  const opened = state.modalUploadOpened.get();
+
+  useEffect(() => {
+    fetchAllMd5Files().then(({data: {md5Checksums}}) => {
+      setPendingFiles({
+        ...pendingFiles,
+        alreadySavedMd5CheckSums: md5Checksums,
+      });
+    }).catch(() => {
+      feedBackError('Unable to load md5 list');
+    });
+  }, [setPendingFiles]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function setModalOpened(modalUploadOpened) {
     state.merge({
@@ -27,25 +40,19 @@ export default function ImageAlbumUpload() {
         </span>
       </button>
 
-      <Modal opened={state.modalUploadOpened.get()} setOpened={setModalOpened}>
+      <Modal opened={opened} setOpened={setModalOpened} modalStyle={{marginTop: '1rem', width: '60%'}}>
         {
           state.modalUploadOpened && <div>
-            <div>
-              <h3>Upload more files</h3>
+            <div className="text-center mb-4">
+              <h3 className="mb-2">Upload more files</h3>
+              {
+                opened && <UploadFileSelector imageAlbumId={imageAlbumId}/>
+              }
             </div>
 
-            <div>
-              <UploadFileSelector/>
-            </div>
-
-            <div style={{height: '40rem', width: '100%'}}>
-              <AutoSizer>
-                {({width, height}) => {
-                  if (height < 1 || width < 1) return null;
-                  return <SelectedFilesList realWidth={width / columns} columns={columns} width={width} height={height}/>;
-                }}
-              </AutoSizer>
-            </div>
+            {
+              opened && <SelectedFilesList/>
+            }
           </div>
         }
       </Modal>

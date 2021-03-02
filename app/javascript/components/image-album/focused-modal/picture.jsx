@@ -3,7 +3,7 @@ export default function FocusedModalPicture({currentGalleryElement}) {
 
   return (
     <div>
-      <img src={element.originalUrl} className="w-full rounded"/>
+      <img src={element.originalUrl} className="object-cover mx-auto rounded" style={{maxHeight: '60vh'}}/>
     </div>
   );
 }

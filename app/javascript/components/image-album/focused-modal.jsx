@@ -43,7 +43,7 @@ export default function ImageAlbumFocusedModal() {
   }
 
   return (
-    <Modal opened={state.modalOpened.get()} setOpened={setModalOpened}>
+    <Modal opened={state.modalOpened.get()} setOpened={setModalOpened} modalStyle={{marginTop: '1rem', width: '60%'}}>
       {
         currentGalleryElement && <ImageAlbumFocusControls>
           <div className="pb-10">

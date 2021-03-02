@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   end
   resources :previous_searches, only: %i(index create destroy)
   resources :image_albums, only: %i(index show create update destroy) do
-    resources :gallery_elements, only: %i(index create)
+    resources :gallery_elements, only: %i(index) do
+      collection do
+        post "/upload", action: :create
+      end
+    end
   end
 
   resources :gallery_elements, only: :destroy do

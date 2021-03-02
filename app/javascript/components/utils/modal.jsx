@@ -10,7 +10,7 @@ const defaultState = {
     className: 'hidden fixed modal-container overflow-y-scroll pb-32',
   },
 };
-export default function Modal({setOpened, opened, children}) {
+export default function Modal({setOpened, opened, modalStyle = {}, children}) {
   const _state = useRef(createState({...defaultState}));
   const state = useState(_state.current);
   const containerRef = useRef();
@@ -45,7 +45,7 @@ export default function Modal({setOpened, opened, children}) {
   return (
     <div>
       <div className={state.content.className.get()} style={{zIndex: 1001}} onClick={close} ref={containerRef}>
-        <div className="mx-auto mt-32 md:w-1/2 w-full bg-white shadow-xl rounded border border-solid border-gray-200 p-4">
+        <div className="mx-auto mt-32 md:w-1/2 w-full bg-white shadow-xl rounded border border-solid border-gray-200 p-4" style={modalStyle}>
           {children}
         </div>
       </div>

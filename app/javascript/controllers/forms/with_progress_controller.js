@@ -22,7 +22,6 @@ export default class extends Controller {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           count.style.width = `${percentCompleted}%`;
           counter.textContent = `${percentCompleted}%`;
-          debugger;
         },
       });
     } catch (e) {

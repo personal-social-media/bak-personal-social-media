@@ -12,8 +12,8 @@ module ImagesService
 
     def call!
       versions.tap do |v|
-        v[:original] = pipeline.resize_to_limit!(4096, 4096).saver(quality: 95)
-        v[:thumbnail] = pipeline.resize_to_limit!(120, 120).saver(quality: 75)
+        v[:original] = pipeline.saver(quality: 95).resize_to_limit!(4096, 4096)
+        v[:thumbnail] = pipeline.saver(quality: 75).resize_to_limit!(120, 120)
       end
     end
 

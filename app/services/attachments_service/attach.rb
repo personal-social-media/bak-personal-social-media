@@ -4,13 +4,14 @@ module AttachmentsService
   class Attach
     attr_reader :files, :subject, :album_name, :is_private, :output_files, :remove_existing
 
-    def initialize(subject, files, album_name, is_private, remove_existing: false)
+    def initialize(subject, files, album_name, is_private, remove_existing: false, image_album: nil)
       @subject = subject
       @files = files
       @album_name = album_name
       @is_private = is_private
       @remove_existing = remove_existing
       @output_files = []
+      @image_album = image_album
     end
 
     def call!

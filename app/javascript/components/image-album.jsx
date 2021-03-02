@@ -1,4 +1,10 @@
-import {FilesPendingContext, fetchGalleryElements, imageAlbumStore} from './image-album/store';
+import {
+  FilesPendingContext,
+  defaultImageAlbumStore,
+  fetchGalleryElements,
+  filesPendingContextDefault,
+  imageAlbumStore,
+} from './image-album/store';
 import {feedBackError} from '../events/feedback';
 import {useState as reactUseState} from 'react';
 import {useEffect} from 'react';
@@ -9,7 +15,7 @@ import ImageAlbumUpload from './image-album/upload';
 
 export default function ImageAlbum({image_album_id: imageAlbumId}) {
   const state = useState(imageAlbumStore);
-  const [pendingFilesForUpload, setPendingFilesForUpload] = reactUseState([]);
+  const [pendingFiles, setPendingFiles] = reactUseState(filesPendingContextDefault);
 
   useEffect(() => {
     fetchGalleryElements(imageAlbumId).then(({data: {galleryElements}}) => {
@@ -19,6 +25,12 @@ export default function ImageAlbum({image_album_id: imageAlbumId}) {
     }).catch(() => {
       feedBackError('unable to fetch images');
     });
+
+    return () => {
+      state.merge({
+        ...defaultImageAlbumStore,
+      });
+    };
   }, [imageAlbumId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!state.galleryElements.get()) {
@@ -30,10 +42,10 @@ export default function ImageAlbum({image_album_id: imageAlbumId}) {
   }
 
   return (
-    <FilesPendingContext.Provider value={[pendingFilesForUpload, setPendingFilesForUpload]}>
+    <FilesPendingContext.Provider value={[pendingFiles, setPendingFiles]}>
       <div>
         <div className="mb-4 flex justify-end">
-          <ImageAlbumUpload/>
+          <ImageAlbumUpload imageAlbumId={imageAlbumId}/>
         </div>
 
         <GalleryList/>
