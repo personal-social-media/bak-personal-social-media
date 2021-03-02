@@ -2,16 +2,18 @@
 
 module AttachmentsService
   class Attach
-    attr_reader :files, :subject, :album_name, :is_private, :output_files, :remove_existing
+    attr_reader :files, :subject, :album_name, :is_private, :output_files, :remove_existing, :album_manual_upload
 
-    def initialize(subject, files, album_name, is_private, remove_existing: false, image_album: nil)
+    def initialize(subject, files, elements_options: {}, album_options: {})
       @subject = subject
       @files = files
-      @album_name = album_name
-      @is_private = is_private
-      @remove_existing = remove_existing
+      @album_name = album_options[:album_name]
+      @is_private = elements_options[:is_private]
+      @remove_existing = elements_options[:remove_existing]
+      @image_album = album_options[:image_album]
+      @album_manual_upload = album_options[:album_manual_upload]
+
       @output_files = []
-      @image_album = image_album
     end
 
     def call!
@@ -72,7 +74,10 @@ module AttachmentsService
       end
 
       def image_album
-        @image_album ||= ImageAlbum.find_or_create_by(name: album_name)
+        @image_album ||= ImageAlbum.find_or_initialize_by(name: album_name).tap do |album|
+          album.manual_upload = album_manual_upload
+          album.save!
+        end
       end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_155549) do
+ActiveRecord::Schema.define(version: 2021_03_02_212044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_155549) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "privacy", default: "public_access", null: false
     t.integer "gallery_elements_count", default: 0, null: false
+    t.boolean "manual_upload", default: true, null: false
   end
 
   create_table "image_files", force: :cascade do |t|

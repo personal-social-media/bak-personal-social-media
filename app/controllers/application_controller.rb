@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   include PsmHelper
   include StimulusHelper
   include PageHelper
+  include ReactHelper
   helper_method :current_user, :signed_in?
 end

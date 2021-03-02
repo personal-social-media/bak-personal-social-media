@@ -14,7 +14,9 @@ class PostsController < ApplicationController
 
       if uploaded_files_params
         uploaded_files = UploadsService::HandleMultipleUpload.new(uploaded_files_params).call!
-        AttachmentsService::Attach.new(@post, uploaded_files, album_title, false).call!
+        elements_options = { is_private: false }
+        album_options = { album_name: album_title, album_manual_upload: false }
+        AttachmentsService::Attach.new(@post, uploaded_files, elements_options: elements_options, album_options: album_options).call!
       else
         @post.sync_create
       end

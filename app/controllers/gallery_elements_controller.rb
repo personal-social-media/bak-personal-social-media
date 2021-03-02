@@ -48,6 +48,6 @@ class GalleryElementsController < ApplicationController
     end
 
     memoize def current_image_album
-      ImageAlbum.find_by(id: params[:image_album_id])
+      ImageAlbum.where(manual_upload: true).find_by(id: params[:image_album_id])
     end
 end

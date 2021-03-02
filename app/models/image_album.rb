@@ -8,6 +8,7 @@
 #  description            :text
 #  gallery_elements_count :integer          default(0), not null
 #  location_name          :text
+#  manual_upload          :boolean          default(TRUE), not null
 #  name                   :text             not null
 #  privacy                :string           default("public_access"), not null
 #  created_at             :datetime         not null

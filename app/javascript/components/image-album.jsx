@@ -13,7 +13,7 @@ import GalleryList from './image-album/gallery-list';
 import ImageAlbumFocusedModal from './image-album/focused-modal';
 import ImageAlbumUpload from './image-album/upload';
 
-export default function ImageAlbum({image_album_id: imageAlbumId}) {
+export default function ImageAlbum({imageAlbum: {id: imageAlbumId, manualUpload}}) {
   const state = useState(imageAlbumStore);
   const [pendingFiles, setPendingFiles] = reactUseState(filesPendingContextDefault);
 
@@ -44,9 +44,11 @@ export default function ImageAlbum({image_album_id: imageAlbumId}) {
   return (
     <FilesPendingContext.Provider value={[pendingFiles, setPendingFiles]}>
       <div>
-        <div className="mb-4 flex justify-end">
-          <ImageAlbumUpload imageAlbumId={imageAlbumId}/>
-        </div>
+        {
+          manualUpload && <div className="mb-4 flex justify-end">
+            <ImageAlbumUpload imageAlbumId={imageAlbumId}/>
+          </div>
+        }
 
         <GalleryList/>
 

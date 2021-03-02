@@ -18,7 +18,10 @@ module ProfileService
         next update_peer_info if uploaded_file.blank? || !File.exist?(uploaded_file.path)
 
         @has_changed = true
-        @attach = AttachmentsService::Attach.new(current_user, [uploaded_file], "Profile pictures", false, remove_existing: true).call!
+        elements_options = { is_private: false, remove_existing: true }
+        album_options = { album_name: "Profile pictures", album_manual_upload: false }
+
+        @attach = AttachmentsService::Attach.new(current_user, [uploaded_file], elements_options: elements_options, album_options: album_options).call!
         create_post!
         update_peer_info
       end
