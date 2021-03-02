@@ -1,1 +1,2 @@
 import './flash';
+import './turbolinks';

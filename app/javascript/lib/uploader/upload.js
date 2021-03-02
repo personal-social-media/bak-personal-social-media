@@ -16,11 +16,14 @@ export default class UploaderUpload {
   }
 
   stop() {
-    const checkStopInterval = setInterval(() => {
-      if(this.queueList.length > 0) return;
-      clearInterval(this.pooler);
-      clearInterval(checkStopInterval);
-    }, 300);
+    return new Promise((resolve) => {
+      const checkStopInterval = setInterval(() => {
+        if (this.queueList.length > 0) return;
+        clearInterval(this.pooler);
+        clearInterval(checkStopInterval);
+        resolve();
+      }, 300);
+    });
   }
 
   queue(files) {

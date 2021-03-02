@@ -36,7 +36,11 @@ export class UploaderManager {
       this.uploader.start();
       chunkFiles = chunk(this.availableFiles, 10);
     }
-    if (chunkFiles.length < 1) return this.uploader.stop();
+    if (chunkFiles.length < 1) {
+      return this.uploader.stop().then(() => {
+        window.Turbolinks.reload;
+      });
+    }
 
     const duppedFiles = [];
     const files = chunkFiles.shift(0);
