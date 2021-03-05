@@ -41,7 +41,8 @@ SecureHeaders::Configuration.default do |config|
     config.hsts = "max-age=#{1.week.to_i}"
     config.csp.merge!({
       upgrade_insecure_requests: true,
-      block_all_mixed_content: true
+      block_all_mixed_content: true,
+      preserve_schemes: false
     })
   end
 end
