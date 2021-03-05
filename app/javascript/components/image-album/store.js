@@ -28,7 +28,11 @@ export const filesPendingContextDefault = {
 };
 
 export function fetchGalleryElements(imageAlbumId, startIndex, endIndex) {
-  return localAxios.get(`/image_albums/${imageAlbumId}/gallery_elements`);
+  let url = `/image_albums/${imageAlbumId}/gallery_elements`;
+  if (startIndex && endIndex) {
+    url += `?start_index=${startIndex}&end_index=${endIndex}`;
+  }
+  return localAxios.get(url);
 }
 
 export function fetchAllMd5Files() {

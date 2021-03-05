@@ -60,6 +60,6 @@
 
 <div class="mx-4">
   <div class="mt-10">
-    <%= react_component "image-album", format_data_for_react(image_album: @image_album.as_json(only: %i(id manual_upload))) %>
+    <%= react_component "image-album", format_data_for_react(image_album: @image_album.as_json(only: %i(id manual_upload gallery_elements_count))) %>
   </div>
 </div>

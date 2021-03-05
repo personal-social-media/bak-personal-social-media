@@ -1,11 +1,12 @@
 import {MasonryScroller, useContainerPosition, usePositioner, useResizeObserver} from 'masonic';
 import {imageAlbumStore} from './store';
+import {useGalleryInfiniteLoad} from './use-gallery-infinite-load';
 import {useRef} from 'react';
 import {useState} from '@hookstate/core';
 import GalleryListItem from './gallery-list-item';
 import useWindowSize from '../../lib/hooks/use-window-size';
 
-export default function GalleryList() {
+export default function GalleryList({imageAlbumId, galleryElementsCount}) {
   const state = useState(imageAlbumStore);
   const galleryElements = state.galleryElements.get();
   const {isMobile, height: windowHeight, width: windowWidth} = useWindowSize();
@@ -22,6 +23,7 @@ export default function GalleryList() {
       []);
   const resizeObserver = useResizeObserver(positioner);
 
+  const {maybeLoadMore} = useGalleryInfiniteLoad({galleryElementsCount, imageAlbumId, state});
 
   return (
     <MasonryScroller
@@ -32,6 +34,7 @@ export default function GalleryList() {
       height={windowHeight}
       offset={offset}
       render={GalleryListItem}
+      onRender={maybeLoadMore.current}
     />
   );
 }

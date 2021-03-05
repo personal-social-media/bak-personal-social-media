@@ -14,7 +14,5 @@ export function shortFileName(name, max = 8) {
     filename = real;
   }
 
-  console.log(filename, ext);
-
   return `${filename}.${ext}`;
 }

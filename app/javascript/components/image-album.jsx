@@ -7,13 +7,14 @@ import {
 } from './image-album/store';
 import {feedBackError} from '../events/feedback';
 import {useState as reactUseState} from 'react';
+import {resetLoadedGalleryItemsIndexes} from './image-album/use-gallery-infinite-load';
 import {useEffect} from 'react';
 import {useState} from '@hookstate/core';
 import GalleryList from './image-album/gallery-list';
 import ImageAlbumFocusedModal from './image-album/focused-modal';
 import ImageAlbumUpload from './image-album/upload';
 
-export default function ImageAlbum({imageAlbum: {id: imageAlbumId, manualUpload}}) {
+export default function ImageAlbum({imageAlbum: {id: imageAlbumId, manualUpload, galleryElementsCount}}) {
   const state = useState(imageAlbumStore);
   const [pendingFiles, setPendingFiles] = reactUseState(filesPendingContextDefault);
 
@@ -30,6 +31,7 @@ export default function ImageAlbum({imageAlbum: {id: imageAlbumId, manualUpload}
       state.merge({
         ...defaultImageAlbumStore,
       });
+      resetLoadedGalleryItemsIndexes();
     };
   }, [imageAlbumId]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -50,7 +52,7 @@ export default function ImageAlbum({imageAlbum: {id: imageAlbumId, manualUpload}
           </div>
         }
 
-        <GalleryList/>
+        <GalleryList imageAlbumId={imageAlbumId} galleryElementsCount={galleryElementsCount}/>
 
         <ImageAlbumFocusedModal/>
       </div>
