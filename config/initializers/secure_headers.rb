@@ -19,14 +19,13 @@ SecureHeaders::Configuration.default do |config|
     # directive values: these values will directly translate into source directives
     default_src: %w('none'),
     base_uri: %w('self'),
-    block_all_mixed_content: true,
     child_src: %w('self'),
     font_src: %w('self' data: fonts.gstatic.com),
     form_action: %w('self'),
     frame_ancestors: %w('none'),
-    img_src: %w(*),
+    img_src: %w('self' blob: data: *),
     manifest_src: %w('self'),
-    media_src: %w(*),
+    media_src: %w('self' blob: data: *),
     object_src: %w('self'),
     script_src: %w('self'),
     script_src_elem: %w('self'),
@@ -35,11 +34,14 @@ SecureHeaders::Configuration.default do |config|
     style_src_elem: %w('self' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
     style_src_attr: %w('self' 'unsafe-inline'),
     worker_src: %w('self'),
-    upgrade_insecure_requests: true,
-    connect_src: %w(*)
+    connect_src: %w('self' *)
   }
 
   if Rails.env.production?
     config.hsts = "max-age=#{1.week.to_i}"
+    config.csp.merge!({
+      upgrade_insecure_requests: true,
+      block_all_mixed_content: true
+    })
   end
 end

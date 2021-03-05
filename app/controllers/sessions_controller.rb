@@ -61,7 +61,7 @@ class SessionsController < ApplicationController
     profile = Profile.find_by(recover_key: login_params[:recovery_code])
 
     unless profile
-      flash[:notice] = "Invalid code"
+      flash[:error] = "Invalid code"
       return render :login
     end
     session[:user_id] = profile.id
