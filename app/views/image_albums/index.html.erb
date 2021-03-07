@@ -1,6 +1,26 @@
-<div class="text-center mb-20">
+<div class="text-center">
   <h1 class="text-4xl">Photos</h1>
 </div>
+
+<div>
+  <% button = capture do %>
+    <div class="flex justify-end mb-20">
+      <%= button_tag class: "pure-button pure-button-primary", data: { action: "click->utils--modal#toggle" } do %>
+        Create new album
+      <% end %>
+    </div>
+  <% end %>
+
+  <% content = capture do %>
+    <div class="text-center">
+      <h3 class="text-3xl">New album</h3>
+    </div>
+    <%= render partial: "image_albums/form", locals: { image_album: @new_image_album } %>
+  <% end %>
+
+  <%= render partial: "page/modal", locals: { button: button, content: content } %>
+</div>
+
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
   <%= render partial: "image_albums/image_album", collection: @image_albums, as: :image_album %>
 </div>

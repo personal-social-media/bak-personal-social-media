@@ -26,24 +26,26 @@
         Updated at: <%= @image_album.created_at.strftime("%F %T") %>
       </div>
 
-      <div>
-        <% button = capture do %>
-          <div class="flex justify-end">
-            <%= psm_rounded data: { action: "click->utils--modal#toggle" } do %>
-              <%= fa_icon "edit", class: "m-1 text-white" %>
-            <% end %>
-          </div>
-        <% end %>
+      <% if @image_album.manual_upload? %>
+        <div>
+          <% button = capture do %>
+            <div class="flex justify-end">
+              <%= psm_rounded data: { action: "click->utils--modal#toggle" } do %>
+                <%= fa_icon "edit", class: "m-1 text-white" %>
+              <% end %>
+            </div>
+          <% end %>
 
-        <% content = capture do %>
-          <div class="text-center">
-            <h3 class="text-3xl">Edit album</h3>
-          </div>
-          <%= render partial: "image_albums/form", locals: { image_album: @image_album } %>
-        <% end %>
+          <% content = capture do %>
+            <div class="text-center">
+              <h3 class="text-3xl">Edit album</h3>
+            </div>
+            <%= render partial: "image_albums/form", locals: { image_album: @image_album } %>
+          <% end %>
 
-        <%= render partial: "page/modal", locals: { button: button, content: content } %>
-      </div>
+          <%= render partial: "page/modal", locals: { button: button, content: content } %>
+        </div>
+      <% end %>
 
       <div class="mt-4">
         <ul>
