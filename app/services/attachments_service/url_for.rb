@@ -23,9 +23,17 @@ module AttachmentsService
     end
 
     private
-      def call_delegate_method(name, **arguments)
-        return AttachmentsService::UrlFor::ImageUrl.new(object, request).send(name, **arguments) if is_image?
-        return AttachmentsService::UrlFor::VideoUrl.new(object, request).send(name, **arguments) if is_image?
+      def call_delegate_method(name, *arguments)
+        return AttachmentsService::UrlFor::ImageUrl.new(object, request).send(name, *arguments) if is_image?
+        return AttachmentsService::UrlFor::VideoUrl.new(object, request).send(name, *arguments) if is_image?
+        option = arguments.first
+        if option.is_a?(Hash)
+          if option["type"] == "image"
+            return AttachmentsService::UrlFor::ImageUrl.new(nil, request).send(name, *arguments)
+          elsif option["type"] == "video"
+            return AttachmentsService::UrlFor::VideoUrl.new(nil, request).send(name, *arguments)
+          end
+        end
 
         raise UrlForError, "invalid object: #{object.class.name}"
       end

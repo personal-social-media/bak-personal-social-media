@@ -28,10 +28,10 @@ SecureHeaders::Configuration.default do |config|
     media_src: %w('self' blob: data: *),
     object_src: %w('self'),
     script_src: %w('self'),
-    script_src_elem: %w('self'),
+    script_src_elem: %w('self' 'unsafe-inline'),
     script_src_attr: %w('self'),
     style_src: %w('self' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
-    style_src_elem: %w('self' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
+    style_src_elem: %w('self' 'unsafe-inline' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
     style_src_attr: %w('self' 'unsafe-inline'),
     worker_src: %w('self'),
     connect_src: %w('self' *)
@@ -42,7 +42,9 @@ SecureHeaders::Configuration.default do |config|
     config.csp.merge!({
       upgrade_insecure_requests: true,
       block_all_mixed_content: true,
-      preserve_schemes: false
+      preserve_schemes: false,
+      script_src_elem: %w('self'),
+      style_src_elem: %w('self' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com)
     })
   end
 end

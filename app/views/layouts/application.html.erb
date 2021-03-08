@@ -19,7 +19,8 @@
     <%= javascript_packs_with_chunks_tag "application", 'data-turbo-track': "reload" %>
     <%= stylesheet_packs_with_chunks_tag "application", 'data-turbo-track': "reload" %>
     <%= yield :head %>
-  </head>
+  <link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes"></head>
 
   <body class="font-sans">
     <div class="flex flex-col justify-between min-h-screen">

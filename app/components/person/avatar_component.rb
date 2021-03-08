@@ -60,6 +60,9 @@ class Person::AvatarComponent < ViewComponent::Base
       return nil if profile&.avatars.blank?
 
       url_for_device_hash(profile.avatars)
+
+    rescue AttachmentsService::UrlFor::UrlForError
+      nil
     end
 
     def profile_video_url
