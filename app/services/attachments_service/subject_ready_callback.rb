@@ -14,6 +14,8 @@ module AttachmentsService
 
     private
       def can_trigger?
+        return true if subject.is_a?(Profile)
+
         all_attached_statuses = AttachedFile.where(subject_id: subject_id).distinct.pluck(:processing_status)
         all_attached_statuses.size == 1 && all_attached_statuses.include?("processed")
       end

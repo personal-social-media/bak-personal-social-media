@@ -1,4 +1,4 @@
-const mediaRegex = /\.(jpe?g|png|gif|bmp|webp|mp4)$/i;
+const mediaRegex = /\/uploads\//;
 
 function customHeaderRequestFetch(event) {
   const {request} = event;

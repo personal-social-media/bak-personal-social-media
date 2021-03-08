@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AttachmentsService
-  class UrlForm
+  class UrlFor
     class ImageUrl
       attr_reader :image, :request
 
@@ -29,7 +29,7 @@ module AttachmentsService
         root_path + image.image_url(type)
       end
 
-      def url_for_device_hash
+      def url_for_device_hash(hash)
         type = case request.headers["Client"]
                when "desktop"
                  "original"

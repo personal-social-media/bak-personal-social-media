@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AttachmentsService
-  class UrlForm
+  class UrlFor
     class VideoUrl
       attr_reader :video, :request
 
@@ -24,7 +24,7 @@ module AttachmentsService
         root_path + video.video_url(:original)
       end
 
-      def url_for_device_hash
+      def url_for_device_hash(hash)
         hash["original"]
       end
 

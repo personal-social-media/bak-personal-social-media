@@ -29,12 +29,12 @@ module ProfileService
 
       def update_peer_info
         if current_user.profile_image.present?
-          peer_info.avatars = all_uploaded_urls(current_avatar.attachment)
+          peer_info.avatars = AttachmentsService::UrlFor.new(current_avatar.attachment, nil).all_urls
         end
 
         peer_info.save!
       end
 
-      delegate :current_avatar, to: :current_user
+      delegate :current_avatar, :peer_info, to: :current_user
   end
 end
