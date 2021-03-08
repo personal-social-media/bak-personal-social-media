@@ -13,9 +13,9 @@ module AttachmentsService
       def all_urls
         {
           type: "image",
-          desktop: root_path + image.image_url(:original),
-          mobile: root_path + image.image_url(:mobile),
-          thumbnail: root_path + image.image_url(:thumbnail),
+          desktop: get_version(:original),
+          mobile: get_version(:mobile),
+          thumbnail: get_version(:thumbnail),
         }
       end
 
@@ -39,9 +39,14 @@ module AttachmentsService
         hash[type]
       end
 
-      def root_path
-        @root_path ||= Rails.application.secrets.dig(:load_balancer_address)
-      end
+      private
+        def get_version(name)
+          root_path + image.image_url(name).to_s
+        end
+
+        def root_path
+          @root_path ||= Rails.application.secrets.dig(:load_balancer_address)
+        end
     end
   end
 end

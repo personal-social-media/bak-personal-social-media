@@ -13,10 +13,10 @@ module AttachmentsService
       def all_urls
         {
           type: "video",
-          original: root_path + video.video_url(:original),
-          short: root_path + video.video_url(:short),
-          original_screenshot: root_path + video.video_url(:original_screenshot),
-          thumbnail_screenshot: root_path + video.video_url(:thumbnail_screenshot),
+          original: get_version(:original),
+          short: get_version(:short),
+          original_screenshot: video.video_url(:original_screenshot),
+          thumbnail_screenshot: video.video_url(:thumbnail_screenshot),
         }
       end
 
@@ -26,6 +26,10 @@ module AttachmentsService
 
       def url_for_device_hash(hash)
         hash["original"]
+      end
+
+      def get_version(name)
+        root_path + video.video_url(name).to_s
       end
 
       def root_path
