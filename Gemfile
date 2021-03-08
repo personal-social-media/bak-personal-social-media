@@ -43,6 +43,7 @@ end
 group :production do
   gem "dotenv", "~> 2.7", ">= 2.7.6"
   gem "bugsnag"
+  gem "uglifier", "~> 4.2"
 end
 
 group :test do
