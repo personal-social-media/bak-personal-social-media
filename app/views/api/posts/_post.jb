@@ -8,7 +8,15 @@ json[:images] = post.attached_files.select(&:image?).map do |attachment|
   image = attachment.attachment
 
   {
-    url: url_image_for_device(image)
+    url: url_for_device(image)
+  }
+end
+
+json[:videos] = post.attached_files.select(&:image?).map do |attachment|
+  image = attachment.attachment
+
+  {
+    url: url_for_device(image)
   }
 end
 

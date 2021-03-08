@@ -32,6 +32,10 @@ class Post < ApplicationRecord
     SyncService::SyncPostDestroy.perform_async_service(:call_destroy!, uid)
   end
 
+  def attachments_ready!
+    sync_create
+  end
+
   private
     def add_feed_item
       PostService::CreateSelfFeedItem.new(self).call!

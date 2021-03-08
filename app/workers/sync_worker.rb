@@ -2,6 +2,7 @@
 
 class SyncWorker < ApplicationWorker
   def perform(model, id, service, method)
+    return unless Rails.env.production?
     record = model.constantize.find_by(id: id)
     return if record.blank?
 

@@ -10,7 +10,7 @@ module ImageAlbumsService
     end
 
     def call!
-      @image_albums = base_query
+      @image_albums = ImageAlbum
       @image_albums = apply_pagination
       self
     end
@@ -21,12 +21,7 @@ module ImageAlbumsService
 
     private
       def apply_pagination
-        image_albums.page(params[:page]).per(20)
-      end
-
-      memoize def base_query
-        ImageAlbum
-        # ImageAlbum.includes(:gallery_elements).preload(gallery_elements: :element).where(gallery_elements: { most_recent: true })
+        image_albums.page(params[:page]).per(21)
       end
 
       memoize def images_location

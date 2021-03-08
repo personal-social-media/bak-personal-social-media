@@ -14,20 +14,14 @@ class Person::AvatarComponent < ViewComponent::Base
   end
 
   memoize def is_video?
-    if VideoFile::IMAGES_EXTENSIONS.include?(url&.split(".")&.last)
-      true
-    elsif profile_video_url
-      true
-    else
-      false
-    end
+    real_video_url.present?
   end
 
   def real_image_url
     url || profile_image || placeholder
   end
 
-  def real_video_url
+  memoize def real_video_url
     url || profile_video_url
   end
 
@@ -65,17 +59,18 @@ class Person::AvatarComponent < ViewComponent::Base
     def handle_peer_info
       return nil if profile&.avatars.blank?
 
-      url_image_for_device_hash(profile.avatars)
+      url_for_device_hash(profile.avatars)
     end
 
     def profile_video_url
       return nil unless profile
-      return profile.profile_video&.video_url(video_size) if profile.is_a? Profile
+      profile.profile_video&.video_url(video_size) if profile.is_a? Profile
+      profile.avatars&.dig("original") if profile.is_a? PeerInfo
     end
 
     def video_poster
       return nil unless profile
-      return profile.profile_video&.video_url(:screenshot) if profile.is_a?(Profile)
-      nil
+      return profile.profile_video&.video_url(:original_screenshot) if profile.is_a?(Profile)
+      profile.avatars&.dig("original_screenshot") if profile.is_a? PeerInfo
     end
 end

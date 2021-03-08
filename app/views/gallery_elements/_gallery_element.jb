@@ -4,6 +4,7 @@ element = gallery_element.element
 
 json = {
   id: gallery_element.id,
+  processing_status: gallery_element.processing_status,
   element: {
     id: element.id,
     type: element.class.name.downcase,

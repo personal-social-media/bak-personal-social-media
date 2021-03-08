@@ -7,7 +7,7 @@ json = {
 }
 
 if @profile.profile_image.present?
-  json[:profile][:avatar_urls] = all_uploaded_image_urls(@profile.profile_image)
+  json[:profile][:avatar_urls] = all_uploaded_urls(@profile.profile_image)
 end
 
 json[:profile][:account] = {

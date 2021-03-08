@@ -25,7 +25,7 @@ module ShrineWorker
 
     def update_relationship_status(value)
       record.gallery_elements.update_all(processing_status: value)
-      record.attached_files.update_all(processing_status: value)
+      record.attached_files.update(processing_status: value)
     end
   end
 end

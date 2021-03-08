@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://registry.personalsocialmedia.net/identities
+    body:
+      encoding: UTF-8
+      string: identity%5Bavatars%5D&identity%5Bname%5D=username&identity%5Busername%5D=username
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - S2Y2JXHYVKAEFQOS3KZ55OYFXG7J2SZFRT32VKW5RHQ7HSUUAG5I3G7L7CVMGRQUFOT3WJHXQXBZ3ITKJL3DQKUVB3PTZPENBIZFM5L5IJBRNG4AVKGEK5NBJXEJ4VT7K2NOEQVU4YO3NBIDZRTDYQDMSYO6WAHQ6O24GBLPRIPMITQFTEJ6D3TKWDBFL4FDOUMYWO2S225CHZLLN7IT44BA4BXNB5O5NK3HKIJHMY6DCYDSM7PWHUNS42FAMGOQWOCMTJY2WG2LUNCUFUJWXDQJHF5QJGHLYMOPDN5X54GW25B2GMWJXSJDCIZ6S3UQJT2ZOMUE6UV7ZGS56PXHFTDTZWLT6AEXHMLE7OGJ6V4FCYO65E5NEPLGBEVCQNVSR7PR6JNUPRDAQJ5FPOKNZHK54Y======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Mon, 08 Mar 2021 03:05:28 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Set-Cookie:
+      - __cfduid=d72134e682146171fc493c36576b5794a1615172727; expires=Wed, 07-Apr-21
+        03:05:27 GMT; path=/; domain=.personalsocialmedia.net; HttpOnly; SameSite=Lax;
+        Secure
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Etag:
+      - W/"747fc02bb312da169f79d3ebe958609b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9c2b25d6-a080-4019-99f4-656ce57dbfba
+      X-Runtime:
+      - '0.508817'
+      Vary:
+      - Origin
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Request-Id:
+      - '08b1650b650000331724ad2000000001'
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=O9qR9fk2kpui3IGDLus2%2FcoTVkYuhdsvj3y134rSXD2TuJO1TbPaxKEBgURaJL91xRRmrZIKZMqCX9g77E4FDVxSHeOAJtMcmn20Z5XCvC8lLkKjcV54enV2x%2BlgAjTJ%2FQ%3D%3D"}],"max_age":604800,"group":"cf-nel"}'
+      Nel:
+      - '{"max_age":604800,"report_to":"cf-nel"}'
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 62c8d78bde383317-CDG
+    body:
+      encoding: UTF-8
+      string: '{"identity":{"username":"username","name":"username","public_key":"-----BEGIN
+        PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA65B1VaClpiQq1LazpP8q\nr+s+80oxYfEGzCpD7swJuSlY03gqoaPw2vGLfywU3RYbbL6YBCV/jEExIRvaIAan\nYOmfyrNNMu65KSNVpwgum83FdLXOnkhrCOs+YDnRBKdWQxA5CpCg2bIAQ1jHDoKc\nzXPb7ujofTYMTq25rxfjG0SUs0XsV4MdODqK+fKImHCm2+Cg12OSib0Qzwh6V5X3\n5t1ieHVTZFi5PuYufkK1O6IXw8YlKeQRlBtm0uUM8THDZD60cIQnF9MtH82fNkHa\nHmjeDOLy/GAYifsQGxhhOqzb01/5SYmYndr/Wgh93g4ijQ1XzTOZX3JcgXnB92l2\nvwIDAQAB\n-----END
+        PUBLIC KEY-----\n","server_ip":"localhost","avatars":null}}'
+  recorded_at: Mon, 08 Mar 2021 03:05:27 GMT
+recorded_with: VCR 6.0.0

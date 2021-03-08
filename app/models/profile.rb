@@ -39,6 +39,14 @@ class Profile < ApplicationRecord
     PeerInfo.find_by(friend_ship_status: :self)
   end
 
+  memoize def current_avatar
+    profile_video_attachment || profile_picture_attachment
+  end
+
+  def attachments_ready!
+    ProfileService::AttachmentsReady.new(self).call!
+  end
+
   private
     def regenerate_recover_key
       self.recover_key = UserService::RecoverKey.new.call!

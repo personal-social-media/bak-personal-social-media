@@ -17,7 +17,7 @@ module ProfileService
         public_key: public_key,
         name: profile.username
       )
-      # propagate_to_registry unless Rails.env.production?
+      propagate_to_registry if Rails.env.production?
       peer_info
     end
 

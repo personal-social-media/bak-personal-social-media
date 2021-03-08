@@ -1,36 +1,15 @@
 # frozen_string_literal: true
 
 module UploadsHelper
-  def all_uploaded_image_urls(image)
-    {
-      desktop: root_path + image.image_url(:original),
-      mobile: root_path + image.image_url(:mobile),
-      thumbnail: root_path + image.image_url(:thumbnail),
-    }
+  def all_uploaded_urls(media_file)
+    AttachmentsService::UrlFor.new(media_file, request).all_urls
   end
 
-  def url_image_for_device(image)
-    type = case request.headers["Client"]
-           when "desktop"
-             :original
-           else
-             :mobile
-    end
-    root_path + image.image_url(type)
+  def url_for_device(media_file)
+    AttachmentsService::UrlFor.new(media_file, request).url_for_device
   end
 
-  def url_image_for_device_hash(hash)
-    type = case request.headers["Client"]
-           when "desktop"
-             "original"
-           else
-             "mobile"
-    end
-    hash[type]
-  end
-
-
-  def root_path
-    @root_path ||= Rails.application.secrets.dig(:load_balancer_address)
+  def url_for_device_hash(hash)
+    AttachmentsService::UrlFor.new(nil, request).url_for_device_hash(hash)
   end
 end

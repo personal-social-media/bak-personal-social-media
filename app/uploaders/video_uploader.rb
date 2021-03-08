@@ -31,7 +31,7 @@ class VideoUploader < Shrine
     versions = { original: io }
     io.download do |original|
       unless Rails.env.test?
-        versions = VideoService::ResizePrivate.new(versions, original).call!
+        versions = VideoService::Resize.new(versions, original).call!
       end
       ImagesService::AddMetadataToVideo.new(original, ctx, io.metadata).call!
     end

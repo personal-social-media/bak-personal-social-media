@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module VideoService
-  class ResizePrivate
+  class Resize
     extend Memoist
 
     attr_reader :versions, :original

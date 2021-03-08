@@ -25,4 +25,6 @@
   <%= render partial: "image_albums/image_album", collection: @image_albums, as: :image_album %>
 </div>
 
-<%= paginate @image_albums %>
+<div class="my-4 flex justify-center">
+  <%= paginate @image_albums %>
+</div>
