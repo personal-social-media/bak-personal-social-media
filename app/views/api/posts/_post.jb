@@ -12,7 +12,7 @@ json[:images] = post.attached_files.select(&:image?).map do |attachment|
   }
 end
 
-json[:videos] = post.attached_files.select(&:image?).map do |attachment|
+json[:videos] = post.attached_files.select(&:video?).map do |attachment|
   image = attachment.attachment
 
   {

@@ -3,36 +3,32 @@ import {createState, useState} from '@hookstate/core';
 import {useEffect} from 'react';
 import Bugsnag from './utils/bugsnag';
 import PostsLoader from './profile-feed/posts-loader';
+import ProfileFeedPostsList from './profile-feed/posts-list';
 
 export const profileFeedState = createState({
   peerId: null,
   peerIp: null,
-  posts: null,
+  posts: [],
   remoteAxios: null,
 });
 
 export default function ProfileFeed({peer}) {
   const state = useState(profileFeedState);
-  useEffect(() => {
-    const {id: peerId, ip: peerIp} = peer;
+  const {id: peerId, ip: peerIp} = peer;
+  const remoteAxios = buildRemoteAxios(peerIp);
 
+  useEffect(() => {
     state.merge({
       peerId,
       peerIp,
-      remoteAxios: buildRemoteAxios(peerIp),
     });
-  }, [peer]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const remoteAxios = state.remoteAxios.get();
-  if (!remoteAxios) {
-    return null;
-  }
+  }, [peerId, peerIp, state]);
 
   return (
     <Bugsnag>
-      <div>
-        <PostsLoader/>
-      </div>
+      <PostsLoader remoteAxios={remoteAxios} peerInfo={peer}>
+        <ProfileFeedPostsList remoteAxios={remoteAxios}/>
+      </PostsLoader>
     </Bugsnag>
   );
 }

@@ -1,15 +1,16 @@
-export default function FeedPost({post}) {
-  return (
-    <div>
-      {post.content}
+import FeedPostPeerInfo from './post/peer-info';
 
-      {post.images.map((image, i) => {
-        return (
-          <div key={i}>
-            <img src={image.url} alt="" className="h-32 w-32"/>
-          </div>
-        );
-      })}
+export default function FeedPost({data: post}) {
+  const {content, peerInfo} = post;
+
+  return (
+    <div className="bg-gray-400 px-2 py-3 text-white rounded-lg shadow">
+      <div>
+        <FeedPostPeerInfo peerInfo={peerInfo} post={post}/>
+      </div>
+      <div>
+        {content}
+      </div>
     </div>
   );
 }

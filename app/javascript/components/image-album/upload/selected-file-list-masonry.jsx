@@ -10,6 +10,7 @@ export default function SelectedFilesListMasonry({columnWidth, columnGutter, col
     height,
     isScrolling,
     items,
+    overscanBy: columnCount * 3,
     positioner,
     resizeObserver,
     scrollTop,

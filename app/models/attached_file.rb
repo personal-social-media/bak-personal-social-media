@@ -28,6 +28,10 @@ class AttachedFile < ApplicationRecord
     attachment_type == "ImageFile"
   end
 
+  def video?
+    attachment_type == "VideoFile"
+  end
+
   def trigger_subject_callback
     AttachmentsService::SubjectReadyCallback.new(self).call!
   end

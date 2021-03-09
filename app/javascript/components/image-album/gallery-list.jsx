@@ -34,6 +34,7 @@ export default function GalleryList({imageAlbumId, galleryElementsCount}) {
       height={windowHeight}
       offset={offset}
       render={GalleryListItem}
+      overscanBy={columns * 3}
       onRender={maybeLoadMore.current}
     />
   );

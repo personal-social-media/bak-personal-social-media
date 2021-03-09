@@ -13,10 +13,9 @@
     Stories
   </div>
 
-  <div class="mx-auto bg-gray-100 w-1/3">
-    Feed
+  <div class="mx-auto w-full">
     <%= react_component("profile-feed",
-                        peer: current_peer.as_json(only: %i(name username ip avatars)).deep_transform_keys! { |key| key.camelize(:lower) }
+                        peer: current_peer.as_json(only: %i(id name username ip avatars)).deep_transform_keys! { |key| key.camelize(:lower) }
         ) %>
   </div>
 </div>
