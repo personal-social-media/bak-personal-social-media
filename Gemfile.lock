@@ -262,7 +262,7 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.1.1)
     nested_form (0.3.2)
-    nio4r (2.5.5)
+    nio4r (2.5.7)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
@@ -419,7 +419,7 @@ GEM
       sprockets-rails
       tilt
     secure_headers (6.3.2)
-    semantic_range (2.3.1)
+    semantic_range (3.0.0)
     serviceworker-rails (0.6.0)
       railties (>= 3.1)
     shrine (3.3.0)
@@ -473,7 +473,7 @@ GEM
     unf_ext (0.0.7.7)
     unicode-display_width (2.0.0)
     unicode_utils (1.4.0)
-    uniform_notifier (1.14.0)
+    uniform_notifier (1.14.1)
     validate_url (1.0.13)
       activemodel (>= 3.0.0)
       public_suffix
@@ -529,6 +529,7 @@ DEPENDENCIES
   exiftool_vendored
   factory_bot_rails (~> 6.1)
   fastimage (~> 2.2)
+  ffi (~> 1.15)
   font-awesome-rails
   foreman (~> 0.87.2)
   hiredis (~> 0.6.3)
