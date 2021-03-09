@@ -4,20 +4,21 @@
 #
 # Table name: profiles
 #
-#  id                :bigint           not null, primary key
-#  about             :text
-#  city_name         :text
-#  country_code      :string
-#  gender            :string           not null
-#  name              :text             not null
-#  recover_key       :text             not null
-#  recover_key_saved :boolean          default(FALSE), not null
-#  username          :string           not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id                  :bigint           not null, primary key
+#  about               :text
+#  city_name           :text
+#  country_code        :string
+#  gender              :string           not null
+#  name                :text             not null
+#  recovery_key_digest :text
+#  recovery_key_plain  :text
+#  username            :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 class Profile < ApplicationRecord
   extend Memoist
+  has_secure_password :recovery_key
   validates :name, presence: true
   validates :username, presence: true
   validates :gender, presence: true
@@ -32,7 +33,7 @@ class Profile < ApplicationRecord
 
   str_enum :gender, %i(female male agender genderqueer nonbinary other)
 
-  before_create :regenerate_recover_key
+  before_validation :regenerate_recovery_key, on: :create
   after_create :create_peer_info
 
   memoize def peer_info
@@ -47,11 +48,14 @@ class Profile < ApplicationRecord
     ProfileService::AttachmentsReady.new(self).call!
   end
 
-  private
-    def regenerate_recover_key
-      self.recover_key = UserService::RecoverKey.new.call!
+  def regenerate_recovery_key
+    UserService::RecoverKey.new.call!.tap do |key|
+      self.recovery_key = key
+      self.recovery_key_plain = key
     end
+  end
 
+  private
     def create_peer_info
       ProfileService::CreatePeerInfo.new(self).call!
     end

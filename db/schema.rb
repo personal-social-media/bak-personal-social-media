@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_212044) do
+ActiveRecord::Schema.define(version: 2021_03_09_064735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -186,13 +186,13 @@ ActiveRecord::Schema.define(version: 2021_03_02_212044) do
     t.text "name", null: false
     t.string "username", null: false
     t.string "gender", null: false
-    t.text "recover_key", null: false
-    t.boolean "recover_key_saved", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "about"
     t.string "country_code"
     t.text "city_name"
+    t.text "recovery_key_digest"
+    t.text "recovery_key_plain"
   end
 
   create_table "reactions", force: :cascade do |t|

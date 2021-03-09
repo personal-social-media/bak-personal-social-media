@@ -3,12 +3,11 @@
 module SessionHelper
   def current_user
     return @current_user if defined? @current_user
-    user_id = session[:user_id]
-    return @current_user = nil if user_id.blank?
-
-    @current_user = Profile.find_by(id: user_id).tap do |user|
+    profile_recovery_key_digest = session[:profile_recovery_key_digest]
+    return @current_user = nil if profile_recovery_key_digest.blank?
+    @current_user = Profile.find_by(recovery_key_digest: profile_recovery_key_digest).tap do |user|
       if user.blank?
-        session[:user_id] = nil
+        session[:profile_recovery_key_digest] = nil
       end
     end
   end

@@ -6,14 +6,14 @@
   <div>
     1) Save this code somewhere save
     <div class="font-bold">
-      <%= @recover_key %>
+      <%= @recovery_key %>
     </div>
   </div>
 
   <div class="mt-4">
     2) Click on the QR Code below to download it and save it somewhere safe.
 
-    <%= stimulus_controller :div, "utils/qr_code", data: { qr_code: @recover_key }, class: "justify-center flex" %>
+    <%= stimulus_controller :div, "utils/qr_code", data: { qr_code: @recovery_key }, class: "justify-center flex" %>
   </div>
 
   <div class="mt-4">

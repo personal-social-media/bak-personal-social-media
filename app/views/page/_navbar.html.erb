@@ -81,7 +81,7 @@
 <div class="mt-4"></div>
 
 <div class="py-4">
-  <% unless current_user.recover_key_saved? %>
+  <% if current_user.recovery_key_plain.present? %>
     <%= render "page/notifications/recovery" %>
   <% end %>
 </div>

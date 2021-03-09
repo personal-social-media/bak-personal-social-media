@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe "recovery" do
   before do
-    current_user.update(recover_key_saved: false)
+    current_user.update(recovery_key_plain: SecureRandom.hex)
     sign_in
   end
 
@@ -13,6 +13,6 @@ describe "recovery" do
     click_button "Confirm that you saved this information"
 
     expect(page).to have_current_path "/"
-    expect(current_user.reload.recover_key_saved).to be_truthy
+    expect(current_user.reload.recovery_key_plain).to be_blank
   end
 end

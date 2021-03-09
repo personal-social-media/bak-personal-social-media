@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   def register_post
     profile = Profile.create!(profile_params)
 
-    session[:user_id] = profile.id
+    login_profile(profile)
     redirect_to recovery_sessions_path, notice: "Welcome"
   end
 
@@ -45,42 +45,44 @@ class SessionsController < ApplicationController
   def login
     @title = "Login"
 
-    recover_key = params[:recover_key]
-    return if recover_key.blank?
+    recovery_key = params[:recovery_key]
+    return if recovery_key.blank?
 
-    profile = Profile.find_by(recover_key: recover_key)
+    profile = ProfileService::Authenticate.new(recovery_key).call!
 
-    return redirect_to login_sessions_path, error: "Invalid login" if profile.blank?
+    unless profile
+      return redirect_to login_sessions_path, error: "Invalid login" if profile.blank?
+    end
 
-    session[:user_id] = profile.id
+    login_profile(profile)
     redirect_to root_path
   end
 
   def login_post
     login_params = params.require(:login).permit(:recovery_code, :file)
-    profile = Profile.find_by(recover_key: login_params[:recovery_code])
+    profile = ProfileService::Authenticate.new(login_params[:recovery_code]).call!
 
     unless profile
       flash[:error] = "Invalid code"
       return render :login
     end
-    session[:user_id] = profile.id
+    login_profile(profile)
     redirect_to root_path, notice: "Welcome"
   end
 
   def recovery
     @title = "Account Recovery"
 
-    @recover_key = current_user.recover_key
+    @recovery_key = current_user.recovery_key_plain
   end
 
   def logout
-    session[:user_id] = nil
+    session[:profile_recovery_key_digest] = nil
     redirect_to login_sessions_path, notice: "Logged out"
   end
 
   def confirm_recovery
-    current_user.update!(recover_key_saved: true)
+    current_user.update!(recovery_key_plain: nil)
     redirect_to root_path, notice: "Done"
   end
 
@@ -94,7 +96,11 @@ class SessionsController < ApplicationController
         params[:login_token] != Rails.application.secrets.dig(:profile, :login_token)
     end
 
+    def login_profile(profile)
+      session[:profile_recovery_key_digest] = profile.recovery_key_digest
+    end
+
     def check_recovery
-      render json: { error: "recovery key already saved" }, status: 422 if current_user.recover_key_saved?
+      render json: { error: "recovery key already saved" }, status: 422 if current_user.recovery_key_plain.blank?
     end
 end

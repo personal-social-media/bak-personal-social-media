@@ -16,7 +16,7 @@ describe "login" do
   end
 
   context "valid" do
-    let(:code) { profile.recover_key }
+    let(:code) { profile.recovery_key }
     it "logins the user" do
       subject
 

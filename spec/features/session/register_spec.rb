@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails_helper"
+
 describe "register" do
   let(:token) { Rails.application.secrets.dig(:profile, :login_token) }
   it "registers user" do
