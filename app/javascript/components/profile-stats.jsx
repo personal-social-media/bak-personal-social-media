@@ -2,6 +2,7 @@ import {buildRemoteAxios} from '../lib/http/build-axios';
 import {profileStatsStore} from './profile-stats/store';
 import {useEffect} from 'react';
 import {useState} from '@hookstate/core';
+import Bugsnag from './utils/bugsnag';
 import FriendsCount from './profile-stats/friends-count';
 import PostsCount from './profile-stats/posts-count';
 
@@ -21,13 +22,15 @@ export default function ProfileStats({peer_ip: peerIp}) {
   }, [peerIp]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="h-10 my-4">
-      {
-        profile && <div className="flex justify-around">
-          <PostsCount/>
-          <FriendsCount/>
-        </div>
-      }
-    </div>
+    <Bugsnag>
+      <div className="h-10 my-4">
+        {
+          profile && <div className="flex justify-around">
+            <PostsCount/>
+            <FriendsCount/>
+          </div>
+        }
+      </div>
+    </Bugsnag>
   );
 }

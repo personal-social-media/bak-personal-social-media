@@ -10,6 +10,7 @@ import {useState as reactUseState} from 'react';
 import {resetLoadedGalleryItemsIndexes} from './image-album/use-gallery-infinite-load';
 import {useEffect} from 'react';
 import {useState} from '@hookstate/core';
+import Bugsnag from './utils/bugsnag';
 import GalleryList from './image-album/gallery-list';
 import ImageAlbumFocusedModal from './image-album/focused-modal';
 import ImageAlbumUpload from './image-album/upload';
@@ -44,18 +45,20 @@ export default function ImageAlbum({imageAlbum: {id: imageAlbumId, manualUpload,
   }
 
   return (
-    <FilesPendingContext.Provider value={[pendingFiles, setPendingFiles]}>
-      <div>
-        {
-          manualUpload && <div className="mb-4 flex justify-end">
-            <ImageAlbumUpload imageAlbumId={imageAlbumId}/>
-          </div>
-        }
+    <Bugsnag>
+      <FilesPendingContext.Provider value={[pendingFiles, setPendingFiles]}>
+        <div>
+          {
+            manualUpload && <div className="mb-4 flex justify-end">
+              <ImageAlbumUpload imageAlbumId={imageAlbumId}/>
+            </div>
+          }
 
-        <GalleryList imageAlbumId={imageAlbumId} galleryElementsCount={galleryElementsCount}/>
+          <GalleryList imageAlbumId={imageAlbumId} galleryElementsCount={galleryElementsCount}/>
 
-        <ImageAlbumFocusedModal/>
-      </div>
-    </FilesPendingContext.Provider>
+          <ImageAlbumFocusedModal/>
+        </div>
+      </FilesPendingContext.Provider>
+    </Bugsnag>
   );
 }

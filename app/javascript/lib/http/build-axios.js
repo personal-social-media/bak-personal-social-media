@@ -31,7 +31,7 @@ export function buildRemoteAxios(target) {
 }
 
 export function buildSimpleAxios(target) {
-  axios.create({
+  return axios.create({
     baseURL: target,
   });
 }

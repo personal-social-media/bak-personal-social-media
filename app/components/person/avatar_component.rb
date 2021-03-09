@@ -58,9 +58,10 @@ class Person::AvatarComponent < ViewComponent::Base
 
     def handle_peer_info
       return nil if profile&.avatars.blank?
-
-      url_for_device_hash(profile.avatars)
-
+      if image_size == :original
+        @image_size = "desktop"
+      end
+      profile.avatars[image_size.to_s]
     rescue AttachmentsService::UrlFor::UrlForError
       nil
     end

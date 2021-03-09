@@ -11,7 +11,7 @@ class Docker < Thor
     run "docker-compose up"
   end
 
-  desc "debug", "starts docker up"
+  desc "debug", "debug docker"
   def debug
     opened_containers = `docker ps`.split("\n")
     backend = nil

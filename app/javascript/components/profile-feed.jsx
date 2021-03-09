@@ -1,6 +1,7 @@
 import {buildRemoteAxios} from '../lib/http/build-axios';
 import {createState, useState} from '@hookstate/core';
 import {useEffect} from 'react';
+import Bugsnag from './utils/bugsnag';
 import PostsLoader from './profile-feed/posts-loader';
 
 export const profileFeedState = createState({
@@ -28,8 +29,10 @@ export default function ProfileFeed({peer}) {
   }
 
   return (
-    <div>
-      <PostsLoader/>
-    </div>
+    <Bugsnag>
+      <div>
+        <PostsLoader/>
+      </div>
+    </Bugsnag>
   );
 }
