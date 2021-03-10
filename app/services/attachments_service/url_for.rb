@@ -25,7 +25,7 @@ module AttachmentsService
     private
       def call_delegate_method(name, *arguments)
         return AttachmentsService::UrlFor::ImageUrl.new(object, request).send(name, *arguments) if is_image?
-        return AttachmentsService::UrlFor::VideoUrl.new(object, request).send(name, *arguments) if is_image?
+        return AttachmentsService::UrlFor::VideoUrl.new(object, request).send(name, *arguments) if is_video?
         option = arguments.first
         if option.is_a?(Hash)
           if option["type"] == "image"
