@@ -16,7 +16,7 @@
                   class: "pure-form", id: "profile-form",
                   data: { controller: "profile--update", action: "submit->forms--with-progress#submit" } do |f| %>
       <div class="text-center">
-        <%= render Person::AvatarComponent.new(profile: current_user, upload: true, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover hidden",
+        <%= render Person::AvatarComponent.new(profile: current_user, upload: true, class: "mx-auto rounded-full cursor-pointer h-64 w-64 border-solid border-gray-100 border object-cover object-center hidden",
                                                video: {
                                                  autoplay: true,
                                                  data: {

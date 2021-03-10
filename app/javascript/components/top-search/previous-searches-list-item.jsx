@@ -26,7 +26,7 @@ export default function PreviousSearchListItem({search, state}) {
   return (
     <a href={`/u/${peerInfo.id}`} className="no-underline cursor-default">
       <div className="flex items-center">
-        <img src={avatar} alt={peerInfo.username} className="h-10 w-10 rounded-full object-cover cursor-pointer"/>
+        <img src={avatar} alt={peerInfo.username} className="h-10 w-10 rounded-full object-cover object-center cursor-pointer"/>
 
         <div className="ml-1 text-gray-700 text-lg cursor-pointer">
           {peerInfo.name}

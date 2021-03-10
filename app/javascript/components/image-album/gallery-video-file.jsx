@@ -28,11 +28,11 @@ export default function GalleryVideoFile({galleryElement, state, imageHeight}) {
     >
       {
         localState.showVideo ?
-          <video src={element.shortUrl} className="w-full object-cover cursor-pointer" autoPlay loop style={{height: imageHeight}}>
+          <video src={element.shortUrl} className="w-full object-cover object-center cursor-pointer" autoPlay loop style={{height: imageHeight}}>
 
           </video> :
           <div>
-            <img src={element.screenshotUrl} className="object-cover w-full cursor-pointer" style={{height: imageHeight}}/>
+            <img src={element.screenshotUrl} className="object-cover object-center w-full cursor-pointer" style={{height: imageHeight}}/>
             <img src={imageVideo} className="absolute h-10 w-10" style={{bottom: '2px', left: '2px'}}/>
           </div>
       }

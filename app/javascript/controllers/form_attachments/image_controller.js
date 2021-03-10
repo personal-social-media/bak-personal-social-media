@@ -43,7 +43,7 @@ export default class extends Controller {
       const imgEl = el.querySelector('img');
       const a = el.querySelector('a');
       imgEl.src = URL.createObjectURL(image);
-      imgEl.className = 'rounded shadow-xl object-cover';
+      imgEl.className = 'rounded shadow-xl object-cover object-center';
       imgEl.style.height = '10rem';
       imgEl.style.width = '10rem';
 

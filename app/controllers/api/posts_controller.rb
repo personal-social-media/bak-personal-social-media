@@ -10,7 +10,7 @@ module Api
     before_action :require_friend, except: %i(index show)
 
     def index
-      @posts = base_query.includes(attached_files: :attachment).page(params[:page]).per(20)
+      @posts = base_query.order(id: :desc).includes(attached_files: :attachment).page(params[:page]).per(20)
     end
 
     def show

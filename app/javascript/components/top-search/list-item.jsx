@@ -32,7 +32,7 @@ export default function SearchListItem({link = '#', identity, displayName, store
   return (
     <a href={realLink} className="no-underline" onClick={handleOpen} ref={anchor}>
       <div className="flex items-center">
-        <UserAvatar avatars={avatars} username={username} imageOptions={{className: 'h-10 w-10 rounded-full object-cover'}}/>
+        <UserAvatar avatars={avatars} username={username} imageOptions={{className: 'h-10 w-10 rounded-full object-cover object-center'}}/>
 
         <div className="ml-1 text-gray-700 text-lg">
           {realDisplayName}

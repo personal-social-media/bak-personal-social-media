@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+metadata = video_file.metadata
+
+{
+  url: url_for_device(video_file),
+  size: {
+    width: metadata["image_width"],
+    height: metadata["image_height"]
+  }
+}

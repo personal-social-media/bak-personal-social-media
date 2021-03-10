@@ -19,12 +19,12 @@ export default function SelectedFile({data: pendingFile, uploadManager}) {
         !removed && <div>
           {
             imageRegex.test(type) &&
-            <img src={localUrl} alt={name} className="object-cover w-full" style={{height: '100px'}}/>
+            <img src={localUrl} alt={name} className="object-cover object-center w-full" style={{height: '100px'}}/>
           }
 
           {
             videoRegex.test(type) &&
-            <video src={localUrl} controls className="object-cover w-full" style={{height: '100px'}}>
+            <video src={localUrl} controls className="object-cover object-center w-full" style={{height: '100px'}}>
 
             </video>
           }

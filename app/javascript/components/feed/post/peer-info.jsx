@@ -9,7 +9,7 @@ export default function FeedPostPeerInfo({peerInfo, post}) {
   return (
     <div className="flex items-center">
       <UserLink peerInfo={peerInfo}>
-        <UserAvatar avatars={avatars} username={username} imageOptions={{className: 'h-8 w-8 rounded-full object-cover'}}/>
+        <UserAvatar avatars={avatars} username={username} imageOptions={{className: 'h-8 w-8 rounded-full object-cover object-center'}}/>
       </UserLink>
       <div className="ml-2">
         <div>

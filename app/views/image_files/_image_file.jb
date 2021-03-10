@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+metadata = image_file.metadata
+
+{
+  url: url_for_device(image_file),
+  size: {
+    width: metadata["image_width"],
+    height: metadata["image_height"]
+  }
+}
