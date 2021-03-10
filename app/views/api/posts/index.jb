@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 {
-  posts: render(partial: "api/posts/post", collection: @posts, as: :post)
+  posts: render(partial: "api/posts/post", collection: @posts, as: :post),
+  posts_count: @posts_count
 }

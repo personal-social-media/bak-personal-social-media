@@ -30,7 +30,7 @@ export function useGalleryInfiniteLoad({state, galleryElementsCount, imageAlbumI
   };
   const maybeLoadMore = useRef(useInfiniteLoader(fetchMoreItems, {
     isItemLoaded: (index, items) => !!items[index],
-    totalItems: galleryElementsCount,
+    totalItems: galleryElementsCount + 1,
   }));
 
   return {maybeLoadMore};

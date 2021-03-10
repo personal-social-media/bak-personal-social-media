@@ -10,12 +10,14 @@ module Api
     before_action :require_friend, except: %i(index show)
 
     def index
-      @posts = base_query.order(id: :desc).includes(attached_files: :attachment).page(params[:page]).per(20)
+      service = PostService::Index.new(base_query, params.permit!).call!
+      @posts = service.posts
+      @posts_count = service.posts_count
     end
 
     def show
       @post = current_post(attached_files: :attachment)
-      return unless require_current_post(post)
+      require_current_post(post)
     end
 
     private

@@ -1,4 +1,4 @@
-<div class="px-2 mx-auto md:w-1/2 w-full">
+<div class="px-2 mx-auto md:w-4/6 w-full">
   <div class="flex">
     <div>
       <%= render(Person::AvatarComponent.new(profile: current_peer, class: "w-64 h-64 object-cover object-center rounded-full")) %>
@@ -9,13 +9,19 @@
     </div>
   </div>
 
-  <div>
+  <div class="bg-gray-600 h-32 my-2">
     Stories
   </div>
 
-  <div class="mx-auto w-full">
-    <%= react_component("profile-feed",
-                        peer: current_peer.as_json(only: %i(id name username ip avatars)).deep_transform_keys! { |key| key.camelize(:lower) }
-        ) %>
+  <div class="flex">
+    <div class="hidden-sm w-5/12 sticky top-0 z-30 h-48 pt-16 bg-gray-300">
+      left
+    </div>
+
+    <div class="w-full md:w-7/12">
+      <%= react_component("profile-feed",
+                          peer: current_peer.as_json(only: %i(id name username ip avatars)).deep_transform_keys! { |key| key.camelize(:lower) }
+          ) %>
+    </div>
   </div>
 </div>
