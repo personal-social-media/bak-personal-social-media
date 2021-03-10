@@ -71,18 +71,14 @@ Rails.application.routes.draw do
     resource :profile, only: :show
 
     resources :posts, only: %i(show index) do
-      resources :comments, only: %i(index show) do
-        resources :reactions, only: %i(index create destroy)
-      end
-      resources :reactions, only: %i(index create destroy)
+      resources :comments, only: %i(index show)
     end
 
     resources :stories, only: :show do
-      resources :comments, only: %i(index show) do
-        resources :reactions, only: %i(index create destroy)
-      end
-      resources :reactions, only: %i(index create destroy)
+      resources :comments, only: %i(index show)
     end
+
+    resources :reactions, only: %i(create destroy update)
   end
 
   namespace :client do

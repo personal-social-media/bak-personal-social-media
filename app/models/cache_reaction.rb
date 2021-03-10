@@ -6,14 +6,20 @@
 #
 #  id            :bigint           not null, primary key
 #  reaction_type :string           not null
+#  subject_type  :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  subject_id    :string           not null
+#  remote_id     :bigint           not null
+#  subject_id    :bigint           not null
 #
 # Indexes
 #
-#  index_cache_reactions_on_subject_id  (subject_id)
+#  index_cache_reactions_on_subject  (subject_type,subject_id) UNIQUE
 #
 class CacheReaction < ApplicationRecord
   str_enum :reaction_type, Reaction.reaction_types
+  belongs_to :subject, polymorphic: true
+  validates :subject_id, uniqueness: { scope: :subject_type }
+
+  validates :remote_id, presence: true
 end

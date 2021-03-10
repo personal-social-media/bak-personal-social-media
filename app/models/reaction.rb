@@ -23,11 +23,22 @@
 #
 class Reaction < ApplicationRecord
   belongs_to :subject, polymorphic: true
+  belongs_to :peer_info
   str_enum :reaction_type, %i(like love wow)
-  after_create :increment_count
+  after_create :increment_count!
+  after_update :update_count!, if: -> { reaction_type_changed? }
+
+  validates :subject_id, uniqueness: { scope: [:subject_type, :peer_info_id] }
 
   private
-    def increment_count
+    def increment_count!
       subject.increment!("#{reaction_type}_count")
+    end
+
+    def update_count!
+      subject.class.transaction do
+        subject.decrement!("#{reaction_type_before_last_save}_count")
+        subject.increment!("#{reaction_type}_count")
+      end
     end
 end

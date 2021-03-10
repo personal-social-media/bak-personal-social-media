@@ -5,12 +5,12 @@ module Api
   class FeedItemsController < BaseController
     include UploadsHelper
     extend Memoist
+    before_action :require_server
     before_action :verify_node_request
     before_action :require_current_peer_info
     before_action :verify_not_blocked
     before_action :require_friend
     before_action :require_current_feed_item, only: :destroy
-    before_action :require_server
 
     def create
       FeedItem.find_or_initialize_by(peer_info: current_peer_info, uid: feed_item_params[:uid]).tap do |f|

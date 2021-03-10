@@ -59,9 +59,10 @@ class PeerInfo < ApplicationRecord
   validates :about, allow_blank: true, length: { maximum: 2000 }
   validate :is_public_key_for_real, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production? && ENV["DEVELOPER"].blank?
   has_many :feed_items, dependent: :destroy
-  has_many :conversation, dependent: :destroy
-  has_many :comment, dependent: :destroy
-  has_many :previous_search, dependent: :destroy
+  has_many :reactions, dependent: :destroy
+  has_many :conversations, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :previous_searches, dependent: :destroy
 
   def fetch_more_information
     PeerInfoWorker::FetchInfo.perform_async(id)

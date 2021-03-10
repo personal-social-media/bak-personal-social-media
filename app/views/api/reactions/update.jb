@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  reaction: render(partial: "api/reactions/reaction", locals: { reaction: @reaction })
+}

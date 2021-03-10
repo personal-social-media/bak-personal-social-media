@@ -23,8 +23,9 @@
 #
 FactoryBot.define do
   factory :reaction do
-    peer_info { "MyString" }
-    reaction_type { "MyString" }
-    subject { nil }
+    before(:create) do |r|
+      r.peer_info ||= create(:peer_info)
+      r.subject ||= create(:post)
+    end
   end
 end
