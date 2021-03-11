@@ -31,7 +31,7 @@ export function buildRemoteAxios(target) {
 }
 
 export function buildSimpleAxios(target) {
-  return axios.create({
+  return applyCaseMiddleware(axios.create({
     baseURL: target,
-  });
+  }));
 }
