@@ -24,5 +24,27 @@
 require "rails_helper"
 
 RSpec.describe Reaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:current_peer_info) { create(:peer_info, friend_ship_status: :self) }
+
+  describe "callbacks" do
+    describe "before_update" do
+      describe "private update_count!" do
+        subject { create(:reaction) }
+        let(:subject_record) { subject.subject }
+
+        it "updates the counts" do
+          current_peer_info
+          subject
+          subject_record.reload
+          expect(subject_record.like_count).to eq(1)
+
+          subject.update!(reaction_type: :love)
+          subject_record.reload
+
+          expect(subject_record.like_count).to eq(0)
+          expect(subject_record.love_count).to eq(1)
+        end
+      end
+    end
+  end
 end

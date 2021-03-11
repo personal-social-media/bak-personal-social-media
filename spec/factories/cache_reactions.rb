@@ -18,7 +18,11 @@
 #
 FactoryBot.define do
   factory :cache_reaction do
-    subject { nil }
-    reaction_type { "MyString" }
+    reaction_type { :like }
+    sequence(:remote_id) { |i| i }
+
+    before(:create) do |r|
+      r.subject = create(:feed_item) if r.subject_id.blank?
+    end
   end
 end

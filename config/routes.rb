@@ -83,9 +83,9 @@ Rails.application.routes.draw do
 
   namespace :client do
     resources :friendships, only: %i(create destroy update)
-    resources :cache_reactions, only: %i(create destroy) do
+    resources :cache_reactions, only: %i(create update destroy) do
       collection do
-        post "/", action: :index
+        post "/search", action: :index
       end
     end
   end

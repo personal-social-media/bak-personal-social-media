@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  cache_reactions: render(partial: "client/cache_reactions/cache_reaction", collection: @cache_reactions, as: :cache_reaction)
+}

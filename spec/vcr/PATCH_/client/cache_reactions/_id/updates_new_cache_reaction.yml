@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://161.97.64.223/api/reactions/2
+    body:
+      encoding: UTF-8
+      string: '{"reaction":{"reaction_type":"love"}}'
+    headers:
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - ITCGQXTRTUN6S5AP35TTRK6MQXM2PUIYXMX3NIAU2W7QRWVFY7A2QOKWARVK6YCPKG2G5A4EFLU7ZNRWW4IDSWFVUELUVLVRO7VQ72W5LUKW5DMH6BFA5UJNE2PDLJ4IQP3FOE3G3O732PHAJQIPIKTFY4SIBJVMXA4IATW6BGYHEWLLURG2KFZI7TMOR4O2CJNM2Q7ZJEV7RDV33NGIRI3LP3ZR5QDVLIQNT4YQZVGRPQRLPN5IFSZW4VOV6JQKPKCISAX5WBMJLLMWASGKIUDWL5AYQF6M5F54PEA6UUM6J4PQLY5WD6V37OPJLR3IJLITIJCJ7T7AOWENHOZFWRDHKT2Z7EJD7ESGK44PFXXQNOKW4O3WVIFPZATZEZABBTHZMMET6GJHRGN6MMKFBOVRLA======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - 161.97.64.223
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 11 Mar 2021 22:39:32 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Etag:
+      - W/"7b054737e59c0069cff808a4719b8b33"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - e4578adf-e07c-405b-856f-689d4d6999f9
+      X-Runtime:
+      - '0.047762'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"reaction":{"id":2}}'
+  recorded_at: Thu, 11 Mar 2021 22:39:32 GMT
+recorded_with: VCR 6.0.0

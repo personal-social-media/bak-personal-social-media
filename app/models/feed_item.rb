@@ -25,6 +25,7 @@ class FeedItem < ApplicationRecord
   belongs_to :peer_info
   str_enum :feed_item_type, %i(post story)
   validates :uid, presence: true, uniqueness: { scope: :peer_info_id }
+  has_one :cache_reaction, as: :subject, dependent: :destroy
 
   if Rails.env.production? && ENV["DEVELOPER"].blank?
     validates :url, url: { schemes: ["https"], no_local: true }

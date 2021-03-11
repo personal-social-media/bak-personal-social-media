@@ -28,7 +28,7 @@ FactoryBot.define do
 
     before(:create) do |r|
       r.peer_info ||= create(:peer_info)
-      r.url = "https://#{r.peer_info.ip}/"
+      r.url = "https://#{r.peer_info.ip}/#{SecureRandom.hex}"
     end
   end
 end

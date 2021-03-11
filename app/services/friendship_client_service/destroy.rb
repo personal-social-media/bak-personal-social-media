@@ -14,15 +14,13 @@ module FriendshipClientService
     def call!
       return peer_info if peer_info.blocked?
 
-      PeerInfo.transaction do
-        if option == "block"
-          peer_info.update!(friend_ship_status: :blocked)
-        elsif option == "destroy"
-          peer_info.destroy
-        end
+      response = HTTP.timeout(timeout).headers(signed_headers(url)).delete(url)
+      raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
 
-        response = HTTP.timeout(timeout).headers(signed_headers(url)).delete(url)
-        raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
+      if option == "block"
+        peer_info.update!(friend_ship_status: :blocked)
+      elsif option == "destroy"
+        peer_info.destroy
       end
     end
 
