@@ -20,6 +20,7 @@ class Post < ApplicationRecord
   include PrivacyConcern
   include UidConcern
   has_many :attached_files, as: :subject, dependent: :destroy
+  has_many :reactions, as: :subject, dependent: :destroy
   after_create :add_feed_item
   after_commit :sync_destroy, on: :destroy
 

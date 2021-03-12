@@ -3,4 +3,4 @@
 {
   posts: render(partial: "api/posts/post", collection: @posts, as: :post),
   posts_count: @posts_count
-}
+}.compact

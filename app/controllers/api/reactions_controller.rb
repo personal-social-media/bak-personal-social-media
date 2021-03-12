@@ -4,12 +4,22 @@
 module Api
   class ReactionsController < BaseController
     extend Memoist
-    before_action :require_server
+    before_action :require_server, only: %i(create update destroy)
     before_action :verify_node_request
-    before_action :require_friend
+    before_action :require_friend, only: %i(create update destroy)
     before_action :verify_not_blocked
     before_action :require_current_subject, only: :create
+    before_action :require_index_current_subject, only: :index
     before_action :require_current_reaction, only: :destroy
+
+    def index
+      service = ReactionsService::ReactionsIndex.new(index_current_subject, params.permit!).call!
+      @reactions = service.reactions
+      @reactions_count = service.reactions_count
+
+    rescue ReactionsService::ReactionsIndex::IndexError => e
+      render json: { error: e.message }, status: 422
+    end
 
     def create
       @reaction = ReactionsService::CreateReaction.new(current_peer_info, current_subject, permitted_params[:reaction_type]).call!
@@ -34,6 +44,10 @@ module Api
         render json: { error: "subject not found" }, status: 404 if current_subject.blank?
       end
 
+      def require_index_current_subject
+        render json: { error: "subject not found" }, status: 404 if index_current_subject.blank?
+      end
+
       def require_current_reaction
         render json: { error: "reaction not found" }, status: 404 if current_reaction.blank?
       end
@@ -43,6 +57,11 @@ module Api
       end
 
       memoize def current_subject
+        ReactionsService::CurrentSubject.new(permitted_params).call!
+      end
+
+      memoize def index_current_subject
+        permitted_params = params.permit!.slice(:subject_type, :subject_id)
         ReactionsService::CurrentSubject.new(permitted_params).call!
       end
 

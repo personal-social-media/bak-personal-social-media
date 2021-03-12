@@ -78,7 +78,7 @@ Rails.application.routes.draw do
       resources :comments, only: %i(index show)
     end
 
-    resources :reactions, only: %i(create destroy update)
+    resources :reactions, only: %i(index create destroy update)
   end
 
   namespace :client do

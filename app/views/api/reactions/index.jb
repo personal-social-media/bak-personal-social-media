@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+{
+  reactions: render(partial: "api/reactions/reaction", collection: @reactions, as: :reaction, locals: { include_peer: true }),
+  reactions_count: @reactions_count
+}.compact
