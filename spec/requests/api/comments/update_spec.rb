@@ -25,7 +25,7 @@ describe "/api/comments/:id" do
     context "valid" do
       let(:payload) do
         {
-          message: "test",
+          message: "test2",
           subject_id: post_record.uid.to_s,
           subject_type: "Post",
           parent_comment_id: nil,
@@ -64,6 +64,7 @@ describe "/api/comments/:id" do
           expect(response).to have_http_status(:ok)
           expect(json[:comment]).to be_present
         end.to change { comment.reload.signature }
+          .and change { comment.reload.payload }
       end
     end
   end

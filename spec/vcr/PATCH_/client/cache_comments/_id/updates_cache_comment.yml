@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://161.97.64.223/api/comments/1
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"payload":{"message":"test2","subject_id":"1","subject_type":"FeedItem","parent_comment_id":null,"images":[{"type":"image","desktop":"https://example.com/a.jpg","mobile":"https://example.com/a.jpg","thumbnail":"https://example.com/a.jpg"}],"videos":[{"type":"video","original":"https://example.com/a.mp4","short":"https://example.com/a.mp4","original_screenshot":"https://example.com/a.jpg","thumbnail_screenshot":"https://example.com/a.jpg"}]},"signature":"IMAD2BVMS3L5XJAG4SSY5ILVVVMI7F62CDB2H537RNNKC3AWDNB7C7LKRJZQA2NDMT6YPQ2327WWYUC4BTNCYIF2N56Z3OCF6YH7BMHTRB4KACSJXPO2JWX3KAISPBROOJQZVNZ7H3M7KRRMEE4UY6PK5RN6SWLPDEZQQ2L4E7CBURDIG7VD5N7RVAYPDNMRQBW3LWQQOERMHZXUSN3EYUDSMITBMMFAW4H73NYSTLLNEBIV65EKSH2UK2TGQSNO53MEJ2ZFS36QL6GA7FLAFZNSJ5PSLOP6REBZZZRHZD3KLRTZNX5S2FEEO3XHHLZVQWSKBO7LOTIQHKPAFFU4ZVYLI2C6MSRDB2SK2KC3F5CRCIBIIERXKKDQREAK4CXVT42A4TG7OSR5DBJBPQLZGJHKFA======"}}'
+    headers:
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - 2LF6YIXNSYZ3HSG5GYLSVWJ4ABRPJXQHEIPHSHTIMDOA7Z5X2BXU7B4XO36VKB64OQWOYTZ75JP6FWSDB4UYRGPE62QL7FCW3QHFUHYHOQAKS62OAYDEUYJP7OY2AUVRCSV6SCJWUPEJAMJ2IGHEVGKKIVAIPY3FCVTRL6YNNSMNN43OWJKKROAJIUNMDDUPPTBHOZNSL3JSCP7WEHKSIS7BV5C55BDEEKAKGGANGUGLH4L2R2IAGRRG2TNH6753CN5QVHPDIABWJX7VJSU7VDP45QBKFRBPFW6YXPNW2XZX2IZV4P5Y3RSQOZXPOKBEGDGOWXF4JVLQAZU6EI3TV5QB3LW4R6DS4CDVOKZXEMQG5SMYLMFIJNT4XMDFLFDUHGFYJBU7UE3UGP2ZF55CZRRRG4======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - 161.97.64.223
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 14 Mar 2021 22:43:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Etag:
+      - W/"b711359df048b5ac2a72bb7a5ce4b917"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 54c9e532-6cde-4330-89a5-d54b80a000e4
+      X-Runtime:
+      - '0.237391'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"payload":{"message":"test2","subject_id":"1","subject_type":"FeedItem","parent_comment_id":null,"images":[{"type":"image","desktop":"https://example.com/a.jpg","mobile":"https://example.com/a.jpg","thumbnail":"https://example.com/a.jpg"}],"videos":[{"type":"video","original":"https://example.com/a.mp4","short":"https://example.com/a.mp4","original_screenshot":"https://example.com/a.jpg","thumbnail_screenshot":"https://example.com/a.jpg"}]},"id":1}}'
+  recorded_at: Sun, 14 Mar 2021 22:43:59 GMT
+recorded_with: VCR 6.0.0

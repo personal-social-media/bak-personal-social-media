@@ -19,7 +19,7 @@ describe "DELETE /client/cache_comments/:id", vcr: :record_once do
     delete url
   end
 
-  xit "deletes the cache comment" do
+  it "deletes the cache comment" do
     cache_comment
 
     expect do

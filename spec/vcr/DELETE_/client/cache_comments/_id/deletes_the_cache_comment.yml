@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://161.97.64.223/api/comments/1
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - 2LF6YIXNSYZ3HSG5GYLSVWJ4ABRPJXQHEIPHSHTIMDOA7Z5X2BXU7B4XO36VKB64OQWOYTZ75JP6FWSDB4UYRGPE62QL7FCW3QHFUHYHOQAKS62OAYDEUYJP7OY2AUVRCSV6SCJWUPEJAMJ2IGHEVGKKIVAIPY3FCVTRL6YNNSMNN43OWJKKROAJIUNMDDUPPTBHOZNSL3JSCP7WEHKSIS7BV5C55BDEEKAKGGANGUGLH4L2R2IAGRRG2TNH6753CN5QVHPDIABWJX7VJSU7VDP45QBKFRBPFW6YXPNW2XZX2IZV4P5Y3RSQOZXPOKBEGDGOWXF4JVLQAZU6EI3TV5QB3LW4R6DS4CDVOKZXEMQG5SMYLMFIJNT4XMDFLFDUHGFYJBU7UE3UGP2ZF55CZRRRG4======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Connection:
+      - close
+      Host:
+      - 161.97.64.223
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 14 Mar 2021 22:44:27 GMT
+      Content-Type:
+      - text/html
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - f4c59b52-3dcc-4b5b-9977-616a7d2ac85d
+      X-Runtime:
+      - '0.039232'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Sun, 14 Mar 2021 22:44:27 GMT
+recorded_with: VCR 6.0.0
