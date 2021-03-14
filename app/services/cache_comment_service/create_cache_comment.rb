@@ -20,7 +20,7 @@ module CacheCommentsService
 
       remote_id = JSON.parse(response.body.to_s).dig("comment", "id")
 
-      CacheComment.create!(subject: subject, comment_type: create_params[:comment_type], remote_id: remote_id)
+      CacheComment.create!(subject: subject, payload: payload, parent_comment_id: parent_comment_id, remote_id: remote_id)
     end
 
     private
@@ -31,9 +31,11 @@ module CacheCommentsService
       def body
         {
           comment: {
-            comment_type: create_params[:comment_type],
             subject_id: payload_subject_id,
             subject_type: payload_subject_type,
+            parent_comment_id: parent_comment_id,
+            payload: payload,
+            signature: SignaturesService::Sign.new(payload.to_json).call!
           }
         }
       end
@@ -66,6 +68,14 @@ module CacheCommentsService
         if subject.is_a?(FeedItem)
           subject.uid
         end
+      end
+
+      def payload
+        create_params[:payload]
+      end
+
+      def parent_comment_id
+        create_params[:parent_comment_id]
       end
 
       delegate :peer_info, to: :subject

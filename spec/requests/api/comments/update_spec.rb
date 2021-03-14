@@ -26,7 +26,7 @@ describe "/api/comments/:id" do
       let(:payload) do
         {
           message: "test",
-          subject_id: post_record.id.to_s,
+          subject_id: post_record.uid.to_s,
           subject_type: "Post",
           parent_comment_id: nil,
           images: [

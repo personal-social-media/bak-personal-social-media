@@ -24,7 +24,6 @@ module Client
       render json: { error: e.message }, status: 422
     end
 
-
     def destroy
       CacheCommentsService::DestroyCacheComment.new(current_cache_comment).call!
 
@@ -35,11 +34,11 @@ module Client
 
     private
       def create_params
-        params.require(:cache_comment).permit(:subject_id, :subject_type, :comment_type)
+        params.require(:cache_comment).permit(:subject_id, :subject_type, :parent_comment_id, payload: payload_params)
       end
 
       def update_params
-        params.require(:cache_comment).permit(:comment_type)
+        params.require(:cache_comment).permit(payload: payload_params)
       end
 
       def current_cache_comment
@@ -48,6 +47,25 @@ module Client
 
       def require_current_cache_comment
         render json: { error: "cache comment not found" }, status: 404 if current_cache_comment.blank?
+      end
+
+      def payload_params
+        [
+          :message, :subject_id, :subject_type, :parent_comment_id,
+          images: [
+            :type,
+            :desktop,
+            :mobile,
+            :thumbnail
+          ],
+          videos: [
+            :type,
+            :original,
+            :short,
+            :original_screenshot,
+            :thumbnail_screenshot,
+          ]
+        ]
       end
   end
 end
