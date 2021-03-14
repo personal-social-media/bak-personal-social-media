@@ -54,7 +54,7 @@ describe "POST /client/cache_comments", vcr: :record_once do
     post url, params: params
   end
 
-  xit "creates new cache comment" do
+  it "creates new cache comment" do
     expect do
       subject
       expect(response).to have_http_status(:ok)

@@ -20,7 +20,7 @@ module CacheCommentsService
 
       remote_id = JSON.parse(response.body.to_s).dig("comment", "id")
 
-      CacheComment.create!(subject: subject, payload: payload, parent_comment_id: parent_comment_id, remote_id: remote_id)
+      CacheComment.create!(subject: subject, payload: payload, remote_id: remote_id)
     end
 
     private

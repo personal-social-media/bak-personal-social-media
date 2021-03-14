@@ -26,13 +26,18 @@ module CacheCommentsService
       def body
         {
           comment: {
-            comment_type: update_params[:comment_type],
+            payload: payload,
+            signature: SignaturesService::Sign.new(payload.to_json).call!
           }
         }
       end
 
       def url
         "https://#{peer_info.ip}/api/comments/#{cache_comment.remote_id}"
+      end
+
+      def payload
+        update_params[:payload]
       end
 
       delegate :subject, to: :cache_comment

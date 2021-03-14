@@ -89,7 +89,7 @@ module Api
       end
 
       def permitted_params_update
-        params.require(:comment).permit(:signature, :payload_params)
+        params.require(:comment).permit(:signature, payload: payload_params)
       end
   end
 end

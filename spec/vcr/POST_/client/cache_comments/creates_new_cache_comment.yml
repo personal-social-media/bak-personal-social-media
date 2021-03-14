@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://161.97.64.223/api/comments
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"subject_id":"76e895ca6549958cfa5662d372b7e7538724df06f67ab531","subject_type":"post","parent_comment_id":null,"payload":{"message":"test","subject_id":"1","subject_type":"FeedItem","parent_comment_id":null,"images":[{"type":"image","desktop":"https://example.com/a.jpg","mobile":"https://example.com/a.jpg","thumbnail":"https://example.com/a.jpg"}],"videos":[{"type":"video","original":"https://example.com/a.mp4","short":"https://example.com/a.mp4","original_screenshot":"https://example.com/a.jpg","thumbnail_screenshot":"https://example.com/a.jpg"}]},"signature":"LKRXWQSVMOXRC2M5FYCJ2NKLTL5HD7MQRV4CMLVD546IICLHEV36OEDEPFVPGTHRBVECPRL6P7DHAOA5MOJGELCNWH3XKCM5US7NXNC2MYF5GCWZ276MJ53CBRN6HWTVIAFNILGRETHT4V4HBU2OHY5ZORDB42NU22QI7JIJKUHKVUJZWZEVRK3S5FT6BRBJRTCQJSQVWM4QNGXBM7LKIIBMCEH7377ATYM25X73KN3JRRVD5GBVIRNPD5O7C452H677WO3KVFZ5RE23JUO7WNW6W2UFSZJH6KUFJ4ZSBFNMD47HITPKK6XDP3DJYGECCHQ2EDFLQP4XUXNK32JYE6GSQFXFTJHUVN2BNT3BQDHEYHANSYN6IYPS5YYSZE4ESB3UZVJY55GRMQVK6L47W5GKJQ======"}}'
+    headers:
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - 4EFDXT6P2I44CDJLQATHU2HHA5KDBU2WFGRSJROLWND2ZUI7ZLUDAFN5UN4H47UTL7UKTEWUGBIWWSSYRQO33TQU6FSJYIXWIM3SEWMBLIVTKQND3KUN2GPZU6KDUX5SI2I66GYLTHEIULVU2N4STUENM4FI7ME2WQO5PZCTJINGNOUXAIYYCJL35SO66EIIB7C7OSCCADHBPJUX5TH4WYKJ27PUAAT4EVVM4L77E5E557VZPHZ3R5S2WATL5UY25GZHOWIBQH5AEGIIJE64YMKG5OLCCN7DKMXRSNJIGB5J2JE4KLZFYSNAUKZ4IDIAUBVF47NQ5QP433V33H2OCCTPJS6ECVAJJWD5R53M2SFVUYNC2OEZS3WHHSN76B2YMJBCW5WJWW74YIOJ6D2DTHPCNI======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Connection:
+      - close
+      Content-Type:
+      - application/json; charset=UTF-8
+      Host:
+      - 161.97.64.223
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 14 Mar 2021 22:18:40 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Etag:
+      - W/"70c2adea1cb6760df05701edf1472b86"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0c081c6d-9e47-48f9-8355-88796ae6c00e
+      X-Runtime:
+      - '0.127239'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"id":1,"payload":{"message":"test","subject_id":"1","subject_type":"FeedItem","parent_comment_id":null,"images":[{"type":"image","desktop":"https://example.com/a.jpg","mobile":"https://example.com/a.jpg","thumbnail":"https://example.com/a.jpg"}],"videos":[{"type":"video","original":"https://example.com/a.mp4","short":"https://example.com/a.mp4","original_screenshot":"https://example.com/a.jpg","thumbnail_screenshot":"https://example.com/a.jpg"}]}}}'
+  recorded_at: Sun, 14 Mar 2021 22:18:41 GMT
+recorded_with: VCR 6.0.0
