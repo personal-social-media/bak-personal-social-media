@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+{
+  comments: render(partial: "api/comments/comment", collection: @comments, as: :comment, locals: { include_peer: true }),
+  comments_count: @comments_count
+}.compact

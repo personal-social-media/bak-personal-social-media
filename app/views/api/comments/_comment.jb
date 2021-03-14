@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+fields = %i(id payload payload_metadata)
+
+json = comment.as_json(only: fields)
+
+if include_peer
+  json[:peer_info] = PeerInfoPresenter.new(comment.peer_info).render
+end
+
+json

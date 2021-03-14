@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_233315) do
+ActiveRecord::Schema.define(version: 2021_03_14_152510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_03_10_233315) do
     t.text "metadata"
   end
 
+  create_table "cache_comments", force: :cascade do |t|
+    t.string "subject_type", null: false
+    t.bigint "subject_id", null: false
+    t.text "payload", default: "{}", null: false
+    t.bigint "remote_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_type", "subject_id"], name: "index_cache_comments_on_subject"
+  end
+
   create_table "cache_reactions", force: :cascade do |t|
     t.string "reaction_type", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -51,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_233315) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "payload"
+    t.text "payload", default: "{}", null: false
     t.bigint "peer_info_id"
     t.bigint "parent_comment_id"
     t.string "subject_type", null: false
@@ -59,10 +69,11 @@ ActiveRecord::Schema.define(version: 2021_03_10_233315) do
     t.integer "sub_comments_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "like_count", default: 0, null: false
-    t.integer "love_count", default: 0, null: false
-    t.integer "wow_count", default: 0, null: false
+    t.bigint "like_count", default: 0, null: false
+    t.bigint "love_count", default: 0, null: false
+    t.bigint "wow_count", default: 0, null: false
     t.string "uid", null: false
+    t.text "signature", null: false
     t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
     t.index ["peer_info_id"], name: "index_comments_on_peer_info_id"
     t.index ["subject_type", "subject_id"], name: "index_comments_on_subject"
@@ -169,11 +180,12 @@ ActiveRecord::Schema.define(version: 2021_03_10_233315) do
     t.text "location_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "like_count", default: 0, null: false
-    t.integer "love_count", default: 0, null: false
-    t.integer "wow_count", default: 0, null: false
+    t.bigint "like_count", default: 0, null: false
+    t.bigint "love_count", default: 0, null: false
+    t.bigint "wow_count", default: 0, null: false
     t.string "uid", null: false
     t.string "privacy", default: "public_access", null: false
+    t.bigint "comments_count", default: 0, null: false
   end
 
   create_table "previous_searches", force: :cascade do |t|
@@ -220,9 +232,9 @@ ActiveRecord::Schema.define(version: 2021_03_10_233315) do
     t.text "location_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "like_count", default: 0, null: false
-    t.integer "love_count", default: 0, null: false
-    t.integer "wow_count", default: 0, null: false
+    t.bigint "like_count", default: 0, null: false
+    t.bigint "love_count", default: 0, null: false
+    t.bigint "wow_count", default: 0, null: false
     t.string "uid", null: false
     t.string "privacy", default: "public_access", null: false
   end

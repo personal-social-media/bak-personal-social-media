@@ -5,13 +5,14 @@
 # Table name: comments
 #
 #  id                 :bigint           not null, primary key
-#  like_count         :integer          default(0), not null
-#  love_count         :integer          default(0), not null
-#  payload            :text
+#  like_count         :bigint           default(0), not null
+#  love_count         :bigint           default(0), not null
+#  payload            :text             default({}), not null
+#  signature          :text             not null
 #  sub_comments_count :integer          default(0), not null
 #  subject_type       :string           not null
 #  uid                :string           not null
-#  wow_count          :integer          default(0), not null
+#  wow_count          :bigint           default(0), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  parent_comment_id  :bigint
@@ -32,6 +33,14 @@
 class Comment < ApplicationRecord
   include UidConcern
   belongs_to :peer_info
-  belongs_to :parent_comment
-  belongs_to :subject, polymorphic: true
+  belongs_to :parent_comment, class_name: "Comment", counter_cache: true, optional: true
+  belongs_to :subject, polymorphic: true, counter_cache: true
+  validate :validate_signature, if: -> { payload_changed? }
+
+  serialize :payload, JSON
+
+  private
+    def validate_signature
+      errors.add(:payload, "Invalid payload") unless PeerInfoService::ValidateSignedContent.new(peer_info, payload.to_json, signature, decode: true).call!
+    end
 end

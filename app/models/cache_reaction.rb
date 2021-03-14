@@ -7,7 +7,7 @@
 #  id            :bigint           not null, primary key
 #  reaction_type :string           not null
 #  subject_type  :string           not null
-#  created_at    :datetime r        not null
+#  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  remote_id     :bigint           not null
 #  subject_id    :bigint           not null

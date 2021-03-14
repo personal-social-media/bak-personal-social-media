@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-fields = %i(id)
+fields = %i(id reaction_type)
 
 json = reaction.as_json(only: fields)
 

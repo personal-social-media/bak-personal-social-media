@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ReactionsService
+module CommentsService
   class CurrentSubject
     attr_reader :subject_type, :subject_id
 
@@ -22,7 +22,7 @@ module ReactionsService
       end
 
       def find_comment
-        Comment.find_by(uid: subject_id)
+        Comment.where(parent_comment_id: nil).find_by(uid: subject_id)
       end
   end
 end
