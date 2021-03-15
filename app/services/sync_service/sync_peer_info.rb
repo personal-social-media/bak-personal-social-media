@@ -54,6 +54,7 @@ module SyncService
             username: peer_info.username,
             name: peer_info.name,
             avatars: peer_info.avatars,
+            signature: peer_info.signature
           }
         }
       end

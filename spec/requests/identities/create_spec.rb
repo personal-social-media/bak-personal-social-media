@@ -13,6 +13,7 @@ describe "/identities" do
       {
         identity: {
           username: "ok",
+          signature: ""
         }
       }
     end

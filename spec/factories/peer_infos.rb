@@ -14,6 +14,7 @@
 #  name               :text
 #  public_key         :text             not null
 #  server_last_seen   :datetime
+#  signature          :text             default(""), not null
 #  username           :text             not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

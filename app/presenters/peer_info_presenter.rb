@@ -7,11 +7,19 @@ class PeerInfoPresenter
   end
 
   def render
-    peer_info.as_json(only: %i(default_fields))
+    peer_info.as_json(only: default_fields)
+  end
+
+  def render_as_signature
+    peer_info.as_json(only: signature_fields)
   end
 
   private
     def default_fields
       %i(id name username avatars public_key ip)
+    end
+
+    def signature_fields
+      %i(username name avatars ip)
     end
 end

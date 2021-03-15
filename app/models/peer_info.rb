@@ -14,6 +14,7 @@
 #  name               :text
 #  public_key         :text             not null
 #  server_last_seen   :datetime
+#  signature          :text             default(""), not null
 #  username           :text             not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -48,6 +49,7 @@ class PeerInfo < ApplicationRecord
   str_enum :friend_ship_status, %i(requested pending_accept declined self stranger accepted blocked)
   after_commit :fetch_more_information, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production?
   after_commit :propagate_updates, on: %i(create update), if: -> { friend_ship_status == "self" } if Rails.env.production?
+  before_validation :set_signature, if: -> { friend_ship_status == "self" } if Rails.env.production?
 
   if Rails.env.production? && ENV["DEVELOPER"].blank?
     validates :ip, format: { with: Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex) }
@@ -58,11 +60,14 @@ class PeerInfo < ApplicationRecord
   validates :public_key, presence: true, uniqueness: true
   validates :about, allow_blank: true, length: { maximum: 2000 }
   validate :is_public_key_for_real, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production? && ENV["DEVELOPER"].blank?
+  validate :validate_signature if Rails.env.production?
+
   has_many :feed_items, dependent: :destroy
   has_many :reactions, dependent: :destroy
   has_many :conversations, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :previous_searches, dependent: :destroy
+  serialize :avatars, JSON
 
   def fetch_more_information
     PeerInfoWorker::FetchInfo.perform_async(id)
@@ -76,5 +81,12 @@ class PeerInfo < ApplicationRecord
     errors.add(:public_key, "Fake public key") unless IdentityService::CheckPublicKey.new(public_key, ip).call!
   end
 
-  serialize :avatars, JSON
+  private
+    def set_signature
+      self.signature = PeerInfoService::BuildSignature.new(self).call!
+    end
+
+    def validate_signature
+      errors.add(:signature, "invalid") unless PeerInfoService::ValidateSignature.new(self).call!
+    end
 end
