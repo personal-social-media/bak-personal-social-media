@@ -59,6 +59,7 @@ class PeerInfo < ApplicationRecord
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   validates :public_key, presence: true, uniqueness: true
   validates :about, allow_blank: true, length: { maximum: 2000 }
+  validates :signature, presence: true if Rails.env.production?
   validate :is_public_key_for_real, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production? && ENV["DEVELOPER"].blank?
   validate :validate_signature if Rails.env.production?
 

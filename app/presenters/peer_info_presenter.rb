@@ -11,7 +11,12 @@ class PeerInfoPresenter
   end
 
   def render_as_signature
-    peer_info.as_json(only: signature_fields)
+    {
+      username: peer_info.username,
+      name: peer_info.name,
+      avatars: peer_info.avatars&.sort&.to_h,
+      ip: peer_info.ip
+    }
   end
 
   private
