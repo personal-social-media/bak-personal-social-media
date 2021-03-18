@@ -20,7 +20,9 @@ module CacheReactionsService
 
       remote_id = JSON.parse(response.body.to_s).dig("reaction", "id")
 
-      CacheReaction.create!(subject: subject, reaction_type: create_params[:reaction_type], remote_id: remote_id)
+      CacheReaction.create!(subject: subject, reaction_type: create_params[:reaction_type],
+                            remote_id: remote_id,
+                            payload_subject_type: payload_subject_type, payload_subject_id: payload_subject_id)
     end
 
     private

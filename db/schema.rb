@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_080145) do
+ActiveRecord::Schema.define(version: 2021_03_18_194215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 2021_03_18_080145) do
     t.string "subject_type", null: false
     t.bigint "subject_id", null: false
     t.bigint "remote_id", null: false
+    t.string "payload_subject_type", default: "", null: false
+    t.string "payload_subject_id", default: "", null: false
+    t.index ["payload_subject_type", "payload_subject_id"], name: "payload_index", unique: true
     t.index ["subject_type", "subject_id"], name: "index_cache_reactions_on_subject", unique: true
   end
 

@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+signature = {
+  payload_subject_type: @reaction.payload_subject_type,
+  payload_subject_id: @reaction.payload_subject_id,
+}
+
+{
+  proof: SignaturesService::Sign.new(signature.to_json).call!
+}

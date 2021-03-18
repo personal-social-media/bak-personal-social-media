@@ -4,13 +4,14 @@
 module Api
   class ReactionsController < BaseController
     extend Memoist
-    before_action :require_server, only: %i(create update destroy)
+    before_action :require_server, only: %i(create update destroy proof)
     before_action :verify_node_request
     before_action :require_friend, only: %i(create update destroy)
     before_action :verify_not_blocked
     before_action :require_current_subject, only: :create
     before_action :require_index_current_subject, only: :index
     before_action :require_current_reaction, only: :destroy
+    before_action :require_current_proof_reaction, only: :proof
 
     def index
       service = ReactionsService::ReactionsIndex.new(index_current_subject, params.permit!).call!
@@ -22,6 +23,7 @@ module Api
     end
 
     def proof
+      @reaction = current_proof_reaction
     end
 
     def create
@@ -61,6 +63,17 @@ module Api
 
       memoize def current_subject
         ReactionsService::CurrentSubject.new(permitted_params).call!
+      end
+
+      memoize def current_proof_reaction
+        permitted_params = params.permit!.slice(:payload_subject_id, :payload_subject_type)
+
+        CacheReaction.find_by(payload_subject_id: permitted_params[:payload_subject_id],
+                              payload_subject_type: permitted_params[:payload_subject_type])
+      end
+
+      def require_current_proof_reaction
+        render json: { error: "reaction not found" } if current_proof_reaction.blank?
       end
 
       memoize def index_current_subject
