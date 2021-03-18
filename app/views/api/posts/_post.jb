@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-default_fields = %i(uid content like_count location_name love_count mood wow_count created_at)
+default_fields = %i(uid content like_count location_name love_count mood wow_count created_at signature)
 fields = default_fields
 
 json = post.as_json(only: fields)

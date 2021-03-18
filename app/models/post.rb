@@ -28,6 +28,7 @@ class Post < ApplicationRecord
   after_commit :sync_destroy, on: :destroy
 
   def sync_create
+    self.generate_signature!
     SyncWorker.perform_async(Post, id, SyncService::SyncPost, :call_create!)
   end
 
@@ -38,6 +39,11 @@ class Post < ApplicationRecord
 
   def attachments_ready!
     sync_create
+  end
+
+  def generate_signature!
+    self.signature = PostService::CreatePostSignature.new(self).call!
+    self.save!
   end
 
   private
