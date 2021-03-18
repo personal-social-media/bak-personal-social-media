@@ -28,7 +28,6 @@ module Client
       render json: { error: e.message }, status: 422
     end
 
-
     def destroy
       CacheReactionsService::DestroyCacheReaction.new(current_cache_reaction).call!
 

@@ -6,7 +6,6 @@ describe "/api/feed_items" do
   include ExternalApiHelpers
   let(:controller) { Api::FeedItemsController }
 
-
   describe "POST /api/feed_items" do
     let(:url) { "/api/feed_items" }
     let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }

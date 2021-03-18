@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_211314) do
+ActiveRecord::Schema.define(version: 2021_03_15_234745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -208,6 +208,15 @@ ActiveRecord::Schema.define(version: 2021_03_15_211314) do
     t.text "city_name"
     t.text "recovery_key_digest"
     t.text "recovery_key_plain"
+  end
+
+  create_table "proof_reactions_tests", force: :cascade do |t|
+    t.string "subject_type", null: false
+    t.bigint "subject_id", null: false
+    t.text "result", default: "{}", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_type", "subject_id"], name: "index_proof_reactions_tests_on_subject"
   end
 
   create_table "reactions", force: :cascade do |t|

@@ -29,7 +29,6 @@ describe ImageAlbumsController do
         .and change { image_album.description }
         .and change { image_album.location_name }
 
-
       expect(response).to have_http_status(:redirect)
     end
   end

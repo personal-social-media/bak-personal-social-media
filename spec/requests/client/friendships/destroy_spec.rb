@@ -16,7 +16,6 @@ describe "/client/friendships", vcr: { record: :once } do
     delete url, params: params
   end
 
-
   context "block" do
     let(:option) { :block }
     it "blocks the relationship" do

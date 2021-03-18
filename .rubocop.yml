@@ -1,3 +1,12 @@
 inherit_gem:
   rubocop-rails_config:
     - config/rails.yml
+
+Layout/EmptyLines:
+  Enabled: true
+
+Bundler/DuplicatedGem:
+  Enabled: true
+
+Bundler/OrderedGems:
+  Enabled: true

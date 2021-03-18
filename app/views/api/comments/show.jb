@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  comment: render(partial: "api/comments/comment", locals: { comment: @comment, include_peer: false })
+}

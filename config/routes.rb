@@ -74,7 +74,11 @@ Rails.application.routes.draw do
 
     resources :stories, only: :show
 
-    resources :reactions, only: %i(index create destroy update)
+    resources :reactions, only: %i(index create destroy update) do
+      collection do
+        post "/proof", action: :proof
+      end
+    end
     resources :comments, only: %i(index show create destroy update)
   end
 

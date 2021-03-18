@@ -6,11 +6,11 @@ module Api
     extend Memoist
     before_action :require_server, only: %i(create update destroy)
     before_action :verify_node_request
-    before_action :require_friend, only: %i(create update destroy)
+    before_action :require_friend, only: %i(create show update destroy)
     before_action :verify_not_blocked
     before_action :require_current_subject, only: :create
     before_action :require_index_current_subject, only: :index
-    before_action :require_current_comment, only: :destroy
+    before_action :require_current_comment, only: %i(show update destroy)
 
     def index
       service = CommentsService::CommentsIndex.new(index_current_subject, params.permit!).call!
@@ -25,6 +25,10 @@ module Api
       @comment = CommentsService::CreateComment.new(current_peer_info, current_subject, permitted_params[:payload], permitted_params[:signature]).call!
     rescue ActiveRecord::RecordInvalid => e
       render json: { error: e.message }, status: 422
+    end
+
+    def show
+      @comment = current_comment
     end
 
     def update

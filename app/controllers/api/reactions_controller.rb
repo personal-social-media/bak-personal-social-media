@@ -21,6 +21,9 @@ module Api
       render json: { error: e.message }, status: 422
     end
 
+    def proof
+    end
+
     def create
       @reaction = ReactionsService::CreateReaction.new(current_peer_info, current_subject, permitted_params[:reaction_type]).call!
     rescue ActiveRecord::RecordInvalid => e

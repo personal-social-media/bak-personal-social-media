@@ -32,7 +32,6 @@ module SyncService
         hydra.run
       end
 
-
       def build_url_create(friend)
         "https://#{friend.ip}/api/sync/feed_item"
       end

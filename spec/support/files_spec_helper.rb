@@ -22,7 +22,6 @@ module FilesSpecHelper
   end
 end
 
-
 RSpec.configure do |config|
   config.after(:suite) do
     `rm -rf /tmp/sample-test-image-* /tmp/sample-test-video-*`

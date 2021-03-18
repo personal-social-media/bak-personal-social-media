@@ -26,7 +26,6 @@ describe ImageAlbumsController do
         subject
       end.to change { ImageAlbum.count }.by(1)
 
-
       expect(response).to have_http_status(:redirect)
     end
   end

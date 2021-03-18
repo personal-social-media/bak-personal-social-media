@@ -13,7 +13,6 @@ describe PostsController, vcr: { record: :once } do
       post :create, params: { post: post_params }
     end
 
-
     context "only content" do
       let(:post_params) do
         {
