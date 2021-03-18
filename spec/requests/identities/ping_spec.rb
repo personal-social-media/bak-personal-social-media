@@ -23,7 +23,8 @@ describe "/identities/ping" do
     it "updates the server_last_seen" do
       expect do
         subject
-      end.to change { peer_info.reload.server_last_seen }
+        peer_info.reload
+      end.to change { peer_info.server_last_seen }
 
       expect(response).to have_http_status(:ok)
     end

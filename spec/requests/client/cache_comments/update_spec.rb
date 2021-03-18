@@ -40,7 +40,10 @@ describe "PATCH /client/cache_comments/:id", vcr: :record_once do
   let(:params) do
     {
       cache_comment: {
-        payload: payload
+        payload: payload,
+        like_count: 1,
+        love_count: 1,
+        wow_count: 1,
       }
     }
   end
@@ -57,6 +60,10 @@ describe "PATCH /client/cache_comments/:id", vcr: :record_once do
     expect do
       subject
       expect(response).to have_http_status(:ok)
-    end.to change { cache_comment.reload.payload }
+      cache_comment.reload
+    end.to change { cache_comment.payload }
+       .and change { cache_comment.like_count }
+       .and change { cache_comment.love_count }
+       .and change { cache_comment.wow_count }
   end
 end

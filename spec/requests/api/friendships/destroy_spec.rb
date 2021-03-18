@@ -30,7 +30,7 @@ describe "/api/friendship" do
       context "accepted" do
         context "destroy" do
           let(:option) { :destroy }
-          it "deletes relationship" do
+          it "deletes relationship", skip_propsite: true do
             expect do
               subject
             end.to change { PeerInfo.count }.by(-1)

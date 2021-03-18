@@ -5,7 +5,7 @@
 # Table name: proof_reactions_tests
 #
 #  id           :bigint           not null, primary key
-#  result       :text             default("{}"), not null
+#  result       :text             default({}), not null
 #  subject_type :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

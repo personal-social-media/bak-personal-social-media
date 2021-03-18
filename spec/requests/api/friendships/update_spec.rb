@@ -18,8 +18,8 @@ describe "/api/friendship" do
 
     subject do
       peer_info
-
       patch url, params: params
+      peer_info.reload
     end
 
     context "requested" do
@@ -35,7 +35,7 @@ describe "/api/friendship" do
 
           expect(response).to have_http_status(:ok)
           expect(json[:friendship]).to be_present
-          expect(peer_info.reload.accepted?).to be_truthy
+          expect(peer_info.accepted?).to be_truthy
         end
       end
 
@@ -46,7 +46,7 @@ describe "/api/friendship" do
 
           expect(response).to have_http_status(:ok)
           expect(json[:friendship]).to be_present
-          expect(peer_info.reload.declined?).to be_truthy
+          expect(peer_info.declined?).to be_truthy
         end
       end
     end

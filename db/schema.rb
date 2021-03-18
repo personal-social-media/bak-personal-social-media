@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_234745) do
+ActiveRecord::Schema.define(version: 2021_03_18_080145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2021_03_15_234745) do
     t.bigint "remote_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "like_count", default: 0, null: false
+    t.integer "love_count", default: 0, null: false
+    t.integer "wow_count", default: 0, null: false
     t.index ["subject_type", "subject_id"], name: "index_cache_comments_on_subject"
   end
 
@@ -187,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_234745) do
     t.string "uid", null: false
     t.string "privacy", default: "public_access", null: false
     t.bigint "comments_count", default: 0, null: false
+    t.text "signature", default: "", null: false
   end
 
   create_table "previous_searches", force: :cascade do |t|

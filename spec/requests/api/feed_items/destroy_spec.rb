@@ -21,7 +21,7 @@ describe "/api/feed_items/:id" do
       delete url
     end
 
-    it "destroys the feed item" do
+    it "destroys the feed item", skip_propsite: true do
       feed_item
 
       expect do

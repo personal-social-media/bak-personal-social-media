@@ -17,7 +17,7 @@ describe "DELETE /posts/:id", vcr: { record: :once } do
     delete url
   end
 
-  it "destroys the post" do
+  it "destroys the post", skip_propsite: true do
     self_peer_info
     peer_info
     post

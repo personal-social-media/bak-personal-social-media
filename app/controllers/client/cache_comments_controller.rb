@@ -38,7 +38,7 @@ module Client
       end
 
       def update_params
-        params.require(:cache_comment).permit(payload: payload_params)
+        params.require(:cache_comment).permit(:like_count, :love_count, :wow_count, payload: payload_params)
       end
 
       def current_cache_comment

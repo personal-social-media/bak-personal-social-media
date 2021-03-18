@@ -21,7 +21,8 @@ describe "/client/friendships", vcr: { record: :once } do
     it "blocks the relationship" do
       expect do
         subject
-      end.to change { peer_info.reload.friend_ship_status }.to "blocked"
+        peer_info.reload
+      end.to change { peer_info.friend_ship_status }.to "blocked"
 
       expect(response).to have_http_status(:ok)
     end

@@ -85,6 +85,10 @@ Rails.application.configure do
     Bullet.skip_html_injection = false
   end
 
+  config.after_initialize do
+    Prosopite.rails_logger = true
+  end
+
   config.public_file_server.enabled = true
   config.hosts.clear if ENV["DOCKER"]
 end

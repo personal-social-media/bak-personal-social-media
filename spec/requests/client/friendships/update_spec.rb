@@ -14,6 +14,7 @@ describe "/client/friendships", vcr: { record: :once } do
 
   subject do
     patch url, params: params
+    peer_info.reload
   end
 
   context "declined" do
@@ -21,7 +22,7 @@ describe "/client/friendships", vcr: { record: :once } do
     it "declines the friendship" do
       expect do
         subject
-      end.to change { peer_info.reload.friend_ship_status }.to "declined"
+      end.to change { peer_info.friend_ship_status }.to "declined"
       expect(response).to have_http_status(:ok)
     end
   end
@@ -31,7 +32,7 @@ describe "/client/friendships", vcr: { record: :once } do
     it "accepts the friendship" do
       expect do
         subject
-      end.to change { peer_info.reload.friend_ship_status }.to "accepted"
+      end.to change { peer_info.friend_ship_status }.to "accepted"
       expect(response).to have_http_status(:ok)
     end
   end

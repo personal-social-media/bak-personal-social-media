@@ -12,7 +12,7 @@ describe ImageAlbumsController do
       get :index
     end
 
-    it "ok" do
+    it "ok", skip_propsite: true do
       subject
 
       expect(response).to have_http_status(:ok)

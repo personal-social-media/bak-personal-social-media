@@ -5,8 +5,11 @@
 # Table name: cache_comments
 #
 #  id           :bigint           not null, primary key
+#  like_count   :integer          default(0), not null
+#  love_count   :integer          default(0), not null
 #  payload      :text             default("{}"), not null
 #  subject_type :string           not null
+#  wow_count    :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  remote_id    :bigint           not null

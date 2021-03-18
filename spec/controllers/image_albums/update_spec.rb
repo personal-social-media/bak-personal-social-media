@@ -25,7 +25,8 @@ describe ImageAlbumsController do
       image_album
       expect do
         subject
-      end.to change { image_album.reload.name }
+        image_album.reload
+      end.to change { image_album.name }
         .and change { image_album.description }
         .and change { image_album.location_name }
 

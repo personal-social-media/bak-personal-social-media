@@ -63,8 +63,9 @@ describe "/api/comments/:id" do
           subject
           expect(response).to have_http_status(:ok)
           expect(json[:comment]).to be_present
-        end.to change { comment.reload.signature }
-          .and change { comment.reload.payload }
+          comment.reload
+        end.to change { comment.signature }
+          .and change { comment.payload }
       end
     end
   end
