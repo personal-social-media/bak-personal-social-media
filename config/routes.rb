@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   end
 
-  resources :verification_results, only: %i(create update show)
+  resources :verification_results, only: %i(create update show) do
+    collection do
+      post "/search", action: :index
+    end
+  end
 
   resources :posts, except: :create do
     collection do

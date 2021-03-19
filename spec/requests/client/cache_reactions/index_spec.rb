@@ -5,12 +5,11 @@ require "rails_helper"
 describe "POST /client/cache_reactions/search" do
   let(:url) { "/client/cache_reactions/search" }
   let(:controller) { Client::CacheReactionsController }
-  let(:params) { { id: peer_info.id } }
   let(:cache_reactions) { create_list(:cache_reaction, 3) }
   let(:params) do
     {
       search: cache_reactions.map do |reaction|
-        reaction.as_json(only: %i(subject_type subject_id))
+        reaction.as_json(only: %i(payload_subject_id payload_subject_type))
       end
     }
   end

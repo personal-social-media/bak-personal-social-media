@@ -7,10 +7,16 @@ class VerificationResultsController < ApplicationController
   before_action :require_done_current_verification_result, only: :update
   before_action :require_current_verification_result, only: :show
 
+  def index
+    @verification_results = VerificationResultsService::IndexSearch.new(params.permit![:search]).call!
+  end
+
   def create
-    @verification_result = VerificationResult.create!(permitted_params)
+    @verification_result = VerificationResultsService::CreateVerificationResult.new(permitted_params).call!
 
   rescue ActiveRecord::RecordInvalid => e
+    render json: { error: e.message }, status: 422
+  rescue ActiveRecord::RecordNotFound => e
     render json: { error: e.message }, status: 422
   end
 

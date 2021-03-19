@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  verification_results: render(partial: "verification_results/verification_result", collection: @verification_results, as: :verification_result)
+}

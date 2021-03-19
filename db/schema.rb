@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_062842) do
+ActiveRecord::Schema.define(version: 2021_03_19_070037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -264,7 +264,10 @@ ActiveRecord::Schema.define(version: 2021_03_19_062842) do
     t.integer "percentage_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["subject_type", "subject_id"], name: "index_verification_results_on_subject"
+    t.string "remote_id", null: false
+    t.string "remote_type", null: false
+    t.index ["remote_id", "remote_type"], name: "index_verification_results_on_remote_id_and_remote_type", unique: true
+    t.index ["subject_type", "subject_id"], name: "index_verification_results_on_subject_type_and_subject_id", unique: true
   end
 
   create_table "video_files", force: :cascade do |t|
