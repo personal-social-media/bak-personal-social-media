@@ -27,7 +27,8 @@ describe "/api/feed_items" do
           feed_item: {
             url: "https://161.97.64.223/",
             uid: SecureRandom.hex,
-            feed_item_type: :post
+            feed_item_type: :post,
+            feed_item_id: 1
           }
         }
       end

@@ -11,7 +11,6 @@
 #  signature          :text             not null
 #  sub_comments_count :integer          default(0), not null
 #  subject_type       :string           not null
-#  uid                :string           not null
 #  wow_count          :bigint           default(0), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

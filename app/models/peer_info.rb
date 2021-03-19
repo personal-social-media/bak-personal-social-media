@@ -61,13 +61,19 @@ class PeerInfo < ApplicationRecord
   validates :about, allow_blank: true, length: { maximum: 2000 }
   validates :signature, presence: true if Rails.env.production?
   validate :is_public_key_for_real, on: :create, if: -> { friend_ship_status != "self" } if Rails.env.production? && ENV["DEVELOPER"].blank?
-  validate :validate_signature if Rails.env.production?
+  if Rails.env.production?
+    validate :validate_signature
+    validate :validate_public_key, on: :create
+  end
 
   has_many :feed_items, dependent: :destroy
   has_many :reactions, dependent: :destroy
   has_many :conversations, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :previous_searches, dependent: :destroy
+  has_many :cache_comments, dependent: :destroy
+  has_many :cache_reactions, dependent: :destroy
+  has_many :verification_results, dependent: :destroy
   serialize :avatars, JSON
 
   def fetch_more_information
@@ -89,5 +95,11 @@ class PeerInfo < ApplicationRecord
 
     def validate_signature
       errors.add(:signature, :invalid) unless PeerInfoService::ValidateSignature.new(self).call!
+    end
+
+    def validate_public_key
+      self.public_key = OpenSSL::PKey::RSA.new(public_key).to_s
+    rescue OpenSSL::PKey::RSAError
+      errors.add(:public_key, :invalid)
     end
 end

@@ -17,6 +17,7 @@ module Api
         next if f.persisted?
         f.url = feed_item_params[:url]
         f.feed_item_type = feed_item_params[:feed_item_type]
+        f.feed_item_id = feed_item_params[:feed_item_id]
         f.save!
       end
 
@@ -36,7 +37,7 @@ module Api
 
     private
       memoize def feed_item_params
-        params.require(:feed_item).permit(:feed_item_type, :uid, :url)
+        params.require(:feed_item).permit(:feed_item_type, :uid, :url, :feed_item_id)
       end
 
       def require_current_feed_item

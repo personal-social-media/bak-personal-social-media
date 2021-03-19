@@ -13,10 +13,14 @@
 #  mood           :string
 #  privacy        :string           default("public_access"), not null
 #  signature      :text             default(""), not null
-#  uid            :string           not null
+#  uid            :text             not null
 #  wow_count      :bigint           default(0), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#
+# Indexes
+#
+#  index_posts_on_uid  (uid) UNIQUE
 #
 require "rails_helper"
 

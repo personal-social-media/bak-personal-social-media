@@ -5,12 +5,16 @@ require "rails_helper"
 describe "/verification_results" do
   let(:controller) { VerificationResultsController }
   let(:url) { "/verification_results" }
-  let(:feed_item) { create(:feed_item) }
+  let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
+  let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
+  let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
+
   let(:params) do
     {
       verification_result: {
-        subject_id: feed_item.id,
-        subject_type: "FeedItem"
+        remote_id: uid,
+        remote_type: :post,
+        peer_info_id: peer_info.id
       }
     }
   end
@@ -25,6 +29,8 @@ describe "/verification_results" do
   end
 
   it "creates a new verification_result" do
+    feed_item
+
     expect do
       subject
       expect(response).to have_http_status(:ok)

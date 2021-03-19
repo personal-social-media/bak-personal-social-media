@@ -40,7 +40,6 @@ module CacheCommentsService
         update_params[:payload]
       end
 
-      delegate :subject, to: :cache_comment
-      delegate :peer_info, to: :subject
+      delegate :peer_info, to: :cache_comment
   end
 end

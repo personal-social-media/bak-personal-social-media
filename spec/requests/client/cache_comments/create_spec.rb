@@ -9,6 +9,7 @@ describe "POST /client/cache_comments", vcr: :record_once do
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
   let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
+  let(:new_cache_comment) { CacheComment.last }
 
   let(:payload) do
     {
@@ -39,9 +40,10 @@ describe "POST /client/cache_comments", vcr: :record_once do
   let(:params) do
     {
       cache_comment: {
-        subject_type: "FeedItem",
-        subject_id: feed_item.id,
-        payload: payload
+        payload_subject_type: :post,
+        payload_subject_id: uid,
+        payload: payload,
+        peer_info_id: peer_info.id
       }
     }
   end
@@ -58,6 +60,8 @@ describe "POST /client/cache_comments", vcr: :record_once do
     expect do
       subject
       expect(response).to have_http_status(:ok)
+
+      expect(new_cache_comment.subject).to be_present
     end.to change { CacheComment.count }.by(1)
   end
 end

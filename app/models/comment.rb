@@ -11,7 +11,6 @@
 #  signature          :text             not null
 #  sub_comments_count :integer          default(0), not null
 #  subject_type       :string           not null
-#  uid                :string           not null
 #  wow_count          :bigint           default(0), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -31,7 +30,6 @@
 #  fk_rails_...  (peer_info_id => peer_infos.id)
 #
 class Comment < ApplicationRecord
-  include UidConcern
   belongs_to :peer_info
   belongs_to :parent_comment, class_name: "Comment", counter_cache: true, optional: true
   belongs_to :subject, polymorphic: true, counter_cache: true

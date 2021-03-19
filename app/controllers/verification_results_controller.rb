@@ -33,7 +33,7 @@ class VerificationResultsController < ApplicationController
 
   private
     def permitted_params
-      params.require(:verification_result).permit(:subject_type, :subject_id)
+      params.require(:verification_result).permit(:remote_type, :remote_id, :peer_info_id)
     end
 
     memoize def done_current_verification_result

@@ -9,26 +9,24 @@ module VerificationResultsService
     end
 
     def call!
-      VerificationResult.create!(subject: subject, remote_id: remote_id, remote_type: remote_type)
+      VerificationResult.create!(subject: subject, remote_id: remote_id, remote_type: remote_type, peer_info: peer_info)
     end
 
     private
       memoize def subject
-        if params[:subject_type] == "FeedItem"
-          FeedItem.find_by!(id: params[:subject_id])
-        end
+        FeedItem.find_by(uid: remote_id) if %w(post story).include?(remote_type)
       end
 
       def remote_id
-        if subject.is_a?(FeedItem)
-          subject.uid
-        end
+        params[:remote_id]
       end
 
       def remote_type
-        if subject.is_a?(FeedItem)
-          subject.feed_item_type
-        end
+        params[:remote_type]
+      end
+
+      def peer_info
+        PeerInfo.find_by!(id: params[:peer_info_id])
       end
   end
 end

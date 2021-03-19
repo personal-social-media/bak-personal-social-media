@@ -2,6 +2,7 @@
 
 module CacheReactionsService
   class UpdateCacheReaction
+    extend Memoist
     class Error < Exception; end
     include IdentityService::SignedRequest
 
@@ -35,7 +36,6 @@ module CacheReactionsService
         "https://#{peer_info.ip}/api/reactions/#{cache_reaction.remote_id}"
       end
 
-      delegate :subject, to: :cache_reaction
-      delegate :peer_info, to: :subject
+      delegate :peer_info, to: :cache_reaction
   end
 end

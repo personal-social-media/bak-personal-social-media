@@ -16,8 +16,8 @@ module Client
       head :ok
     rescue ActiveRecord::RecordInvalid, CacheReactionsService::CreateCacheReaction::Error, TimeoutError => e
       render json: { error: e.message }, status: 422
-    rescue ActiveRecord::RecordNotFound
-      render json: { error: "subject not found" }, status: 404
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { error: e.message }, status: 404
     end
 
     def update
@@ -38,7 +38,7 @@ module Client
 
     private
       def create_params
-        params.require(:cache_reaction).permit(:subject_id, :subject_type, :reaction_type)
+        params.require(:cache_reaction).permit(:payload_subject_type, :payload_subject_id, :reaction_type, :peer_info_id)
       end
 
       def update_params

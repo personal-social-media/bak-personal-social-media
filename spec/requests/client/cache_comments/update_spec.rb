@@ -9,7 +9,7 @@ describe "PATCH /client/cache_comments/:id", vcr: :record_once do
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
   let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
-  let(:cache_comment) { create(:cache_comment, subject: feed_item, remote_id: 1) }
+  let(:cache_comment) { create(:cache_comment, subject: feed_item, remote_id: 1, peer_info: peer_info) }
 
   let(:payload) do
     {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_070037) do
+ActiveRecord::Schema.define(version: 2021_03_19_204347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
   end
 
   create_table "cache_comments", force: :cascade do |t|
-    t.string "subject_type", null: false
-    t.bigint "subject_id", null: false
+    t.string "subject_type"
+    t.bigint "subject_id"
     t.text "payload", default: "{}", null: false
     t.bigint "remote_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -50,20 +50,27 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.integer "like_count", default: 0, null: false
     t.integer "love_count", default: 0, null: false
     t.integer "wow_count", default: 0, null: false
-    t.index ["subject_type", "subject_id"], name: "index_cache_comments_on_subject"
+    t.string "payload_subject_type", null: false
+    t.string "payload_subject_id", null: false
+    t.bigint "peer_info_id", null: false
+    t.index ["payload_subject_id", "payload_subject_type"], name: "index_cache_comments_on_payload", unique: true
+    t.index ["peer_info_id"], name: "index_cache_comments_on_peer_info_id"
+    t.index ["subject_id", "subject_type"], name: "index_cache_comments_on_subject_id_and_subject_type", unique: true, where: "((subject_id IS NOT NULL) AND (subject_type IS NOT NULL))"
   end
 
   create_table "cache_reactions", force: :cascade do |t|
     t.string "reaction_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "subject_type", null: false
-    t.bigint "subject_id", null: false
+    t.string "subject_type"
+    t.bigint "subject_id"
     t.bigint "remote_id", null: false
     t.string "payload_subject_type", default: "", null: false
     t.string "payload_subject_id", default: "", null: false
+    t.bigint "peer_info_id", null: false
     t.index ["payload_subject_type", "payload_subject_id"], name: "payload_index", unique: true
-    t.index ["subject_type", "subject_id"], name: "index_cache_reactions_on_subject", unique: true
+    t.index ["peer_info_id"], name: "index_cache_reactions_on_peer_info_id"
+    t.index ["subject_id", "subject_type"], name: "index_cache_reactions_on_subject_id_and_subject_type", unique: true, where: "((subject_id IS NOT NULL) AND (subject_type IS NOT NULL))"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -78,7 +85,6 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.bigint "like_count", default: 0, null: false
     t.bigint "love_count", default: 0, null: false
     t.bigint "wow_count", default: 0, null: false
-    t.string "uid", null: false
     t.text "signature", null: false
     t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
     t.index ["peer_info_id"], name: "index_comments_on_peer_info_id"
@@ -97,10 +103,12 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.string "feed_item_type", null: false
     t.text "url", null: false
     t.bigint "peer_info_id", null: false
-    t.string "uid"
+    t.text "uid", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["peer_info_id", "uid"], name: "index_feed_items_on_peer_info_id_and_uid", unique: true
+    t.bigint "feed_item_id", null: false
+    t.index ["feed_item_type", "feed_item_id", "peer_info_id"], name: "feed_items_index_feed_item", unique: true
+    t.index ["uid"], name: "index_feed_items_on_uid", unique: true
     t.index ["url"], name: "index_feed_items_on_url", unique: true
   end
 
@@ -190,10 +198,11 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.bigint "like_count", default: 0, null: false
     t.bigint "love_count", default: 0, null: false
     t.bigint "wow_count", default: 0, null: false
-    t.string "uid", null: false
+    t.text "uid", null: false
     t.string "privacy", default: "public_access", null: false
     t.bigint "comments_count", default: 0, null: false
     t.text "signature", default: "", null: false
+    t.index ["uid"], name: "index_posts_on_uid", unique: true
   end
 
   create_table "previous_searches", force: :cascade do |t|
@@ -243,8 +252,9 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.bigint "like_count", default: 0, null: false
     t.bigint "love_count", default: 0, null: false
     t.bigint "wow_count", default: 0, null: false
-    t.string "uid", null: false
+    t.text "uid", null: false
     t.string "privacy", default: "public_access", null: false
+    t.index ["uid"], name: "index_stories_on_uid", unique: true
   end
 
   create_table "unblock_requests", force: :cascade do |t|
@@ -257,8 +267,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
   end
 
   create_table "verification_results", force: :cascade do |t|
-    t.string "subject_type", null: false
-    t.bigint "subject_id", null: false
+    t.string "subject_type"
+    t.bigint "subject_id"
     t.text "result", default: "{}", null: false
     t.string "status", default: "running", null: false
     t.integer "percentage_status", default: 0, null: false
@@ -266,8 +276,10 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "remote_id", null: false
     t.string "remote_type", null: false
+    t.bigint "peer_info_id", null: false
+    t.index ["peer_info_id"], name: "index_verification_results_on_peer_info_id"
     t.index ["remote_id", "remote_type"], name: "index_verification_results_on_remote_id_and_remote_type", unique: true
-    t.index ["subject_type", "subject_id"], name: "index_verification_results_on_subject_type_and_subject_id", unique: true
+    t.index ["subject_id", "subject_type"], name: "index_verification_results_on_subject_id_and_subject_type", unique: true, where: "((subject_id IS NOT NULL) AND (subject_type IS NOT NULL))"
   end
 
   create_table "video_files", force: :cascade do |t|
@@ -285,6 +297,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
     t.string "md5_checksum"
   end
 
+  add_foreign_key "cache_comments", "peer_infos"
+  add_foreign_key "cache_reactions", "peer_infos"
   add_foreign_key "comments", "comments", column: "parent_comment_id"
   add_foreign_key "comments", "peer_infos"
   add_foreign_key "conversations", "peer_infos"
@@ -295,4 +309,5 @@ ActiveRecord::Schema.define(version: 2021_03_19_070037) do
   add_foreign_key "reactions", "peer_infos"
   add_foreign_key "unblock_requests", "peer_infos"
   add_foreign_key "unblock_requests", "peer_infos", column: "peer_info_requester_id"
+  add_foreign_key "verification_results", "peer_infos"
 end

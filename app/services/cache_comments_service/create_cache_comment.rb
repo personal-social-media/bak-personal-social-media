@@ -13,14 +13,14 @@ module CacheCommentsService
 
     def call!
       return if existing_record.present?
-      raise Error, "subject not found" if subject.blank?
 
       response = HTTP.timeout(timeout).headers(signed_headers(url)).post(url, json: body)
       raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
 
       remote_id = JSON.parse(response.body.to_s).dig("comment", "id")
 
-      CacheComment.create!(subject: subject, payload: payload, remote_id: remote_id)
+      CacheComment.create!(subject: subject, payload: payload, remote_id: remote_id, peer_info: peer_info,
+                           payload_subject_type: payload_subject_type, payload_subject_id: payload_subject_id)
     end
 
     private
@@ -45,29 +45,19 @@ module CacheCommentsService
       end
 
       def existing_record
-        CacheComment.find_by(subject_id: create_params[:subject_id], subject_type: create_params[:subject_type])
+        CacheComment.find_by(payload_subject_id: payload_subject_id, payload_subject_type: payload_subject_type)
       end
 
       memoize def subject
-        model.find_by!(id: create_params[:subject_id])
-      end
-
-      memoize def model
-        raise Error, "invalid subject type" unless %w(FeedItem).include?(create_params[:subject_type])
-
-        create_params[:subject_type].constantize
+        FeedItem.find_by(uid: payload_subject_id) if %w(post story).include?(payload_subject_type)
       end
 
       def payload_subject_type
-        if subject.is_a?(FeedItem)
-          subject.feed_item_type
-        end
+        create_params[:payload_subject_type]
       end
 
       def payload_subject_id
-        if subject.is_a?(FeedItem)
-          subject.uid
-        end
+        create_params[:payload_subject_id]
       end
 
       def payload
@@ -78,6 +68,8 @@ module CacheCommentsService
         create_params[:parent_comment_id]
       end
 
-      delegate :peer_info, to: :subject
+      memoize def peer_info
+        PeerInfo.find_by!(id: create_params[:peer_info_id])
+      end
   end
 end

@@ -34,7 +34,7 @@ module Client
 
     private
       def create_params
-        params.require(:cache_comment).permit(:subject_id, :subject_type, :parent_comment_id, payload: payload_params)
+        params.require(:cache_comment).permit(:payload_subject_id, :payload_subject_type, :peer_info_id, payload: payload_params)
       end
 
       def update_params

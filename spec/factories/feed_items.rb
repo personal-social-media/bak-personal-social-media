@@ -6,16 +6,18 @@
 #
 #  id             :bigint           not null, primary key
 #  feed_item_type :string           not null
-#  uid            :string
+#  uid            :text             not null
 #  url            :text             not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  feed_item_id   :bigint           not null
 #  peer_info_id   :bigint           not null
 #
 # Indexes
 #
-#  index_feed_items_on_peer_info_id_and_uid  (peer_info_id,uid) UNIQUE
-#  index_feed_items_on_url                   (url) UNIQUE
+#  feed_items_index_feed_item  (feed_item_type,feed_item_id,peer_info_id) UNIQUE
+#  index_feed_items_on_uid     (uid) UNIQUE
+#  index_feed_items_on_url     (url) UNIQUE
 #
 # Foreign Keys
 #
@@ -25,6 +27,9 @@ FactoryBot.define do
   factory :feed_item do
     feed_item_type { :post }
     uid { SecureRandom.hex }
+    sequence :feed_item_id do |n|
+      n
+    end
 
     before(:create) do |r|
       r.peer_info ||= create(:peer_info)

@@ -26,7 +26,6 @@ module CacheCommentsService
         "https://#{peer_info.ip}/api/comments/#{cache_comment.remote_id}"
       end
 
-      delegate :subject, to: :cache_comment
-      delegate :peer_info, to: :subject
+      delegate :peer_info, to: :cache_comment
   end
 end
