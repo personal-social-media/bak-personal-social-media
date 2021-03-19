@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_194215) do
+ActiveRecord::Schema.define(version: 2021_03_19_062842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -217,15 +217,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_194215) do
     t.text "recovery_key_plain"
   end
 
-  create_table "proof_reactions_tests", force: :cascade do |t|
-    t.string "subject_type", null: false
-    t.bigint "subject_id", null: false
-    t.text "result", default: "{}", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["subject_type", "subject_id"], name: "index_proof_reactions_tests_on_subject"
-  end
-
   create_table "reactions", force: :cascade do |t|
     t.bigint "peer_info_id"
     t.string "reaction_type", null: false
@@ -263,6 +254,17 @@ ActiveRecord::Schema.define(version: 2021_03_18_194215) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["peer_info_id"], name: "index_unblock_requests_on_peer_info_id"
     t.index ["peer_info_requester_id"], name: "index_unblock_requests_on_peer_info_requester_id"
+  end
+
+  create_table "verification_results", force: :cascade do |t|
+    t.string "subject_type", null: false
+    t.bigint "subject_id", null: false
+    t.text "result", default: "{}", null: false
+    t.string "status", default: "running", null: false
+    t.integer "percentage_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_type", "subject_id"], name: "index_verification_results_on_subject"
   end
 
   create_table "video_files", force: :cascade do |t|

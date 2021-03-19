@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   end
 
+  resources :verification_results, only: %i(create update show)
+
   resources :posts, except: :create do
     collection do
       post "/upload", action: :create

@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  verification_result: render(partial: "verification_results/verification_result", locals: { verification_result: @verification_result })
+}

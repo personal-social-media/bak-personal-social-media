@@ -8,7 +8,7 @@ describe "/api/reactions/proof" do
 
   let(:url) { "/api/reactions/proof" }
   let(:cache_reaction) { create(:cache_reaction) }
-  let(:peer_info) { create(:peer_info, friend_ship_status: :accepted) }
+  let(:peer_info) { create(:peer_info) }
   let(:params) do
     {
       payload_subject_id: cache_reaction.payload_subject_id,
