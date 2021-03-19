@@ -12,11 +12,14 @@ describe PeerInfoWorker::Ping, vcr: { record: :once } do
 
   it "pings the server" do
     peer_info
-    subject
+    expect do
+      subject
+      peer_info.reload
+    end.to change { peer_info.server_last_seen }
 
     expect(requests.size).to eq 1
     requests.each do |r|
-      subject.check_response(r)
+      subject.check_response(r[:request])
     end
   end
 end
