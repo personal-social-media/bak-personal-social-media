@@ -20,6 +20,7 @@ end
 # end default rails
 
 group :development do
+  gem "active_record_doctor"
   gem "annotate", "~> 3.1", ">= 3.1.1"
   gem "better_errors", "~> 2.9", ">= 2.9.1"
   gem "binding_of_caller", "~> 1.0"
