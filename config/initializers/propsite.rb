@@ -1,4 +1,4 @@
-return if Rails.env.production?
+return unless Rails.env.development?
 
 ActionController::Base.instance_exec do
   before_action do

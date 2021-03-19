@@ -22,6 +22,10 @@ module Api
 
       head :ok
     rescue ActiveRecord::RecordInvalid => e
+      if e.record.errors.first.type == :TOO_MANY
+        head :ok
+      end
+
       render json: { error: e.message }, status: 422
     end
 

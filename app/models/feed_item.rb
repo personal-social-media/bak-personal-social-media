@@ -35,9 +35,14 @@ class FeedItem < ApplicationRecord
   end
 
   validate :url_matches_peer unless Rails.env.test?
+  validate :limit_feed_item_types # , on: :create
 
   def url_matches_peer
     host = URI.parse(url).host
-    errors.add(:url, "Url mismatch with peer info url") unless host == peer_info.ip
+    errors.add(:url, :invalid, message: "Url mismatch with peer info url") unless host == peer_info.ip
+  end
+
+  def limit_feed_item_types
+    FeedItemsService::LimitFeedItemTypes.new(self).call!
   end
 end

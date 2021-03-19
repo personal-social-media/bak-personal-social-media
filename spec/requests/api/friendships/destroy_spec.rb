@@ -6,7 +6,7 @@ describe "/api/friendship" do
   include ExternalApiHelpers
   let(:controller) { Api::FriendshipsController }
 
-  describe "PUT /api/friendship" do
+  describe "DELETE /api/friendship", skip_propsite: true do
     let(:url) { "/api/friendship" }
     let(:peer_info) { create(:peer_info) }
 

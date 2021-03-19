@@ -79,7 +79,7 @@ class PeerInfo < ApplicationRecord
   end
 
   def is_public_key_for_real
-    errors.add(:public_key, "Fake public key") unless IdentityService::CheckPublicKey.new(public_key, ip).call!
+    errors.add(:public_key, :invalid, message: "Fake public key") unless IdentityService::CheckPublicKey.new(public_key, ip).call!
   end
 
   private
@@ -88,6 +88,6 @@ class PeerInfo < ApplicationRecord
     end
 
     def validate_signature
-      errors.add(:signature, "invalid") unless PeerInfoService::ValidateSignature.new(self).call!
+      errors.add(:signature, :invalid) unless PeerInfoService::ValidateSignature.new(self).call!
     end
 end

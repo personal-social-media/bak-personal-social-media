@@ -41,6 +41,6 @@ class Comment < ApplicationRecord
 
   private
     def validate_signature
-      errors.add(:payload, "Invalid payload") unless PeerInfoService::ValidateSignedContent.new(peer_info, payload.to_json, signature, decode: true).call!
+      errors.add(:payload, :invalid, message: "Invalid payload") unless PeerInfoService::ValidateSignedContent.new(peer_info, payload.to_json, signature, decode: true).call!
     end
 end
