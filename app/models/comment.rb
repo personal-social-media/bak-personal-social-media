@@ -34,11 +34,17 @@ class Comment < ApplicationRecord
   belongs_to :parent_comment, class_name: "Comment", counter_cache: true, optional: true
   belongs_to :subject, polymorphic: true, counter_cache: true
   validate :validate_signature, if: -> { payload_changed? || signature_changed? }
+  validate :validate_parent, on: :create
 
   serialize :payload, JSON
 
   private
     def validate_signature
       errors.add(:payload, :invalid, message: "Invalid payload") unless PeerInfoService::ValidateSignedContent.new(peer_info, payload.to_json, signature, decode: true).call!
+    end
+
+    def validate_parent
+      return if parent_comment.blank? || parent_comment.parent_comment_id.blank?
+      errors.add(:parent_comment_id, :invalid, message: "too deep")
     end
 end

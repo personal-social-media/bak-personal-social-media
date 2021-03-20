@@ -26,6 +26,7 @@ class Reaction < ApplicationRecord
   belongs_to :peer_info
   str_enum :reaction_type, %i(like love wow)
   after_create :increment_count!
+  after_destroy :decrement_count!
   before_update :update_count!, if: -> { reaction_type_changed? }
 
   validates :subject_id, uniqueness: { scope: [:subject_type, :peer_info_id] }
@@ -40,5 +41,9 @@ class Reaction < ApplicationRecord
         subject.decrement!("#{reaction_type_was}_count")
         subject.increment!("#{reaction_type}_count")
       end
+    end
+
+    def decrement_count!
+      subject.decrement!("#{reaction_type_was}_count")
     end
 end
