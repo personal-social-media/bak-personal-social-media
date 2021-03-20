@@ -16,8 +16,8 @@ class ImageFilePresenter
     {
       url: url_for_device(i),
       size: {
-        width: metadata["image_width"],
-        height: metadata["image_height"]
+        width: metadata.try(:[], "image_width"),
+        height: metadata.try(:[], "image_height")
       }
     }
   end
