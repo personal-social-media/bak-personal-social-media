@@ -11,9 +11,8 @@ module Client
     end
 
     def create
-      CacheReactionsService::CreateCacheReaction.new(create_params).call!
+      @cache_reaction = CacheReactionsService::CreateCacheReaction.new(create_params).call!
 
-      head :ok
     rescue ActiveRecord::RecordInvalid, CacheReactionsService::CreateCacheReaction::Error, TimeoutError => e
       render json: { error: e.message }, status: 422
     rescue ActiveRecord::RecordNotFound => e
@@ -23,7 +22,7 @@ module Client
     def update
       CacheReactionsService::UpdateCacheReaction.new(update_params, current_cache_reaction).call!
 
-      head :ok
+      @cache_reaction = current_cache_reaction
     rescue ActiveRecord::RecordInvalid, CacheReactionsService::UpdateCacheReaction::Error, TimeoutError => e
       render json: { error: e.message }, status: 422
     end

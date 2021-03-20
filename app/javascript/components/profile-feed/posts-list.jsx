@@ -7,7 +7,7 @@ import FeedPost from '../feed/post';
 
 export default function ProfileFeedPostsList({remoteAxios, peerInfo}) {
   const state = useState(profileFeedState);
-  const posts = state.posts.get();
+  const posts = state.posts;
   const postsCount = state.postsCount.get();
 
   const FeedPostWrapper = useCallback((props) => {

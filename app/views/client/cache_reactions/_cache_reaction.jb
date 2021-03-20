@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-fields = %i(id reaction_type subject_type subject_id remote_id)
+fields = %i(id reaction_type subject_type subject_id remote_id payload_subject_type payload_subject_id)
 
 cache_reaction.as_json(only: fields)

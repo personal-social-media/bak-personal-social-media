@@ -10,3 +10,6 @@ Bundler/DuplicatedGem:
 
 Bundler/OrderedGems:
   Enabled: true
+
+Lint/Debugger:
+  Enabled: true

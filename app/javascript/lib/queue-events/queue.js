@@ -1,6 +1,5 @@
 export default class EventQueue {
   constructor(itemsLimit, runNowTimeout = 100, runFn) {
-    this.cache = {};
     this.queue = [];
     this.itemsLimit = itemsLimit;
     this.runFn = runFn;
@@ -8,11 +7,6 @@ export default class EventQueue {
   }
 
   push(data) {
-    if (this.cache[data.item.uid]) {
-      return;
-    }
-    this.cache[data.item.uid] = '_PLACEHOLDER_';
-
     this.queue.push(data);
   }
 

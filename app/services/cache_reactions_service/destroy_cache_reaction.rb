@@ -23,7 +23,11 @@ module CacheReactionsService
       end
 
       def url
-        "https://#{peer_info.ip}/api/reactions/#{cache_reaction.remote_id}"
+        "#{local_request.scheme}://#{peer_info.ip}#{local_request.port}/api/reactions/#{cache_reaction.remote_id}"
+      end
+
+      def local_request
+        @local_request ||= PeerInfoService::LocalRequest.new(peer_info)
       end
 
       delegate :peer_info, to: :cache_reaction

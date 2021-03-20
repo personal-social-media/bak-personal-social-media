@@ -35,6 +35,7 @@ describe "POST /client/cache_reactions", vcr: :record_once do
     expect do
       subject
       expect(response).to have_http_status(:ok)
+      expect(json[:cache_reaction]).to be_present
 
       expect(new_cache_reaction.subject).to be_present
     end.to change { CacheReaction.count }.by(1)

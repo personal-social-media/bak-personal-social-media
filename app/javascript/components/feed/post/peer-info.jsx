@@ -4,7 +4,7 @@ import UtilsDateTooltip from '../../utils/date/tooltip';
 
 export default function FeedPostPeerInfo({peerInfo, post}) {
   const {avatars, username} = peerInfo;
-  const {createdAt: createdAtPost} = post;
+  const createdAtPost = post.createdAt.get();
 
   return (
     <div className="flex items-center">

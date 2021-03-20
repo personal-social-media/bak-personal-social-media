@@ -31,6 +31,8 @@ describe "PATCH /client/cache_reactions/:id", vcr: :record_once do
     expect do
       subject
       expect(response).to have_http_status(:ok)
+
+      expect(json[:cache_reaction]).to be_present
     end.to change { cache_reaction.reload.reaction_type }.from("like").to("love")
   end
 end

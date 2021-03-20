@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  cache_reaction: render(partial: "client/cache_reactions/cache_reaction", locals: { cache_reaction: @cache_reaction })
+}

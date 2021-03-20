@@ -2,7 +2,8 @@ import mergeStyles from '../../../lib/utils/string/merge-styles';
 
 export default function FeedItemPostGallerySingleImage({images}) {
   const image = images[0];
-  const {size: imageSize, url} = image;
+  const imageSize = image.size.get();
+  const url = image.url.get();
   const {width, height} = imageSize;
 
   let size = 'square'; let containerSize; let objectFit;

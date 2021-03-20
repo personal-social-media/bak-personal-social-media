@@ -21,5 +21,7 @@ else
   plugin :tmp_restart
   if ENV["RAILS_ENV"] == "test"
     workers(3)
+  else
+    workers(2)
   end
 end

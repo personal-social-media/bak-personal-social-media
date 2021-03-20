@@ -39,7 +39,11 @@ module CacheReactionsService
       end
 
       def url
-        "https://#{peer_info.ip}/api/reactions"
+        "#{local_request.scheme}://#{peer_info.ip}#{local_request.port}/api/reactions"
+      end
+
+      def local_request
+        @local_request ||= PeerInfoService::LocalRequest.new(peer_info)
       end
 
       def existing_record
