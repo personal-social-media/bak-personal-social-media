@@ -33,6 +33,7 @@ class Comment < ApplicationRecord
   belongs_to :peer_info
   belongs_to :parent_comment, class_name: "Comment", counter_cache: true, optional: true
   belongs_to :subject, polymorphic: true, counter_cache: true
+  has_many :notifications, as: :subject, dependent: :delete_all
   validate :validate_signature, if: -> { payload_changed? || signature_changed? }
   validate :validate_parent, on: :create
 

@@ -18,7 +18,14 @@ module SyncService
     end
 
     def check_response(request)
-      raise ResponseError, "#{request.response.code} #{request.url}" if request.response.code > 399
+      if request.response.code > 399
+        if Rails.env.production?
+          options = request.options
+          HttpWorker::RetryTyphoeusRequest.perform_in(request.url, 10.minutes, options[:method], options[:body], options[:headers])
+        else
+          raise ResponseError, "#{request.response.code} #{request.url}"
+        end
+      end
     end
   end
 end

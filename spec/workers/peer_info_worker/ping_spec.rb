@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe PeerInfoWorker::Ping, vcr: { record: :once } do
   let(:peer_info) { create(:peer_info, ip: "161.97.64.223", friend_ship_status: :accepted) }
-  let(:requests) { subject.requests }
+  let(:requests) { subject.peer_requests }
 
   subject do
     described_class.new.perform(true)

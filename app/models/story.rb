@@ -21,4 +21,5 @@
 class Story < ApplicationRecord
   include UidConcern
   include PrivacyConcern
+  has_many :notifications, as: :subject, dependent: :delete_all
 end

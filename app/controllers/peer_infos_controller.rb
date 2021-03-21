@@ -8,7 +8,7 @@ class PeerInfosController < ActionController::Base
 
   def index
     @peer_infos = PeerInfoService::Search.new(query: scoped_query, page: params[:page], limit: 10,
-                                              name_like: params[:name_like],
+                                              name_like: params[:name_like], friend_ship_status: params[:friend_ship_status],
                                               ids: params[:peer_ids]).call!
   end
 

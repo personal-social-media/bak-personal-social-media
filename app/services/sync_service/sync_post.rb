@@ -17,6 +17,8 @@ module SyncService
       return unless Rails.env.test?
 
       requests.each { |r| check_response(r) }
+
+      Notification.create!(subject: post, notification_type: :new_post)
     end
 
     private

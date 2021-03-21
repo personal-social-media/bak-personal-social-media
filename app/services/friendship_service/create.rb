@@ -22,6 +22,8 @@ module FriendshipService
         unknown.update_attribute(:friend_ship_status, :pending_accept)
         unknown.fetch_more_information
       end
+
+      Notification.create!(subject: current_peer_info, notification_type: :new_friendship_request)
     end
 
     private

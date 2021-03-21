@@ -2,5 +2,6 @@
 :queues:
   - default
   - files
+  - http_retries
 production:
   :concurrency: 5

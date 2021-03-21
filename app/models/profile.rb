@@ -24,6 +24,7 @@ class Profile < ApplicationRecord
   validates :gender, presence: true
   validates :country_code, inclusion: { in: ISO3166::Country.translations.keys }, if: -> { country_code.present? }
   validates :about, allow_blank: true, length: { maximum: 2000 }
+  has_many :notifications, as: :subject, dependent: :delete_all
   has_one :profile_picture_attachment, -> { where(attachment_type: "ImageFile") }, class_name: "AttachedFile", dependent: :destroy, as: :subject
   has_one :profile_video_attachment, -> { where(attachment_type: "VideoFile") }, class_name: "AttachedFile", dependent: :destroy, as: :subject
   has_one :profile_image, through: :profile_picture_attachment, source_type: "ImageFile", source: :attachment
@@ -35,6 +36,7 @@ class Profile < ApplicationRecord
 
   before_validation :regenerate_recovery_key, on: :create
   after_create :create_peer_info
+  after_create :create_welcome_notification
 
   memoize def peer_info
     PeerInfo.find_by(friend_ship_status: :self)
@@ -58,5 +60,9 @@ class Profile < ApplicationRecord
   private
     def create_peer_info
       ProfileService::CreatePeerInfo.new(self).call!
+    end
+
+    def create_welcome_notification
+      Notification.create!(subject: self, notification_type: :profile_welcome)
     end
 end

@@ -2,16 +2,16 @@
 
 module SyncService
   class PingPeers < BaseSync
-    attr_reader :requests, :time
+    attr_reader :peer_requests, :time
 
     def initialize
       @time = Time.zone.now
-      @requests = []
+      @peer_requests = []
     end
 
     def call!
       PeerInfo.not_blocked.not_self.find_in_batches(batch_size: 200) do |group|
-        handle_group(group)
+        @peer_requests += handle_group(group)
         update_peer_infos!
       end
     end
@@ -19,7 +19,7 @@ module SyncService
     private
       def handle_group(group)
         hydra = Typhoeus::Hydra.hydra
-        @requests += group.map do |peer_info|
+        requests = group.map do |peer_info|
           url = "https://#{peer_info.ip}/identities/ping"
           request = Typhoeus::Request.new(url, method: :post, headers: default_headers(url)).tap do |r|
             hydra.queue(r)
@@ -30,11 +30,12 @@ module SyncService
           }
         end
 
-        hydra.run
+        hydra.run if requests.present?
+        requests
       end
 
       def update_peer_infos!
-        valid_requests = requests.select do |r|
+        valid_requests = peer_requests.select do |r|
           r[:request].response.code < 400
         end
 

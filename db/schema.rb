@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_204347) do
+ActiveRecord::Schema.define(version: 2021_03_21_055725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -157,6 +157,18 @@ ActiveRecord::Schema.define(version: 2021_03_19_204347) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "notification_type", null: false
+    t.boolean "seen", default: false, null: false
+    t.text "metadata", default: "{}", null: false
+    t.string "subject_type", null: false
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+    t.index ["updated_at"], name: "index_notifications_on_updated_at"
   end
 
   create_table "peer_infos", force: :cascade do |t|

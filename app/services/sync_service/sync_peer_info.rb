@@ -2,10 +2,11 @@
 
 module SyncService
   class SyncPeerInfo < BaseSync
-    attr_reader :peer_info
+    attr_reader :peer_info, :friend_requests
 
     def initialize(peer_info)
       @peer_info = peer_info
+      @friend_requests = []
     end
 
     def call!
@@ -18,7 +19,11 @@ module SyncService
       add_friend_fields
 
       PeerInfo.not_blocked.not_self.find_in_batches(batch_size: 200) do |group|
-        handle_group(group)
+        @friend_requests += handle_group(group)
+      end
+
+      friend_requests.each do |request|
+        check_response(request)
       end
     end
 
@@ -44,7 +49,7 @@ module SyncService
           end
         end
 
-        hydra.run
+        hydra.run if requests.present?
         requests
       end
 
