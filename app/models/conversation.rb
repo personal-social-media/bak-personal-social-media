@@ -6,6 +6,8 @@
 #
 #  id               :bigint           not null, primary key
 #  has_new_messages :boolean          default(FALSE), not null
+#  is_typing        :boolean          default(FALSE), not null
+#  messages_count   :bigint           default(0), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  peer_info_id     :bigint           not null
@@ -21,4 +23,5 @@
 class Conversation < ApplicationRecord
   belongs_to :peer_info
   has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 end

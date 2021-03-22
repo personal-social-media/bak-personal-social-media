@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+fields = %i(id is_typing)
+
+conversation.as_json(only: fields)

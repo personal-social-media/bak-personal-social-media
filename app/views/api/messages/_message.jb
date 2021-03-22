@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+fields = %i(id)
+
+message.as_json(only: fields)

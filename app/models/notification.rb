@@ -20,6 +20,6 @@
 #
 class Notification < ApplicationRecord
   belongs_to :subject, polymorphic: true
-  str_enum :notification_type, %i(profile_welcome new_post new_friendship_request reaction)
+  str_enum :notification_type, %i(profile_welcome new_post new_friendship_request reaction new_message)
   serialize :metadata, JSON
 end

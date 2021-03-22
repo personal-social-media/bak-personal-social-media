@@ -75,6 +75,8 @@ Rails.application.routes.draw do
     resources :feed_items, only: %i(create destroy)
     resource :friendship, only: %i(show create destroy update)
     resource :profile, only: :show
+    resource :conversations, only: %i(create update)
+    resources :messages, only: %i(create update)
 
     resources :posts, only: %i(show index)
 

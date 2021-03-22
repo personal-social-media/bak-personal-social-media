@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_055725) do
+ActiveRecord::Schema.define(version: 2021_03_22_054734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_055725) do
     t.boolean "has_new_messages", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "messages_count", default: 0, null: false
+    t.boolean "is_typing", default: false, null: false
     t.index ["peer_info_id"], name: "index_conversations_on_peer_info_id"
   end
 
@@ -150,12 +152,14 @@ ActiveRecord::Schema.define(version: 2021_03_21_055725) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "payload"
+    t.text "payload", default: "{}", null: false
     t.string "message_type", null: false
     t.boolean "read", default: false, null: false
     t.bigint "conversation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "remote_id"
+    t.string "processing_status", default: "processing", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
