@@ -26,7 +26,7 @@
       }
     },
     "unescaped_url": "/client/conversations/:conversation_id/messages",
-    "url": "/client/conversations/2/messages",
+    "url": "/client/conversations/1/messages",
     "method": "GET",
     "body": "",
     "json": {

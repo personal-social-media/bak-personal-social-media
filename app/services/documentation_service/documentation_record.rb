@@ -13,7 +13,8 @@ module DocumentationService
 
       return write_result unless File.exist?(file_path)
 
-      if true
+      result_s = result.deep_stringify_keys
+      if result_s != JSON.parse(File.read(file_path))
         write_result
       end
     end
