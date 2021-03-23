@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+fields = %i(id has_new_messages is_typing messages_count peer_info_id)
+
+conversation.as_json(only: fields)

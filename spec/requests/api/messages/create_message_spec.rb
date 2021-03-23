@@ -33,11 +33,15 @@ describe "/api/messages" do
         }
       end
       it "creates a message" do
+        conversation
         expect do
           subject
           expect(response).to have_http_status(:ok)
           expect(json[:message]).to be_present
+          conversation.reload
         end.to change { Message.count }.by(1)
+          .and change { conversation.has_new_messages }
+          .and change { conversation.messages_count }.by(1)
       end
     end
   end

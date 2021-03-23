@@ -37,7 +37,6 @@ group :development, :test do
   gem "erb_lint", require: false
   gem "factory_bot_rails", "~> 6.1"
   gem "pg_query", "~> 1.3"
-  gem "prosopite"
   gem "pry-rails", "~> 0.3.9"
   gem "rspec-rails", "~> 5.0"
   gem "rubocop-rails_config", "~> 1.3"

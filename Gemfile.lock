@@ -286,7 +286,6 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
-    prosopite (1.0.0)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -555,7 +554,6 @@ DEPENDENCIES
   pg_search
   pghero
   poltergeist
-  prosopite
   pry-rails (~> 0.3.9)
   puma (~> 5.2)
   rack-cors

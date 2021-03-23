@@ -22,7 +22,7 @@ describe "POST /client/cache_reactions/search" do
     post url, params: params
   end
 
-  it "fetches cache reactions", skip_propsite: true do
+  it "fetches cache reactions" do
     subject
 
     expect(response).to have_http_status(:ok)

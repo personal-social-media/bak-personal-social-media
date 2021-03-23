@@ -71,9 +71,4 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.raise = true
   end unless ENV["FEATURES"]
-
-  config.after_initialize do
-    Prosopite.rails_logger = true
-    Prosopite.raise = true
-  end
 end

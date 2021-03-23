@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://161.97.64.223/api/conversations
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - PAG7ITJQ6GEXU5Z5FCNETYPB7JLYB6BP4KMXY6XEHX35AFAKQ77K3SKDA2WILJCKFSDQH7EXRMIZYVTJJQNKPRPZSQNQXBKBFWFSZ2HEO4VS6A4UOT3P5SUMTTIJUVD3QYYOFNCPQRCOSE4LNMERY3CCGLBKJURZOEPCNVEILFQQVW2RUU6SAWMBZMKI4QL6SZA6GHTMNCBDJWBGCFDJBW77BD3C3VZF2YVRJZBNXL5ZYQJ3W2ZEHWEQ2OBV2DIWLGNH2DAQVPYN2G45E3JOW5EU6CKVUK4NFI7NJY5UOV72C4ZQYKGXEETFG23AYF2GOKHDD2VLLKOT2P6K4AOWDZ3DPDIW2RIWLFCIRCBDW2CX4MSGM4TR3ABXOO43MBMDS5U4ZWM4PY3M2LRUUZ6E7562Y4======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Connection:
+      - close
+      Host:
+      - 161.97.64.223
+      User-Agent:
+      - http.rb/4.4.1
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 22 Mar 2021 20:41:07 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Etag:
+      - W/"f948b41a798f95c027d50b9dc5880a43"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 7288416e-6296-4c46-b1d4-17554eaafc3b
+      X-Runtime:
+      - '0.125748'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"conversation":{"id":1,"is_typing":false}}'
+  recorded_at: Mon, 22 Mar 2021 20:41:08 GMT
+recorded_with: VCR 6.0.0

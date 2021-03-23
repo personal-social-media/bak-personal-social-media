@@ -24,4 +24,5 @@ class Conversation < ApplicationRecord
   belongs_to :peer_info
   has_many :messages, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  validates :peer_info_id, presence: true, uniqueness: true
 end

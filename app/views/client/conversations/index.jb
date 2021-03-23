@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+{
+  conversations: render(partial: "client/conversations/conversation", collection: @conversations, as: :conversation),
+  conversations_count: @count
+}

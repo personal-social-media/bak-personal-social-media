@@ -68,7 +68,7 @@ class PeerInfo < ApplicationRecord
 
   has_many :feed_items, dependent: :destroy
   has_many :reactions, dependent: :destroy
-  has_many :conversations, dependent: :destroy
+  has_one :conversation, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :previous_searches, dependent: :destroy
   has_many :cache_comments, dependent: :destroy

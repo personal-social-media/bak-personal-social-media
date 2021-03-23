@@ -16,7 +16,7 @@ describe "GET /image_albums/:id/gallery_elements" do
     get url
   end
 
-  it "ok", skip_propsite: true do
+  it "ok" do
     subject
 
     expect(response).to have_http_status(:ok)

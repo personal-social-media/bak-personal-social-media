@@ -6,7 +6,7 @@ describe "/api/friendship" do
   include ExternalApiHelpers
   let(:controller) { Api::FriendshipsController }
 
-  describe "DELETE /api/friendship", skip_propsite: true do
+  describe "DELETE /api/friendship" do
     let(:url) { "/api/friendship" }
     let(:peer_info) { create(:peer_info) }
 
@@ -30,7 +30,7 @@ describe "/api/friendship" do
       context "accepted" do
         context "destroy" do
           let(:option) { :destroy }
-          it "deletes relationship", skip_propsite: true do
+          it "deletes relationship" do
             expect do
               subject
             end.to change { PeerInfo.count }.by(-1)

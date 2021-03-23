@@ -24,9 +24,15 @@
 #
 FactoryBot.define do
   factory :message do
-    payload { "MyText" }
-    message_type { "MyString" }
-    read { false }
-    coversation { nil }
+    message_type { :text }
+    payload do
+      {
+        message: "test"
+      }
+    end
+
+    before(:create) do |r|
+      r.conversation ||= create(:conversation)
+    end
   end
 end

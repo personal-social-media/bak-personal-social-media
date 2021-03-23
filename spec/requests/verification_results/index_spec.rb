@@ -22,7 +22,7 @@ describe "POST /verification_results/search" do
     post url, params: params
   end
 
-  it "fetches verification results", skip_propsite: true do
+  it "fetches verification results" do
     subject
 
     expect(response).to have_http_status(:ok)

@@ -33,10 +33,12 @@ class Reaction < ApplicationRecord
 
   private
     def increment_count!
+      return if subject.respond_to?(:no_reactions_counter)
       subject.increment!("#{reaction_type}_count")
     end
 
     def update_count!
+      return if subject.respond_to?(:no_reactions_counter)
       subject.class.transaction do
         subject.decrement!("#{reaction_type_was}_count")
         subject.increment!("#{reaction_type}_count")
@@ -44,6 +46,7 @@ class Reaction < ApplicationRecord
     end
 
     def decrement_count!
+      return if subject.respond_to?(:no_reactions_counter)
       subject.decrement!("#{reaction_type_was}_count")
     end
 end

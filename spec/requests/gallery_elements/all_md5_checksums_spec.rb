@@ -16,7 +16,7 @@ describe "GET /gallery_elements/all_md5_checksums" do
     get url
   end
 
-  it "ok", skip_propsite: true do
+  it "ok" do
     subject
 
     expect(response).to have_http_status(:ok)

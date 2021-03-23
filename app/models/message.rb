@@ -23,9 +23,14 @@
 #  fk_rails_...  (conversation_id => conversations.id)
 #
 class Message < ApplicationRecord
-  belongs_to :conversation
+  belongs_to :conversation, counter_cache: true
   str_enum :message_type, %i(text)
   str_enum :processing_status, %i(processing processed)
+  has_one :reaction, as: :subject, dependent: :destroy
 
   serialize :payload, JSON
+
+  def no_reactions_counter
+    true
+  end
 end

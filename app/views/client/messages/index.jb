@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+{
+  messages: render(partial: "client/messages/message", collection: @messages, as: :message),
+  messages_count: @messages_count
+}
