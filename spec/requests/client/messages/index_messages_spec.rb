@@ -1,14 +1,29 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
 require "rails_helper"
 
-describe "GET /client/conversations/:conversation_id/messages" do
+describe "GET /client/conversations/:conversation_id/messages", documentation: true do
+  include_context "client_messages_documentation"
+
+  let(:documentation_title) { "List of messages" }
+  let(:documentation_unescaped_url) { "/client/conversations/:conversation_id/messages" }
+  let(:documentation_id) { :index }
+  let(:documentation_params) do
+    {
+      page: { type: :number, optional: true }, start_index: { type: :number, optional: true }, end_index: { type: :number, optional: true },
+      conversation_id: {
+        type: :number
+      }
+    }
+  end
+
   let(:conversation) { create(:conversation) }
   let(:url) { "/client/conversations/#{conversation.id}/messages" }
   let(:messages) { create_list(:message, 2, conversation: conversation) }
 
   before do
-    sign_into_controller(Client::MessagesController)
+    sign_into_controller(controller)
   end
 
   subject do
