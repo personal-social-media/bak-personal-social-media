@@ -36,7 +36,7 @@ FactoryBot.define do
       "name-#{n}"
     end
     ip { "0.0.0.0" }
-    public_key { SecureRandom.hex }
+    public_key { "UID-#{SecureRandom.hex}" }
     country_code { "US" }
   end
 end

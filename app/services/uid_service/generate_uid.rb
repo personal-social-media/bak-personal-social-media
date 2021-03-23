@@ -14,7 +14,7 @@ module UidService
 
     private
       def generate_test
-        record.uid ||= SecureRandom.hex(24)
+        record.uid ||= "UID-#{SecureRandom.hex(24)}"
       end
 
       def is_test?

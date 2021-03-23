@@ -44,7 +44,7 @@ module DocumentationService
     def body
       b = request.body.read
       return b if b.blank?
-      format_saved_hash(JSON.parse(b))
+      format_saved_hash(params)
     end
 
     def directory
@@ -57,6 +57,12 @@ module DocumentationService
         if is_date?(value)
           next "2020-01-01T00:00:00+00:00"
         end
+        if is_uid?(value)
+          next "UID"
+        end
+        if is_signature(value)
+          next "SIGNATURE"
+        end
         value
       end
     end
@@ -65,6 +71,16 @@ module DocumentationService
       Date.parse(value)
     rescue Exception
       false
+    end
+
+    def is_uid?(value)
+      return false unless value.is_a?(String)
+      value.match?(/UID/)
+    end
+
+    def is_signature(value)
+      return false unless value.is_a?(String)
+      value.match(/===/)
     end
 
     def file_path

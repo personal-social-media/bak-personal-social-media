@@ -20,7 +20,7 @@
 FactoryBot.define do
   factory :image_file do
     image do
-      new_image_path = "/tmp/image-#{SecureRandom.hex}.png"
+      new_image_path = "/tmp/image-UID-#{SecureRandom.hex}.png"
       `cp #{Rails.root.join("spec/support/resources/image.png")} #{new_image_path}`
       File.open(new_image_path)
     end

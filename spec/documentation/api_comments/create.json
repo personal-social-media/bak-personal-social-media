@@ -1,0 +1,143 @@
+{
+  "parent": {
+    "id": "api_comments",
+    "controller": "Api::CommentsController",
+    "title": "Comments Server Side",
+    "usage": "external"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create new message",
+    "params": {
+      "comment": {
+        "subject_type": {
+          "type": "string"
+        },
+        "subject_id": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "comment_type": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        },
+        "payload": {
+          "message": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          },
+          "parent_comment_id": {
+            "type": "number",
+            "optional": true
+          },
+          "images": [
+            {
+              "type": {
+                "type": "string"
+              },
+              "desktop": {
+                "type": "url"
+              },
+              "mobile": {
+                "type": "url"
+              },
+              "thumbnail": {
+                "type": "url"
+              }
+            }
+          ],
+          "videos": [
+            {
+              "type": {
+                "type": "string"
+              },
+              "original": {
+                "type": "url"
+              },
+              "short": {
+                "type": "url"
+              },
+              "original_screenshot": {
+                "type": "url"
+              },
+              "thumbnail_screenshot": {
+                "type": "url"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/api/comments",
+    "url": "/api/comments",
+    "method": "POST",
+    "body": {
+      "comment": {
+        "subject_type": "post",
+        "subject_id": "UID",
+        "comment_type": "like",
+        "payload": {
+          "message": "test",
+          "subject_id": "UID",
+          "subject_type": "Post",
+          "parent_comment_id": null,
+          "images": [
+            {
+              "type": "image",
+              "desktop": "https://example.com/a.jpg",
+              "mobile": "https://example.com/a.jpg",
+              "thumbnail": "https://example.com/a.jpg"
+            }
+          ],
+          "videos": [
+            {
+              "type": "video",
+              "original": "https://example.com/a.mp4",
+              "short": "https://example.com/a.mp4",
+              "original_screenshot": "https://example.com/a.jpg",
+              "thumbnail_screenshot": "https://example.com/a.jpg"
+            }
+          ]
+        },
+        "signature": "2020-01-01T00:00:00+00:00"
+      }
+    },
+    "json": {
+      "comment": {
+        "id": 1,
+        "payload": {
+          "message": "test",
+          "subject_id": "UID",
+          "subject_type": "Post",
+          "parent_comment_id": null,
+          "images": [
+            {
+              "type": "image",
+              "desktop": "https://example.com/a.jpg",
+              "mobile": "https://example.com/a.jpg",
+              "thumbnail": "https://example.com/a.jpg"
+            }
+          ],
+          "videos": [
+            {
+              "type": "video",
+              "original": "https://example.com/a.mp4",
+              "short": "https://example.com/a.mp4",
+              "original_screenshot": "https://example.com/a.jpg",
+              "thumbnail_screenshot": "https://example.com/a.jpg"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

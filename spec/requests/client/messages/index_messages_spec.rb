@@ -31,7 +31,7 @@ describe "GET /client/conversations/:conversation_id/messages", documentation: t
     get url
   end
 
-  it "ok" do
+  it "ok", valid: true do
     subject
 
     expect(response).to have_http_status(:ok)

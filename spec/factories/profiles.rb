@@ -22,6 +22,6 @@ FactoryBot.define do
     username { "username" }
     gender { :female }
     country_code { "US" }
-    recovery_key { SecureRandom.hex }
+    recovery_key { "UID-#{SecureRandom.hex}" }
   end
 end

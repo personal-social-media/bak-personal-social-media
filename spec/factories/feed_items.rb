@@ -26,7 +26,7 @@
 FactoryBot.define do
   factory :feed_item do
     feed_item_type { :post }
-    uid { SecureRandom.hex }
+    uid { "UID-#{SecureRandom.hex}" }
     sequence :feed_item_id do |n|
       n
     end

@@ -7,7 +7,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.after(documentation: true) do |ex|
+  config.after(documentation: true, valid: true) do |ex|
     next if ex.exception.present?
     DocumentationService::BuildDocumentation.new(ex).call!
   end

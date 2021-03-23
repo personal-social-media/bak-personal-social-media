@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./create_documentation"
 require "rails_helper"
 
-describe "/api/comments" do
+describe "/api/comments", documentation: true do
+  include_context "api_comments"
+
   include ExternalApiHelpers
   let(:controller) { Api::CommentsController }
 
@@ -22,6 +26,8 @@ describe "/api/comments" do
     end
 
     context "valid" do
+      include_context "api_comments_create"
+
       let(:payload) do
         {
           message: "test",
@@ -60,7 +66,7 @@ describe "/api/comments" do
         }
       end
 
-      it "creates a new comment" do
+      it "creates a new comment", valid: true do
         expect do
           subject
           expect(response).to have_http_status(:ok)
