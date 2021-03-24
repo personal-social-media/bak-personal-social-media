@@ -12,7 +12,7 @@ gem "rails", "~> 6.1.3"
 gem "sass-rails", ">= 6"
 
 group :development do
-  gem "listen", "~> 3.3"
+  gem "listen", "~> 3.5"
   gem "spring"
   gem "web-console", ">= 4.1.0"
 end

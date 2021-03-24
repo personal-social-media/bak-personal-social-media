@@ -243,7 +243,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.4.1)
+    listen (3.5.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.9.0)
@@ -543,7 +543,7 @@ DEPENDENCIES
   jb (~> 0.8.0)
   jquery-rails (~> 4.4)
   kaminari
-  listen (~> 3.3)
+  listen (~> 3.5)
   marcel (~> 0.3.3)
   memoist (~> 0.16.2)
   memory_profiler
