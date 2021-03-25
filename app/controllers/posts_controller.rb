@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       album_title = "Posts #{time.strftime("%B %Y")}"
       uploaded_files_params = post_params[:uploaded_files]
 
-      if uploaded_files_params
+      if uploaded_files_params.present?
         uploaded_files = UploadsService::HandleMultipleUpload.new(uploaded_files_params).call!
         elements_options = { is_private: false }
         album_options = { album_name: album_title, album_manual_upload: false }

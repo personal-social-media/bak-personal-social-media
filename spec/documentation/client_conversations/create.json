@@ -1,0 +1,56 @@
+{
+  "parent": {
+    "id": "client_conversations",
+    "controller": "Client::MessagesController",
+    "title": "Peer to Peer Messenger",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create a new message",
+    "params": {
+      "message": {
+        "payload": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "uploaded_files": {
+          "type": "files",
+          "list": true
+        }
+      }
+    },
+    "unescaped_url": "/client/conversations/:conversation_id/messages",
+    "url": "/client/conversations/1/messages",
+    "method": "POST",
+    "body": {
+      "message": {
+        "payload": {
+          "message": "new message"
+        },
+        "uploaded_files": [
+          {
+            ".name": "a.png",
+            ".path": "file_path",
+            ".md5": "md5"
+          }
+        ]
+      }
+    },
+    "json": {
+      "message": {
+        "id": 1,
+        "payload": {
+          "message": "new message"
+        },
+        "message_type": "text",
+        "read": false,
+        "created_at": "2020-01-01T00:00:00+00:00",
+        "remote_id": null,
+        "processing_status": "processing",
+        "message_owner": "self"
+      }
+    }
+  }
+}

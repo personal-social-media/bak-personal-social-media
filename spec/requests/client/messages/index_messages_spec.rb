@@ -20,7 +20,7 @@ describe "GET /client/conversations/:conversation_id/messages", documentation: t
 
   let(:conversation) { create(:conversation) }
   let(:url) { "/client/conversations/#{conversation.id}/messages" }
-  let(:messages) { create_list(:message, 2, conversation: conversation) }
+  let(:messages) { create_list(:message, 2, conversation: conversation, message_owner: :self) }
 
   before do
     sign_into_controller(controller)

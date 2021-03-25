@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_054734) do
+ActiveRecord::Schema.define(version: 2021_03_25_054747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -160,7 +160,10 @@ ActiveRecord::Schema.define(version: 2021_03_22_054734) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "remote_id"
     t.string "processing_status", default: "processing", null: false
+    t.text "signature"
+    t.string "message_owner", default: "", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["remote_id"], name: "index_messages_on_remote_id"
   end
 
   create_table "notifications", force: :cascade do |t|

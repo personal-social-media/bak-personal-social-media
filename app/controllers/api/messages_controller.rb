@@ -17,7 +17,7 @@ module Api
 
     private
       def create_params
-        params.require(:message).permit(:message_type, payload: payload)
+        params.require(:message).permit(:message_type, :signature, :remote_id, payload: payload)
       end
 
       def payload

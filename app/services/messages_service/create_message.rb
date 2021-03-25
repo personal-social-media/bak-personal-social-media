@@ -21,7 +21,7 @@ module MessagesService
       def create_message!
         @message = Message.new(params).tap do |message|
           message.conversation = conversation
-
+          message.message_owner = :peer
           message.save!
         end
       end

@@ -63,6 +63,10 @@ module DocumentationService
         if is_signature(value)
           next "SIGNATURE"
         end
+
+        if is_path?(value)
+          next "file_path"
+        end
         value
       end
     end
@@ -71,6 +75,11 @@ module DocumentationService
       Date.parse(value)
     rescue Exception
       false
+    end
+
+    def is_path?(value)
+      return false unless value.is_a?(String)
+      value.match(/\/tmp/)
     end
 
     def is_uid?(value)

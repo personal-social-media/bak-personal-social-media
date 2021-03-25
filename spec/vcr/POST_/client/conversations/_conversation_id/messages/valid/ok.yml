@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://161.97.64.223/api/messages
+    body:
+      encoding: UTF-8
+      string: message%5Bmessage_type%5D=text&message%5Bpayload%5D[images][0][size][height]&message%5Bpayload%5D[images][0][size][width]&message%5Bpayload%5D[images][0][url]=http%3A%2F%2Flocalhost%3A3000memory%3A%2F%2Fimagefile%2F1%2Fimage%2Foriginal-afff03d4a8e79823cfcf3124e93ae9ae.png&message%5Bpayload%5D[message]=new%20message&&message%5Bsignature%5D=POGXKTSU5A3NIZNLBCNG3O2FN3TCHHD6DB5XXJAVTIE7LIQQF3AQJYSERLRKXFWEZWMXJUURFCFRLFDD7YLACNMBWT4VV37UTSDYOXRUHGCLLQEWQWMDREWTOTE5XR7SH32LRJUMSB63CQ77ALJNO37NB3HNYLV7JIH3272MNK6CJ2CT5Z3Y2EGL2NTLJEATFMI3KEQPKDIAUWGSYVO6HDQHZL5DDIG5G5AOSMW5XRC55WKMBIEEM54BT7GSNQJ5QSSKCR4WB2ADA6KNJXNROB3VUUK3R2CAZSFSIDUH4BVSCZZEZ2ATWZOB4OFFCFZB4J6I3GOCTPATUG456VC2E6HJ3BNMUCMC3KQM3EU7ESEBHSRMULLSGLNPOLHWPFY275FM4RKW7X5BW3MNWDAVKGOG7M%3D%3D%3D%3D%3D%3D
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - MX6SUH64HI2NWYOIOITBXIW6Q4CHTPF2RSDMIHAMFRFRZDGA7E7K7QD7BDENRELDFB6KRQKY7HG47IYNCK75APW42D5ITQ76EBNNKCDOT7U5JLMPD7E2UYKZTCSUDXOZDE4PWRMGZ4LQDFBFJFH3YNGQ4OPKUTK7MV4X2YE23AAX7XMDVN4EFPQSG2AXRT3BMGURT53EGCS2SGPSUJ4ADQMUCWAIY6YPNZLUS2CVZWDETJ54PP2NSPV5JWQP2I5ETVRZPJOBISPIQOSL7RIVM5P6RP6M7SKN47QT6YK7YAGJKIKYJBSPJ3GT6HYBTWIRNYKLXDYEEVZB32USSE24AC773KDMIGQCVMAANU6J5HZSMTD2J3MN27R5PENZKMNVBW2KNSLALMRSZXJ4NIMPLVQWXE======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 25 Mar 2021 06:22:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept, Origin
+      - Accept-Encoding
+      Etag:
+      - W/"471c83a29cdb83f22962a58c6162b7b6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b4ca8580-bbc2-4d26-a52f-29006d1df967
+      X-Runtime:
+      - '3.531787'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"message":{"id":1}}'
+  recorded_at: Thu, 25 Mar 2021 06:22:43 GMT
+recorded_with: VCR 6.0.0

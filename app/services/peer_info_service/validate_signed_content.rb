@@ -13,6 +13,8 @@ module PeerInfoService
 
     def call!
       public_key.verify(OpenSSL::Digest::SHA256.new, signature, content)
+    rescue OpenSSL::PKey::RSAError
+      false
     end
 
     def public_key

@@ -15,8 +15,6 @@ module SyncService
         @peer_requests += handle_group(group)
       end
 
-      return unless Rails.env.test?
-
       peer_requests.each { |r| check_response(r) }
     end
 

@@ -8,8 +8,15 @@ describe "/api/messages" do
 
   describe "POST /api/messages" do
     let(:url) { "/api/messages" }
-    let(:conversation) { create(:conversation) }
-    let(:peer_info) { conversation.peer_info }
+    let(:peer_info) { create(:peer_info, public_key: private_key.public_key.to_pem) }
+    let(:conversation) { create(:conversation, peer_info: peer_info) }
+    let(:payload) do
+      {
+        message: "Sample message"
+      }
+    end
+
+    let(:signature) { SignaturesService::Sign.new(payload.to_json).call! }
 
     before do
       allow_any_instance_of(controller).to receive(:current_peer_info).and_return(peer_info)
@@ -25,10 +32,10 @@ describe "/api/messages" do
       let(:params) do
         {
           message: {
+            remote_id: 1,
             message_type: :text,
-            payload: {
-              message: "Sample message"
-            }
+            signature: signature,
+            payload: payload
           }
         }
       end
