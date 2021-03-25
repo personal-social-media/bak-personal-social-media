@@ -192,7 +192,7 @@ GEM
     font-awesome-rails (4.7.0.7)
       railties (>= 3.2, < 7)
     foreman (0.87.2)
-    fugit (1.4.3)
+    fugit (1.4.4)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
     geokdtree (0.2.0)
