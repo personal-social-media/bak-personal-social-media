@@ -6,6 +6,7 @@ require "rails_helper"
 
 describe "/api/comments", documentation: true do
   include_context "api_comments"
+  include_context "api_comments_create"
 
   include ExternalApiHelpers
   let(:controller) { Api::CommentsController }

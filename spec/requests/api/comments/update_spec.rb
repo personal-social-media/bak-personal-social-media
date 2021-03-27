@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require_relative "./parent_documentation"
+require_relative "./update_documentation"
 
-describe "/api/comments/:id" do
+describe "/api/comments/:id", documentation: true do
   include ExternalApiHelpers
-  let(:controller) { Api::CommentsController }
+  include_context "api_comments"
+  include_context "api_comments_update"
 
   describe "PATCH /api/comments/:id" do
     let(:url) { "/api/comments/#{comment.id}" }
@@ -58,7 +61,7 @@ describe "/api/comments/:id" do
         }
       end
 
-      it "updates the comment" do
+      it "updates the comment", valid: true do
         expect do
           subject
           expect(response).to have_http_status(:ok)

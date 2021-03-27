@@ -54,9 +54,6 @@ module DocumentationService
     def format_saved_hash(hash)
       return hash if hash.blank?
       hash.deep_transform_values do |value|
-        if is_date?(value)
-          next "2020-01-01T00:00:00+00:00"
-        end
         if is_uid?(value)
           next "UID"
         end
@@ -67,11 +64,17 @@ module DocumentationService
         if is_path?(value)
           next "file_path"
         end
+
+        if is_date?(value)
+          next "2020-01-01T00:00:00+00:00"
+        end
+
         value
       end
     end
 
     def is_date?(value)
+      return false unless value.is_a?(String)
       Date.parse(value)
     rescue Exception
       false

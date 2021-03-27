@@ -1,0 +1,32 @@
+{
+  "parent": {
+    "id": "api_messages",
+    "controller": "Api::MessagesController",
+    "title": "Messages Server Side",
+    "usage": "external"
+  },
+  "child": {
+    "id": "update",
+    "title": "Updates a message",
+    "params": {
+      "message": {
+        "read": {
+          "type": "boolean"
+        }
+      }
+    },
+    "unescaped_url": "/api/messages/:id",
+    "url": "/api/messages/1",
+    "method": "PUT",
+    "body": {
+      "message": {
+        "read": true
+      }
+    },
+    "json": {
+      "message": {
+        "id": 1
+      }
+    }
+  }
+}

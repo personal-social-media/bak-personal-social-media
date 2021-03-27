@@ -4,7 +4,7 @@ module MessagesService
   class CreateClientMessage
     attr_reader :params, :message, :conversation
     def initialize(params, conversation)
-      @params = params.merge(conversation: conversation, message_owner: :self)
+      @params = params.merge(conversation: conversation, message_owner: :self, read: true)
       @conversation = conversation
     end
 

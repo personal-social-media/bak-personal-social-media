@@ -1,0 +1,128 @@
+{
+  "parent": {
+    "id": "api_comments",
+    "controller": "Api::CommentsController",
+    "title": "Comments Server Side",
+    "usage": "external"
+  },
+  "child": {
+    "id": "update",
+    "title": "Updates a comment",
+    "params": {
+      "comment": {
+        "signature": {
+          "type": "string"
+        },
+        "payload": {
+          "message": {
+            "type": "string"
+          },
+          "subject_id": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string"
+          },
+          "parent_comment_id": {
+            "type": "number",
+            "optional": true
+          },
+          "images": [
+            {
+              "type": {
+                "type": "string"
+              },
+              "desktop": {
+                "type": "url"
+              },
+              "mobile": {
+                "type": "url"
+              },
+              "thumbnail": {
+                "type": "url"
+              }
+            }
+          ],
+          "videos": [
+            {
+              "type": {
+                "type": "string"
+              },
+              "original": {
+                "type": "url"
+              },
+              "short": {
+                "type": "url"
+              },
+              "original_screenshot": {
+                "type": "url"
+              },
+              "thumbnail_screenshot": {
+                "type": "url"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/api/comments/:id",
+    "url": "/api/comments/1",
+    "method": "PATCH",
+    "body": {
+      "comment": {
+        "payload": {
+          "message": "test2",
+          "subject_id": "UID",
+          "subject_type": "Post",
+          "parent_comment_id": null,
+          "images": [
+            {
+              "type": "image",
+              "desktop": "https://example.com/a.jpg",
+              "mobile": "https://example.com/a.jpg",
+              "thumbnail": "https://example.com/a.jpg"
+            }
+          ],
+          "videos": [
+            {
+              "type": "video",
+              "original": "https://example.com/a.mp4",
+              "short": "https://example.com/a.mp4",
+              "original_screenshot": "https://example.com/a.jpg",
+              "thumbnail_screenshot": "https://example.com/a.jpg"
+            }
+          ]
+        },
+        "signature": "SIGNATURE"
+      }
+    },
+    "json": {
+      "comment": {
+        "payload": {
+          "message": "test2",
+          "subject_id": "UID",
+          "subject_type": "Post",
+          "parent_comment_id": null,
+          "images": [
+            {
+              "type": "image",
+              "desktop": "https://example.com/a.jpg",
+              "mobile": "https://example.com/a.jpg",
+              "thumbnail": "https://example.com/a.jpg"
+            }
+          ],
+          "videos": [
+            {
+              "type": "video",
+              "original": "https://example.com/a.mp4",
+              "short": "https://example.com/a.mp4",
+              "original_screenshot": "https://example.com/a.jpg",
+              "thumbnail_screenshot": "https://example.com/a.jpg"
+            }
+          ]
+        },
+        "id": 1
+      }
+    }
+  }
+}

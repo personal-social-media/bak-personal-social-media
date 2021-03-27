@@ -33,6 +33,10 @@ FactoryBot.define do
         message: "test"
       }
     end
+    message_owner { :peer }
+    sequence :remote_id do |n|
+      n
+    end
 
     before(:create) do |r|
       r.conversation ||= create(:conversation)
