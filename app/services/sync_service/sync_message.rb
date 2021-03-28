@@ -17,6 +17,10 @@ module SyncService
       message.update!(remote_id: remote_id)
     end
 
+    def call_update!
+      SyncMessageUpdate.new(message).call_update!
+    end
+
     private
       def make_request
         hydra = Typhoeus::Hydra.hydra

@@ -22,6 +22,7 @@ module MessagesService
         @message = Message.new(params).tap do |message|
           message.conversation = conversation
           message.message_owner = :peer
+          message.processing_status = :processed
           message.save!
         end
       end

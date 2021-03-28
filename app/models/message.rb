@@ -42,6 +42,10 @@ class Message < ApplicationRecord
     SyncWorker.perform_async(Message, id, SyncService::SyncMessage, :call_create!)
   end
 
+  def sync_update
+    SyncWorker.perform_async(Message, id, SyncService::SyncMessage, :call_update!)
+  end
+
   def generate_signature!
     self.signature = MessagesService::CreateMessageSignature.new(self).call!
     self.save!

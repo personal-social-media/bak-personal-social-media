@@ -13,11 +13,10 @@ describe "/api/messages/:id", documentation: true do
     let(:url) { "/api/messages/#{message.id}" }
     let(:peer_info) { create(:peer_info, public_key: private_key.public_key.to_pem) }
     let(:conversation) { create(:conversation, peer_info: peer_info) }
-    let(:message) { create(:message, conversation: conversation) }
+    let(:message) { create(:message, conversation: conversation, message_owner: :self) }
 
     before do
       allow_any_instance_of(controller).to receive(:current_peer_info).and_return(peer_info)
-      allow_any_instance_of(Message).to receive(:validate_signature).and_return(true)
       request_as_verified
       request_as_server
     end

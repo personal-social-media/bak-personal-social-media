@@ -100,8 +100,9 @@ Rails.application.routes.draw do
 
     resources :cache_comments, only: %i(create update destroy)
     resources :conversations, only: %i(index create update) do
-      resources :messages, only: %i(index create update)
+      resources :messages, only: %i(index create)
     end
+    resources :messages, only: %i(update)
   end
 
   constraints LoggedIn do

@@ -7,9 +7,9 @@ require "rails_helper"
 describe "POST /client/conversations/:conversation_id/messages", documentation: true, vcr: :record_once do
   include FilesSpecHelper
   include_context "client_messages_documentation"
+  include_context "client_create_messages_documentation"
 
   context "valid", valid: true do
-    include_context "client_create_messages_documentation"
     let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
     let(:conversation) { create(:conversation, peer_info: peer_info) }
     let(:url) { "/client/conversations/#{conversation.id}/messages" }

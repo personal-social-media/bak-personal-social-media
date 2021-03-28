@@ -60,7 +60,7 @@ module Api
       end
 
       def current_message
-        @current_message ||= current_conversation.messages.find_by(id: params[:id], message_owner: :peer)
+        @current_message ||= current_conversation.messages.find_by(id: params[:id], message_owner: :self)
       end
 
       def require_current_message
