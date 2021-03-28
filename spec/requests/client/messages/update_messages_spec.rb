@@ -4,7 +4,7 @@ require_relative "./parent_documentation"
 require_relative "./update_documentation"
 require "rails_helper"
 
-describe "PUT /client/messages/:id", vcr: :record_once do
+describe "PUT /client/messages/:id", vcr: :record_once, documentation: true do
   include FilesSpecHelper
   include_context "client_messages_documentation"
   include_context "client_update_messages_documentation"
@@ -12,8 +12,8 @@ describe "PUT /client/messages/:id", vcr: :record_once do
   context "valid", valid: true do
     let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
     let(:conversation) { create(:conversation, peer_info: peer_info) }
-    let(:message) { create(:message, conversation: conversation) }
-    let(:url) { "/client/messages/#{message.id}" }
+    let(:message) { create(:message, conversation: conversation, remote_id: 1) }
+    let(:url) { "/client/messages/1" }
     let(:params) do
       {
         message: {
@@ -33,7 +33,7 @@ describe "PUT /client/messages/:id", vcr: :record_once do
       SyncService::SyncMessage.new(message).call_update!
     end
 
-    xit "ok", valid: true do
+    it "ok", valid: true do
       expect do
         subject
 

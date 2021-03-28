@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://161.97.64.223/api/messages/1
+    body:
+      encoding: UTF-8
+      string: '{"message":{"read":true}}'
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - 4EHDWGKVTM4G6CDSIREXKYA7T7D2QS4RSPGEMKQ226EHQDWQA5PGFECNTZZDGET5LCMIL7Z3HGYIGRA7NLGTR72UJJKFXQTDQPYGKKM4EOSFHOGFBKXQM62PAZZZNRTF5WO2UFWJFNV6KW7MGKAB7A227L6674K2YUVHKOTUEFC6NT3DBPD4LLTGRU2ZA72NSNCBKAZ4DD6BTMJXMLBA5N22MDPWQZNVK6BSB7F4TPOASPLAQIGYSE46ISTAROOCIFCG5OQBQUQDSRTQFFHVM23NQ5ZNBCSCEOFORNRKM3JG6LQXZWZHDALULJ3J37UIE4IZX776IV2KPDEVF2LI4KM5ZS6DVKBL2PVYIR3A2OGXIXVHY3KHPUJM6GEY7QS2QHS42J7NIA5UXL6A7HNYLO6GLY======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 28 Mar 2021 21:22:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept, Origin
+      - Accept-Encoding
+      Etag:
+      - W/"471c83a29cdb83f22962a58c6162b7b6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8381730f-3ab7-4a97-abb5-e0d8a3fbb96c
+      X-Runtime:
+      - '4.823746'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"message":{"id":1}}'
+  recorded_at: Sun, 28 Mar 2021 21:22:33 GMT
+recorded_with: VCR 6.0.0

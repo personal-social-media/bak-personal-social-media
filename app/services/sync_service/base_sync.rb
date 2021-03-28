@@ -17,6 +17,13 @@ module SyncService
       signed_headers(url)
     end
 
+    def json_headers
+      {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    end
+
     def check_response(request)
       if request.response.code > 399
         if Rails.env.production?
