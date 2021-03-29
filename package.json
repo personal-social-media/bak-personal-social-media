@@ -8,7 +8,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-react": "^7.13.13",
     "@bugsnag/js": "^7.9.0",
     "@bugsnag/plugin-react": "^7.9.0",
     "@cheprasov/qrcode": "^0.1.0",
