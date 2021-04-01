@@ -12,16 +12,21 @@ class NotificationsController < Client::BaseController
   end
 
   def destroy
+    scoped_notifications.delete_all
+    head :ok
   end
 
-  def mark_as_read
+  def mark_as_seen
+    scoped_notifications.update_all(seen: true)
+    head :ok
   end
 
-  def scoped_notifications
-    if params[:ids] == ["all"]
-      return Notification.all
+  private
+    def scoped_notifications
+      if params[:ids] == ["all"]
+        return Notification.all
+      end
+
+      Notification.where(id: params[:ids])
     end
-
-    Notification.where(id: params[:ids])
-  end
 end

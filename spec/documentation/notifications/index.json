@@ -8,6 +8,7 @@
   "child": {
     "id": "index",
     "title": "Lists all notifications",
+    "information": "Lists all notifications",
     "params": {
       "page": {
         "type": "number",
@@ -28,14 +29,6 @@
     "body": "",
     "json": {
       "notifications": [
-        {
-          "id": 5,
-          "notification_type": "profile_welcome",
-          "seen": false,
-          "metadata": {},
-          "subject_type": "Profile",
-          "subject_id": 1
-        },
         {
           "id": 4,
           "notification_type": "profile_welcome",
@@ -69,8 +62,8 @@
           "subject_id": 1
         }
       ],
-      "notifications_count": 5,
-      "notifications_not_seen_count": 5
+      "notifications_count": 4,
+      "notifications_not_seen_count": 4
     }
   }
 }

@@ -31,6 +31,7 @@ module DocumentationService
         child:  {
           id: documentation_id,
           title: documentation_title,
+          information: documentation_information || documentation_title,
           params: documentation_params,
           unescaped_url: documentation_unescaped_url,
           url: url,

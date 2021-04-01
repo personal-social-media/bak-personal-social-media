@@ -36,7 +36,7 @@ class Profile < ApplicationRecord
 
   before_validation :regenerate_recovery_key, on: :create
   after_create :create_peer_info
-  after_create :create_welcome_notification
+  after_create :create_welcome_notification unless Rails.env.test?
 
   memoize def peer_info
     PeerInfo.find_by(friend_ship_status: :self)

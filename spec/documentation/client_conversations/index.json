@@ -8,6 +8,7 @@
   "child": {
     "id": "index",
     "title": "List of messages",
+    "information": "List of messages",
     "params": {
       "page": {
         "type": "number",

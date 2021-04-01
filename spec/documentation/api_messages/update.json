@@ -8,6 +8,7 @@
   "child": {
     "id": "update",
     "title": "Updates a message",
+    "information": "Updates a message",
     "params": {
       "message": {
         "read": {

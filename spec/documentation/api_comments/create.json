@@ -8,6 +8,7 @@
   "child": {
     "id": "create",
     "title": "Create new message",
+    "information": "Create new message",
     "params": {
       "comment": {
         "subject_type": {

@@ -1,0 +1,27 @@
+{
+  "parent": {
+    "id": "notifications",
+    "controller": "NotificationsController",
+    "title": "Notifications",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "mark_as_seen",
+    "title": "Marks notifications as seen",
+    "information": "You can mark all notifications as seen by passing ['all'] as ids or specific such as [1,2,3]",
+    "params": {
+      "ids": {
+        "type": "array"
+      }
+    },
+    "unescaped_url": "/notifications/mark_as_seen",
+    "url": "/notifications/mark_as_seen",
+    "method": "PATCH",
+    "body": {
+      "ids": [
+        "all"
+      ]
+    },
+    "json": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "parent": {
+    "id": "notifications",
+    "controller": "NotificationsController",
+    "title": "Notifications",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "destroy",
+    "title": "Destroys notifications",
+    "information": "You can destroy all notifications by passing ['all'] as ids or specific such as [1,2,3]",
+    "params": {
+      "ids": {
+        "type": "array"
+      }
+    },
+    "unescaped_url": "/notifications",
+    "url": "/notifications",
+    "method": "DELETE",
+    "body": {
+      "ids": [
+        "all"
+      ]
+    },
+    "json": null
+  }
+}

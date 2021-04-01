@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: :index do
-
+    collection do
+      patch "/mark_as_seen", action: :mark_as_seen
+      delete "/", action: :destroy
+    end
   end
 
   resources :verification_results, only: %i(create update show) do
