@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-fields = %i(id message_owner remote_id message_type payload  processing_status read created_at)
+fields = %i(id message_owner remote_id message_type payload processing_status read created_at)
 
 message.as_json(only: fields)

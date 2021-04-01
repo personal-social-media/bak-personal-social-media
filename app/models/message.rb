@@ -34,7 +34,11 @@ class Message < ApplicationRecord
   has_one :reaction, as: :subject, dependent: :destroy
   has_many :attached_files, as: :subject, dependent: :destroy
   validate :validate_signature, if: -> { peer? }, on: :create
-  validates :remote_id, presence: true, uniqueness: { scope: :conversation_id },  if: -> { peer? }
+  validates :remote_id, presence: true, uniqueness: { scope: :conversation_id }, if: -> { peer? }
+  unless Rails.env.test?
+    after_commit :push_message, on: :create, if: -> { peer? }
+    after_commit :push_message, on: :update, if: -> { self? }
+  end
 
   serialize :payload, JSON
 
@@ -57,6 +61,10 @@ class Message < ApplicationRecord
 
   def no_reactions_counter
     true
+  end
+
+  def push_message
+    MessagesChannel::PushMessage.new(self).call!
   end
 
   private
