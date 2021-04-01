@@ -21,5 +21,12 @@
 require "rails_helper"
 
 RSpec.describe Notification, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#push_notification" do
+    let(:notification) { create(:notification) }
+
+    it "pushes to action cable" do
+      allow_any_instance_of(NotificationsChannel::PushNotification).to receive(:push).at_least(:once)
+      notification.push_notification
+    end
+  end
 end

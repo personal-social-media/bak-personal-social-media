@@ -20,9 +20,12 @@
 #
 FactoryBot.define do
   factory :notification do
-    notification_type { "MyString" }
+    notification_type { :profile_welcome }
     seen { false }
-    metadata { "MyText" }
-    subject { nil }
+    metadata { {} }
+
+    before(:create) do |r|
+      r.subject ||= create(:profile)
+    end
   end
 end

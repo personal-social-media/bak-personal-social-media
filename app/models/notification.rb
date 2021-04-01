@@ -22,4 +22,9 @@ class Notification < ApplicationRecord
   belongs_to :subject, polymorphic: true
   str_enum :notification_type, %i(profile_welcome new_post new_friendship_request reaction new_message)
   serialize :metadata, JSON
+  after_commit :push_notification, on: :crete unless Rails.env.test?
+
+  def push_notification
+    NotificationsChannel::PushNotification.new(self).call!
+  end
 end
