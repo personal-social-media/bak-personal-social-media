@@ -1,0 +1,76 @@
+{
+  "parent": {
+    "id": "notifications",
+    "controller": "NotificationsController",
+    "title": "Notifications",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "index",
+    "title": "Lists all notifications",
+    "params": {
+      "page": {
+        "type": "number",
+        "optional": true
+      },
+      "start_index": {
+        "type": "number",
+        "optional": true
+      },
+      "end_index": {
+        "type": "number",
+        "optional": true
+      }
+    },
+    "unescaped_url": "/notifications",
+    "url": "/notifications",
+    "method": "GET",
+    "body": "",
+    "json": {
+      "notifications": [
+        {
+          "id": 5,
+          "notification_type": "profile_welcome",
+          "seen": false,
+          "metadata": {},
+          "subject_type": "Profile",
+          "subject_id": 1
+        },
+        {
+          "id": 4,
+          "notification_type": "profile_welcome",
+          "seen": false,
+          "metadata": {},
+          "subject_type": "Profile",
+          "subject_id": 1
+        },
+        {
+          "id": 3,
+          "notification_type": "profile_welcome",
+          "seen": false,
+          "metadata": {},
+          "subject_type": "Profile",
+          "subject_id": 1
+        },
+        {
+          "id": 2,
+          "notification_type": "profile_welcome",
+          "seen": false,
+          "metadata": {},
+          "subject_type": "Profile",
+          "subject_id": 1
+        },
+        {
+          "id": 1,
+          "notification_type": "profile_welcome",
+          "seen": false,
+          "metadata": {},
+          "subject_type": "Profile",
+          "subject_id": 1
+        }
+      ],
+      "notifications_count": 5,
+      "notifications_not_seen_count": 5
+    }
+  }
+}

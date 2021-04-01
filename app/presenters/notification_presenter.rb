@@ -7,6 +7,6 @@ class NotificationPresenter
   end
 
   def render
-    notification.as_json(only: %i(id metadata notification_type seen))
+    notification.as_json(only: %i(id metadata notification_type seen subject_type subject_id))
   end
 end

@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+{
+  notifications: @notifications.map do |notification|
+    NotificationPresenter.new(notification).render
+  end,
+  notifications_count: @messages_count,
+  notifications_not_seen_count: @not_seen_count
+}

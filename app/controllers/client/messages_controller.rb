@@ -11,6 +11,9 @@ module Client
       service = MessagesService::IndexSearch.new(params.permit!).call!
       @messages = service.messages
       @messages_count = service.count
+
+    rescue MessagesService::IndexSearch::IndexError => e
+      render json: { error: e.message }, status: 422
     end
 
     def create
