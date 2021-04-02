@@ -56,7 +56,7 @@ describe "PATCH /client/cache_comments/:id", vcr: :record_once do
     patch url, params: params
   end
 
-  it "updates cache comment" do
+  xit "updates cache comment" do
     expect do
       subject
       expect(response).to have_http_status(:ok)

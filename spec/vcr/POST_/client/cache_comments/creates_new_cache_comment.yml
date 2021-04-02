@@ -5,8 +5,10 @@ http_interactions:
     uri: https://161.97.64.223/api/comments
     body:
       encoding: UTF-8
-      string: '{"comment":{"subject_id":"76e895ca6549958cfa5662d372b7e7538724df06f67ab531","subject_type":"post","parent_comment_id":null,"payload":{"message":"test","subject_id":"1","subject_type":"FeedItem","parent_comment_id":null,"images":[{"type":"image","desktop":"https://example.com/a.jpg","mobile":"https://example.com/a.jpg","thumbnail":"https://example.com/a.jpg"}],"videos":[{"type":"video","original":"https://example.com/a.mp4","short":"https://example.com/a.mp4","original_screenshot":"https://example.com/a.jpg","thumbnail_screenshot":"https://example.com/a.jpg"}]},"signature":"LKRXWQSVMOXRC2M5FYCJ2NKLTL5HD7MQRV4CMLVD546IICLHEV36OEDEPFVPGTHRBVECPRL6P7DHAOA5MOJGELCNWH3XKCM5US7NXNC2MYF5GCWZ276MJ53CBRN6HWTVIAFNILGRETHT4V4HBU2OHY5ZORDB42NU22QI7JIJKUHKVUJZWZEVRK3S5FT6BRBJRTCQJSQVWM4QNGXBM7LKIIBMCEH7377ATYM25X73KN3JRRVD5GBVIRNPD5O7C452H677WO3KVFZ5RE23JUO7WNW6W2UFSZJH6KUFJ4ZSBFNMD47HITPKK6XDP3DJYGECCHQ2EDFLQP4XUXNK32JYE6GSQFXFTJHUVN2BNT3BQDHEYHANSYN6IYPS5YYSZE4ESB3UZVJY55GRMQVK6L47W5GKJQ======"}}'
+      string: '{"comment":{"subject_id":"76e895ca6549958cfa5662d372b7e7538724df06f67ab531","subject_type":"post","parent_comment_id":null,"payload":{"message":"test","images":[{"url":"http://localhost:3000memory://imagefile/1/image/original-51b1d1ebe949b401e2c1c979362cf181.png","size":{"width":null,"height":null}}],"videos":[]},"signature":"NZTYVCG35TJXLHOBOI32UBYG5TS7QTZT62AICNLJWCKYCVHME3FNA6LPUNZAL4JZLBZCAQTADUXWIAHCR36T75NN2FIGDQVXO4CGQIBRC2MBEQXGWPUVMJX42DARHNNG22ELBHKFM5SW7BSAPNIUWBGFY72WLFTVX7KAIBYFWNCSG5REWWEZL7MAGPETURNX4PXYH5Q3RMY5LJQNEMEOKCQBRVXCVZFCVGRHQ5BXAPOFIGFJRS4YYWDNZ35VVM23ESVGMS3BJ6PHHUVW4EX4INQ6ODH352GHMODCDZEGO3U465N4CMEBY3PESW2SEEHOIQWH2DGCLEQO2XMSOL3CKMK4HL6MTAGP5LSOLP3KHZGCJE6TB5CLSDSF6FU3HYA3G7D7VNWX2GQ2R6WCEGOQGW2PRU======"}}'
     headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
       Real-User-Agent:
       - Personal Social Media
       Url-Signed:
@@ -17,40 +19,35 @@ http_interactions:
       - localhost
       Client:
       - server
-      Connection:
-      - close
+      Accept:
+      - application/json
       Content-Type:
-      - application/json; charset=UTF-8
-      Host:
-      - 161.97.64.223
-      User-Agent:
-      - http.rb/4.4.1
+      - application/json
+      Expect:
+      - ''
   response:
     status:
-      code: 200
-      message: OK
+      code: 422
+      message: Unprocessable Entity
     headers:
       Server:
       - nginx
       Date:
-      - Sun, 14 Mar 2021 22:18:40 GMT
+      - Fri, 02 Apr 2021 15:26:43 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
       - chunked
       Connection:
-      - close
+      - keep-alive
       Vary:
-      - Accept-Encoding
-      - Origin
-      Etag:
-      - W/"70c2adea1cb6760df05701edf1472b86"
+      - Accept, Origin
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache
       X-Request-Id:
-      - 0c081c6d-9e47-48f9-8355-88796ae6c00e
+      - 4082dc7f-355d-401f-9fbe-d34c3c870d0a
       X-Runtime:
-      - '0.127239'
+      - '0.020815'
       Strict-Transport-Security:
       - max-age=604800
       X-Frame-Options:
@@ -76,6 +73,6 @@ http_interactions:
         worker-src ''self'''
     body:
       encoding: UTF-8
-      string: '{"comment":{"id":1,"payload":{"message":"test","subject_id":"1","subject_type":"FeedItem","parent_comment_id":null,"images":[{"type":"image","desktop":"https://example.com/a.jpg","mobile":"https://example.com/a.jpg","thumbnail":"https://example.com/a.jpg"}],"videos":[{"type":"video","original":"https://example.com/a.mp4","short":"https://example.com/a.mp4","original_screenshot":"https://example.com/a.jpg","thumbnail_screenshot":"https://example.com/a.jpg"}]}}}'
-  recorded_at: Sun, 14 Mar 2021 22:18:41 GMT
+      string: '{"error":"Validation failed: Payload Invalid payload"}'
+  recorded_at: Fri, 02 Apr 2021 15:26:44 GMT
 recorded_with: VCR 6.0.0

@@ -12,7 +12,7 @@ describe "POST /client/conversations/:conversation_id/messages", documentation: 
   context "valid", valid: true do
     let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
     let(:conversation) { create(:conversation, peer_info: peer_info) }
-    let(:url) { "/client/conversations/#{conversation.id}/messages" }
+    let(:url) { "/client/conversations/#{conversation.id}/messages/upload" }
     let(:message) { Message.last }
     let(:params) do
       {

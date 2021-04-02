@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_054747) do
+ActiveRecord::Schema.define(version: 2021_04_02_131135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_054747) do
     t.string "subject_type"
     t.bigint "subject_id"
     t.text "payload", default: "{}", null: false
-    t.bigint "remote_id", null: false
+    t.bigint "remote_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "like_count", default: 0, null: false
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2021_03_25_054747) do
     t.string "payload_subject_type", null: false
     t.string "payload_subject_id", null: false
     t.bigint "peer_info_id", null: false
+    t.string "parent_comment_id"
+    t.text "signature"
+    t.index ["parent_comment_id"], name: "index_cache_comments_on_parent_comment_id"
     t.index ["payload_subject_id", "payload_subject_type"], name: "index_cache_comments_on_payload", unique: true
     t.index ["peer_info_id"], name: "index_cache_comments_on_peer_info_id"
     t.index ["subject_id", "subject_type"], name: "index_cache_comments_on_subject_id_and_subject_type", unique: true, where: "((subject_id IS NOT NULL) AND (subject_type IS NOT NULL))"

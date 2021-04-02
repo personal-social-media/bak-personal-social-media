@@ -10,7 +10,7 @@ module Client
       CacheCommentsService::CreateCacheComment.new(create_params).call!
 
       head :ok
-    rescue ActiveRecord::RecordInvalid, CacheCommentsService::CreateCacheComment::Error, TimeoutError => e
+    rescue ActiveRecord::RecordInvalid => e
       render json: { error: e.message }, status: 422
     rescue ActiveRecord::RecordNotFound
       render json: { error: "subject not found" }, status: 404
@@ -34,11 +34,13 @@ module Client
 
     private
       def create_params
-        params.require(:cache_comment).permit(:payload_subject_id, :payload_subject_type, :peer_info_id, payload: payload_params)
+        params.require(:cache_comment).permit(:subject_id, :subject_type, :peer_info_id,
+                                              :payload_subject_id, :payload_subject_type, :parent_comment_id,
+                                              payload: [:message], uploaded_files: %w[.path .md5 .name])
       end
 
       def update_params
-        params.require(:cache_comment).permit(:like_count, :love_count, :wow_count, payload: payload_params)
+        params.require(:cache_comment).permit(:like_count, :love_count, :wow_count, payload: payload_params, uploaded_files: %w[.path .md5 .name])
       end
 
       def current_cache_comment
@@ -47,25 +49,6 @@ module Client
 
       def require_current_cache_comment
         render json: { error: "cache comment not found" }, status: 404 if current_cache_comment.blank?
-      end
-
-      def payload_params
-        [
-          :message, :subject_id, :subject_type, :parent_comment_id,
-          images: [
-            :type,
-            :desktop,
-            :mobile,
-            :thumbnail
-          ],
-          videos: [
-            :type,
-            :original,
-            :short,
-            :original_screenshot,
-            :thumbnail_screenshot,
-          ]
-        ]
       end
   end
 end

@@ -40,7 +40,7 @@
           "message_type": "text",
           "read": false,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": 2,
+          "remote_id": 3,
           "processing_status": "processing",
           "message_owner": "self"
         },
@@ -52,7 +52,7 @@
           "message_type": "text",
           "read": false,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": 1,
+          "remote_id": 2,
           "processing_status": "processing",
           "message_owner": "self"
         }

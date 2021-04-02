@@ -3,7 +3,8 @@
 require "rails_helper"
 
 describe "POST /client/cache_comments", vcr: :record_once do
-  let(:url) { "/client/cache_comments" }
+  include FilesSpecHelper
+  let(:url) { "/client/cache_comments/upload" }
   let(:controller) { Client::CacheCommentsController }
   let(:params) { { id: peer_info.id } }
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
@@ -11,39 +12,25 @@ describe "POST /client/cache_comments", vcr: :record_once do
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
   let(:new_cache_comment) { CacheComment.last }
 
-  let(:payload) do
-    {
-      message: "test",
-      subject_type: "FeedItem",
-      subject_id: feed_item.id,
-      parent_comment_id: nil,
-      images: [
-        {
-          type: :image,
-          desktop: "https://example.com/a.jpg",
-          mobile: "https://example.com/a.jpg",
-          thumbnail: "https://example.com/a.jpg",
-        }
-      ],
-      videos: [
-        {
-          type: :video,
-          original: "https://example.com/a.mp4",
-          short: "https://example.com/a.mp4",
-          original_screenshot: "https://example.com/a.jpg",
-          thumbnail_screenshot: "https://example.com/a.jpg",
-        }
-      ]
-    }
-  end
-
   let(:params) do
     {
       cache_comment: {
+        subject_type: "FeedItem",
+        subject_id: feed_item.id,
+        parent_comment_id: nil,
         payload_subject_type: :post,
         payload_subject_id: uid,
-        payload: payload,
-        peer_info_id: peer_info.id
+        payload: {
+          message: "test",
+        },
+        peer_info_id: peer_info.id,
+        uploaded_files: [
+          {
+            ".name": "a.png",
+            ".path": sample_image_tmp,
+            ".md5": "md5"
+          }
+        ]
       }
     }
   end
@@ -54,14 +41,17 @@ describe "POST /client/cache_comments", vcr: :record_once do
 
   subject do
     post url, params: params
+
+    SyncService::SyncComment.new(new_cache_comment).call_create!
   end
 
-  it "creates new cache comment" do
+  xit "creates new cache comment" do
     expect do
       subject
       expect(response).to have_http_status(:ok)
 
       expect(new_cache_comment.subject).to be_present
+      expect(new_cache_comment.attached_files).to be_present
     end.to change { CacheComment.count }.by(1)
   end
 end

@@ -22,8 +22,8 @@
         }
       }
     },
-    "unescaped_url": "/client/conversations/:conversation_id/messages",
-    "url": "/client/conversations/1/messages",
+    "unescaped_url": "/client/conversations/:conversation_id/messages/upload",
+    "url": "/client/conversations/1/messages/upload",
     "method": "POST",
     "body": {
       "message": {

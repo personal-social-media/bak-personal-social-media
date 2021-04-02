@@ -2,7 +2,7 @@
 
 RSpec.shared_context "client_create_messages_documentation" do
   let(:documentation_title) { "Create a new message" }
-  let(:documentation_unescaped_url) { "/client/conversations/:conversation_id/messages" }
+  let(:documentation_unescaped_url) { "/client/conversations/:conversation_id/messages/upload" }
   let(:documentation_id) { :create }
   let(:documentation_params) do
     {

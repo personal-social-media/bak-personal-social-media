@@ -25,6 +25,8 @@ module Api
       @comment = CommentsService::CreateComment.new(current_peer_info, current_subject, permitted_params[:payload], permitted_params[:signature]).call!
     rescue ActiveRecord::RecordInvalid => e
       render json: { error: e.message }, status: 422
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { error: e.message }, status: 404
     end
 
     def show
