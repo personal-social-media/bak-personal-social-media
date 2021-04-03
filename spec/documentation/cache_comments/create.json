@@ -1,0 +1,74 @@
+{
+  "parent": {
+    "id": "cache_comments",
+    "controller": "Client::CacheCommentsController",
+    "title": "Local Comments",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create a new cache comment",
+    "information": "Create a new cache comment",
+    "params": {
+      "cache_comment": {
+        "subject_type": {
+          "type": "string",
+          "optional": true,
+          "variants": [
+            "FeedItem"
+          ]
+        },
+        "subject_id": {
+          "type": "id",
+          "optional": true
+        },
+        "parent_comment_id": {
+          "type": "uid",
+          "optional": true
+        },
+        "payload_subject_type": {
+          "type": "string",
+          "variants": [
+            "post",
+            "comment"
+          ]
+        },
+        "payload_subject_id": {
+          "type": "uid"
+        },
+        "peer_info_id": {
+          "type": "id"
+        },
+        "payload": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "unescaped_url": "/client/cache_comments/upload",
+    "url": "/client/cache_comments/upload",
+    "method": "POST",
+    "body": {
+      "cache_comment": {
+        "subject_type": "FeedItem",
+        "subject_id": 1,
+        "parent_comment_id": null,
+        "payload_subject_type": "post",
+        "payload_subject_id": "76e895ca6549958cfa5662d372b7e7538724df06f67ab531",
+        "payload": {
+          "message": "test"
+        },
+        "peer_info_id": 2,
+        "uploaded_files": [
+          {
+            ".name": "a.png",
+            ".path": "file_path",
+            ".md5": "md5"
+          }
+        ]
+      }
+    },
+    "json": null
+  }
+}

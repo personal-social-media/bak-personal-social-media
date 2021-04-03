@@ -18,7 +18,40 @@ module SyncService
     end
 
     def call_update!
-      SyncMessageUpdate.new(comment).call_update!
+      SyncCommentUpdate.new(comment).call_update!
+    end
+
+    def images
+      comment.attached_files.select(&:image?).map!(&:attachment)
+    end
+
+    def videos
+      comment.attached_files.select(&:video?).map!(&:attachment)
+    end
+
+    def get_variants_for_image(image)
+      {
+        original: image.image_url(:original),
+        mobile: image.image_url(:mobile),
+        thumbnail: image.image_url(:thumbnail),
+        size: {
+          width: image.metadata.try(:[], "image_width").to_s,
+          height: image.metadata.try(:[], "image_height").to_s
+        }
+      }
+    end
+
+    def get_variants_for_video(video)
+      {
+        original: video.video_url(:original),
+        original_screenshot: video.video_url(:original_screenshot),
+        thumbnail_screenshot: video.video_url(:mobile),
+        short: video.video_url(:thumbnail),
+        size: {
+          width: video.metadata.try(:[], "image_width").to_s,
+          height: video.metadata.try(:[], "image_height").to_s
+        }
+      }
     end
 
     private
@@ -44,14 +77,6 @@ module SyncService
         comment.generate_signature!
       end
 
-      def images
-        comment.attached_files.select(&:image?).map!(&:attachment)
-      end
-
-      def videos
-        comment.attached_files.select(&:video?).map!(&:attachment)
-      end
-
       def body
         {
           comment: {
@@ -62,31 +87,6 @@ module SyncService
             signature: signature
           }
         }.to_json
-      end
-
-      def get_variants_for_image(image)
-        {
-          original: image.image_url(:original),
-          mobile: image.image_url(:mobile),
-          thumbnail: image.image_url(:thumbnail),
-          size: {
-            width: image.metadata.try(:[], "image_width").to_s,
-            height: image.metadata.try(:[], "image_height").to_s
-          }
-        }
-      end
-
-      def get_variants_for_video(video)
-        {
-          original: video.video_url(:original),
-          original_screenshot: video.video_url(:original_screenshot),
-          thumbnail_screenshot: video.video_url(:mobile),
-          short: video.video_url(:thumbnail),
-          size: {
-            width: video.metadata.try(:[], "image_width").to_s,
-            height: video.metadata.try(:[], "image_height").to_s
-          }
-        }
       end
 
       delegate_missing_to :comment

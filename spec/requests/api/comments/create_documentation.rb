@@ -8,37 +8,37 @@ RSpec.shared_context "api_comments_create" do
     {
       comment: {
         subject_type: {
-          type: :string
+          type: :string,
+          variants: CacheComment.payload_subject_types
         },
         subject_id: {
-          type: [:string, :integer],
-        },
-        comment_type: {
-          type: :string
+          type: :uid,
         },
         signature: {
-          type: :string
+          type: :signature
+        },
+        parent_comment_id: {
+          type: :uid,
+          optional: true
         },
         payload: {
           message: {
             type: :string
           },
           subject_id: {
-            type: :string
+            type: :uid
           },
           subject_type: {
-            type: :string
+            type: :string,
+            variants: CacheComment.payload_subject_types
           },
           parent_comment_id: {
-            type: :number,
+            type: :uid,
             optional: true
           },
           images: [
             {
-              type: {
-                type: :string
-              },
-              desktop: {
+              original: {
                 type: :url
               },
               mobile: {
@@ -47,17 +47,19 @@ RSpec.shared_context "api_comments_create" do
               thumbnail: {
                 type: :url
               },
+              size: {
+                width: {
+                  type: :string
+                },
+                height: {
+                  type: :string
+                }
+              }
             }
           ],
           videos: [
             {
-              type: {
-                type: :string
-              },
               original: {
-                type: :url
-              },
-              short: {
                 type: :url
               },
               original_screenshot: {
@@ -66,6 +68,17 @@ RSpec.shared_context "api_comments_create" do
               thumbnail_screenshot: {
                 type: :url
               },
+              short: {
+                type: :url
+              },
+              size: {
+                width: {
+                  type: :string
+                },
+                height: {
+                  type: :string
+                }
+              }
             }
           ]
         }

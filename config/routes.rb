@@ -105,9 +105,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :cache_comments, only: %i(update destroy) do
+    resources :cache_comments, only: %i(destroy) do
       collection do
         post "/upload", action: :create
+        patch "/upload", action: :update
       end
     end
     resources :conversations, only: %i(index create update) do

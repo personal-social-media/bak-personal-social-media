@@ -30,6 +30,7 @@ module DocumentationService
 
       def validate_present(value, name)
         return if value.present?
+        return if value.is_a?(Enumerable)
         raise Error, "#{name} is missing"
       end
 

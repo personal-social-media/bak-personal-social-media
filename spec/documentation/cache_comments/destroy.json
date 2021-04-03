@@ -1,0 +1,19 @@
+{
+  "parent": {
+    "id": "cache_comments",
+    "controller": "Client::CacheCommentsController",
+    "title": "Local Comments",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "destroy",
+    "title": "Destroys a comment",
+    "information": "Destroys a comment",
+    "params": {},
+    "unescaped_url": "/client/cache_comments",
+    "url": "/client/cache_comments/1",
+    "method": "DELETE",
+    "body": "",
+    "json": null
+  }
+}

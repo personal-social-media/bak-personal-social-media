@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./create_documentation"
 require "rails_helper"
 
-describe "POST /client/cache_comments", vcr: :record_once do
+describe "POST /client/cache_comments", vcr: :record_once, documentation: true do
   include FilesSpecHelper
-  include ExternalApiHelpers
 
   let(:url) { "/client/cache_comments/upload" }
-  let(:controller) { Client::CacheCommentsController }
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
   let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
   let(:new_cache_comment) { CacheComment.last }
+  include_context "cache_comments_documentation"
+  include_context "cache_comments_create_documentation"
 
   let(:params) do
     {
@@ -46,13 +48,14 @@ describe "POST /client/cache_comments", vcr: :record_once do
     SyncService::SyncComment.new(new_cache_comment).call_create!
   end
 
-  xit "creates new cache comment" do
+  it "creates new cache comment", valid: true do
     expect do
       subject
       expect(response).to have_http_status(:ok)
 
       expect(new_cache_comment.subject).to be_present
       expect(new_cache_comment.attached_files).to be_present
+      expect(new_cache_comment.remote_id).to be_present
     end.to change { CacheComment.count }.by(1)
   end
 end

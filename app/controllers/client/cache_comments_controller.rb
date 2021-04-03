@@ -20,7 +20,7 @@ module Client
       CacheCommentsService::UpdateCacheComment.new(update_params, current_cache_comment).call!
 
       head :ok
-    rescue ActiveRecord::RecordInvalid, CacheCommentsService::UpdateCacheComment::Error, TimeoutError => e
+    rescue ActiveRecord::RecordInvalid, TimeoutError => e
       render json: { error: e.message }, status: 422
     end
 
@@ -40,7 +40,7 @@ module Client
       end
 
       def update_params
-        params.require(:cache_comment).permit(:like_count, :love_count, :wow_count, payload: payload_params, uploaded_files: %w[.path .md5 .name])
+        params.require(:cache_comment).permit(:like_count, :love_count, :wow_count, payload: [:message], uploaded_files: %w[.path .md5 .name])
       end
 
       def current_cache_comment

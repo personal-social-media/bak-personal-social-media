@@ -2,44 +2,43 @@
 
 module CacheCommentsService
   class UpdateCacheComment
-    class Error < Exception; end
-    include IdentityService::SignedRequest
-
-    attr_reader :update_params, :cache_comment
-    def initialize(update_params, cache_comment)
-      @update_params = update_params
-      @cache_comment = cache_comment
+    extend Memoist
+    attr_reader :params, :comment
+    def initialize(params, cache_comment)
+      @params = params
+      @comment = cache_comment
     end
 
     def call!
-      response = HTTP.timeout(timeout).headers(signed_headers(url)).patch(url, json: body)
-      raise Error, "bad server response: #{response.status} => #{response.body}" if response.status > 399
+      CacheComment.transaction do
+        comment.update!(update_params)
+        album_title = "Comments"
+        uploaded_files_params = params[:uploaded_files]
 
-      cache_comment.update!(update_params)
+        if uploaded_files_params.present?
+          uploaded_files = UploadsService::HandleMultipleUpload.new(uploaded_files_params).call!
+          elements_options = { is_private: false }
+          album_options = { album_name: album_title, album_manual_upload: false }
+          AttachmentsService::Attach.new(comment, uploaded_files, elements_options: elements_options, album_options: album_options).call!
+        elsif params[:payload].present?
+          comment.sync_update
+        end
+      end
+
+      comment
     end
 
-    private
-      def timeout
-        10
-      end
+    def update_params
+      params.except(:uploaded_files)
+    end
 
-      def body
-        {
-          comment: {
-            payload: payload,
-            signature: SignaturesService::Sign.new(payload.to_json).call!
-          }
-        }
-      end
+    memoize def subject
+      return nil unless %w(FeedItem).include?(params[:subject_type])
+      FeedItem.find_by(id: params[:subject_id])
+    end
 
-      def url
-        "https://#{peer_info.ip}/api/comments/#{cache_comment.remote_id}"
-      end
-
-      def payload
-        update_params[:payload]
-      end
-
-      delegate :peer_info, to: :cache_comment
+    memoize def peer_info
+      PeerInfo.find_by!(id: params[:peer_info_id])
+    end
   end
 end

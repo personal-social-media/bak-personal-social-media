@@ -38,13 +38,22 @@ class CacheComment < ApplicationRecord
   validates :payload_subject_id, presence: true, uniqueness: { scope: :payload_subject_type }
   has_many :attached_files, as: :subject, dependent: :destroy
   serialize :payload, JSON
+  str_enum :payload_subject_type, %w(post comment)
 
   def sync_create
     SyncWorker.perform_async(Message, id, SyncService::SyncComment, :call_create!)
   end
 
+  def sync_update
+    SyncWorker.perform_async(Message, id, SyncService::SyncComment, :call_update!)
+  end
+
   def attachments_ready!
-    sync_create
+    if remote_id.present?
+      sync_update
+    else
+      sync_create
+    end
   end
 
   def generate_signature!

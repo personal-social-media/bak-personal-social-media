@@ -66,9 +66,9 @@ describe "/api/comments", documentation: true do
           comment: {
             subject_type: :post,
             subject_id: post_record.uid,
-            comment_type: :like,
             payload: payload,
-            signature: SignaturesService::Sign.new(payload.to_json).call!
+            signature: SignaturesService::Sign.new(payload.to_json).call!,
+            parent_comment_id: nil
           }
         }
       end
@@ -86,7 +86,7 @@ describe "/api/comments", documentation: true do
       let(:payload) do
         {
           message: "test",
-          subject_type: "Post",
+          subject_type: "post",
           parent_comment_id: nil,
           subject_id: post_record.uid.to_s,
           images: [
@@ -120,7 +120,6 @@ describe "/api/comments", documentation: true do
           comment: {
             subject_type: :post,
             subject_id: post_record.uid,
-            comment_type: :like,
             payload: payload,
             signature: SignaturesService::Sign.new(payload.to_json).call!
           }

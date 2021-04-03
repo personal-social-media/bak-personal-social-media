@@ -3,47 +3,31 @@
 require "rails_helper"
 
 describe "PATCH /client/cache_comments/:id", vcr: :record_once do
-  let(:url) { "/client/cache_comments/#{cache_comment.id}" }
+  include FilesSpecHelper
+  let(:url) { "/client/cache_comments/upload" }
   let(:controller) { Client::CacheCommentsController }
   let(:params) { { id: peer_info.id } }
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
-  let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
-  let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
-  let(:cache_comment) { create(:cache_comment, subject: feed_item, remote_id: 1, peer_info: peer_info) }
-
-  let(:payload) do
-    {
-      message: "test2",
-      subject_type: "FeedItem",
-      subject_id: feed_item.id,
-      parent_comment_id: nil,
-      images: [
-        {
-          type: :image,
-          desktop: "https://example.com/a.jpg",
-          mobile: "https://example.com/a.jpg",
-          thumbnail: "https://example.com/a.jpg",
-        }
-      ],
-      videos: [
-        {
-          type: :video,
-          original: "https://example.com/a.mp4",
-          short: "https://example.com/a.mp4",
-          original_screenshot: "https://example.com/a.jpg",
-          thumbnail_screenshot: "https://example.com/a.jpg",
-        }
-      ]
-    }
-  end
+  let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post) }
+  let(:cache_comment) { create(:cache_comment, subject: feed_item, remote_id: 2, peer_info: peer_info) }
 
   let(:params) do
     {
+      id: cache_comment.id,
       cache_comment: {
-        payload: payload,
+        payload: {
+          message: "test2"
+        },
         like_count: 1,
         love_count: 1,
         wow_count: 1,
+        uploaded_files: [
+          {
+            ".name": "a.png",
+            ".path": sample_image_tmp,
+            ".md5": "md5"
+          }
+        ]
       }
     }
   end
@@ -54,13 +38,14 @@ describe "PATCH /client/cache_comments/:id", vcr: :record_once do
 
   subject do
     patch url, params: params
+    cache_comment.reload
+    SyncService::SyncComment.new(cache_comment).call_update!
   end
 
   xit "updates cache comment" do
     expect do
       subject
       expect(response).to have_http_status(:ok)
-      cache_comment.reload
     end.to change { cache_comment.payload }
        .and change { cache_comment.like_count }
        .and change { cache_comment.love_count }

@@ -8,28 +8,26 @@ RSpec.shared_context "api_comments_update" do
     {
       comment: {
         signature: {
-          type: :string
+          type: :signature
         },
         payload: {
           message: {
             type: :string
           },
           subject_id: {
-            type: :string
+            type: :uid
           },
           subject_type: {
-            type: :string
+            type: :string,
+            variants: CacheComment.payload_subject_types
           },
           parent_comment_id: {
-            type: :number,
+            type: :uid,
             optional: true
           },
           images: [
             {
-              type: {
-                type: :string
-              },
-              desktop: {
+              original: {
                 type: :url
               },
               mobile: {
@@ -38,17 +36,19 @@ RSpec.shared_context "api_comments_update" do
               thumbnail: {
                 type: :url
               },
+              size: {
+                width: {
+                  type: :string
+                },
+                height: {
+                  type: :string
+                }
+              }
             }
           ],
           videos: [
             {
-              type: {
-                type: :string
-              },
               original: {
-                type: :url
-              },
-              short: {
                 type: :url
               },
               original_screenshot: {
@@ -57,6 +57,17 @@ RSpec.shared_context "api_comments_update" do
               thumbnail_screenshot: {
                 type: :url
               },
+              short: {
+                type: :url
+              },
+              size: {
+                width: {
+                  type: :string
+                },
+                height: {
+                  type: :string
+                }
+              }
             }
           ]
         }
