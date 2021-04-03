@@ -20,11 +20,11 @@
   <%= stylesheet_link_tag "documentation", media: "all", 'data-turbo-track': "reload" %>
   <%= javascript_include_tag "documentation", media: "all", 'data-turbo-track': "reload" %>
 <body>
-  <div class="flex">
-    <div>
+  <div>
+    <div class="fixed">
       <%= render partial: "documentations/side_nav" %>
     </div>
-    <div class="ml-4 mr-2 flex-1">
+    <div class="mr-2 ml-64 pl-4">
       <%= yield %>
     </div>
   </div>

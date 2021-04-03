@@ -27,7 +27,14 @@ class DocumentationsController < ActionController::Base
   end
 
   def set_navbar
-    @files_tree = files_tree
+    f = files_tree
+    @internal_usage_files_tree = f.select do |_, files|
+      files[1].dig(:content, "parent", "usage") == "internal"
+    end
+
+    @external_usage_files_tree = f.select do |_, files|
+      files[1].dig(:content, "parent", "usage") == "external"
+    end
   end
 
   def current_documentation

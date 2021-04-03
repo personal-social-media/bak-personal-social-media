@@ -1,0 +1,13 @@
+<% group.each do |dir, files| %>
+  <div class="my-4">
+    <%= files[1].dig(:content, "parent", "title") %>
+
+    <ul class="pl-8">
+      <% files[1..-1].each do |f| %>
+        <li class="list-disc">
+          <%= link_to f.dig(:content, "child", "title"), show_documentation_path(dir, f[:name].split("/").last.sub(".json", "")) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

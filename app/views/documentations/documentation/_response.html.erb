@@ -2,10 +2,23 @@
   Response body
 </div>
 
-<div>
-  <pre>
-    <code class="json">
-<%= JSON.pretty_generate(@doc.dig(:child, :body)) %>
-    </code>
-  </pre>
-</div>
+<% json = @doc.dig(:child, :json) %>
+
+<% if json.present? %>
+  <div>
+    <pre>
+      <code class="json">
+<%= JSON.pretty_generate(json) %>
+      </code>
+    </pre>
+  </div>
+  <% else %>
+
+  <div>
+    <pre>
+      <code class="plaintext">
+""
+      </code>
+    </pre>
+  </div>
+<% end %>

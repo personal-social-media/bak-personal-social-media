@@ -1,3 +1,7 @@
+<div class="my-4">
+  - <%= @doc.dig(:child, :information) %>
+</div>
+
 <div>
   Usage: <span class="doc-highlight">
     <%= @doc.dig(:parent, :usage) %>
