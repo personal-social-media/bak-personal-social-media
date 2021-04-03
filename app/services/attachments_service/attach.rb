@@ -39,9 +39,16 @@ module AttachmentsService
       end
 
       def handle_video(file)
-        attachment = VideoFile.create!(video: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
+        attachment = VideoFile.find_by(md5_checksum: file.md5)
+        processing_status = :processing
+        if attachment.present?
+          processing_status = :processed
+        else
+          attachment = VideoFile.create!(video: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
+        end
+
         gallery_element = GalleryElement.create(element: attachment, image_album: image_album)
-        attached_file = subject.present? ? AttachedFile.create!(attachment: attachment, subject: subject) : nil
+        attached_file = subject.present? ? AttachedFile.create!(attachment: attachment, subject: subject, processing_status: processing_status) : nil
         clear_existing(attached_file, VideoFile)
 
         output_files.push(
@@ -52,9 +59,16 @@ module AttachmentsService
       end
 
       def handle_image(file)
-        attachment = ImageFile.create!(image: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
+        attachment = ImageFile.find_by(md5_checksum: file.md5)
+        processing_status = :processing
+        if attachment.present?
+          processing_status = :processed
+        else
+          attachment = ImageFile.create!(image: File.open(file.path), private: is_private, real_file_name: file.name, md5_checksum: file.md5)
+        end
+
         gallery_element = GalleryElement.create(element: attachment, image_album: image_album)
-        attached_file = subject.present? ? AttachedFile.create!(attachment: attachment, subject: subject) : nil
+        attached_file = subject.present? ? AttachedFile.create!(attachment: attachment, subject: subject, processing_status: processing_status) : nil
         clear_existing(attached_file, ImageFile)
 
         output_files.push(
