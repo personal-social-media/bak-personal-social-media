@@ -76,9 +76,14 @@ module DocumentationService
 
     def is_date?(value)
       return false unless value.is_a?(String)
+      return false if integer?(value)
       Date.parse(value)
     rescue Exception
       false
+    end
+
+    def integer?(value)
+      /\A[+-]?\d+\z/.match?(value)
     end
 
     def is_path?(value)

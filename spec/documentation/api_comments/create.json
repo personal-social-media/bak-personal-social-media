@@ -97,8 +97,8 @@
               "mobile": "https://example.com/a.jpg",
               "thumbnail": "https://example.com/a.jpg",
               "size": {
-                "width": "2020-01-01T00:00:00+00:00",
-                "height": "2020-01-01T00:00:00+00:00"
+                "width": "200",
+                "height": "200"
               }
             }
           ],
@@ -109,8 +109,8 @@
               "thumbnail_screenshot": "https://example.com/a.jpg",
               "short": "https://example.com/a.mp4",
               "size": {
-                "width": "2020-01-01T00:00:00+00:00",
-                "height": "2020-01-01T00:00:00+00:00"
+                "width": "200",
+                "height": "200"
               }
             }
           ]
@@ -132,8 +132,8 @@
               "mobile": "https://example.com/a.jpg",
               "thumbnail": "https://example.com/a.jpg",
               "size": {
-                "width": "2020-01-01T00:00:00+00:00",
-                "height": "2020-01-01T00:00:00+00:00"
+                "width": "200",
+                "height": "200"
               }
             }
           ],
@@ -144,8 +144,8 @@
               "thumbnail_screenshot": "https://example.com/a.jpg",
               "short": "https://example.com/a.mp4",
               "size": {
-                "width": "2020-01-01T00:00:00+00:00",
-                "height": "2020-01-01T00:00:00+00:00"
+                "width": "200",
+                "height": "200"
               }
             }
           ]
