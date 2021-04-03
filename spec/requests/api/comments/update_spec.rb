@@ -28,25 +28,31 @@ describe "/api/comments/:id", documentation: true do
     context "valid" do
       let(:payload) do
         {
-          message: "test2",
+          message: "test",
           subject_id: post_record.uid.to_s,
           subject_type: "Post",
           parent_comment_id: nil,
           images: [
             {
-              type: :image,
-              desktop: "https://example.com/a.jpg",
+              original: "https://example.com/a.jpg",
               mobile: "https://example.com/a.jpg",
               thumbnail: "https://example.com/a.jpg",
+              size: {
+                width: "200",
+                height: "200",
+              }
             }
           ],
           videos: [
             {
-              type: :video,
               original: "https://example.com/a.mp4",
-              short: "https://example.com/a.mp4",
               original_screenshot: "https://example.com/a.jpg",
               thumbnail_screenshot: "https://example.com/a.jpg",
+              short: "https://example.com/a.mp4",
+              size: {
+                width: "200",
+                height: "200",
+              }
             }
           ]
         }

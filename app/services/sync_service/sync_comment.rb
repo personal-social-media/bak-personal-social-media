@@ -35,13 +35,12 @@ module SyncService
       end
 
       def update_comment!
-        comment.payload.merge!({
-          images: images.map! { |i| ImageFilePresenter.new(i, stubbed_request).render },
-          videos: videos.map! { |i| ImageFilePresenter.new(i, stubbed_request).render },
-        })
-        comment.payload[:subject_type] = payload_subject_type
         comment.payload[:subject_id] = payload_subject_id
+        comment.payload[:subject_type] = payload_subject_type
         comment.payload[:parent_comment_id] = parent_comment_id
+        comment.payload[:images] = images.map! { |i| get_variants_for_image(i) }
+        comment.payload[:videos] = videos.map! { |v| get_variants_for_video(v) }
+
         comment.generate_signature!
       end
 
@@ -65,12 +64,29 @@ module SyncService
         }.to_json
       end
 
-      memoize def stubbed_request
-        OpenStruct.new.tap do |r|
-          r.headers = {
-            "Client" => "desktop"
+      def get_variants_for_image(image)
+        {
+          original: image.image_url(:original),
+          mobile: image.image_url(:mobile),
+          thumbnail: image.image_url(:thumbnail),
+          size: {
+            width: image.metadata.try(:[], "image_width").to_s,
+            height: image.metadata.try(:[], "image_height").to_s
           }
-        end
+        }
+      end
+
+      def get_variants_for_video(video)
+        {
+          original: video.video_url(:original),
+          original_screenshot: video.video_url(:original_screenshot),
+          thumbnail_screenshot: video.video_url(:mobile),
+          short: video.video_url(:thumbnail),
+          size: {
+            width: video.metadata.try(:[], "image_width").to_s,
+            height: video.metadata.try(:[], "image_height").to_s
+          }
+        }
       end
 
       delegate_missing_to :comment

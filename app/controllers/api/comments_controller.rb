@@ -79,17 +79,17 @@ module Api
         [
           :message, :subject_id, :subject_type, :parent_comment_id,
           images: [
-            :type,
-            :desktop,
+            :original,
             :mobile,
-            :thumbnail
+            :thumbnail,
+            size: [:width, :height]
           ],
           videos: [
-            :type,
             :original,
-            :short,
             :original_screenshot,
             :thumbnail_screenshot,
+            :short,
+            size: [:width, :height]
           ]
         ]
       end

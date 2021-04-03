@@ -4,9 +4,10 @@ require "rails_helper"
 
 describe "POST /client/cache_comments", vcr: :record_once do
   include FilesSpecHelper
+  include ExternalApiHelpers
+
   let(:url) { "/client/cache_comments/upload" }
   let(:controller) { Client::CacheCommentsController }
-  let(:params) { { id: peer_info.id } }
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
   let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
