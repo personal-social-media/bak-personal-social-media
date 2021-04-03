@@ -1,0 +1,63 @@
+{
+  "parent": {
+    "id": "cache_comments",
+    "controller": "Client::CacheCommentsController",
+    "title": "Local Comments",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "update",
+    "title": "Updates a cache comment",
+    "information": "It only syncs remotely when 'payload' or 'uploaded_files' is present",
+    "params": {
+      "cache_comment": {
+        "like_count": {
+          "type": "number",
+          "optional": true
+        },
+        "love_count": {
+          "type": "number",
+          "optional": true
+        },
+        "wow_count": {
+          "type": "number",
+          "optional": true
+        },
+        "payload": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "uploaded_files": [
+          {
+            ".name": "a.png",
+            ".path": "/tmp/sample-test-image-fb1a8d8fbd7e55ae3d07b05281b72f3c.png",
+            ".md5": "md5"
+          }
+        ]
+      }
+    },
+    "unescaped_url": "/client/cache_comments/upload",
+    "url": "/client/cache_comments/upload",
+    "method": "PATCH",
+    "body": {
+      "id": 1,
+      "cache_comment": {
+        "payload": {
+          "message": "test2"
+        },
+        "like_count": 1,
+        "love_count": 1,
+        "wow_count": 1,
+        "uploaded_files": [
+          {
+            ".name": "a.png",
+            ".path": "file_path",
+            ".md5": "md5"
+          }
+        ]
+      }
+    },
+    "json": null
+  }
+}

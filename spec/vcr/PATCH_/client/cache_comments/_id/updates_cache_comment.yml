@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://161.97.64.223/api/comments/2
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"payload":{"message":"test2","images":[{"original":"memory://imagefile/1/image/original-9189276632e2b4d81a0ecd88d19d71e3.png","mobile":null,"thumbnail":null,"size":{"width":"","height":""}}],"videos":[]},"signature":"QH35IWFQAY2ULTHMUL6QNA5TELMIGVVE76R5CZVUKY7JR7R5TRXXLMYREJYNM6TQBEEFYIAT7SJN3W2BG4GIWOL6ZMQNUTLJHV3FPARB557GZR57IFADP526ENAHSQUGQ6BCM3BYUMAKFPOM7R3NTXGWOYD46HGFEMAXQRWCEXPGN4X7NGM3FOAU3BD2LYB5P2PINLSL5ME4DBG4LXMFGP2TNGZK2JF7AO3BZZ3YYN7PCLEBXV3PNMWYS74RXIOLK6RBGEKWGH2I6SPIC4RSLTHPMF6YIWNK3GLEQ43B2TIAJAQDPKAIETZORBEKW7VCYUWSURLZAXTGOLA27XYLXU4XLZFP6DYQUBVQY3WQH2F5CIIKT3SCXKRNEMSDC2B7AZJ35EXZ3IGQL3IQ2A4DKV7TOA======"}}'
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - SVAJ7WBKJGN5TCJ5GYV42NHDZHWBWVFLDIZSSNNFWPP5GOLXOPQVXX76FHPP7TUL4J7O3WPUPA6JSNZ5JJVWOTGLB64JO4Q5DXWSOPPAQJFKIYWQ7FHBTVMXAGAJGWFD6JEIAGQUWJYZHVIA424G43NY36FV7FVMSIOGODQVB6L6YC3U4PIBVA3OPEGZWJASTUNCCP5DL3I7DCODQYX4SRZIMNEH2HEXDBQ7RZGM4SE3MCPLMNS2DPIIG6VTJNK2RE2NVPJC6HUW2PNGPS33TWBTECR32OJXQSGBTV2ZSFSUHEAJ327R3WQG54X7EFDQGUDNW6R22BHM73UBSPNM42QBGCHNXGVKHSHTCAY6RNJZAWRFI7IPEOW5DTA4L66JDSC3YC4KVDEW35S7MTAKKEPF54======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 03 Apr 2021 12:52:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept, Origin
+      - Accept-Encoding
+      Etag:
+      - W/"826442e4a9aecd7c1204750cf8b28fa7"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 16c20235-872c-44bf-9e30-3ece41c40c69
+      X-Runtime:
+      - '0.441977'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self''; script-src-attr
+        ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com cdnjs.cloudflare.com
+        fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline''; style-src-elem
+        ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com; upgrade-insecure-requests;
+        worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"payload":{"message":"test2","images":[{"original":"memory://imagefile/1/image/original-9189276632e2b4d81a0ecd88d19d71e3.png","mobile":null,"thumbnail":null,"size":{"width":"","height":""}}],"videos":[]},"id":2}}'
+  recorded_at: Sat, 03 Apr 2021 12:52:47 GMT
+recorded_with: VCR 6.0.0

@@ -43,7 +43,14 @@
           "message": {
             "type": "string"
           }
-        }
+        },
+        "uploaded_files": [
+          {
+            ".name": "a.png",
+            ".path": "/tmp/sample-test-image-3539e46a8d1c788185dbd3eede50e149.png",
+            ".md5": "md5"
+          }
+        ]
       }
     },
     "unescaped_url": "/client/cache_comments/upload",

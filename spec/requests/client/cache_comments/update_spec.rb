@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./update_documentation"
 require "rails_helper"
 
-describe "PATCH /client/cache_comments/:id", vcr: :record_once do
+describe "PATCH /client/cache_comments/:id", vcr: :record_once, documentation: true do
   include FilesSpecHelper
   let(:url) { "/client/cache_comments/upload" }
-  let(:controller) { Client::CacheCommentsController }
   let(:params) { { id: peer_info.id } }
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post) }
   let(:cache_comment) { create(:cache_comment, subject: feed_item, remote_id: 2, peer_info: peer_info) }
+  include_context "cache_comments_documentation"
+  include_context "cache_comments_update_documentation"
 
   let(:params) do
     {
@@ -42,7 +45,7 @@ describe "PATCH /client/cache_comments/:id", vcr: :record_once do
     SyncService::SyncComment.new(cache_comment).call_update!
   end
 
-  xit "updates cache comment" do
+  it "updates cache comment", valid: true do
     expect do
       subject
       expect(response).to have_http_status(:ok)

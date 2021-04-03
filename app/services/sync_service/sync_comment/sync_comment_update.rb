@@ -19,7 +19,7 @@ module SyncService
       private
         def make_request
           hydra = Typhoeus::Hydra.hydra
-          Typhoeus::Request.new(url, method: :post, headers: default_headers(url).merge(json_headers), body: body).tap do |r|
+          Typhoeus::Request.new(url, method: :patch, headers: default_headers(url).merge(json_headers), body: body).tap do |r|
             hydra.queue(r)
             hydra.run
           end

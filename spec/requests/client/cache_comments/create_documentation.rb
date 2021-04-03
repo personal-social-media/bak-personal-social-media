@@ -34,7 +34,14 @@ RSpec.shared_context "cache_comments_create_documentation" do
           message: {
             type: :string
           },
-        }
+        },
+        uploaded_files: [
+          {
+            ".name": "a.png",
+            ".path": sample_image_tmp,
+            ".md5": "md5"
+          }
+        ]
       }
     }
   end
