@@ -17,6 +17,7 @@
     "unescaped_url": "/notifications/mark_as_seen",
     "url": "/notifications/mark_as_seen",
     "method": "PATCH",
+    "response_code": 200,
     "body": {
       "ids": [
         "all"

@@ -1,0 +1,26 @@
+<div>
+  <div class="text-lg font-bold">
+    <%= @doc.dig(:parent, :title) %>
+  </div>
+  <div class="flex justify-between">
+    <div class="pl-4 font-semibold">
+      <%= @doc.dig(:child, :title) %>
+    </div>
+    <div class="doc-highlight">
+      <%= @doc.dig(:parent, :controller) %>
+    </div>
+  </div>
+
+  <div>
+    <%= render(partial: "documentations/documentation/request_information") %>
+  </div>
+
+  <div class="flex pt-4">
+    <div class="flex-1 mr-2">
+      <%= render(partial: "documentations/documentation/request") %>
+    </div>
+    <div class="flex-1 ml-2">
+      <%= render(partial: "documentations/documentation/response") %>
+    </div>
+  </div>
+</div>

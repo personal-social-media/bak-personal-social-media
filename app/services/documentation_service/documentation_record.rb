@@ -32,10 +32,11 @@ module DocumentationService
           id: documentation_id,
           title: documentation_title,
           information: documentation_information || documentation_title,
-          params: documentation_params,
+          params: format_saved_hash(documentation_params),
           unescaped_url: documentation_unescaped_url,
           url: url,
           method: request.method,
+          response_code: response.status,
           body: body,
           json: format_saved_hash(json)
         }

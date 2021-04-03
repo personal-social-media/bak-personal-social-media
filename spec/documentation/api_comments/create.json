@@ -97,6 +97,7 @@
     "unescaped_url": "/api/comments",
     "url": "/api/comments",
     "method": "POST",
+    "response_code": 200,
     "body": {
       "comment": {
         "subject_type": "post",

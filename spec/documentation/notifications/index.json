@@ -26,6 +26,7 @@
     "unescaped_url": "/notifications",
     "url": "/notifications",
     "method": "GET",
+    "response_code": 200,
     "body": "",
     "json": {
       "notifications": [

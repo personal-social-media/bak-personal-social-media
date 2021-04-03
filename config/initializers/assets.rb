@@ -13,3 +13,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 Rails.application.config.assets.precompile += %w( application.js )
 Rails.configuration.assets.precompile += %w[serviceworker.js manifest.json]
+
+if Rails.env.development?
+  Rails.configuration.assets.precompile += %w(documentation.js documentation.css)
+end

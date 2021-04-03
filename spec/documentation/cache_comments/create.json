@@ -47,7 +47,7 @@
         "uploaded_files": [
           {
             ".name": "a.png",
-            ".path": "/tmp/sample-test-image-9b61872448237a7cdab2f4e62494cd1e.png",
+            ".path": "file_path",
             ".md5": "md5"
           }
         ]
@@ -56,6 +56,7 @@
     "unescaped_url": "/client/cache_comments/upload",
     "url": "/client/cache_comments/upload",
     "method": "POST",
+    "response_code": 200,
     "body": {
       "cache_comment": {
         "subject_type": "FeedItem",

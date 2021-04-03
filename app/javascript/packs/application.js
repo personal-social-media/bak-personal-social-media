@@ -13,7 +13,6 @@ if (process.env.RAILS_ENV !== 'production') {
   console.log(definitionsFromContext(context).map((el) => el.identifier));
 }
 
-
 const ReactRailsUJS = require('react_ujs');
 const componentRequireContext = require.context('components', true);
 ReactRailsUJS.useContext(componentRequireContext); // eslint-disable-line react-hooks/rules-of-hooks

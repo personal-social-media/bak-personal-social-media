@@ -29,6 +29,7 @@
     "unescaped_url": "/client/conversations/:conversation_id/messages",
     "url": "/client/conversations/1/messages",
     "method": "GET",
+    "response_code": 200,
     "body": "",
     "json": {
       "messages": [

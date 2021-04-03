@@ -19,6 +19,7 @@
     "unescaped_url": "/api/messages/:id",
     "url": "/api/messages/1",
     "method": "PUT",
+    "response_code": 200,
     "body": {
       "message": {
         "read": true

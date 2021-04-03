@@ -1,0 +1,24 @@
+<div>
+  Usage: <span class="doc-highlight">
+    <%= @doc.dig(:parent, :usage) %>
+  </span>
+</div>
+<div class="flex my-4">
+  <div class="mr-2">
+    URL: <span class="doc-highlight">
+      <%= @doc.dig(:child, :unescaped_url) %>
+    </span>
+  </div>
+
+  <div class="mx-2">
+    METHOD: <span class="doc-highlight">
+      <%= @doc.dig(:child, :method) %>
+    </span>
+  </div>
+
+  <div class="ml-2">
+    Response code: <span class="doc-highlight">
+      <%= @doc.dig(:child, :response_code) %>
+    </span>
+  </div>
+</div>

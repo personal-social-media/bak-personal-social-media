@@ -122,10 +122,21 @@ Rails.application.routes.draw do
   end
 
   constraints LoggedIn do
-    mount Sidekiq::Web => '/sidekiq' if ENV["DEVELOPER"].present?
+    if ENV["DEVELOPER"].present?
+      mount Sidekiq::Web => '/sidekiq'
+      mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+    end
     mount PgHero::Engine => "/pghero"
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin' if ENV["DEVELOPER"].present?
   end
+
+  if Rails.env.development?
+    resources :documentations, path: "/doc", only: %i(index) do
+      member do
+        get "/:file_name", action: :show, as: :show
+      end
+    end
+  end
+
   match "/*match", to: "static#not_found", via: :all, constraints: ->(req) do
     req.path.exclude?('auth/auth0') &&
       req.path.exclude?('packs') &&

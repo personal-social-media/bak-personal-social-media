@@ -83,6 +83,7 @@
     "unescaped_url": "/api/comments/:id",
     "url": "/api/comments/1",
     "method": "PATCH",
+    "response_code": 200,
     "body": {
       "comment": {
         "payload": {

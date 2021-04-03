@@ -1,0 +1,37 @@
+<div>
+  Request body
+</div>
+
+<div>
+  <pre>
+    <code class="json">
+<%= JSON.pretty_generate(@doc.dig(:child, :body)) %>
+    </code>
+  </pre>
+</div>
+
+<div>
+  Sample Request URL
+</div>
+
+<div>
+  <div class="doc-highlight">
+    <%= @doc.dig(:child, :url) %>
+  </div>
+</div>
+
+<% params = @doc.dig(:child, :params) %>
+
+<% if params.present? %>
+  <div class="mt-8">
+    Body schema
+  </div>
+
+  <div>
+    <pre>
+      <code class="json">
+<%= JSON.pretty_generate(params) %>
+      </code>
+    </pre>
+  </div>
+<% end %>
