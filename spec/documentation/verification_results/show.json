@@ -1,0 +1,31 @@
+{
+  "parent": {
+    "id": "verification_results",
+    "controller": "VerificationResultsController",
+    "title": "Like verifications",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "show",
+    "title": "Shows a verification",
+    "information": "Shows a verification",
+    "params": {},
+    "unescaped_url": "/verification_results/:id",
+    "url": "/verification_results/1",
+    "method": "GET",
+    "response_code": 200,
+    "body": "",
+    "json": {
+      "verification_result": {
+        "id": 1,
+        "subject_type": "FeedItem",
+        "subject_id": 1,
+        "result": {},
+        "status": "running",
+        "percentage_status": 0,
+        "created_at": "2020-01-01T00:00:00+00:00",
+        "updated_at": "2020-01-01T00:00:00+00:00"
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "parent": {
+    "id": "verification_results",
+    "controller": "VerificationResultsController",
+    "title": "Like verifications",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "index",
+    "title": "List verifications",
+    "information": "List verifications",
+    "params": {
+      "search": [
+        {
+          "remote_id": {
+            "type": "id"
+          },
+          "remote_type": {
+            "type": "string",
+            "variants": "VerificationResult"
+          }
+        }
+      ]
+    },
+    "unescaped_url": "/verification_results",
+    "url": "/verification_results/search",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "search": [
+        {
+          "remote_id": "3",
+          "remote_type": "post"
+        },
+        {
+          "remote_id": "4",
+          "remote_type": "post"
+        },
+        {
+          "remote_id": "5",
+          "remote_type": "post"
+        }
+      ]
+    },
+    "json": {
+      "verification_results": [
+        {
+          "id": 1,
+          "subject_type": "FeedItem",
+          "subject_id": 1,
+          "result": {},
+          "status": "running",
+          "percentage_status": 0,
+          "created_at": "2020-01-01T00:00:00+00:00",
+          "updated_at": "2020-01-01T00:00:00+00:00"
+        },
+        {
+          "id": 2,
+          "subject_type": "FeedItem",
+          "subject_id": 2,
+          "result": {},
+          "status": "running",
+          "percentage_status": 0,
+          "created_at": "2020-01-01T00:00:00+00:00",
+          "updated_at": "2020-01-01T00:00:00+00:00"
+        },
+        {
+          "id": 3,
+          "subject_type": "FeedItem",
+          "subject_id": 3,
+          "result": {},
+          "status": "running",
+          "percentage_status": 0,
+          "created_at": "2020-01-01T00:00:00+00:00",
+          "updated_at": "2020-01-01T00:00:00+00:00"
+        }
+      ]
+    }
+  }
+}

@@ -19,7 +19,7 @@ class DocumentationsController < ActionController::Base
         name: f.sub("spec/documentation/", ""),
         content: File.file?(f) ? JSON.parse(File.read(f)) : ""
       }
-    end
+    end.sort_by! { |f| f[:name] }
 
     files.group_by do |f|
       f[:name].split("/").first

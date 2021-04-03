@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require_relative "./parent_documentation"
+require_relative "./index_documentation"
 
-describe "POST /verification_results/search" do
+describe "POST /verification_results/search", documentation: true do
   let(:url) { "/verification_results/search" }
   let(:controller) { VerificationResultsController }
   let(:verification_results) { create_list(:verification_result, 3) }
+  include_context "verification_results_documentation"
+  include_context "verification_results_index_documentation"
+
   let(:params) do
     {
       search: verification_results.map do |reaction|
@@ -22,7 +27,7 @@ describe "POST /verification_results/search" do
     post url, params: params
   end
 
-  it "fetches verification results" do
+  it "fetches verification results", valid: true do
     subject
 
     expect(response).to have_http_status(:ok)

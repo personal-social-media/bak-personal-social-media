@@ -30,6 +30,7 @@ class VerificationResult < ApplicationRecord
   belongs_to :subject, polymorphic: true, optional: true
   belongs_to :peer_info
   str_enum :status, %i(running done)
+  str_enum :remote_type, %i(post)
   serialize :result, JSON
   after_commit :run_verification!, on: :create
   validates :subject_id, uniqueness: { scope: :subject_type }

@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./create_documentation"
 require "rails_helper"
 
-describe "/verification_results" do
-  let(:controller) { VerificationResultsController }
+describe "/verification_results", documentation: true do
   let(:url) { "/verification_results" }
   let(:peer_info) { create(:peer_info, friend_ship_status: :accepted, ip: "161.97.64.223") }
   let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
+  include_context "verification_results_documentation"
+  include_context "verification_results_create_documentation"
 
   let(:params) do
     {
@@ -28,7 +31,7 @@ describe "/verification_results" do
     post url, params: params
   end
 
-  it "creates a new verification_result" do
+  it "creates a new verification_result", valid: true do
     feed_item
 
     expect do

@@ -10,11 +10,11 @@ module VerificationResultsService
 
     def call!
       return [] if search.blank?
-      arel_query = search.map { |item|
+      arel_query = search.map do |item|
         arel_table[:remote_id].eq(item[:remote_id]).and(
           arel_table[:remote_type].eq(item[:remote_type])
         )
-      }.reduce(:or)
+      end.reduce(:or)
 
       where(arel_query)
     end

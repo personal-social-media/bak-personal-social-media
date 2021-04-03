@@ -1,0 +1,52 @@
+{
+  "parent": {
+    "id": "verification_results",
+    "controller": "VerificationResultsController",
+    "title": "Like verifications",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "create",
+    "title": "Reaction verifications",
+    "information": "Reaction verifications",
+    "params": {
+      "verification_result": {
+        "remote_id": {
+          "type": "uid"
+        },
+        "remote_type": {
+          "type": "string",
+          "variants": [
+            "post"
+          ]
+        },
+        "peer_info_id": {
+          "type": "id"
+        }
+      }
+    },
+    "unescaped_url": "/verification_results",
+    "url": "/verification_results",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "verification_result": {
+        "remote_id": "76e895ca6549958cfa5662d372b7e7538724df06f67ab531",
+        "remote_type": "post",
+        "peer_info_id": 2
+      }
+    },
+    "json": {
+      "verification_result": {
+        "id": 1,
+        "subject_type": "FeedItem",
+        "subject_id": 1,
+        "result": {},
+        "status": "running",
+        "percentage_status": 0,
+        "created_at": "2020-01-01T00:00:00+00:00",
+        "updated_at": "2020-01-01T00:00:00+00:00"
+      }
+    }
+  }
+}
