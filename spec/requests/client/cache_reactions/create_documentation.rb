@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_context "cache_reactions_create_documentation" do
-  let(:documentation_title) { "Create a reaction" }
+  let(:documentation_title) { "Create reaction" }
   let(:documentation_unescaped_url) { "/client/cache_reactions" }
   let(:documentation_id) { :create }
   let(:documentation_params) do

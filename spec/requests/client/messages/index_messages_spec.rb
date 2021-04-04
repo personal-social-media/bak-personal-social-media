@@ -6,7 +6,7 @@ require "rails_helper"
 describe "GET /client/conversations/:conversation_id/messages", documentation: true do
   include_context "client_messages_documentation"
 
-  let(:documentation_title) { "List of messages" }
+  let(:documentation_title) { "List messages" }
   let(:documentation_unescaped_url) { "/client/conversations/:conversation_id/messages" }
   let(:documentation_id) { :index }
   let(:documentation_params) do

@@ -2,12 +2,12 @@
   "parent": {
     "id": "cache_comments",
     "controller": "Client::CacheCommentsController",
-    "title": "Local Comments",
+    "title": "Comments",
     "usage": "internal"
   },
   "child": {
     "id": "update",
-    "title": "Updates a cache comment",
+    "title": "Updates comment",
     "information": "It only syncs remotely when 'payload' or 'uploaded_files' is present",
     "params": {
       "cache_comment": {

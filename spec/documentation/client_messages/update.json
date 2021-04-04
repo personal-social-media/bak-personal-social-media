@@ -2,13 +2,13 @@
   "parent": {
     "id": "client_messages",
     "controller": "Client::MessagesController",
-    "title": "Peer to Peer Messenger",
+    "title": "Messages",
     "usage": "internal"
   },
   "child": {
     "id": "update",
-    "title": "Update a new message",
-    "information": "Update a new message",
+    "title": "Update message",
+    "information": "Update message",
     "params": {
       "message": {
         "read": {

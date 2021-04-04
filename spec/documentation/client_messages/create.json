@@ -2,13 +2,13 @@
   "parent": {
     "id": "client_messages",
     "controller": "Client::MessagesController",
-    "title": "Peer to Peer Messenger",
+    "title": "Messages",
     "usage": "internal"
   },
   "child": {
     "id": "create",
-    "title": "Create a new message",
-    "information": "Create a new message",
+    "title": "Create message",
+    "information": "Create message",
     "params": {
       "message": {
         "payload": {

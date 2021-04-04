@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "destroy",
-    "title": "Destroy a friendship",
-    "information": "Destroy a friendship",
+    "title": "Destroy friendship",
+    "information": "Destroy friendship",
     "params": {
       "option": {
         "type": "string",

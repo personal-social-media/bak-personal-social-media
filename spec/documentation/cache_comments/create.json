@@ -2,13 +2,13 @@
   "parent": {
     "id": "cache_comments",
     "controller": "Client::CacheCommentsController",
-    "title": "Local Comments",
+    "title": "Comments",
     "usage": "internal"
   },
   "child": {
     "id": "create",
-    "title": "Create a new cache comment",
-    "information": "Create a new cache comment",
+    "title": "Create comment",
+    "information": "Create comment",
     "params": {
       "cache_comment": {
         "subject_type": {

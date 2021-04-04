@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "destroy",
-    "title": "Destroys a reaction",
-    "information": "Destroys a reaction",
+    "title": "Destroy reaction",
+    "information": "Destroy reaction",
     "params": {},
     "unescaped_url": "/client/cache_reactions/:id",
     "url": "/client/cache_reactions/1",

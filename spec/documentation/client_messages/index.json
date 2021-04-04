@@ -2,13 +2,13 @@
   "parent": {
     "id": "client_messages",
     "controller": "Client::MessagesController",
-    "title": "Peer to Peer Messenger",
+    "title": "Messages",
     "usage": "internal"
   },
   "child": {
     "id": "index",
-    "title": "List of messages",
-    "information": "List of messages",
+    "title": "List messages",
+    "information": "List messages",
     "params": {
       "page": {
         "type": "number",

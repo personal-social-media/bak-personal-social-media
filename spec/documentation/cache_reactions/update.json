@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "update",
-    "title": "Update a reaction",
-    "information": "Update a reaction",
+    "title": "Update reaction",
+    "information": "Update reaction",
     "params": {
       "cache_reaction": {
         "reaction_type": {
@@ -38,7 +38,7 @@
         "subject_type": "FeedItem",
         "subject_id": 1,
         "remote_id": 2,
-        "payload_subject_id": "1"
+        "payload_subject_id": "5"
       }
     },
     "filters": [

@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "create",
-    "title": "Create a reaction",
-    "information": "Create a reaction",
+    "title": "Create reaction",
+    "information": "Create reaction",
     "params": {
       "cache_reaction": {
         "payload_subject_type": {

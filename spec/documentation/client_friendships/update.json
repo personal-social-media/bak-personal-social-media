@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "update",
-    "title": "Updates the friendship",
-    "information": "Updates the friendship",
+    "title": "Update friendship",
+    "information": "Update friendship",
     "params": {
       "option": {
         "type": "string",
@@ -29,8 +29,8 @@
       "peer_info": {
         "friend_ship_status": "accepted",
         "id": 2,
-        "username": "2020-01-01T00:00:00+00:00",
-        "name": "2020-01-01T00:00:00+00:00",
+        "username": "username-33",
+        "name": "name-34",
         "avatars": null
       }
     },

@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "show",
-    "title": "Shows conversation",
-    "information": "Shows conversation",
+    "title": "Show conversation",
+    "information": "Show conversation",
     "params": {},
     "unescaped_url": "/client/conversations/:peer_id",
     "url": "/client/conversations/2",
