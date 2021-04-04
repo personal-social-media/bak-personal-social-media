@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "./create_documentation"
+require_relative "./parent_documentation"
 require "rails_helper"
 
-describe "POST /client/cache_reactions", vcr: :record_once do
+describe "POST /client/cache_reactions", vcr: :record_once, documentation: true do
   let(:url) { "/client/cache_reactions" }
   let(:controller) { Client::CacheReactionsController }
   let(:params) { { id: peer_info.id } }
@@ -10,6 +12,9 @@ describe "POST /client/cache_reactions", vcr: :record_once do
   let(:uid) { "76e895ca6549958cfa5662d372b7e7538724df06f67ab531" }
   let(:feed_item) { create(:feed_item, peer_info: peer_info, feed_item_type: :post, uid: uid) }
   let(:new_cache_reaction) { CacheReaction.last }
+
+  include_context "cache_reactions_documentation"
+  include_context "cache_reactions_create_documentation"
 
   let(:params) do
     {
@@ -30,7 +35,7 @@ describe "POST /client/cache_reactions", vcr: :record_once do
     post url, params: params
   end
 
-  it "creates new cache reaction" do
+  it "creates new cache reaction", valid: true do
     feed_item
     expect do
       subject

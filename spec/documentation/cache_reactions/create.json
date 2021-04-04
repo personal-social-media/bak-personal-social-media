@@ -1,0 +1,62 @@
+{
+  "parent": {
+    "id": "cache_reactions",
+    "controller": "Client::CacheReactionsController",
+    "title": "Client reactions",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create a reaction",
+    "information": "Create a reaction",
+    "params": {
+      "cache_reaction": {
+        "payload_subject_type": {
+          "type": "string",
+          "variants": [
+            "post",
+            "story",
+            "comment"
+          ]
+        },
+        "payload_subject_id": {
+          "type": "uid"
+        },
+        "reaction_type": {
+          "type": "string",
+          "variants": [
+            "like",
+            "love",
+            "wow"
+          ]
+        },
+        "peer_info_id": {
+          "type": "id"
+        }
+      }
+    },
+    "unescaped_url": "/client/cache_reactions",
+    "url": "/client/cache_reactions",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "cache_reaction": {
+        "payload_subject_type": "post",
+        "payload_subject_id": "76e895ca6549958cfa5662d372b7e7538724df06f67ab531",
+        "reaction_type": "like",
+        "peer_info_id": 2
+      }
+    },
+    "json": {
+      "cache_reaction": {
+        "id": 1,
+        "reaction_type": "like",
+        "subject_type": "FeedItem",
+        "subject_id": 1,
+        "remote_id": 2,
+        "payload_subject_type": "post",
+        "payload_subject_id": "76e895ca6549958cfa5662d372b7e7538724df06f67ab531"
+      }
+    }
+  }
+}

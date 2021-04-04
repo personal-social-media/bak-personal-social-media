@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "./index_documentation"
+require_relative "./parent_documentation"
 require "rails_helper"
 
-describe "POST /client/cache_reactions/search" do
+describe "POST /client/cache_reactions/search", documentation: true do
   let(:url) { "/client/cache_reactions/search" }
   let(:controller) { Client::CacheReactionsController }
   let(:cache_reactions) { create_list(:cache_reaction, 3) }
@@ -13,6 +15,8 @@ describe "POST /client/cache_reactions/search" do
       end
     }
   end
+  include_context "cache_reactions_documentation"
+  include_context "cache_reactions_index_documentation"
 
   before do
     sign_into_controller(controller)
@@ -22,7 +26,7 @@ describe "POST /client/cache_reactions/search" do
     post url, params: params
   end
 
-  it "fetches cache reactions" do
+  it "fetches cache reactions", valid: true do
     subject
 
     expect(response).to have_http_status(:ok)

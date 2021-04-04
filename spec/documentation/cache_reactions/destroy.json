@@ -1,0 +1,20 @@
+{
+  "parent": {
+    "id": "cache_reactions",
+    "controller": "Client::CacheReactionsController",
+    "title": "Client reactions",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "destroy",
+    "title": "Destroys a reaction",
+    "information": "Destroys a reaction",
+    "params": {},
+    "unescaped_url": "/client/cache_reactions/:id",
+    "url": "/client/cache_reactions/1",
+    "method": "DELETE",
+    "response_code": 200,
+    "body": "",
+    "json": ""
+  }
+}

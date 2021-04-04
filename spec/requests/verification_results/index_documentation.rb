@@ -9,11 +9,11 @@ RSpec.shared_context "verification_results_index_documentation" do
       search: [
         {
           remote_id: {
-            type: :id
+            type: :uid
           },
           remote_type: {
             type: :string,
-            variants: VerificationResult
+            variants: VerificationResult.remote_types
           }
         }
       ]

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-fields = %i(id percentage_status result status subject_type subject_id created_at updated_at)
+fields = %i(id remote_id percentage_status result status subject_type subject_id created_at updated_at)
 
 verification_result.as_json(only: fields)

@@ -1,0 +1,45 @@
+{
+  "parent": {
+    "id": "cache_reactions",
+    "controller": "Client::CacheReactionsController",
+    "title": "Client reactions",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "update",
+    "title": "Update a reaction",
+    "information": "Update a reaction",
+    "params": {
+      "cache_reaction": {
+        "reaction_type": {
+          "type": "string",
+          "variants": [
+            "like",
+            "love",
+            "wow"
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/client/cache_reactions/:id",
+    "url": "/client/cache_reactions/1",
+    "method": "PATCH",
+    "response_code": 200,
+    "body": {
+      "cache_reaction": {
+        "reaction_type": "love"
+      }
+    },
+    "json": {
+      "cache_reaction": {
+        "reaction_type": "love",
+        "payload_subject_type": "post",
+        "id": 1,
+        "subject_type": "FeedItem",
+        "subject_id": 1,
+        "remote_id": 2,
+        "payload_subject_id": "5"
+      }
+    }
+  }
+}

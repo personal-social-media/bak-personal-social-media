@@ -13,11 +13,13 @@
       "search": [
         {
           "remote_id": {
-            "type": "id"
+            "type": "uid"
           },
           "remote_type": {
             "type": "string",
-            "variants": "VerificationResult"
+            "variants": [
+              "post"
+            ]
           }
         }
       ]
@@ -29,15 +31,15 @@
     "body": {
       "search": [
         {
+          "remote_id": "1",
+          "remote_type": "post"
+        },
+        {
           "remote_id": "2",
           "remote_type": "post"
         },
         {
           "remote_id": "3",
-          "remote_type": "post"
-        },
-        {
-          "remote_id": "4",
           "remote_type": "post"
         }
       ]
@@ -52,7 +54,8 @@
           "status": "running",
           "percentage_status": 0,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "updated_at": "2020-01-01T00:00:00+00:00"
+          "updated_at": "2020-01-01T00:00:00+00:00",
+          "remote_id": "1"
         },
         {
           "id": 2,
@@ -62,7 +65,8 @@
           "status": "running",
           "percentage_status": 0,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "updated_at": "2020-01-01T00:00:00+00:00"
+          "updated_at": "2020-01-01T00:00:00+00:00",
+          "remote_id": "2"
         },
         {
           "id": 3,
@@ -72,7 +76,8 @@
           "status": "running",
           "percentage_status": 0,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "updated_at": "2020-01-01T00:00:00+00:00"
+          "updated_at": "2020-01-01T00:00:00+00:00",
+          "remote_id": "3"
         }
       ]
     }
