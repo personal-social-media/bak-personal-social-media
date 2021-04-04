@@ -15,6 +15,11 @@
     "method": "DELETE",
     "response_code": 200,
     "body": "",
-    "json": ""
+    "json": "",
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_cache_reaction"
+    ]
   }
 }

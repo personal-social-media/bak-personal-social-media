@@ -38,6 +38,12 @@
         "created_at": "2020-01-01T00:00:00+00:00",
         "remote_id": 1
       }
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_conversation",
+      "require_current_message"
+    ]
   }
 }

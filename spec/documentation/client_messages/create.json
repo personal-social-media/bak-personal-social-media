@@ -53,6 +53,12 @@
         "processing_status": "processing",
         "message_owner": "self"
       }
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_conversation",
+      "require_current_message"
+    ]
   }
 }

@@ -15,6 +15,12 @@
     "method": "PUT",
     "response_code": 200,
     "body": "",
-    "json": ""
+    "json": "",
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_done_current_verification_result",
+      "require_current_verification_result"
+    ]
   }
 }

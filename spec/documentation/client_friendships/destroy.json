@@ -25,6 +25,11 @@
     "body": {
       "option": "block"
     },
-    "json": ""
+    "json": "",
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_peer"
+    ]
   }
 }

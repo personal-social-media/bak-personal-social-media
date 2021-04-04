@@ -25,10 +25,15 @@
       "peer_info": {
         "friend_ship_status": "requested",
         "id": 2,
-        "username": "username-2",
-        "name": "name-2",
+        "username": "2020-01-01T00:00:00+00:00",
+        "name": "2020-01-01T00:00:00+00:00",
         "avatars": null
       }
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_peer"
+    ]
   }
 }

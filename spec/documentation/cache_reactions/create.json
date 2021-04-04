@@ -57,6 +57,11 @@
         "payload_subject_type": "post",
         "payload_subject_id": "76e895ca6549958cfa5662d372b7e7538724df06f67ab531"
       }
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_cache_reaction"
+    ]
   }
 }

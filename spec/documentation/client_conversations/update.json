@@ -27,6 +27,12 @@
         "has_new_messages": false,
         "messages_count": 0
       }
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_conversation",
+      "require_current_conversation_show"
+    ]
   }
 }

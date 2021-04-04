@@ -48,6 +48,12 @@
         "updated_at": "2020-01-01T00:00:00+00:00",
         "remote_id": "76e895ca6549958cfa5662d372b7e7538724df06f67ab531"
       }
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_done_current_verification_result",
+      "require_current_verification_result"
+    ]
   }
 }

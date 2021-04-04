@@ -22,3 +22,15 @@
     </pre>
   </div>
 <% end %>
+
+<div>
+  Filters:
+
+  <ol class="pl-4">
+    <% @doc.dig(:child, :filters).each do |f| %>
+      <li class="list-disc">
+        <%= f %>
+      </li>
+    <% end %>
+  </ol>
+</div>

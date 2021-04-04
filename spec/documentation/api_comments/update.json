@@ -151,6 +151,16 @@
         },
         "id": 1
       }
-    }
+    },
+    "filters": [
+      "skip_cookies",
+      "require_server",
+      "verify_node_request",
+      "require_friend",
+      "verify_not_blocked",
+      "require_current_subject",
+      "require_index_current_subject",
+      "require_current_comment"
+    ]
   }
 }

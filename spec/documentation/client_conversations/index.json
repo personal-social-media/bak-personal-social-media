@@ -28,7 +28,7 @@
       }
     },
     "unescaped_url": "/client/conversations",
-    "url": "/client/conversations?peer_name=name-103",
+    "url": "/client/conversations?peer_name=name-39",
     "method": "GET",
     "response_code": 200,
     "body": "",
@@ -43,6 +43,12 @@
         }
       ],
       "conversations_count": 1
-    }
+    },
+    "filters": [
+      "verify_authenticity_token",
+      "require_current_user",
+      "require_current_conversation",
+      "require_current_conversation_show"
+    ]
   }
 }
