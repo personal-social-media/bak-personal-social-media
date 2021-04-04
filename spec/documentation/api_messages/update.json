@@ -2,13 +2,13 @@
   "parent": {
     "id": "api_messages",
     "controller": "Api::MessagesController",
-    "title": "Messages Server Side",
+    "title": "Messages",
     "usage": "external"
   },
   "child": {
     "id": "update",
-    "title": "Updates a message",
-    "information": "Updates a message",
+    "title": "Update message",
+    "information": "Update message",
     "params": {
       "message": {
         "read": {
@@ -27,7 +27,11 @@
     },
     "json": {
       "message": {
-        "id": 1
+        "id": 1,
+        "payload": {
+          "message": "test"
+        },
+        "signature": null
       }
     },
     "filters": [

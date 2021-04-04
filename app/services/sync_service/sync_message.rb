@@ -2,6 +2,7 @@
 
 module SyncService
   class SyncMessage < BaseSync
+    include SyncService::MediaVariants
     attr_reader :message, :request
 
     def initialize(message)
@@ -35,10 +36,9 @@ module SyncService
       end
 
       def update_message!
-        message.payload.merge!({
-          images: images.map! { |i| ImageFilePresenter.new(i, stubbed_request).render },
-          videos: videos.map! { |i| ImageFilePresenter.new(i, stubbed_request).render },
-        })
+        message.payload[:images] = images.map! { |i| get_variants_for_image(i) }
+        message.payload[:videos] = videos.map! { |v| get_variants_for_video(v) }
+
         message.generate_signature!
       end
 

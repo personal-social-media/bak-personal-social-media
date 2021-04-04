@@ -25,28 +25,28 @@ module Api
 
     private
       def create_params
-        params.require(:message).permit(:message_type, :signature, :remote_id, payload: payload)
+        params.require(:message).permit(:message_type, :signature, :remote_id, payload: payload_params)
       end
 
       def update_params
         params.require(:message).permit(:read)
       end
 
-      def payload
+      def payload_params
         [
           :message,
           images: [
-            :type,
-            :desktop,
+            :original,
             :mobile,
-            :thumbnail
+            :thumbnail,
+            size: [:width, :height]
           ],
           videos: [
-            :type,
             :original,
-            :short,
             :original_screenshot,
             :thumbnail_screenshot,
+            :short,
+            size: [:width, :height]
           ]
         ]
       end

@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./create_documentation"
 require "rails_helper"
 
-describe "/api/messages" do
+describe "/api/messages", documentation: true do
+  include_context "api_messages"
+  include_context "api_messages_create"
+
   include ExternalApiHelpers
-  let(:controller) { Api::MessagesController }
 
   describe "POST /api/messages" do
     let(:url) { "/api/messages" }
@@ -12,7 +16,30 @@ describe "/api/messages" do
     let(:conversation) { create(:conversation, peer_info: peer_info) }
     let(:payload) do
       {
-        message: "Sample message"
+        message: "test",
+        images: [
+          {
+            original: "https://example.com/a.jpg",
+            mobile: "https://example.com/a.jpg",
+            thumbnail: "https://example.com/a.jpg",
+            size: {
+              width: "200",
+              height: "200",
+            }
+          }
+        ],
+        videos: [
+          {
+            original: "https://example.com/a.mp4",
+            original_screenshot: "https://example.com/a.jpg",
+            thumbnail_screenshot: "https://example.com/a.jpg",
+            short: "https://example.com/a.mp4",
+            size: {
+              width: "200",
+              height: "200",
+            }
+          }
+        ]
       }
     end
 
@@ -28,7 +55,7 @@ describe "/api/messages" do
       post url, params: params
     end
 
-    context "valid" do
+    context "valid", valid: true do
       let(:params) do
         {
           message: {

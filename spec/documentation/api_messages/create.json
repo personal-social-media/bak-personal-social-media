@@ -1,0 +1,157 @@
+{
+  "parent": {
+    "id": "api_messages",
+    "controller": "Api::MessagesController",
+    "title": "Messages",
+    "usage": "external"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create message",
+    "information": "Create message",
+    "params": {
+      "message": {
+        "remote_id": {
+          "type": "id"
+        },
+        "message_type": {
+          "type": "string",
+          "variants": [
+            "text"
+          ]
+        },
+        "signature": {
+          "type": "signature"
+        },
+        "payload": {
+          "message": {
+            "type": "string"
+          },
+          "images": [
+            {
+              "original": {
+                "type": "url"
+              },
+              "mobile": {
+                "type": "url"
+              },
+              "thumbnail": {
+                "type": "url"
+              },
+              "size": {
+                "width": {
+                  "type": "string"
+                },
+                "height": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "videos": [
+            {
+              "original": {
+                "type": "url"
+              },
+              "original_screenshot": {
+                "type": "url"
+              },
+              "thumbnail_screenshot": {
+                "type": "url"
+              },
+              "short": {
+                "type": "url"
+              },
+              "size": {
+                "width": {
+                  "type": "string"
+                },
+                "height": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/api/messages",
+    "url": "/api/messages",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "message": {
+        "remote_id": 1,
+        "message_type": "text",
+        "signature": "SIGNATURE",
+        "payload": {
+          "message": "test",
+          "images": [
+            {
+              "original": "https://example.com/a.jpg",
+              "mobile": "https://example.com/a.jpg",
+              "thumbnail": "https://example.com/a.jpg",
+              "size": {
+                "width": "200",
+                "height": "200"
+              }
+            }
+          ],
+          "videos": [
+            {
+              "original": "https://example.com/a.mp4",
+              "original_screenshot": "https://example.com/a.jpg",
+              "thumbnail_screenshot": "https://example.com/a.jpg",
+              "short": "https://example.com/a.mp4",
+              "size": {
+                "width": "200",
+                "height": "200"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "json": {
+      "message": {
+        "id": 1,
+        "payload": {
+          "message": "test",
+          "images": [
+            {
+              "original": "https://example.com/a.jpg",
+              "mobile": "https://example.com/a.jpg",
+              "thumbnail": "https://example.com/a.jpg",
+              "size": {
+                "width": "200",
+                "height": "200"
+              }
+            }
+          ],
+          "videos": [
+            {
+              "original": "https://example.com/a.mp4",
+              "original_screenshot": "https://example.com/a.jpg",
+              "thumbnail_screenshot": "https://example.com/a.jpg",
+              "short": "https://example.com/a.mp4",
+              "size": {
+                "width": "200",
+                "height": "200"
+              }
+            }
+          ]
+        },
+        "signature": "SIGNATURE"
+      }
+    },
+    "filters": [
+      "skip_cookies",
+      "require_server",
+      "verify_node_request",
+      "require_current_peer_info",
+      "verify_not_blocked",
+      "require_current_conversation",
+      "require_current_message"
+    ]
+  }
+}

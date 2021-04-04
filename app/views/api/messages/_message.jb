@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-fields = %i(id)
+fields = %i(id payload signature)
 
 message.as_json(only: fields)
