@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./update_documentation"
 require "rails_helper"
 
-describe "/client/friendships", vcr: { record: :once } do
+describe "/client/friendships", vcr: { record: :once }, documentation: true do
+  include_context "friendships_documentation"
+  include_context "friendships_update_documentation"
+
   let(:controller) { Client::FriendshipsController }
   let(:peer_info) { create(:peer_info, ip: "161.97.64.223", friend_ship_status: :pending_accept) }
   let(:url) { "/client/friendships/#{peer_info.id}" }
@@ -27,7 +32,7 @@ describe "/client/friendships", vcr: { record: :once } do
     end
   end
 
-  context "accepted" do
+  context "accepted", valid: true do
     let(:option) { :accepted }
     it "accepts the friendship" do
       expect do

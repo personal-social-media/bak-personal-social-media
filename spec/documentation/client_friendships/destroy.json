@@ -1,0 +1,30 @@
+{
+  "parent": {
+    "id": "client_friendships",
+    "controller": "Client::FriendshipsController",
+    "title": "Friendships",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "destroy",
+    "title": "Destroy a friendship",
+    "information": "Destroy a friendship",
+    "params": {
+      "option": {
+        "type": "string",
+        "variants": [
+          "block",
+          "destroy"
+        ]
+      }
+    },
+    "unescaped_url": "/client/friendships/:id",
+    "url": "/client/friendships/2",
+    "method": "DELETE",
+    "response_code": 200,
+    "body": {
+      "option": "block"
+    },
+    "json": ""
+  }
+}

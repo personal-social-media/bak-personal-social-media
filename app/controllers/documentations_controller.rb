@@ -11,6 +11,7 @@ class DocumentationsController < ActionController::Base
 
   def show
     @doc = current_documentation.deep_symbolize_keys
+    @title = @doc.dig(:child, :title)
   end
 
   def files_tree

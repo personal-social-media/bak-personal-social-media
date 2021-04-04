@@ -28,7 +28,7 @@
       }
     },
     "unescaped_url": "/client/conversations",
-    "url": "/client/conversations?peer_name=name-47",
+    "url": "/client/conversations?peer_name=name-103",
     "method": "GET",
     "response_code": 200,
     "body": "",

@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./destroy_documentation"
 require "rails_helper"
 
-describe "/client/friendships", vcr: { record: :once } do
+describe "/client/friendships", vcr: { record: :once }, documentation: true do
+  include_context "friendships_destroy_documentation"
+  include_context "friendships_documentation"
+
   let(:controller) { Client::FriendshipsController }
   let(:peer_info) { create(:peer_info, ip: "161.97.64.223") }
   let(:url) { "/client/friendships/#{peer_info.id}" }
@@ -16,7 +21,7 @@ describe "/client/friendships", vcr: { record: :once } do
     delete url, params: params
   end
 
-  context "block" do
+  context "block", valid: true do
     let(:option) { :block }
     it "blocks the relationship" do
       expect do

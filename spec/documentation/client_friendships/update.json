@@ -1,0 +1,38 @@
+{
+  "parent": {
+    "id": "client_friendships",
+    "controller": "Client::FriendshipsController",
+    "title": "Friendships",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "update",
+    "title": "Updates the friendship",
+    "information": "Updates the friendship",
+    "params": {
+      "option": {
+        "type": "string",
+        "variants": [
+          "2020-01-01T00:00:00+00:00",
+          "accepted"
+        ]
+      }
+    },
+    "unescaped_url": "/client/friendships",
+    "url": "/client/friendships/2",
+    "method": "PATCH",
+    "response_code": 200,
+    "body": {
+      "option": "accepted"
+    },
+    "json": {
+      "peer_info": {
+        "friend_ship_status": "accepted",
+        "id": 2,
+        "username": "username-1",
+        "name": "name-1",
+        "avatars": null
+      }
+    }
+  }
+}
