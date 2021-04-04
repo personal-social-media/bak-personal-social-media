@@ -111,7 +111,7 @@ Rails.application.routes.draw do
         patch "/upload", action: :update
       end
     end
-    resources :conversations, only: %i(index create update) do
+    resources :conversations, only: %i(index create update show) do
       resources :messages, only: %i(index) do
         collection do
           post "/upload", action: :create

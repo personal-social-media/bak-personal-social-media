@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+{
+  conversation: render(partial: "client/conversations/conversation", locals: { conversation: @conversation }),
+}

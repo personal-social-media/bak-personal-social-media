@@ -29,7 +29,9 @@ module ConversationsService
       end
 
       def local_params
-        {}
+        {
+          is_typing: is_typing
+        }
       end
 
       def body

@@ -1,0 +1,43 @@
+{
+  "parent": {
+    "id": "client_messages",
+    "controller": "Client::MessagesController",
+    "title": "Peer to Peer Messenger",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "update",
+    "title": "Update a new message",
+    "information": "Update a new message",
+    "params": {
+      "message": {
+        "read": {
+          "type": "boolean"
+        }
+      }
+    },
+    "unescaped_url": "/client/messages/:id",
+    "url": "/client/messages/1",
+    "method": "PUT",
+    "response_code": 200,
+    "body": {
+      "message": {
+        "read": true
+      }
+    },
+    "json": {
+      "message": {
+        "message_type": "text",
+        "processing_status": "processing",
+        "message_owner": "peer",
+        "read": true,
+        "id": 1,
+        "payload": {
+          "message": "test"
+        },
+        "created_at": "2020-01-01T00:00:00+00:00",
+        "remote_id": 1
+      }
+    }
+  }
+}

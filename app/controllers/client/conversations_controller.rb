@@ -5,11 +5,16 @@ module Client
   class ConversationsController < BaseController
     before_action :require_current_user
     before_action :require_current_conversation, only: %i(update)
+    before_action :require_current_conversation_show, only: %i(show)
 
     def index
       service = ConversationsService::ConversationsIndex.new(params.permit!).call!
       @conversations = service.query
       @count = service.count
+    end
+
+    def show
+      @conversation = current_conversation_show
     end
 
     def create
@@ -29,11 +34,19 @@ module Client
 
     private
       def require_current_conversation
-        render json: { error: "conversation not found" } if current_conversation.blank?
+        render json: { error: "conversation not found" }, status: 404 if current_conversation.blank?
       end
 
       def current_conversation
         @current_conversation ||= Conversation.find_by(id: params[:id])
+      end
+
+      def require_current_conversation_show
+        render json: { error: "conversation not found" }, status: 404 if current_conversation_show.blank?
+      end
+
+      def current_conversation_show
+        @current_conversation_show ||= Conversation.find_by(peer_info_id: params[:id])
       end
   end
 end

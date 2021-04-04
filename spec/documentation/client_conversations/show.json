@@ -6,26 +6,22 @@
     "usage": "internal"
   },
   "child": {
-    "id": "update",
-    "title": "Update conversation",
-    "information": "Update conversation",
+    "id": "show",
+    "title": "Shows conversation",
+    "information": "Shows conversation",
     "params": {},
-    "unescaped_url": "/client/conversations/:id",
-    "url": "/client/conversations/1",
-    "method": "PUT",
+    "unescaped_url": "/client/conversations/:peer_id",
+    "url": "/client/conversations/2",
+    "method": "GET",
     "response_code": 200,
-    "body": {
-      "conversation": {
-        "is_typing": true
-      }
-    },
+    "body": "",
     "json": {
       "conversation": {
-        "is_typing": true,
         "id": 1,
         "peer_info_id": 2,
         "has_new_messages": false,
-        "messages_count": 0
+        "messages_count": 0,
+        "is_typing": false
       }
     }
   }

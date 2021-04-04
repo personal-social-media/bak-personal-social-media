@@ -1,15 +1,19 @@
 {
   "parent": {
     "id": "client_conversations",
-    "controller": "Client::MessagesController",
-    "title": "Peer to Peer Messenger",
+    "controller": "Client::ConversationsController",
+    "title": "Conversations",
     "usage": "internal"
   },
   "child": {
     "id": "index",
-    "title": "List of messages",
-    "information": "List of messages",
+    "title": "List conversations",
+    "information": "List conversations",
     "params": {
+      "peer_name": {
+        "type": "string",
+        "optional": true
+      },
       "page": {
         "type": "number",
         "optional": true
@@ -21,44 +25,24 @@
       "end_index": {
         "type": "number",
         "optional": true
-      },
-      "conversation_id": {
-        "type": "number"
       }
     },
-    "unescaped_url": "/client/conversations/:conversation_id/messages",
-    "url": "/client/conversations/1/messages",
+    "unescaped_url": "/client/conversations",
+    "url": "/client/conversations?peer_name=name-47",
     "method": "GET",
     "response_code": 200,
     "body": "",
     "json": {
-      "messages": [
-        {
-          "id": 2,
-          "payload": {
-            "message": "test"
-          },
-          "message_type": "text",
-          "read": false,
-          "created_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": 3,
-          "processing_status": "processing",
-          "message_owner": "self"
-        },
+      "conversations": [
         {
           "id": 1,
-          "payload": {
-            "message": "test"
-          },
-          "message_type": "text",
-          "read": false,
-          "created_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": 2,
-          "processing_status": "processing",
-          "message_owner": "self"
+          "peer_info_id": 2,
+          "has_new_messages": false,
+          "messages_count": 0,
+          "is_typing": false
         }
       ],
-      "messages_count": 2
+      "conversations_count": 1
     }
   }
 }
