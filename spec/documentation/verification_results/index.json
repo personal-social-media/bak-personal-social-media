@@ -29,15 +29,15 @@
     "body": {
       "search": [
         {
-          "remote_id": "1",
-          "remote_type": "post"
-        },
-        {
           "remote_id": "2",
           "remote_type": "post"
         },
         {
           "remote_id": "3",
+          "remote_type": "post"
+        },
+        {
+          "remote_id": "4",
           "remote_type": "post"
         }
       ]

@@ -38,7 +38,7 @@ module DocumentationService
           method: request.method,
           response_code: response.status,
           body: body,
-          json: format_saved_hash(json)
+          json: json.nil? ? response.body : format_saved_hash(json)
         }
       }
     end

@@ -1,0 +1,20 @@
+{
+  "parent": {
+    "id": "static",
+    "controller": "StaticController",
+    "title": "Helpers",
+    "usage": "external"
+  },
+  "child": {
+    "id": "public_key",
+    "title": "Show public key",
+    "information": "Show public key",
+    "params": {},
+    "unescaped_url": "/public_key",
+    "url": "/public_key",
+    "method": "GET",
+    "response_code": 200,
+    "body": "",
+    "json": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA65B1VaClpiQq1LazpP8q\nr+s+80oxYfEGzCpD7swJuSlY03gqoaPw2vGLfywU3RYbbL6YBCV/jEExIRvaIAan\nYOmfyrNNMu65KSNVpwgum83FdLXOnkhrCOs+YDnRBKdWQxA5CpCg2bIAQ1jHDoKc\nzXPb7ujofTYMTq25rxfjG0SUs0XsV4MdODqK+fKImHCm2+Cg12OSib0Qzwh6V5X3\n5t1ieHVTZFi5PuYufkK1O6IXw8YlKeQRlBtm0uUM8THDZD60cIQnF9MtH82fNkHa\nHmjeDOLy/GAYifsQGxhhOqzb01/5SYmYndr/Wgh93g4ijQ1XzTOZX3JcgXnB92l2\nvwIDAQAB\n-----END PUBLIC KEY-----\n"
+  }
+}

@@ -15,6 +15,6 @@
     "method": "DELETE",
     "response_code": 200,
     "body": "",
-    "json": null
+    "json": ""
   }
 }
