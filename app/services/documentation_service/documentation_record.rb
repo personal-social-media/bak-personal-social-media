@@ -46,9 +46,7 @@ module DocumentationService
       end
 
       def filters
-        filters = request.controller_class.__callbacks[:process_action].map { |action| action.instance_variable_get("@key") }
-        filters.select! { |f| f.is_a?(Symbol) }
-        filters - %i(use_react_component_helper verify_same_origin_request)
+        request.controller_instance.instance_variable_get("@before_action_list_called").map!(&:to_sym) - %i(skip_cookies)
       end
 
       def body

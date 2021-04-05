@@ -25,7 +25,6 @@
     },
     "json": "",
     "filters": [
-      "verify_authenticity_token",
       "require_current_user"
     ]
   }

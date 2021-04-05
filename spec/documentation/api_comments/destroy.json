@@ -1,0 +1,27 @@
+{
+  "parent": {
+    "id": "api_comments",
+    "controller": "Api::CommentsController",
+    "title": "Comments Server Side",
+    "usage": "external"
+  },
+  "child": {
+    "id": "destroy",
+    "title": "Destroy message",
+    "information": "Destroy message",
+    "params": {},
+    "unescaped_url": "/api/comments/:id",
+    "url": "/api/comments/1",
+    "method": "DELETE",
+    "response_code": 200,
+    "body": "",
+    "json": "",
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_friend",
+      "verify_not_blocked",
+      "require_current_comment"
+    ]
+  }
+}

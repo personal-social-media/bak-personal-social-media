@@ -29,13 +29,12 @@
       "peer_info": {
         "friend_ship_status": "accepted",
         "id": 2,
-        "username": "username-86",
-        "name": "name-87",
+        "username": "username-83",
+        "name": "name-83",
         "avatars": null
       }
     },
     "filters": [
-      "verify_authenticity_token",
       "require_current_user",
       "require_current_peer"
     ]

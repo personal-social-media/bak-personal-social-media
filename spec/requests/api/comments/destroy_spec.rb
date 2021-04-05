@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require_relative "./parent_documentation"
+require_relative "./destroy_documentation"
 
-describe "/api/comments/:id" do
+describe "/api/comments/:id", documentation: true do
+  include_context "api_comments_destroy"
+  include_context "api_comments"
   include ExternalApiHelpers
-  let(:controller) { Api::CommentsController }
 
   describe "DELETE /api/comments/:id" do
     let(:url) { "/api/comments/#{comment.id}" }
@@ -21,7 +24,7 @@ describe "/api/comments/:id" do
       delete url
     end
 
-    it "destroys the comment" do
+    it "destroys the comment", valid: true do
       comment
 
       expect do

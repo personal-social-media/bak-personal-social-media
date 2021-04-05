@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./index_documentation"
 require "rails_helper"
 
-describe "/api/comments" do
+describe "/api/comments", documentation: true do
+  include_context "api_comments_index"
+  include_context "api_comments"
   include ExternalApiHelpers
-  let(:controller) { Api::CommentsController }
 
   describe "GET /api/comments?subject_type=:subject_type&subject_id=:subject_id" do
     let(:url) { "/api/comments?subject_type=post&subject_id=#{post.uid}" }
@@ -24,7 +27,7 @@ describe "/api/comments" do
       get url
     end
 
-    context "valid" do
+    context "valid", valid: true do
       it "returns list of comments" do
         subject
         expect(response).to have_http_status(:ok)

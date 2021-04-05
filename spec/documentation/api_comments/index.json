@@ -1,0 +1,130 @@
+{
+  "parent": {
+    "id": "api_comments",
+    "controller": "Api::CommentsController",
+    "title": "Comments Server Side",
+    "usage": "external"
+  },
+  "child": {
+    "id": "index",
+    "title": "List messages",
+    "information": "List messages for a resource",
+    "params": {
+      "subject_type": {
+        "type": "string",
+        "variants": [
+          "post"
+        ]
+      },
+      "subject_id": {
+        "type": "uid"
+      },
+      "parent_comment_id": {
+        "type": "uid"
+      },
+      "page": {
+        "type": "number",
+        "optional": true
+      },
+      "start_index": {
+        "type": "number",
+        "optional": true
+      },
+      "end_index": {
+        "type": "number",
+        "optional": true
+      }
+    },
+    "unescaped_url": "/api/comments/:id",
+    "url": "/api/comments?subject_type=post&subject_id=UID-ce39c9ef8d71aca20e153db629142edb601d232ba612fe5b",
+    "method": "GET",
+    "response_code": 200,
+    "body": "",
+    "json": {
+      "comments": [
+        {
+          "id": 4,
+          "payload": {
+            "message": "test",
+            "subject_id": null,
+            "subject_type": null,
+            "parent_comment_id": null,
+            "images": [],
+            "videos": []
+          },
+          "peer_info": {
+            "id": 2,
+            "username": "2020-01-01T00:00:00+00:00",
+            "ip": "0.0.0.0",
+            "public_key": "2020-01-01T00:00:00+00:00",
+            "name": "2020-01-01T00:00:00+00:00",
+            "avatars": null
+          }
+        },
+        {
+          "id": 3,
+          "payload": {
+            "message": "test",
+            "subject_id": null,
+            "subject_type": null,
+            "parent_comment_id": null,
+            "images": [],
+            "videos": []
+          },
+          "peer_info": {
+            "id": 2,
+            "username": "2020-01-01T00:00:00+00:00",
+            "ip": "0.0.0.0",
+            "public_key": "2020-01-01T00:00:00+00:00",
+            "name": "2020-01-01T00:00:00+00:00",
+            "avatars": null
+          }
+        },
+        {
+          "id": 2,
+          "payload": {
+            "message": "test",
+            "subject_id": null,
+            "subject_type": null,
+            "parent_comment_id": null,
+            "images": [],
+            "videos": []
+          },
+          "peer_info": {
+            "id": 2,
+            "username": "2020-01-01T00:00:00+00:00",
+            "ip": "0.0.0.0",
+            "public_key": "2020-01-01T00:00:00+00:00",
+            "name": "2020-01-01T00:00:00+00:00",
+            "avatars": null
+          }
+        },
+        {
+          "id": 1,
+          "payload": {
+            "message": "test",
+            "subject_id": null,
+            "subject_type": null,
+            "parent_comment_id": null,
+            "images": [],
+            "videos": []
+          },
+          "peer_info": {
+            "id": 2,
+            "username": "2020-01-01T00:00:00+00:00",
+            "ip": "0.0.0.0",
+            "public_key": "2020-01-01T00:00:00+00:00",
+            "name": "2020-01-01T00:00:00+00:00",
+            "avatars": null
+          }
+        }
+      ],
+      "comments_count": 4
+    },
+    "filters": [
+      "verify_node_request",
+      "verify_not_blocked",
+      "require_index_current_subject"
+    ]
+  }
+}

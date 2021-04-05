@@ -41,7 +41,7 @@
           "message_type": "text",
           "read": false,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": 3,
+          "remote_id": 2,
           "processing_status": "processing",
           "message_owner": "self"
         },
@@ -53,7 +53,7 @@
           "message_type": "text",
           "read": false,
           "created_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": 2,
+          "remote_id": 1,
           "processing_status": "processing",
           "message_owner": "self"
         }
@@ -61,10 +61,7 @@
       "messages_count": 2
     },
     "filters": [
-      "verify_authenticity_token",
-      "require_current_user",
-      "require_current_conversation",
-      "require_current_message"
+      "require_current_user"
     ]
   }
 }

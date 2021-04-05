@@ -67,7 +67,6 @@
       "notifications_not_seen_count": 4
     },
     "filters": [
-      "verify_authenticity_token",
       "require_current_user"
     ]
   }
