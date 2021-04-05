@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://161.97.64.223/api/feed_items
+    body:
+      encoding: UTF-8
+      string: feed_item%5Bfeed_item_id%5D=1&feed_item%5Bfeed_item_type%5D=post&feed_item%5Buid%5D=MFRIUPJAMSKGKMTMBY7DCL456DRDKV3SXGPJW4C3A47ANNN54AB6E4A7U3W2S2SZM6NSPWZTLFDXC6QPUQJQQ2FS3G7OAZ7JY4XJVUL45GXZ7PDAFU3GQE3F6DBJ5CR26MW6IZAMFQXLAVQ6KQFJ3QZDQAQ4T4P2JPS7YESPKB2646SH7OF54NQEGEQEMTJJZ7NTNFAUULQ3PAP5TEAKTMQ456YOCUL7ROBBWTJWUQUCZA6GHUASP5JR2P5X5EMYYNOH2LFKR2UY4CRIXVA4P55KBTTNIFM3U33DVV2OCU3TLY2QRTEAOHDQZ7HITLOSJZP3WRLXU4XGCIPWTAJUVU6Z66G5GQQ6CWXUDYWQRIXPUGOSU7GYSXPYAK3CJ5TRN7TDFY3P5D54V6HJKAUTPDMFVU%3D%3D%3D%3D%3D%3D&feed_item%5Burl%5D=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fposts%2F1
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Real-User-Agent:
+      - Personal Social Media
+      Url-Signed:
+      - W6YOB2ZDTKMAEY3XNARDJ33EFRFXQVINOM4CDAQCWYGP5VLSP6JRFS4BTEIMH2NTHOBAWADARCZYHNJZJNWTW47QOU5P66QOXI6LROWAKAYJUOJQ7K5OZB26BA2FIRYXYXLZAC5UCFQR7NWO23FSVBOK444USNRT6VD4DBVTFUVN7DITGMUEXWGPBIBYHNYZJKBUGQGSZSYV4QMVDFQ6LD3GVRUBDWZFVKGISLY7LEJZZEL4X7VABCRPMW2VF4QK2ESLMH472ILB4V6447Z5HO5YPJ2G3I6K4O3CBTH3JVC6OAQJXC53ULNW2JHKF62TYL3QAO53AJTGEIZNSUQOUWFMUN4ELJC73UUULEWFKYQ57GCTM3W72RMPHJ4JKKKGRSECZ5RVQMKEKDT5KQ3KEG5O6E======
+      Public-Key:
+      - FUWS2LJNIJCUOSKOEBIFKQSMJFBSAS2FLEWS2LJNFUFE2SKJIJEWUQKOIJTWW4LINNUUOOLXGBBECUKFIZAUCT2DIFITQQKNJFEUEQ3HJNBUCUKFIE3DKQRRKZQUG3DQNFIXCMKMMF5HAUBYOEFHEK3TFM4DA33YLFTEKR32INYEIN3TO5FHKU3MLEYDGZ3RN5QVA5ZSOZDUYZTZO5KTGUSZMJREYNSZIJBVML3KIVCXQSKSOZQUSQLBNYFFST3NMZ4XETSOJV2TMNKLKNHFM4DXM52W2OBTIZSEYWCPNZVWQ4SDJ5ZSWWKENZJEES3EK5IXQQJVINYEGZZSMJEUCUJRNJEEI32LMMFHUWCQMI3XK2TPMZKFSTKUOEZDK4TYMZVEOMCTKVZTAWDTKY2E2ZCPIRYUWK3GJNEW2SCDNUZCWQ3HGEZE6U3JMIYFC6TXNA3FMNKYGMFDK5BRNFSUQVSULJDGSNKQOVMXKZTLJMYU6NSJLB3TQWLMJNSVCUTMIJ2G2MDVKVGTQVCIIRNEINRQMNEVC3SGHFGXISBYGJTE422IMEFEQ3LKMVCE6TDZF5DUCWLJMZZVCR3YNBUE64L2MIYDCLZVKNMW2WLOMRZC6V3HNA4TGZZUNFVFCMKYPJKE6WSYGNFGGZ2YNZBDSMTMGIFHM52JIRAVCQKCBIWS2LJNFVCU4RBAKBKUETCJIMQEWRKZFUWS2LJNBI======
+      Gateway:
+      - localhost
+      Client:
+      - server
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 05 Apr 2021 12:50:57 GMT
+      Content-Type:
+      - text/html
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 8b48237d-7fd1-425d-8bf8-5b6b4b7fb5c1
+      X-Runtime:
+      - '0.364400'
+      Strict-Transport-Security:
+      - max-age=604800
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - 'default-src ''none''; base-uri ''self''; block-all-mixed-content; child-src
+        ''self''; connect-src *; font-src ''self'' data: fonts.gstatic.com; form-action
+        ''self''; frame-ancestors ''none''; img-src blob: data: *; manifest-src ''self'';
+        media-src blob: data: *; object-src ''self''; script-src ''self'' unpkg.com;
+        script-src-attr ''self''; script-src-elem ''self''; style-src ''self'' unpkg.com
+        cdnjs.cloudflare.com fonts.googleapis.com; style-src-attr ''self'' ''unsafe-inline'';
+        style-src-elem ''self'' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com;
+        upgrade-insecure-requests; worker-src ''self'''
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 05 Apr 2021 12:50:59 GMT
+recorded_with: VCR 6.0.0
