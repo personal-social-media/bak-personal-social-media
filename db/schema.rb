@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_131135) do
+ActiveRecord::Schema.define(version: 2021_04_05_030044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 2021_04_02_131135) do
     t.index ["payload_subject_id", "payload_subject_type"], name: "index_cache_comments_on_payload", unique: true
     t.index ["peer_info_id"], name: "index_cache_comments_on_peer_info_id"
     t.index ["subject_id", "subject_type"], name: "index_cache_comments_on_subject_id_and_subject_type", unique: true, where: "((subject_id IS NOT NULL) AND (subject_type IS NOT NULL))"
+  end
+
+  create_table "cache_focus_subscriptions", force: :cascade do |t|
+    t.bigint "peer_info_id", null: false
+    t.string "payload_subject_type"
+    t.string "payload_subject_id"
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expires_at"], name: "index_cache_focus_subscriptions_on_expires_at"
+    t.index ["payload_subject_type", "payload_subject_id"], name: "cache_focus_subscriptions_payload_idx", unique: true
+    t.index ["peer_info_id"], name: "index_cache_focus_subscriptions_on_peer_info_id"
+    t.index ["token"], name: "index_cache_focus_subscriptions_on_token"
   end
 
   create_table "cache_reactions", force: :cascade do |t|
@@ -115,6 +129,19 @@ ActiveRecord::Schema.define(version: 2021_04_02_131135) do
     t.index ["feed_item_type", "feed_item_id", "peer_info_id"], name: "feed_items_index_feed_item", unique: true
     t.index ["uid"], name: "index_feed_items_on_uid", unique: true
     t.index ["url"], name: "index_feed_items_on_url", unique: true
+  end
+
+  create_table "focus_subscriptions", force: :cascade do |t|
+    t.string "subject_type", null: false
+    t.bigint "subject_id", null: false
+    t.bigint "peer_info_id", null: false
+    t.datetime "expires_at", null: false
+    t.string "token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expires_at"], name: "index_focus_subscriptions_on_expires_at"
+    t.index ["peer_info_id"], name: "index_focus_subscriptions_on_peer_info_id"
+    t.index ["subject_type", "subject_id"], name: "index_focus_subscriptions_on_subject"
   end
 
   create_table "gallery_elements", force: :cascade do |t|

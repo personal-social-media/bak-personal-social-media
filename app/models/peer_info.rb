@@ -75,6 +75,8 @@ class PeerInfo < ApplicationRecord
   has_many :cache_reactions, dependent: :destroy
   has_many :verification_results, dependent: :destroy
   has_many :notifications, as: :subject, dependent: :destroy
+  has_many :cache_focus_subscriptions, dependent: :delete_all
+  has_many :focus_subscriptions, dependent: :delete_all
   serialize :avatars, JSON
 
   def fetch_more_information
