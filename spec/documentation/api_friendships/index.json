@@ -31,38 +31,38 @@
     "json": {
       "friendships": [
         {
-          "username": "2020-01-01T00:00:00+00:00",
+          "username": "username-37",
           "ip": "0.0.0.0",
           "public_key": "UID",
-          "name": "2020-01-01T00:00:00+00:00",
+          "name": "name-37",
           "avatars": null
         },
         {
-          "username": "2020-01-01T00:00:00+00:00",
+          "username": "username-36",
           "ip": "0.0.0.0",
           "public_key": "UID",
-          "name": "2020-01-01T00:00:00+00:00",
+          "name": "name-36",
           "avatars": null
         },
         {
-          "username": "2020-01-01T00:00:00+00:00",
+          "username": "username-35",
           "ip": "0.0.0.0",
           "public_key": "UID",
-          "name": "2020-01-01T00:00:00+00:00",
+          "name": "name-35",
           "avatars": null
         },
         {
-          "username": "2020-01-01T00:00:00+00:00",
+          "username": "username-34",
           "ip": "0.0.0.0",
           "public_key": "UID",
-          "name": "2020-01-01T00:00:00+00:00",
+          "name": "name-34",
           "avatars": null
         },
         {
-          "username": "2020-01-01T00:00:00+00:00",
+          "username": "username-32",
           "ip": "0.0.0.0",
           "public_key": "UID",
-          "name": "2020-01-01T00:00:00+00:00",
+          "name": "name-32",
           "avatars": null
         }
       ],

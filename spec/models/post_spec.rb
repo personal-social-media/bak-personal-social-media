@@ -17,10 +17,16 @@
 #  wow_count      :bigint           default(0), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  group_id       :bigint
 #
 # Indexes
 #
-#  index_posts_on_uid  (uid) UNIQUE
+#  index_posts_on_group_id  (group_id)
+#  index_posts_on_uid       (uid) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (group_id => groups.id)
 #
 require "rails_helper"
 

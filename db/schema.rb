@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_030044) do
+ActiveRecord::Schema.define(version: 2021_04_05_031710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 2021_04_05_030044) do
     t.index ["payload_subject_type", "payload_subject_id"], name: "cache_focus_subscriptions_payload_idx", unique: true
     t.index ["peer_info_id"], name: "index_cache_focus_subscriptions_on_peer_info_id"
     t.index ["token"], name: "index_cache_focus_subscriptions_on_token"
+  end
+
+  create_table "cache_groups", force: :cascade do |t|
+    t.bigint "peer_info_id", null: false
+    t.bigint "remote_id", null: false
+    t.string "name", null: false
+    t.string "role", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["peer_info_id"], name: "index_cache_groups_on_peer_info_id"
   end
 
   create_table "cache_reactions", force: :cascade do |t|
@@ -154,6 +164,25 @@ ActiveRecord::Schema.define(version: 2021_04_05_030044) do
     t.string "processing_status", default: "processing"
     t.index ["element_type", "element_id"], name: "index_gallery_elements_on_element"
     t.index ["image_album_id"], name: "index_gallery_elements_on_image_album_id"
+  end
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.string "role", null: false
+    t.bigint "peer_info_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_memberships_on_group_id"
+    t.index ["peer_info_id"], name: "index_group_memberships_on_peer_info_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "parameterized_name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "group_memberships_count", default: 0, null: false
   end
 
   create_table "image_albums", force: :cascade do |t|
@@ -251,6 +280,8 @@ ActiveRecord::Schema.define(version: 2021_04_05_030044) do
     t.string "privacy", default: "public_access", null: false
     t.bigint "comments_count", default: 0, null: false
     t.text "signature", default: "", null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_posts_on_group_id"
     t.index ["uid"], name: "index_posts_on_uid", unique: true
   end
 
@@ -347,13 +378,17 @@ ActiveRecord::Schema.define(version: 2021_04_05_030044) do
   end
 
   add_foreign_key "cache_comments", "peer_infos"
+  add_foreign_key "cache_groups", "peer_infos"
   add_foreign_key "cache_reactions", "peer_infos"
   add_foreign_key "comments", "comments", column: "parent_comment_id"
   add_foreign_key "comments", "peer_infos"
   add_foreign_key "conversations", "peer_infos"
   add_foreign_key "feed_items", "peer_infos"
   add_foreign_key "gallery_elements", "image_albums"
+  add_foreign_key "group_memberships", "groups"
+  add_foreign_key "group_memberships", "peer_infos"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "posts", "groups"
   add_foreign_key "previous_searches", "peer_infos"
   add_foreign_key "reactions", "peer_infos"
   add_foreign_key "unblock_requests", "peer_infos"
