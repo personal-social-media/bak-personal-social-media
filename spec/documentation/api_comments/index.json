@@ -36,7 +36,7 @@
       }
     },
     "unescaped_url": "/api/comments/:id",
-    "url": "/api/comments?subject_type=post&subject_id=UID-1247d0ff1cf9cd2c3eb53884e33267a44f8dadf5501fce16",
+    "url": "/api/comments?subject_type=post&subject_id=UID-f2b08c7d607f1246b9ae97e9f52a5bd857ef4626e7e5c492",
     "method": "GET",
     "response_code": 200,
     "body": "",
@@ -54,10 +54,10 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "username-60",
+            "username": "username-2",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
-            "name": "name-61",
+            "name": "name-2",
             "avatars": null
           }
         },
@@ -73,10 +73,10 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "username-60",
+            "username": "username-2",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
-            "name": "name-61",
+            "name": "name-2",
             "avatars": null
           }
         },
@@ -92,10 +92,10 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "username-60",
+            "username": "username-2",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
-            "name": "name-61",
+            "name": "name-2",
             "avatars": null
           }
         },
@@ -111,10 +111,10 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "username-60",
+            "username": "username-2",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
-            "name": "name-61",
+            "name": "name-2",
             "avatars": null
           }
         }

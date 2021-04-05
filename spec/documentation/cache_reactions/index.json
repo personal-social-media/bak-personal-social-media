@@ -34,15 +34,15 @@
       "search": [
         {
           "payload_subject_type": "post",
-          "payload_subject_id": "4"
+          "payload_subject_id": "1"
         },
         {
           "payload_subject_type": "post",
-          "payload_subject_id": "5"
+          "payload_subject_id": "2"
         },
         {
           "payload_subject_type": "post",
-          "payload_subject_id": "6"
+          "payload_subject_id": "3"
         }
       ]
     },
@@ -53,27 +53,27 @@
           "reaction_type": "like",
           "subject_type": "FeedItem",
           "subject_id": 1,
-          "remote_id": 2,
+          "remote_id": 1,
           "payload_subject_type": "post",
-          "payload_subject_id": "4"
+          "payload_subject_id": "1"
         },
         {
           "id": 2,
           "reaction_type": "like",
           "subject_type": "FeedItem",
           "subject_id": 2,
-          "remote_id": 3,
+          "remote_id": 2,
           "payload_subject_type": "post",
-          "payload_subject_id": "5"
+          "payload_subject_id": "2"
         },
         {
           "id": 3,
           "reaction_type": "like",
           "subject_type": "FeedItem",
           "subject_id": 3,
-          "remote_id": 4,
+          "remote_id": 3,
           "payload_subject_type": "post",
-          "payload_subject_id": "6"
+          "payload_subject_id": "3"
         }
       ]
     },

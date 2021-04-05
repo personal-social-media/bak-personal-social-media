@@ -31,15 +31,15 @@
     "body": {
       "search": [
         {
+          "remote_id": "1",
+          "remote_type": "post"
+        },
+        {
           "remote_id": "2",
           "remote_type": "post"
         },
         {
           "remote_id": "3",
-          "remote_type": "post"
-        },
-        {
-          "remote_id": "4",
           "remote_type": "post"
         }
       ]
@@ -55,7 +55,7 @@
           "percentage_status": 0,
           "created_at": "2020-01-01T00:00:00+00:00",
           "updated_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": "2"
+          "remote_id": "1"
         },
         {
           "id": 2,
@@ -66,7 +66,7 @@
           "percentage_status": 0,
           "created_at": "2020-01-01T00:00:00+00:00",
           "updated_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": "3"
+          "remote_id": "2"
         },
         {
           "id": 3,
@@ -77,7 +77,7 @@
           "percentage_status": 0,
           "created_at": "2020-01-01T00:00:00+00:00",
           "updated_at": "2020-01-01T00:00:00+00:00",
-          "remote_id": "4"
+          "remote_id": "3"
         }
       ]
     },

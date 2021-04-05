@@ -25,8 +25,8 @@
       "peer_info": {
         "friend_ship_status": "requested",
         "id": 2,
-        "username": "2020-01-01T00:00:00+00:00",
-        "name": "2020-01-01T00:00:00+00:00",
+        "username": "username-1",
+        "name": "name-1",
         "avatars": null
       }
     },
