@@ -40,17 +40,13 @@ module SyncService
         PeerInfo.accepted
       end
 
-      def uid
-        PostService::CreateSelfFeedItem.new(post).uid
-      end
-
       memoize def body
         {
           feed_item: {
             feed_item_id: post.id,
             feed_item_type: :post,
             url: api_post_url(post),
-            uid: uid
+            uid: post.uid
           }
         }
       end

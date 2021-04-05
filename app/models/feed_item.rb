@@ -40,7 +40,6 @@ class FeedItem < ApplicationRecord
   validate :url_matches_peer unless Rails.env.test?
   validate :limit_feed_item_types, on: :create
   validates :uid, presence: true, uniqueness: true
-  validate :check_uid, on: :create
   validates :feed_item_type, presence: true
   validates :feed_item_id, presence: true, uniqueness: { scope: %i(feed_item_type peer_info_id) }
 
@@ -52,9 +51,5 @@ class FeedItem < ApplicationRecord
 
     def limit_feed_item_types
       FeedItemsService::LimitFeedItemTypes.new(self).call!
-    end
-
-    def check_uid
-      UidService::VerifyUid.new(self).call!
     end
 end

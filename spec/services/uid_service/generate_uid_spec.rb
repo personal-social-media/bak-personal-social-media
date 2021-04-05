@@ -10,7 +10,6 @@ describe UidService::GenerateUid do
   subject { described_class.new(post).call! }
   before do
     allow_any_instance_of(described_class).to receive(:is_test?).and_return(false)
-    allow_any_instance_of(UidService::VerifyUid).to receive(:is_test?).and_return(false)
   end
 
   describe "#call!" do

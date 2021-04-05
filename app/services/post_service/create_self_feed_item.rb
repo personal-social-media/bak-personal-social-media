@@ -10,12 +10,7 @@ module PostService
     end
 
     def call!
-      FeedItem.create!(feed_item_type: :post, uid: uid, url: api_post_url(post), peer_info: peer_info, feed_item_id: post.id)
-    end
-
-    def uid
-      decoded = "#{post.id}-post"
-      SignaturesService::Sign.new(decoded).call!
+      FeedItem.create!(feed_item_type: :post, uid: post.uid, url: api_post_url(post), peer_info: peer_info, feed_item_id: post.id)
     end
 
     private
