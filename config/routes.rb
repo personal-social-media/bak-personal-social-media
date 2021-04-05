@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     post "/server_proof_of_work", to: "server_proof_of_works#show"
     resources :feed_items, only: %i(create destroy)
     resource :friendship, only: %i(show create destroy update)
+    resources :friendships, only: %i(index)
     resource :profile, only: :show
     resource :conversations, only: %i(create update)
     resources :messages, only: %i(create update)

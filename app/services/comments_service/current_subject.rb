@@ -12,17 +12,12 @@ module CommentsService
     def call!
       return nil if subject_type.blank? || subject_id.blank?
 
-      return find_post if subject_type == "post"
-      find_comment if subject_type == "comment"
+      find_post if subject_type == "post"
     end
 
     private
       def find_post
         Post.find_by(uid: subject_id)
-      end
-
-      def find_comment
-        Comment.where(parent_comment_id: nil).find_by(uid: subject_id)
       end
   end
 end

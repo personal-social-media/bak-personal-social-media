@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_context "api_comments_create" do
-  let(:documentation_title) { "Create message" }
+  let(:documentation_title) { "Create comment" }
   let(:documentation_unescaped_url) { "/api/comments" }
   let(:documentation_id) { :create }
   let(:documentation_params) do

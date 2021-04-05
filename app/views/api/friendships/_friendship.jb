@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+fields = %i(ip name avatars username public_key)
+
+peer_info.as_json(only: fields)

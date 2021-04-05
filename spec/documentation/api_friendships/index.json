@@ -1,0 +1,77 @@
+{
+  "parent": {
+    "id": "api_friendships",
+    "controller": "Api::FriendshipsController",
+    "title": "Friendships",
+    "usage": "external"
+  },
+  "child": {
+    "id": "index",
+    "title": "List friendships",
+    "information": "List friendships",
+    "params": {
+      "page": {
+        "type": "number",
+        "optional": true
+      },
+      "start_index": {
+        "type": "number",
+        "optional": true
+      },
+      "end_index": {
+        "type": "number",
+        "optional": true
+      }
+    },
+    "unescaped_url": "/api/friendships",
+    "url": "/api/friendships",
+    "method": "GET",
+    "response_code": 200,
+    "body": "",
+    "json": {
+      "friendships": [
+        {
+          "username": "2020-01-01T00:00:00+00:00",
+          "ip": "0.0.0.0",
+          "public_key": "UID",
+          "name": "2020-01-01T00:00:00+00:00",
+          "avatars": null
+        },
+        {
+          "username": "2020-01-01T00:00:00+00:00",
+          "ip": "0.0.0.0",
+          "public_key": "UID",
+          "name": "2020-01-01T00:00:00+00:00",
+          "avatars": null
+        },
+        {
+          "username": "2020-01-01T00:00:00+00:00",
+          "ip": "0.0.0.0",
+          "public_key": "UID",
+          "name": "2020-01-01T00:00:00+00:00",
+          "avatars": null
+        },
+        {
+          "username": "2020-01-01T00:00:00+00:00",
+          "ip": "0.0.0.0",
+          "public_key": "UID",
+          "name": "2020-01-01T00:00:00+00:00",
+          "avatars": null
+        },
+        {
+          "username": "2020-01-01T00:00:00+00:00",
+          "ip": "0.0.0.0",
+          "public_key": "UID",
+          "name": "2020-01-01T00:00:00+00:00",
+          "avatars": null
+        }
+      ],
+      "friendships_count": 5
+    },
+    "filters": [
+      "verify_node_request",
+      "verify_not_blocked",
+      "require_friend"
+    ]
+  }
+}

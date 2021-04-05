@@ -7,7 +7,7 @@
   },
   "child": {
     "id": "index",
-    "title": "List messages",
+    "title": "List comments",
     "information": "List messages for a resource",
     "params": {
       "subject_type": {
@@ -20,7 +20,7 @@
         "type": "uid"
       },
       "parent_comment_id": {
-        "type": "uid"
+        "type": "id"
       },
       "page": {
         "type": "number",
@@ -36,7 +36,7 @@
       }
     },
     "unescaped_url": "/api/comments/:id",
-    "url": "/api/comments?subject_type=post&subject_id=UID-ce39c9ef8d71aca20e153db629142edb601d232ba612fe5b",
+    "url": "/api/comments?subject_type=post&subject_id=UID-5e35ce3a28ddbfad5b11f8483dbccf2db96f24bc39f20f70",
     "method": "GET",
     "response_code": 200,
     "body": "",
@@ -54,7 +54,7 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "2020-01-01T00:00:00+00:00",
+            "username": "username-99",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
             "name": "2020-01-01T00:00:00+00:00",
@@ -73,7 +73,7 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "2020-01-01T00:00:00+00:00",
+            "username": "username-99",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
             "name": "2020-01-01T00:00:00+00:00",
@@ -92,7 +92,7 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "2020-01-01T00:00:00+00:00",
+            "username": "username-99",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
             "name": "2020-01-01T00:00:00+00:00",
@@ -111,7 +111,7 @@
           },
           "peer_info": {
             "id": 2,
-            "username": "2020-01-01T00:00:00+00:00",
+            "username": "username-99",
             "ip": "0.0.0.0",
             "public_key": "2020-01-01T00:00:00+00:00",
             "name": "2020-01-01T00:00:00+00:00",

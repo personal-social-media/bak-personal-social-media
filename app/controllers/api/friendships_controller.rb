@@ -7,7 +7,17 @@ module Api
     before_action :require_server, only: %i(create update destroy)
     before_action :verify_node_request
     before_action :verify_not_blocked
+    before_action :require_friend, only: %i(index)
     before_action :require_current_peer_info, only: %i(show destroy update)
+
+    def index
+      service = FriendshipService::FriendshipsIndex.new(params.permit!).call!
+      @friendships = service.friendships
+      @friendships_count = service.friendships_count
+
+    rescue FriendshipService::FriendshipsIndex::IndexError => e
+      render json: { error: e.message }, status: 422
+    end
 
     def show
       @peer_info = current_peer_info

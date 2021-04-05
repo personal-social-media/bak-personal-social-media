@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+{
+  friendships: render(partial: "api/friendships/friendship", collection: @friendships, as: :peer_info),
+  friendships_count: @friendships_count
+}

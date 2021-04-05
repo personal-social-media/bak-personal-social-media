@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "update",
-    "title": "Updates a comment",
-    "information": "Updates a comment",
+    "title": "Update comment",
+    "information": "Update comment",
     "params": {
       "comment": {
         "signature": {

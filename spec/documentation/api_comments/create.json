@@ -7,8 +7,8 @@
   },
   "child": {
     "id": "create",
-    "title": "Create message",
-    "information": "Create message",
+    "title": "Create comment",
+    "information": "Create comment",
     "params": {
       "comment": {
         "subject_type": {

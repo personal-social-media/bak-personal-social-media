@@ -6,18 +6,29 @@
     "usage": "external"
   },
   "child": {
-    "id": "destroy",
-    "title": "Destroy comment",
-    "information": "Destroy comment",
+    "id": "show",
+    "title": "Show comment",
+    "information": "Show comment",
     "params": {},
     "unescaped_url": "/api/comments/:id",
     "url": "/api/comments/1",
-    "method": "DELETE",
+    "method": "GET",
     "response_code": 200,
     "body": "",
-    "json": "",
+    "json": {
+      "comment": {
+        "id": 1,
+        "payload": {
+          "message": "test",
+          "subject_id": null,
+          "subject_type": null,
+          "parent_comment_id": null,
+          "images": [],
+          "videos": []
+        }
+      }
+    },
     "filters": [
-      "require_server",
       "verify_node_request",
       "require_friend",
       "verify_not_blocked",

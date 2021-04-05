@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_context "api_comments_update" do
-  let(:documentation_title) { "Updates a comment" }
+  let(:documentation_title) { "Update comment" }
   let(:documentation_unescaped_url) { "/api/comments/:id" }
   let(:documentation_id) { :update }
   let(:documentation_params) do
