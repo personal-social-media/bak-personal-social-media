@@ -1,0 +1,31 @@
+{
+  "parent": {
+    "id": "api_conversations",
+    "controller": "Api::ConversationsController",
+    "title": "Conversations",
+    "usage": "external"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create conversation",
+    "information": "Create conversation",
+    "params": {},
+    "unescaped_url": "/api/conversations",
+    "url": "/api/conversations",
+    "method": "POST",
+    "response_code": 200,
+    "body": "",
+    "json": {
+      "conversation": {
+        "id": 1,
+        "is_typing": false
+      }
+    },
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_current_peer_info",
+      "verify_not_blocked"
+    ]
+  }
+}

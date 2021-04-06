@@ -2,7 +2,7 @@
   "parent": {
     "id": "api_comments",
     "controller": "Api::CommentsController",
-    "title": "Comments Server Side",
+    "title": "Comments",
     "usage": "external"
   },
   "child": {

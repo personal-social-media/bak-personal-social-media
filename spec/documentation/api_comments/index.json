@@ -2,7 +2,7 @@
   "parent": {
     "id": "api_comments",
     "controller": "Api::CommentsController",
-    "title": "Comments Server Side",
+    "title": "Comments",
     "usage": "external"
   },
   "child": {
@@ -36,7 +36,7 @@
       }
     },
     "unescaped_url": "/api/comments/:id",
-    "url": "/api/comments?subject_type=post&subject_id=UID-34949ed5484355cfedc45b590d79b96acbaeb05950d8bf6f",
+    "url": "/api/comments?subject_type=post&subject_id=UID-2a5a76a8c07f3b31c322457ca5ec5a8e52ad9b42dc4e3a75",
     "method": "GET",
     "response_code": 200,
     "body": "",
