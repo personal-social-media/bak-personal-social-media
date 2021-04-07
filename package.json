@@ -6,7 +6,7 @@
     "lint": "yarn eslint --fix --ext .js --ext .jsx app/javascript"
   },
   "dependencies": {
-    "@bugsnag/js": "^7.9.0",
+    "@bugsnag/js": "^7.9.2",
     "@bugsnag/plugin-react": "^7.9.2",
     "@cheprasov/qrcode": "^0.1.0",
     "@fullhuman/postcss-purgecss": "^4.0.3",
