@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@bugsnag/js": "^7.9.0",
-    "@bugsnag/plugin-react": "^7.9.0",
+    "@bugsnag/plugin-react": "^7.9.2",
     "@cheprasov/qrcode": "^0.1.0",
     "@fullhuman/postcss-purgecss": "^4.0.3",
     "@hookstate/core": "^3.0.6",
