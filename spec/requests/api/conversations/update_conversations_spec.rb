@@ -1,10 +1,12 @@
 # frozen_string_literal: true
-
+require_relative "./parent_documentation"
+require_relative "./update_documentation"
 require "rails_helper"
 
-describe "/api/conversations" do
+describe "/api/conversations", documentation: true do
   include ExternalApiHelpers
-  let(:controller) { Api::ConversationsController }
+  include_context "api_conversations_update"
+  include_context "api_conversations"
 
   describe "PUT /api/conversations" do
     let(:url) { "/api/conversations" }
@@ -22,7 +24,7 @@ describe "/api/conversations" do
       put url, params: params
     end
 
-    context "valid" do
+    context "valid", valid: true do
       let(:params) do
         { conversation: { is_typing: true } }
       end

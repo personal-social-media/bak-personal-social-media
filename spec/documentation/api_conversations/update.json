@@ -1,0 +1,42 @@
+{
+  "parent": {
+    "id": "api_conversations",
+    "controller": "Api::ConversationsController",
+    "title": "Conversations",
+    "usage": "external"
+  },
+  "child": {
+    "id": "update",
+    "title": "Update conversation",
+    "information": "Update conversation",
+    "params": {
+      "conversation": {
+        "is_typing": {
+          "type": "boolean"
+        }
+      }
+    },
+    "unescaped_url": "/api/conversations",
+    "url": "/api/conversations",
+    "method": "PUT",
+    "response_code": 200,
+    "body": {
+      "conversation": {
+        "is_typing": true
+      }
+    },
+    "json": {
+      "conversation": {
+        "is_typing": true,
+        "id": 1
+      }
+    },
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_current_peer_info",
+      "verify_not_blocked",
+      "require_current_conversation"
+    ]
+  }
+}
