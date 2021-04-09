@@ -91,7 +91,7 @@ class SessionsController < ApplicationController
     end
 
     def check_register
-      head 404 if Profile.count > 0 ||
+      head 404 if (Profile.count > 0 && !Rails.env.development?) ||
         params[:login_token] != Rails.application.secrets.dig(:profile, :login_token)
     end
 
