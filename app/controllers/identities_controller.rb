@@ -11,7 +11,9 @@ class IdentitiesController < ActionController::Base
   def create
     public_key = Base32.decode(request.headers["Public-Key"])
     @identity = PeerInfo.find_or_initialize_by(public_key: public_key).tap do |id|
-      permitted_params = params.require(:identity).permit(:username, :name, :about, :city_name, :country_code, :signature, avatars: {})
+      permitted_params = params.require(:identity).permit(:username, :name, :about, :city_name, :country_code, :signature, avatars: [
+        :type, :original, :short, :original_screenshot, :thumbnail_screenshot, :desktop, :mobile, :thumbnail
+      ])
       if !id.persisted? || id.username == "UNKNOWN"
         id.username = permitted_params[:username]
       end
