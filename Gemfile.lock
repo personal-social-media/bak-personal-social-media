@@ -252,7 +252,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    marcel (1.0.0)
+    marcel (1.0.1)
     memoist (0.16.2)
     memory_profiler (1.0.0)
     method_source (1.0.0)
@@ -543,7 +543,7 @@ DEPENDENCIES
   jquery-rails (~> 4.4)
   kaminari
   listen (~> 3.5)
-  marcel (~> 1.0.0)
+  marcel (~> 1.0.1)
   memoist (~> 0.16.2)
   memory_profiler
   offline_geocoder (~> 0.2.1)
