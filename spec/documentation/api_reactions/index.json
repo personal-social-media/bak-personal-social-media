@@ -1,0 +1,90 @@
+{
+  "parent": {
+    "id": "api_reactions",
+    "controller": "Api::ReactionsController",
+    "title": "Reactions",
+    "usage": "external"
+  },
+  "child": {
+    "id": "index",
+    "title": "List reactions",
+    "information": "List reactions",
+    "params": {
+      "page": {
+        "type": "number",
+        "optional": true
+      },
+      "start_index": {
+        "type": "number",
+        "optional": true
+      },
+      "end_index": {
+        "type": "number",
+        "optional": true
+      }
+    },
+    "unescaped_url": "/api/reactions",
+    "url": "/api/reactions?subject_type=post&subject_id=UID-3f05dd4d9c8a9c34dc57edb8d123b41b2bfe80f0c6a6ee53",
+    "method": "GET",
+    "response_code": 200,
+    "body": "",
+    "json": {
+      "reactions": [
+        {
+          "id": 4,
+          "reaction_type": "like",
+          "peer_info": {
+            "id": 6,
+            "username": "username-6",
+            "ip": "0.0.0.0",
+            "public_key": "UID",
+            "name": "name-6",
+            "avatars": null
+          }
+        },
+        {
+          "id": 3,
+          "reaction_type": "like",
+          "peer_info": {
+            "id": 5,
+            "username": "username-5",
+            "ip": "0.0.0.0",
+            "public_key": "UID",
+            "name": "name-5",
+            "avatars": null
+          }
+        },
+        {
+          "id": 2,
+          "reaction_type": "like",
+          "peer_info": {
+            "id": 4,
+            "username": "username-4",
+            "ip": "0.0.0.0",
+            "public_key": "UID",
+            "name": "name-4",
+            "avatars": null
+          }
+        },
+        {
+          "id": 1,
+          "reaction_type": "like",
+          "peer_info": {
+            "id": 3,
+            "username": "username-3",
+            "ip": "0.0.0.0",
+            "public_key": "UID",
+            "name": "name-3",
+            "avatars": null
+          }
+        }
+      ],
+      "reactions_count": 4
+    },
+    "filters": [
+      "verify_node_request",
+      "verify_not_blocked",
+      "require_index_current_subject"
+    ]
+  }
+}

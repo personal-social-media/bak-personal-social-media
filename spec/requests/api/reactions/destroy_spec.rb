@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./destroy_documentation"
 require "rails_helper"
 
-describe "/api/reactions/:id" do
+describe "/api/reactions/:id", documentation: true do
+  include_context "api_reactions_destroy"
+  include_context "api_reactions"
   include ExternalApiHelpers
-  let(:controller) { Api::ReactionsController }
 
   describe "DELETE /api/reactions/:id" do
     let(:url) { "/api/reactions/#{reaction.id}" }
@@ -23,7 +26,7 @@ describe "/api/reactions/:id" do
       delete url
     end
 
-    it "destroys the reaction" do
+    it "destroys the reaction", valid: true do
       reaction
 
       expect do

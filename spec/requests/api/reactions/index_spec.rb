@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./index_documentation"
+require_relative "./parent_documentation"
 require "rails_helper"
 
-describe "/api/reactions" do
+describe "/api/reactions", documentation: true do
+  include_context "api_reactions_index"
+  include_context "api_reactions"
   include ExternalApiHelpers
-  let(:controller) { Api::ReactionsController }
 
   describe "GET /api/reactions?subject_type=:subject_type&subject_id=:subject_id" do
     let(:url) { "/api/reactions?subject_type=post&subject_id=#{post.uid}" }
@@ -24,7 +27,7 @@ describe "/api/reactions" do
       get url
     end
 
-    context "valid" do
+    context "valid", valid: true do
       it "returns list of reactions" do
         subject
         expect(response).to have_http_status(:ok)

@@ -2,7 +2,7 @@
 
 module ReactionsService
   class CreateReaction
-    attr_reader :peer, :subject, :reaction_type
+    attr_reader :peer, :subject, :reaction_type, :reaction
 
     def initialize(peer, subject, reaction_type)
       @peer = peer
@@ -11,8 +11,8 @@ module ReactionsService
     end
 
     def call!
-      Reaction.create!(peer_info: peer, subject: subject, reaction_type: reaction_type)
-      return if notification.updated_at.present? && notification.updated_at > 30.minutes.ago
+      @reaction = Reaction.create!(peer_info: peer, subject: subject, reaction_type: reaction_type)
+      return reaction if notification.updated_at.present? && notification.updated_at > 30.minutes.ago
 
       subject.reload
       notification.metadata = {
@@ -23,6 +23,7 @@ module ReactionsService
         }
       }
       notification.save!
+      reaction
     end
 
     private

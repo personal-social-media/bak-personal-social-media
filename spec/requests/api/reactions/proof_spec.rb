@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./proof_documentation"
+require_relative "./parent_documentation"
 require "rails_helper"
 
-describe "/api/reactions/proof" do
+describe "/api/reactions/proof", documentation: true do
+  include_context "api_reactions_proof"
+  include_context "api_reactions"
   include ExternalApiHelpers
-  let(:controller) { Api::ReactionsController }
 
   let(:url) { "/api/reactions/proof" }
   let(:cache_reaction) { create(:cache_reaction) }
@@ -26,7 +29,7 @@ describe "/api/reactions/proof" do
     post url, params: params
   end
 
-  it "ok" do
+  it "ok", valid: true do
     subject
 
     expect(response).to have_http_status(:ok)

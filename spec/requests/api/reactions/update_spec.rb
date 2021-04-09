@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./update_documentation"
 require "rails_helper"
 
-describe "/api/reactions/:id" do
+describe "/api/reactions/:id", documentation: true do
+  include_context "api_reactions_update"
+  include_context "api_reactions"
   include ExternalApiHelpers
-  let(:controller) { Api::ReactionsController }
 
   describe "PATCH /api/reactions/:id" do
     let(:url) { "/api/reactions/#{reaction.id}" }
@@ -23,7 +26,7 @@ describe "/api/reactions/:id" do
       patch url, params: params
     end
 
-    context "valid" do
+    context "valid", valid: true do
       let(:params) do
         {
           reaction: {

@@ -2,15 +2,11 @@
   <div class="flex justify-between font-bold items-center w-full">
     <div class="ml-2 md:ml-16 flex items-center">
       <%= link_to "Your social media", root_path, class: "text-2xl no-underline text-gray-700 hover:text-gray-900" %>
-
-      <div class="ml-2">
-        <%= react_component "notifications" %>
-      </div>
     </div>
 
     <div class="flex items-center">
       <div>
-        <%= %>
+        <%= react_component "notifications" %>
       </div>
       <div class="mx-4 hover:bg-yellow-400 px-2 rounded shadow-inner">
         <%= link_to profile_path(current_user.peer_info), class: "text-gray-700 hover:text-gray-900 no-underline" do %>

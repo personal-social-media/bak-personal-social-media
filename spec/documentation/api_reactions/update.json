@@ -1,0 +1,46 @@
+{
+  "parent": {
+    "id": "api_reactions",
+    "controller": "Api::ReactionsController",
+    "title": "Reactions",
+    "usage": "external"
+  },
+  "child": {
+    "id": "update",
+    "title": "Update reaction",
+    "information": "Update reaction",
+    "params": {
+      "reaction": {
+        "reaction_type": {
+          "type": "string",
+          "variants": [
+            "like",
+            "love",
+            "wow"
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/api/reactions/:id",
+    "url": "/api/reactions/1",
+    "method": "PATCH",
+    "response_code": 200,
+    "body": {
+      "reaction": {
+        "reaction_type": "love"
+      }
+    },
+    "json": {
+      "reaction": {
+        "reaction_type": "love",
+        "id": 1
+      }
+    },
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_friend",
+      "verify_not_blocked"
+    ]
+  }
+}

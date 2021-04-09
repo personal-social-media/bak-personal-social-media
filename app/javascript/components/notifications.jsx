@@ -7,7 +7,7 @@ export default function Notifications() {
     <Bugsnag>
       <ActionCable>
         <NotificationsActionCableEvents>
-          ok
+          Notifications
         </NotificationsActionCableEvents>
       </ActionCable>
     </Bugsnag>

@@ -1,0 +1,60 @@
+{
+  "parent": {
+    "id": "api_reactions",
+    "controller": "Api::ReactionsController",
+    "title": "Reactions",
+    "usage": "external"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create reaction",
+    "information": "Create reaction",
+    "params": {
+      "reaction": {
+        "subject_type": {
+          "type": "string",
+          "variants": [
+            "post",
+            "message",
+            "comment"
+          ]
+        },
+        "subject_id": {
+          "type": "uid"
+        },
+        "reaction_type": {
+          "type": "string",
+          "variants": [
+            "like",
+            "love",
+            "wow"
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/api/reactions",
+    "url": "/api/reactions",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "reaction": {
+        "subject_type": "post",
+        "subject_id": "UID",
+        "reaction_type": "like"
+      }
+    },
+    "json": {
+      "reaction": {
+        "id": 1,
+        "reaction_type": "like"
+      }
+    },
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_friend",
+      "verify_not_blocked",
+      "require_current_subject"
+    ]
+  }
+}

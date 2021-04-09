@@ -1,0 +1,43 @@
+{
+  "parent": {
+    "id": "api_reactions",
+    "controller": "Api::ReactionsController",
+    "title": "Reactions",
+    "usage": "external"
+  },
+  "child": {
+    "id": "proof",
+    "title": "Verify reaction proof",
+    "information": "Verify reaction proof",
+    "params": {
+      "payload_subject_id": {
+        "type": "id"
+      },
+      "payload_subject_type": {
+        "type": "string",
+        "variants": [
+          "post",
+          "comment",
+          "message"
+        ]
+      }
+    },
+    "unescaped_url": "/api/reactions/proof",
+    "url": "/api/reactions/proof",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "payload_subject_id": "1",
+      "payload_subject_type": "post"
+    },
+    "json": {
+      "proof": "SIGNATURE"
+    },
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "verify_not_blocked",
+      "require_current_proof_reaction"
+    ]
+  }
+}

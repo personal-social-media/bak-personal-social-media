@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./create_documentation"
 require "rails_helper"
 
-describe "/api/reactions" do
+describe "/api/reactions", documentation: true do
+  include_context "api_reactions_create"
+  include_context "api_reactions"
   include ExternalApiHelpers
-  let(:controller) { Api::ReactionsController }
 
   describe "POST /api/reactions" do
     let(:url) { "/api/reactions" }
@@ -23,7 +26,7 @@ describe "/api/reactions" do
       post url, params: params
     end
 
-    context "valid" do
+    context "valid", valid: true do
       let(:params) do
         {
           reaction: {
