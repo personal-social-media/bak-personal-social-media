@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
-describe "/api/friendship" do
+require "rails_helper"
+require_relative "./parent_documentation"
+require_relative "./show_documentation"
+
+describe "/api/friendship", documentation: true do
   include ExternalApiHelpers
-  let(:controller) { Api::FriendshipsController }
+  include_context "api_friendships"
+  include_context "api_friendships_show"
 
   describe "GET /api/friendship" do
     let(:url) { "/api/friendship" }
@@ -21,7 +26,7 @@ describe "/api/friendship" do
     end
 
     context "exists" do
-      it "profile" do
+      it "profile", valid: true do
         subject
 
         expect(response).to have_http_status(:ok)

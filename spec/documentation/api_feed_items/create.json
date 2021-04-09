@@ -1,0 +1,53 @@
+{
+  "parent": {
+    "id": "api_feed_items",
+    "controller": "Api::FeedItemsController",
+    "title": "Feed Items",
+    "usage": "external"
+  },
+  "child": {
+    "id": "create",
+    "title": "Create feed item",
+    "information": "Create feed item",
+    "params": {
+      "feed_item": {
+        "url": {
+          "type": "url"
+        },
+        "uid": {
+          "type": "uid"
+        },
+        "feed_item_type": {
+          "type": "string",
+          "variants": [
+            "post",
+            "story"
+          ]
+        },
+        "feed_item_id": {
+          "type": "id"
+        }
+      }
+    },
+    "unescaped_url": "/api/feed_items",
+    "url": "/api/feed_items",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "feed_item": {
+        "url": "https://161.97.64.223/",
+        "uid": "2b425fa8355ed6f33908863418b6caf5",
+        "feed_item_type": "post",
+        "feed_item_id": 1
+      }
+    },
+    "json": "",
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_current_peer_info",
+      "verify_not_blocked",
+      "require_friend"
+    ]
+  }
+}

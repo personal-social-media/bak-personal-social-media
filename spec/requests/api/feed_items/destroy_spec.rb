@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./destroy_documentation"
 require "rails_helper"
 
-describe "/api/feed_items/:id" do
+describe "/api/feed_items/:id", documentation: true do
+  include_context "api_destroy_feed_items"
+  include_context "api_feed_items"
   include ExternalApiHelpers
-  let(:controller) { Api::FeedItemsController }
 
   describe "DELETE /api/feed_items/:id" do
     let(:url) { "/api/feed_items/#{feed_item.uid}" }
@@ -21,7 +24,7 @@ describe "/api/feed_items/:id" do
       delete url
     end
 
-    it "destroys the feed item" do
+    it "destroys the feed item", valid: true do
       feed_item
 
       expect do

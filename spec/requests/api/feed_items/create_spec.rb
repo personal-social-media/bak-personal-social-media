@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./create_documentation"
 require "rails_helper"
 
-describe "/api/feed_items" do
+describe "/api/feed_items", documentation: true do
+  include_context "api_feed_items"
+  include_context "api_create_feed_items"
   include ExternalApiHelpers
-  let(:controller) { Api::FeedItemsController }
 
   describe "POST /api/feed_items" do
     let(:url) { "/api/feed_items" }
@@ -21,7 +24,7 @@ describe "/api/feed_items" do
       post url, params: params
     end
 
-    context "valid" do
+    context "valid", valid: true do
       let(:params) do
         {
           feed_item: {

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "./parent_documentation"
+require_relative "./update_documentation"
 require "rails_helper"
 
-describe "/api/friendship" do
+describe "/api/friendship", documentation: true do
+  include_context "api_friendships_update"
+  include_context "api_friendships"
   include ExternalApiHelpers
-  let(:controller) { Api::FriendshipsController }
 
   describe "PATCH /api/friendship" do
     let(:url) { "/api/friendship" }
@@ -28,7 +31,7 @@ describe "/api/friendship" do
         allow_any_instance_of(controller).to receive(:current_peer_info).and_return(peer_info)
       end
 
-      context "accepted" do
+      context "accepted", valid: true do
         let(:friend_ship_status) { :accepted }
         it "accepts" do
           subject

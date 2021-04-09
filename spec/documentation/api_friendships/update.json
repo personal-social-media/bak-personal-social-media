@@ -1,0 +1,44 @@
+{
+  "parent": {
+    "id": "api_friendships",
+    "controller": "Api::FriendshipsController",
+    "title": "Friendships",
+    "usage": "external"
+  },
+  "child": {
+    "id": "update",
+    "title": "Update friendship",
+    "information": "Update friendship",
+    "params": {
+      "friendship": {
+        "friend_ship_status": {
+          "type": "string",
+          "variants": [
+            "accepted",
+            "2020-01-01T00:00:00+00:00"
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/api/friendship",
+    "url": "/api/friendship",
+    "method": "PATCH",
+    "response_code": 200,
+    "body": {
+      "friendship": {
+        "friend_ship_status": "accepted"
+      }
+    },
+    "json": {
+      "friendship": {
+        "friend_ship_status": "accepted"
+      }
+    },
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "verify_not_blocked",
+      "require_current_peer_info"
+    ]
+  }
+}

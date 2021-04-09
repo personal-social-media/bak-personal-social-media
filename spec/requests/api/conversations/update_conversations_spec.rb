@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative "./parent_documentation"
 require_relative "./update_documentation"
 require "rails_helper"

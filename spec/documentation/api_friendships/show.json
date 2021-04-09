@@ -1,0 +1,29 @@
+{
+  "parent": {
+    "id": "api_friendships",
+    "controller": "Api::FriendshipsController",
+    "title": "Friendships",
+    "usage": "external"
+  },
+  "child": {
+    "id": "show",
+    "title": "Show friendship",
+    "information": "Show friendship",
+    "params": {},
+    "unescaped_url": "/api/friendship",
+    "url": "/api/friendship",
+    "method": "GET",
+    "response_code": 200,
+    "body": "",
+    "json": {
+      "friendship": {
+        "friend_ship_status": "requested"
+      }
+    },
+    "filters": [
+      "verify_node_request",
+      "verify_not_blocked",
+      "require_current_peer_info"
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "parent": {
+    "id": "api_feed_items",
+    "controller": "Api::FeedItemsController",
+    "title": "Feed Items",
+    "usage": "external"
+  },
+  "child": {
+    "id": "destroy",
+    "title": "Destroy feed item",
+    "information": "Destroy feed item",
+    "params": {
+      "feed_item": {
+        "url": {
+          "type": "url"
+        },
+        "uid": {
+          "type": "uid"
+        },
+        "feed_item_type": {
+          "type": "string",
+          "variants": [
+            "post",
+            "story"
+          ]
+        },
+        "feed_item_id": {
+          "type": "id"
+        }
+      }
+    },
+    "unescaped_url": "/api/feed_items",
+    "url": "/api/feed_items/UID-afa7fed83157471c95d0568e6857eb1d",
+    "method": "DELETE",
+    "response_code": 200,
+    "body": "",
+    "json": "",
+    "filters": [
+      "require_server",
+      "verify_node_request",
+      "require_current_peer_info",
+      "verify_not_blocked",
+      "require_friend",
+      "require_current_feed_item"
+    ]
+  }
+}
