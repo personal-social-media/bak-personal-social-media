@@ -22,7 +22,7 @@
   <link rel="manifest" href="/manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
 
-  <body class="font-sans">
+  <body class="font-sans bg-gray-200">
     <div class="flex flex-col justify-between min-h-screen">
       <div>
         <% if signed_in? %>
@@ -33,9 +33,7 @@
         </div>
       </div>
 
-      <% if signed_in? %>
-        <%= render partial: "page/footer" %>
-      <% end %>
+      <%= render partial: "page/footer" %>
     </div>
   </body>
 </html>

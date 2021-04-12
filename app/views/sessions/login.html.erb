@@ -1,22 +1,39 @@
-<div class="mx-auto px-2 py-4 w-full md:w-1/3">
-  <h3 class="text-center text-gray-600">
-    Login to your profile
-  </h3>
+<div class="flex md:mt-48 md:justify-around">
+  <div class="md:block hide-on-sm">
+    <%= render partial: "sessions/login/details" %>
+  </div>
 
-  <div>
-    <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" }, id: "login" do |f| %>
-      <%= f.label :recovery_code %>
-      <%= f.text_field :recovery_code, placeholder: "Your recovery code", required: true, class: "w-full", data: { "utils--qr-code-file-scanner-target": :output } %>
-      <div class="my-3">
+  <div class="p-4 w-full md:w-1/4 bg-white shadow-2xl rounded">
+    <h1 class="md:hidden text-center text-gray-600 text-4xl font-bold">
+      Login to your PSM server
+    </h1>
+
+    <div class="mt-10 md:mt-0">
+      <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" }, id: "login" do |f| %>
+        <div class="flex items-center" data-controller="forms--password">
+          <%= f.password_field :recovery_code, placeholder: "Recovery Code", required: true, class: "w-full", data: { "utils--qr-code-file-scanner-target": :output, "forms--password-target": :input } %>
+          <div class="pl-2 text-center">
+            <%= fa_icon "eye 2x", data: { "forms--password-target": :icon, action: "click->forms--password#toggle" } %>
+          </div>
+        </div>
+
+        <div class="mt-6 mb-3">
+          <h3 class="text-center text-gray-600 text-xl font-semibold">
+            Or
+          </h3>
+        </div>
+
         <div>
           <%= f.label :file, "Or QR Code image" %>
         </div>
         <%= f.file_field :file, accept: "image/png", data: { action: "change->utils--qr-code-file-scanner#fileSelected" } %>
-      </div>
 
-      <div class="mt-3">
-        <%= f.submit "Login", class: "pure-button pure-button-primary w-full" %>
-      </div>
-    <% end %>
+        <div class="mt-8">
+          <%= f.submit "Log In", class: "pure-button pure-button-primary w-full bg-indigo-700 text-xl font-bold" %>
+        </div>
+      <% end %>
+    </div>
   </div>
+
 </div>
+

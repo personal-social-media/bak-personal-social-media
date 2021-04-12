@@ -2,18 +2,22 @@
   <div class="text-center">
   </div>
   <div class="flex justify-center text-center">
-    <%= link_to "https://github.com/personal-social-media/personal-social-media", class: "text-black mx-1", target: :_blank do %>
+    <%= link_to "https://github.com/personal-social-media/personal-social-media", class: "text-black mx-2", target: :_blank do %>
       <%= fa_icon "github 2x" %>
       <div>
         Source
       </div>
     <% end %>
 
-    <%= link_to "https://raw.githubusercontent.com/personal-social-media/personal-social-media/master/LICENSE", class: "text-black", target: :_blank do %>
+    <%= link_to "https://raw.githubusercontent.com/personal-social-media/personal-social-media/master/LICENSE", class: "text-black mx-2", target: :_blank do %>
       <%= fa_icon "file 2x" %>
       <div>
         License
       </div>
     <% end %>
+  </div>
+
+  <div class="text-center mt-4 text-sm">
+    <%= link_to "Personal Social Media", "https://personalsocialmedia.net", target: :_blank %> © <%= Time.new.year %>
   </div>
 </div>

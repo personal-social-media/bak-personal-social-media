@@ -1,0 +1,5 @@
+.hide-on-sm{
+  @media (max-width: 640px) {
+    display: none;
+  }
+}

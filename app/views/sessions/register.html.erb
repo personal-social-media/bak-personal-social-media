@@ -1,12 +1,9 @@
 <div class="mb-4 text-center mt-10 text-4xl font-bold text-gray-700">
-  Personal Social Media
+  Create your profile
 </div>
 
 <div class="p-4 pt-4">
   <%= form_with url: register_sessions_path, class: "w-full md:w-1/3 mx-auto pure-form", scope: :profile, id: "register" do |f| %>
-    <div class="text-center">
-      <h3 class="text-gray-700">Create your profile</h3>
-    </div>
     <fieldset>
       <input type="hidden" value="<%= params[:login_token] %>" name="login_token">
 
