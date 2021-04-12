@@ -35,7 +35,7 @@ export default function PreviousSearchesList({inputRef}) {
   return (
     <OutsideClickHandler onOutsideClick={closeList}>
       {
-        listOpened && inputValue.length < 1 && previousSearches?.length > 0 && <div className="absolute top-0 mt-12 py-2 px-1 bg-yellow-300 w-64 overflow-y-hidden">
+        listOpened && inputValue.length < 1 && previousSearches?.length > 0 && <div className="absolute top-0 mt-20 py-2 px-1 bg-white w-64 overflow-y-hidden">
           <div className="text-sm">
             Previous searches
           </div>

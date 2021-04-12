@@ -1,0 +1,86 @@
+<div class="fixed top-0 left-0 right-0 bg-yellow-300 h-12 flex items-center border-0 border-b-2 border-red-300 border-solid shadow-xl" style="z-index: 100">
+  <div class="flex justify-between font-bold items-center w-full">
+    <div class="ml-2 md:ml-16 flex items-center">
+      <%= link_to "Your social media", root_path, class: "text-2xl no-underline text-gray-700 hover:text-gray-900" %>
+    </div>
+
+    <div class="flex items-center">
+      <div>
+        <%= react_component "notifications" %>
+      </div>
+      <div class="mx-4 hover:bg-yellow-400 px-2 rounded shadow-inner">
+        <%= link_to profile_path(current_user.peer_info), class: "text-gray-700 hover:text-gray-900 no-underline" do %>
+          <div class="flex items-center">
+            <%= render Person::AvatarComponent.new(profile: current_user, image_size: :thumbnail,
+                                                   video: {
+                                                     autoplay: true
+                                                   },
+                                                   class: "h-10 w-10 rounded-full object-cover object-center") %>
+            <span class="ml-2"><%= current_user.username %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="mx-4">
+        <%= stimulus_controller :div, "utils/drop_down", class: "relative" do %>
+          <%= psm_rounded data: { action: "click->utils--drop-down#toggleOpen" }, "aria-label": "Create", class: "tooltip-bottom" do %>
+            <%= fa_icon "plus", class: "m-1 text-white" %>
+          <% end %>
+
+          <div data-utils--drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 20rem">
+            <div class="text-2xl text-gray-400 mb-6">
+              Create
+            </div>
+
+            <%= stimulus_controller :div, "posts/create-modal", class: "mb-2" do %>
+              <% button = capture do %>
+                <div class="flex items-center">
+                  <%= psm_rounded data: { action: "click->utils--modal#toggle click->posts--create-modal#open" } do %>
+                    <%= fa_icon "edit", class: "m-1 text-white" %>
+                  <% end %>
+                  <div class="text-xs font-thin ml-3">
+                    <div>Post</div>
+                    <div>Write a new Post on your feed.</div>
+                  </div>
+                </div>
+              <% end %>
+
+              <%= render partial: "posts_components/create_modal", locals: { button: button } %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= stimulus_controller :div, "utils/drop_down", class: "mr-12 relative" do %>
+        <%= psm_rounded data: { action: "click->utils--drop-down#toggleOpen" }, "aria-label": "Settings", class: "tooltip-bottom" do %>
+          <%= fa_icon "angle-down", class: "m-1 text-white" %>
+        <% end %>
+
+        <div data-utils--drop-down-target="dropdown" class="invisible opacity-0 absolute bg-white p-4 right-0 shadow-xl" style="width: 16rem">
+          <div class="my-2">
+            <%= link_to "Photos", image_albums_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
+          </div>
+          <hr>
+          <div class="my-2">
+            <%= link_to "Account", profile_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
+          </div>
+          <div class="mt-2">
+            <%= link_to "Settings", settings_sessions_path, class: "text-gray-700 hover:text-gray-900 no-underline" %>
+          </div>
+
+          <div class="mb-6">
+            <%= link_to "Logout", logout_sessions_path, method: :delete, class: "text-gray-700 hover:text-gray-900 no-underline" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4"></div>
+
+<div class="py-4">
+  <% if current_user.recovery_key_plain.present? %>
+    <%= render "page/notifications/recovery" %>
+  <% end %>
+</div>

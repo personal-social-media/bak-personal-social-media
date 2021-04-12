@@ -30,7 +30,7 @@ export default function SearchList({inputRef}) {
     <OutsideClickHandler onOutsideClick={closeList}>
       {
         listOpened && inputValue.length > 0 &&
-        <div className="absolute top-0 mt-12 py-2 px-1 bg-yellow-300 w-64 overflow-y-hidden">
+        <div className="absolute top-0 mt-20 py-2 px-1 bg-white w-64 overflow-y-hidden">
           <div style={{minHeight: '5rem'}}>
             <div className="text-gray-700 text-sm">
               Known peers:

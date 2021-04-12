@@ -1,4 +1,5 @@
 import {forwardRef} from 'react';
+import {iconStyle, inputStyle} from './input.module.scss';
 import {topSearchStore} from './store';
 import {useEffect} from 'react';
 import {useState} from '@hookstate/core';
@@ -22,8 +23,9 @@ export const TopSearchInput = forwardRef((_, ref) => { // eslint-disable-line re
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <form className="pure-form">
-      <input name="query" type="text" placeholder="Search" className="bg-yellow-200 w-48 focus:w-64 text-gray-700" onChange={type} onFocus={open} ref={ref}/>
+    <form className="pure-form relative">
+      <input name="query" type="text" placeholder="Search" className={`bg-white w-48 focus:w-64 text-gray-700 ${inputStyle}`} onChange={type} onFocus={open} ref={ref}/>
+      <i className={`fa fa-search absolute ${iconStyle}`}/>
     </form>
   );
 });
