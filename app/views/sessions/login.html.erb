@@ -10,9 +10,9 @@
 
     <div class="mt-10 md:mt-0">
       <%= form_with url: login_sessions_path, scope: :login, class: "pure-form", data: { controller: "utils--qr-code-file-scanner" }, id: "login" do |f| %>
-        <div class="flex items-center" data-controller="forms--password">
+        <div class="relative" data-controller="forms--password">
           <%= f.password_field :recovery_code, placeholder: "Recovery Code", required: true, class: "w-full", data: { "utils--qr-code-file-scanner-target": :output, "forms--password-target": :input } %>
-          <div class="pl-2 text-center">
+          <div class="text-center absolute float-right">
             <%= fa_icon "eye 2x", data: { "forms--password-target": :icon, action: "click->forms--password#toggle" } %>
           </div>
         </div>

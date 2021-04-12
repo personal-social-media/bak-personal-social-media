@@ -25,7 +25,7 @@
         <div>
           <%= f.label :gender, "Gender:" %>
         </div>
-        <%= f.select :gender, Profile.genders, {}, class: "w-full", required: true %>
+        <%= f.select :gender, Profile.genders.sort, {}, class: "w-full", required: true %>
       </div>
 
       <%= render Setup::ChecksBeforeRegisterComponent.new(f: f) %>
