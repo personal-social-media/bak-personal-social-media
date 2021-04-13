@@ -39,7 +39,7 @@ group :development, :test do
   gem "pg_query", "~> 1.3"
   gem "pry-rails", "~> 0.3.9"
   gem "rspec-rails", "~> 5.0"
-  gem "rubocop-rails_config", "~> 1.3"
+  gem "rubocop-rails_config", "~> 1.4"
 end
 
 group :production do
