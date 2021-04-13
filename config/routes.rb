@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   end
 
+  resource :profile, only: [] do
+    post "/reset_counter", action: :reset_counter
+  end
+
   resources :notifications, only: :index do
     collection do
       patch "/mark_as_seen", action: :mark_as_seen

@@ -1,0 +1,37 @@
+{
+  "parent": {
+    "id": "profile",
+    "controller": "ProfilesController",
+    "title": "Profile",
+    "usage": "internal"
+  },
+  "child": {
+    "id": "reset_counter",
+    "title": "Reset counter",
+    "information": "Reset counter",
+    "params": {
+      "profile": {
+        "counter": {
+          "type": "string",
+          "variants": [
+            "not_seen_notifications_count",
+            "unread_messages_count"
+          ]
+        }
+      }
+    },
+    "unescaped_url": "/profile/reset_counter",
+    "url": "/profile/reset_counter",
+    "method": "POST",
+    "response_code": 200,
+    "body": {
+      "profile": {
+        "counter": "not_seen_notifications_count"
+      }
+    },
+    "json": "",
+    "filters": [
+      "require_current_user"
+    ]
+  }
+}
