@@ -22,8 +22,8 @@ class AttachedFile < ApplicationRecord
   belongs_to :attachment, polymorphic: true
   belongs_to :subject, polymorphic: true
   str_enum :processing_status, %i(processing failed processed)
-  before_update :trigger_subject_callback, if: -> { processing_status_changed? && processed? }
-  after_create :trigger_subject_callback, if: -> { processed? }
+  after_commit :trigger_subject_callback, on: :update, if: -> { previous_changes["processing_status"].present? && processed? }
+  after_commit :trigger_subject_callback, on: :create, if: -> { processed? }
 
   def image?
     attachment_type == "ImageFile"

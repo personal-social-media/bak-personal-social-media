@@ -21,7 +21,6 @@ module ProfileService
         album_options = { album_name: "Profile pictures", album_manual_upload: false }
 
         @attach = AttachmentsService::Attach.new(current_user, [uploaded_file], elements_options: elements_options, album_options: album_options).call!
-        create_post!
         update_peer_info
       end
     end
@@ -44,14 +43,6 @@ module ProfileService
         )
 
         peer_info.save!
-      end
-
-      def create_post!
-        post = Post.create!(content: "Changed profile picture")
-        uploaded_attachment = attach.output_files.first[:attached_file]
-        dup = uploaded_attachment.dup
-        dup.subject = post
-        dup.save!
       end
   end
 end
