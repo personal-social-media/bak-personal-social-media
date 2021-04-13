@@ -22,7 +22,7 @@ module UidService
       end
 
       def generate
-        record.uid = SignaturesService::Sign.new("#{record.id}-#{record.class.name.underscore}").call!
+        record.uid = SecureRandom.hex(24)
       end
   end
 end

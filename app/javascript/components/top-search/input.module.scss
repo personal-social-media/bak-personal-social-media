@@ -1,6 +1,10 @@
 .inputStyle{
   border-radius: 3rem !important;
   padding-left: 2rem !important;
+
+  &:focus{
+    width: 20rem;
+  }
 }
 
 .iconStyle{

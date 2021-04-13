@@ -38,7 +38,9 @@
         </div>
       </div>
 
-      <%= render partial: "page/footer" %>
+      <div class="<%= signed_in? ? "ml-64" : "" %>">
+        <%= render partial: "page/footer" %>
+      </div>
     </div>
   </body>
 </html>

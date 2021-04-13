@@ -4,6 +4,7 @@
 class SessionsController < ApplicationController
   before_action :check_register, only: [:register, :register_post]
   before_action :check_recovery, only: [:recovery, :confirm_recovery]
+  before_action :redirect_to_home, only: :login
   before_action :require_current_user, only: %i(profile profile_post profile_remove_video settings recovery logout confirm_recovery)
 
   def register
@@ -101,5 +102,9 @@ class SessionsController < ApplicationController
 
     def check_recovery
       render json: { error: "recovery key already saved" }, status: 422 if current_user.recovery_key_plain.blank?
+    end
+
+    def redirect_to_home
+      redirect_to root_path if signed_in?
     end
 end

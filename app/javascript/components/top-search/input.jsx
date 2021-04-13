@@ -24,7 +24,7 @@ export const TopSearchInput = forwardRef((_, ref) => { // eslint-disable-line re
 
   return (
     <form className="pure-form relative">
-      <input name="query" type="text" placeholder="Search" className={`bg-white w-48 focus:w-64 text-gray-700 ${inputStyle}`} onChange={type} onFocus={open} ref={ref}/>
+      <input name="query" type="text" placeholder="Search" className={`bg-white w-64 text-gray-700 ${inputStyle}`} onChange={type} onFocus={open} ref={ref}/>
       <i className={`fa fa-search absolute cursor-text text-gray-700 ${iconStyle}`} onClick={() => ref.current.focus()}/>
     </form>
   );

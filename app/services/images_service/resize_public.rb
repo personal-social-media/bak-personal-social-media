@@ -20,15 +20,15 @@ module ImagesService
 
     private
       def original_image
-        pipeline.saver(strip: true, quality: 89).resize_to_limit!(1600, 1600)
+        pipeline.saver(strip: true, quality: 95).resize_to_limit!(1600, 1600)
       end
 
       def mobile
-        pipeline.saver(strip: true, quality: 88).resize_to_limit!(720, 720)
+        pipeline.saver(strip: true, quality: 95).resize_to_limit!(720, 720)
       end
 
       def thumbnail
-        pipeline.saver(strip: true, quality: 75).resize_to_limit!(160, 160)
+        pipeline.saver(strip: true, quality: 95).resize_to_limit!(160, 160)
       end
 
       memoize def pipeline

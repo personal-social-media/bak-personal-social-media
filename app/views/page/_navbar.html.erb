@@ -1,24 +1,30 @@
-<div class="fixed pt-5 navbar right-0 pb-1">
+<div class="fixed pt-5 navbar right-0 pb-1 z-40">
   <div class="bg-white rounded-lg shadow-lg mr-4 px-2 py-4 h-16 flex items-center justify-between">
     <div class="text-gray-700">
-      {{Page Title}}
+      <%= @title %>
     </div>
 
-    <div class="flex">
-      <div>
+    <div class="flex items-center">
+      <div class="mr-8">
         <%= react_component "top-search" %>
       </div>
 
-      <div>
-        Messages
+      <div class="mx-3">
+        <%= react_component "top-conversations" %>
       </div>
 
-      <div>
-        Notifications
+      <div class="mx-3">
+        <%= react_component "top-notifications" %>
       </div>
 
-      <div>
-        Avatar
+      <div class="ml-5">
+        <%= link_to profile_path(current_user.peer_info) do %>
+          <%= render Person::AvatarComponent.new(profile: current_user, image_size: :thumbnail,
+                                                 video: {
+                                                   autoplay: true
+                                                 },
+                                                 class: "h-16 w-16 rounded-full object-cover object-center") %>
+        <% end %>
       </div>
     </div>
   </div>
