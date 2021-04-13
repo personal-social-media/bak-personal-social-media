@@ -29,7 +29,7 @@ describe "/api/feed_items", documentation: true do
         {
           feed_item: {
             url: "https://161.97.64.223/",
-            uid: SecureRandom.hex,
+            uid: "UID-#{SecureRandom.hex}",
             feed_item_type: :post,
             feed_item_id: 1
           }
@@ -50,7 +50,7 @@ describe "/api/feed_items", documentation: true do
         {
           feed_item: {
             url: "",
-            uid: SecureRandom.hex,
+            uid: "UID-#{SecureRandom.hex}",
             feed_item_type: :post
           }
         }

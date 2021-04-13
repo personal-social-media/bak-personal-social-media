@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_031710) do
+ActiveRecord::Schema.define(version: 2021_04_12_192910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -304,6 +304,9 @@ ActiveRecord::Schema.define(version: 2021_04_05_031710) do
     t.text "city_name"
     t.text "recovery_key_digest"
     t.text "recovery_key_plain"
+    t.bigint "unread_messages_count", default: 0, null: false
+    t.bigint "not_seen_notifications_count", default: 0, null: false
+    t.datetime "last_seen_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
   create_table "reactions", force: :cascade do |t|

@@ -38,6 +38,7 @@ class Message < ApplicationRecord
   unless Rails.env.test?
     after_commit :push_message, on: :create, if: -> { peer? }
     after_commit :push_message, on: :update, if: -> { self? }
+    after_create :increment_unread_messages_count!, if: -> { peer? }
   end
 
   serialize :payload, JSON
@@ -65,6 +66,10 @@ class Message < ApplicationRecord
 
   def push_message
     MessagesChannel::PushMessage.new(self).call!
+  end
+
+  def increment_unread_messages_count!
+    MessagesService::IncrementUnread.new.call!
   end
 
   private
