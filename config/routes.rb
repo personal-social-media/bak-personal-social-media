@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   end
 
+  resource :setting, only: :update
+
   resource :profile, only: [] do
     post "/reset_counter", action: :reset_counter
   end

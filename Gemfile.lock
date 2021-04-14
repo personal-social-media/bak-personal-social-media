@@ -109,6 +109,7 @@ GEM
     bootsnap (1.7.3)
       msgpack (~> 1.0)
     brakeman (5.0.0)
+    browser (5.3.1)
     bugsnag (6.20.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
@@ -518,6 +519,7 @@ DEPENDENCIES
   binding_of_caller (~> 1.0)
   bootsnap (~> 1.7.3)
   brakeman
+  browser (~> 5.3, >= 5.3.1)
   bugsnag
   bullet (~> 6.1)
   bundler-audit

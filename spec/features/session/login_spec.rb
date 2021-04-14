@@ -9,7 +9,7 @@ describe "login" do
     visit "/sessions/login"
 
     within "form#login" do
-      fill_in "Recovery code", with: code
+      fill_in "Recovery Code", with: code
 
       click_button "commit"
     end

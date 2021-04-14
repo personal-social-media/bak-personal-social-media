@@ -39,6 +39,7 @@ class Profile < ApplicationRecord
 
   before_validation :regenerate_recovery_key, on: :create
   after_create :create_peer_info
+  after_create :create_settings unless Rails.env.test?
   after_create :create_welcome_notification unless Rails.env.test?
 
   memoize def peer_info
@@ -63,6 +64,10 @@ class Profile < ApplicationRecord
   private
     def create_peer_info
       ProfileService::CreatePeerInfo.new(self).call!
+    end
+
+    def create_settings
+      ProfileService::CreateSettings.new.call!
     end
 
     def create_welcome_notification

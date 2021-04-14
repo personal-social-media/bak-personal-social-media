@@ -45,5 +45,10 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each, type: :feature) do
+    next unless RUN_FEATURES
+    create(:setting)
+  end
+
   config.include FeaturesHelpers, type: :feature
 end

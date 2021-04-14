@@ -27,4 +27,12 @@ module PsmHelper
       yield
     end
   end
+
+  def settings
+    return @settings if defined? @settings
+    @settings = Setting.first.tap do |s|
+      s.request = request
+      s.browser = browser
+    end
+  end
 end

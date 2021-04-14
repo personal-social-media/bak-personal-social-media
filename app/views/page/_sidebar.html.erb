@@ -1,7 +1,13 @@
-<div class="bg-white h-screen w-56 fixed shadow-lg">
+<div class="bg-white h-screen w-56 fixed shadow-lg <%= settings.ui_sidebar_opened_helper ? "" : "hidden" %>" data-layout--sidebar-target="sidebar">
   <div>
     <%= link_to root_path do %>
       Logo
     <% end %>
+  </div>
+
+  <div>
+    <button data-action="click->layout--sidebar#toggleOpen">
+      Close
+    </button>
   </div>
 </div>

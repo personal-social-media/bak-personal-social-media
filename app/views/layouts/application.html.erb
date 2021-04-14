@@ -21,14 +21,13 @@
     <%= yield :head %>
   <link rel="manifest" href="/manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
-
   <body class="font-sans">
-    <div class="flex flex-col justify-between min-h-screen">
+    <div class="flex flex-col justify-between min-h-screen" data-controller="layout--sidebar" data-settings-opened="<%= settings.ui_sidebar_opened %>">
       <div class="flex justify-between">
         <% if signed_in? %>
           <%= render partial: "page/sidebar" %>
         <% end %>
-        <div class="flex-1 ml-64">
+        <div class="flex-1 <%= settings.ui_sidebar_opened_helper ? "ml-64" : "" %>" data-layout--sidebar-target="content">
           <% if signed_in? %>
             <%= render partial: "page/navbar" %>
           <% end %>
@@ -38,7 +37,7 @@
         </div>
       </div>
 
-      <div class="<%= signed_in? ? "ml-64" : "" %>">
+      <div class="<%= settings.ui_sidebar_opened_helper ? "ml-64" : "" %>" data-layout--sidebar-target="footer">
         <%= render partial: "page/footer" %>
       </div>
     </div>
