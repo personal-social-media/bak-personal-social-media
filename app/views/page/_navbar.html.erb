@@ -1,7 +1,7 @@
 <div class="fixed pt-5 navbar right-0 <%= settings.ui_sidebar_opened_helper ? "" : "left-0" %> pb-1 z-40" data-layout--sidebar-target="navbar">
   <div class="bg-white rounded-lg shadow-lg mr-4 <%= settings.ui_sidebar_opened_helper ? "" : "ml-4" %> px-2 py-4 h-16 flex items-center justify-between" data-layout--sidebar-target="navbarContent">
     <div class="flex items-center">
-      <button data-action="click->layout--sidebar#toggleOpen" data-layout--sidebar-target="openButton" class="mr-2 text-gray-700 <%= settings.ui_sidebar_opened_helper ? "hidden" : "" %>">
+      <button data-action="click->layout--sidebar#toggleOpen" data-layout--sidebar-target="openButton" class="mr-2 text-gray-700 hover:text-gray-900 <%= settings.ui_sidebar_opened_helper ? "hidden" : "" %>">
         <%= fa_icon "bars 2x" %>
       </button>
 
