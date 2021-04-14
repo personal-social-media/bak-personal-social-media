@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePeerInfos < ActiveRecord::Migration[6.1]
   def change
     create_table :peer_infos do |t|

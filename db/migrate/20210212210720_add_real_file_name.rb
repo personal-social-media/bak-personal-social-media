@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddRealFileName < ActiveRecord::Migration[6.1]
   def change
     %i(image_files video_files).each do |table|

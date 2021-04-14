@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Sidekiq::Throttled.setup!
 
 return if Rails.env.test?
@@ -11,7 +13,7 @@ Sidekiq.configure_client do |config|
   config.redis = RedisService::Url.build_sidekiq_config
 end
 
-schedule_file = 'config/schedule.yml'
+schedule_file = "config/schedule.yml"
 
 if Sidekiq.server?
   Sidekiq::Cron::Job.destroy_all!
@@ -26,9 +28,9 @@ unless Rails.env.production?
 end
 
 if Rails.env.production?
-  Sidekiq.default_worker_options = { 'backtrace' => 20 }
+  Sidekiq.default_worker_options = { "backtrace" => 20 }
 
   Sidekiq.configure_server do |config|
-    config.error_handlers << Proc.new {|ex| Bugsnag.notify(ex) }
+    config.error_handlers << Proc.new { |ex| Bugsnag.notify(ex) }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateGalleryElements < ActiveRecord::Migration[6.1]
   def change
     create_table :gallery_elements do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails"
@@ -38,7 +40,7 @@ module Personal
     config.time_zone = Rails.application.secrets[:time_zone]
     config.active_record.default_timezone = :local
     config.active_job.queue_adapter = :sidekiq
-    Rails.autoloaders.main.ignore(Rails.root.join('app/snowpacker'))
+    Rails.autoloaders.main.ignore(Rails.root.join("app/snowpacker"))
 
     config.assets.configure do |env|
       env.export_concurrent = false

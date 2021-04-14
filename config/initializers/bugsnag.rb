@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 return unless Rails.env.production?
 return unless ENV["BUGSNAG"]
 

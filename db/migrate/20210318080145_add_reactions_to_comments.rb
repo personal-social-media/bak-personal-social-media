@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddReactionsToComments < ActiveRecord::Migration[6.1]
   def change
     %w(like_count love_count wow_count).each do |column|

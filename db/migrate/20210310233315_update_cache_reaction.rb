@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateCacheReaction < ActiveRecord::Migration[6.1]
   def change
     remove_column :cache_reactions, :subject_id

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAboutToProfile < ActiveRecord::Migration[6.1]
   def change
     %i(profiles peer_infos).each do |table|

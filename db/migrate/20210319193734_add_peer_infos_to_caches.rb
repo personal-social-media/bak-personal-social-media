@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPeerInfosToCaches < ActiveRecord::Migration[6.1]
   def change
     %w(cache_reactions cache_comments verification_results).each do |table|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddMostRecent < ActiveRecord::Migration[6.1]
   def change
     %w(image_files video_files).each do |table|

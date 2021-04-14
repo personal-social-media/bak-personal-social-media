@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FixUids < ActiveRecord::Migration[6.1]
   def change
     %w(feed_items comments stories posts).each do |table|

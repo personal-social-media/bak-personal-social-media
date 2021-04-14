@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePreviousSearches < ActiveRecord::Migration[6.1]
   def change
     create_table :previous_searches do |t|

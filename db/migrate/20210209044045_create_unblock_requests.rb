@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUnblockRequests < ActiveRecord::Migration[6.1]
   def change
     create_table :unblock_requests do |t|

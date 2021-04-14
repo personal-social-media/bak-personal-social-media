@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddPayloadSubjectTypeToCacheReaction < ActiveRecord::Migration[6.1]
   def change
     add_column :cache_reactions, :payload_subject_type, :string, null: false, default: ""

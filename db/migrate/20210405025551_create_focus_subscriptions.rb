@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateFocusSubscriptions < ActiveRecord::Migration[6.1]
   def change
     create_table :focus_subscriptions do |t|

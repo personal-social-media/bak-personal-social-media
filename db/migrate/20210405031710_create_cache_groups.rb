@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCacheGroups < ActiveRecord::Migration[6.1]
   def change
     create_table :cache_groups do |t|

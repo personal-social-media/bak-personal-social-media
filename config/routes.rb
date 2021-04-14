@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   Rails.application.routes.default_url_options[:host] = Rails.application.secrets.dig(:load_balancer_address)
 
@@ -7,7 +9,6 @@ Rails.application.routes.draw do
   post "/sign", to: "signatures#create"
 
   resources :profiles, path: "/u", only: :show do
-
   end
 
   resource :setting, only: :update
@@ -130,8 +131,8 @@ Rails.application.routes.draw do
 
   constraints LoggedIn do
     if ENV["DEVELOPER"].present?
-      mount Sidekiq::Web => '/sidekiq'
-      mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+      mount Sidekiq::Web => "/sidekiq"
+      mount RailsAdmin::Engine => "/admin", as: "rails_admin"
     end
     mount PgHero::Engine => "/pghero"
   end
@@ -145,8 +146,8 @@ Rails.application.routes.draw do
   end
 
   match "/*match", to: "static#not_found", via: :all, constraints: ->(req) do
-    req.path.exclude?('auth/auth0') &&
-      req.path.exclude?('packs') &&
-      req.path.exclude?('rails')
+    req.path.exclude?("auth/auth0") &&
+      req.path.exclude?("packs") &&
+      req.path.exclude?("rails")
   end
 end

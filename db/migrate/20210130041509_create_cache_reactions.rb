@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCacheReactions < ActiveRecord::Migration[6.1]
   def change
     create_table :cache_reactions do |t|

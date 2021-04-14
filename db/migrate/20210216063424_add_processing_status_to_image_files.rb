@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddProcessingStatusToImageFiles < ActiveRecord::Migration[6.1]
   def change
     add_column :attached_files, :processing_status, :string

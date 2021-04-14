@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV["RAILS_ENV"] == "production"
   workers Etc.nprocessors
 

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 return if ENV["DEVELOPER"].blank?
 RailsAdmin.config do |config|
-
   ### Popular gems integration
 
   ## == Devise ==
@@ -43,15 +44,14 @@ RailsAdmin.config do |config|
   end
 end
 
-
 RailsAdmin::Config::Fields::Types::MultipleFileUpload::AbstractAttachment.instance_exec do
   register_instance_option :image? do
-    (url = resource_url.to_s) && url.split('.').last =~ /jpg|jpeg|png|gif|svg|webp/i
+    (url = resource_url.to_s) && url.split(".").last =~ /jpg|jpeg|png|gif|svg|webp/i
   end
 end
 
 RailsAdmin::Config::Fields::Types::FileUpload.instance_exec do
   register_instance_option :image? do
-    (url = resource_url.to_s) && url.split('.').last =~ /jpg|jpeg|png|gif|svg|webp/i
+    (url = resource_url.to_s) && url.split(".").last =~ /jpg|jpeg|png|gif|svg|webp/i
   end
 end

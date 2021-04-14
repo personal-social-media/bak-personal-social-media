@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCountersToPosts < ActiveRecord::Migration[6.1]
   def change
     %i(comments posts stories).each do |table|

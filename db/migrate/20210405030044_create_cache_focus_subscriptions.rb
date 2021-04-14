@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCacheFocusSubscriptions < ActiveRecord::Migration[6.1]
   def change
     create_table :cache_focus_subscriptions do |t|
