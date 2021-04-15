@@ -1,13 +1,49 @@
-<div class="bg-white h-screen w-56 fixed shadow-lg <%= settings.ui_sidebar_opened_helper ? "" : "hidden" %>" data-layout--sidebar-target="sidebar">
+<div class="bg-white h-screen w-56 fixed shadow-lg pt-2 px-2 <%= settings.ui_sidebar_opened_helper ? "" : "hidden" %>" data-layout--sidebar-target="sidebar">
   <div>
     <%= link_to root_path do %>
-      Logo
+      <%= image_tag("logos/psm.svg", alt: "logo", class: "h-20 w-20 mx-auto") %>
     <% end %>
+
+    <button data-action="click->layout--sidebar#toggleOpen" class="absolute text-gray-700 hover:text-gray-900">
+      <%= fa_icon "bars 2x" %>
+    </button>
   </div>
 
-  <div>
-    <button data-action="click->layout--sidebar#toggleOpen">
-      Close
-    </button>
+  <div class="pl-2 mt-4 text-gray-700 hover:text-gray-900">
+    <div class="text-lg select-none">
+      Menu
+    </div>
+
+    <div class="mt-4">
+      <%= link_to root_path do %>
+        <div class="flex items-center">
+          <%= fa_icon "home 2x" %> <span class="ml-1 text-sm">Home</span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-6">
+      <div class="my-6">
+        <%= link_to root_path do %>
+          <div class="flex items-center">
+            <%= fa_icon "envelope-square 2x" %> <span class="ml-1 text-sm">Messages</span>
+          </div>
+        <% end %>
+      </div>
+      <div class="my-6">
+        <%= link_to profile_path(current_user.peer_info) do %>
+          <div class="flex items-center">
+            <%= fa_icon "user 2x" %> <span class="ml-1 text-sm">Profile</span>
+          </div>
+        <% end %>
+      </div>
+      <div class="my-6">
+        <%= link_to root_path do %>
+          <div class="flex items-center">
+            <%= fa_icon "cog 2x" %> <span class="ml-1 text-sm">Settings</span>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

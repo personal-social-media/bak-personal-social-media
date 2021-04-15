@@ -1,36 +1,38 @@
-<div class="fixed pt-5 navbar right-0 <%= settings.ui_sidebar_opened_helper ? "" : "left-0" %> pb-1 z-40" data-layout--sidebar-target="navbar">
-  <div class="bg-white rounded-lg shadow-lg mr-4 <%= settings.ui_sidebar_opened_helper ? "" : "ml-4" %> px-2 py-4 h-16 flex items-center justify-between" data-layout--sidebar-target="navbarContent">
-    <div class="flex items-center">
-      <button data-action="click->layout--sidebar#toggleOpen" data-layout--sidebar-target="openButton" class="mr-2 text-gray-700 hover:text-gray-900 <%= settings.ui_sidebar_opened_helper ? "hidden" : "" %>">
-        <%= fa_icon "bars 2x" %>
-      </button>
+<div class="mb-24">
+  <div class="fixed pt-5 navbar right-0 <%= settings.ui_sidebar_opened_helper ? "" : "left-0" %> pb-1 z-40" data-layout--sidebar-target="navbar">
+    <div class="bg-white rounded-lg shadow-lg mr-4 <%= settings.ui_sidebar_opened_helper ? "" : "ml-4" %> px-2 py-4 h-16 flex items-center justify-between" data-layout--sidebar-target="navbarContent">
+      <div class="flex items-center">
+        <button data-action="click->layout--sidebar#toggleOpen" data-layout--sidebar-target="openButton" class="mr-2 text-gray-700 hover:text-gray-900 <%= settings.ui_sidebar_opened_helper ? "hidden" : "" %>">
+          <%= fa_icon "bars 2x" %>
+        </button>
 
-      <div class="text-gray-700">
-        <%= @title %>
-      </div>
-    </div>
-
-    <div class="flex items-center">
-      <div class="mr-8">
-        <%= react_component "top-search" %>
+        <div class="text-gray-700">
+          <%= @title %>
+        </div>
       </div>
 
-      <div class="mx-3">
-        <%= react_component "top-conversations" %>
-      </div>
+      <div class="flex items-center">
+        <div class="mr-8">
+          <%= react_component "top-search" %>
+        </div>
 
-      <div class="mx-3">
-        <%= react_component "top-notifications" %>
-      </div>
+        <div class="mx-3">
+          <%= react_component "top-conversations" %>
+        </div>
 
-      <div class="ml-5">
-        <%= link_to profile_path(current_user.peer_info) do %>
-          <%= render Person::AvatarComponent.new(profile: current_user, image_size: :thumbnail,
-                                                 video: {
-                                                   autoplay: true
-                                                 },
-                                                 class: "h-12 w-12 rounded-full object-cover object-center") %>
-        <% end %>
+        <div class="mx-3">
+          <%= react_component "top-notifications" %>
+        </div>
+
+        <div class="ml-5">
+          <%= link_to profile_path(current_user.peer_info) do %>
+            <%= render Person::AvatarComponent.new(profile: current_user, image_size: :thumbnail,
+                                                   video: {
+                                                     autoplay: true
+                                                   },
+                                                   class: "h-12 w-12 rounded-full object-cover object-center") %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

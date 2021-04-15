@@ -31,8 +31,13 @@ module PsmHelper
   def settings
     return @settings if defined? @settings
     @settings = Setting.first.tap do |s|
+      next if s.blank?
       s.request = request
       s.browser = browser
     end
+  end
+
+  def mobile?
+    browser.device.mobile?
   end
 end

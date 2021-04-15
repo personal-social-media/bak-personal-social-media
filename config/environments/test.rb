@@ -19,7 +19,7 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true

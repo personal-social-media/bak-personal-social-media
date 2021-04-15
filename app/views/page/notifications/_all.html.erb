@@ -1,0 +1,7 @@
+<% if signed_in? %>
+  <% if current_user.recovery_key_plain.present? %>
+    <div class="pb-2">
+      <%= render "page/notifications/recovery" %>
+    </div>
+  <% end %>
+<% end %>

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= PageService::Title.new(@title).call! %></title>
+    <%= favicon_link_tag image_path("logos/psm.svg") %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -22,22 +23,28 @@
   <link rel="manifest" href="/manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
   <body class="font-sans">
-    <div class="flex flex-col justify-between min-h-screen" data-controller="layout--sidebar" data-settings-opened="<%= settings.ui_sidebar_opened %>">
+    <div class="flex flex-col justify-between min-h-screen" data-controller="layout--sidebar" data-settings-opened="<%= settings&.ui_sidebar_opened %>">
       <div class="flex justify-between">
-        <% if signed_in? %>
+        <% if signed_in? && !mobile? %>
           <%= render partial: "page/sidebar" %>
         <% end %>
-        <div class="flex-1 <%= settings.ui_sidebar_opened_helper ? "ml-64" : "" %>" data-layout--sidebar-target="content">
+        <div class="flex-1 <%= settings&.ui_sidebar_opened_helper ? "ml-64" : "" %>" data-layout--sidebar-target="content">
           <% if signed_in? %>
-            <%= render partial: "page/navbar" %>
+            <% if mobile? %>
+              <%= render partial: "page/navbar_mobile" %>
+            <% else %>
+              <%= render partial: "page/navbar" %>
+            <% end %>
           <% end %>
-          <div class="pt-24">
+          <div>
+            <%= render partial: "page/notifications/all" %>
+
             <%= yield %>
           </div>
         </div>
       </div>
 
-      <div class="<%= settings.ui_sidebar_opened_helper ? "ml-64" : "" %>" data-layout--sidebar-target="footer">
+      <div class="<%= settings&.ui_sidebar_opened_helper ? "ml-64" : "" %>" data-layout--sidebar-target="footer">
         <%= render partial: "page/footer" %>
       </div>
     </div>

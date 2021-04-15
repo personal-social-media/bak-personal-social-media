@@ -1,9 +1,9 @@
 <div class="border border-solid border-gray-200 p-3 w-full md:w-1/3 mx-auto">
-  <div class="text-4xl text-center">
+  <div class="text-4xl text-center font-bold text-gray-700">
     Setup account recovery
   </div>
 
-  <div>
+  <div class="mt-4">
     1) Save this code somewhere save
     <div class="font-bold">
       <%= @recovery_key %>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="mt-4">
-    <%= button_to "Confirm that you saved this information", recovery_sessions_path, class: "pure-button w-full text-3xl", method: :post,
+    <%= button_to "Confirm that you saved this information", recovery_sessions_path, class: "pure-button w-full text-3xl text-white bg-", method: :post,
                   data: { confirm: "Double Confirm that you saved everything" } %>
   </div>
 </div>
