@@ -3,21 +3,25 @@
     Setup account recovery
   </div>
 
-  <div class="mt-4">
-    1) Save this code somewhere save
+  <div class="mt-12">
+    1) Save this code somewhere safe:
     <div class="font-bold">
       <%= @recovery_key %>
     </div>
   </div>
 
-  <div class="mt-4">
-    2) Click on the QR Code below to download it and save it somewhere safe.
+  <div class="mt-12">
+    2) Click on the QR Code below to download it and save it somewhere safe aswell.
 
-    <%= stimulus_controller :div, "utils/qr_code", data: { qr_code: @recovery_key }, class: "justify-center flex" %>
+    <%= stimulus_controller :div, "utils/qr_code", data: { qr_code: @recovery_key, file_name: :location, source: image_path("logos/psm.svg") }, class: "justify-center flex" %>
+  </div>
+
+  <div class="text-red-500 font-bold flex text-xl my-4 text-center">
+    <p>You can't login on any other device <span class="underline">without</span> these codes</p>
   </div>
 
   <div class="mt-4">
-    <%= button_to "Confirm that you saved this information", recovery_sessions_path, class: "pure-button w-full text-3xl text-white bg-", method: :post,
+    <%= button_to "Confirm that you saved", recovery_sessions_path, class: "pure-button pure-button-primary w-full text-3xl text-white bg-indigo-700 font-bold", method: :post,
                   data: { confirm: "Double Confirm that you saved everything" } %>
   </div>
 </div>
