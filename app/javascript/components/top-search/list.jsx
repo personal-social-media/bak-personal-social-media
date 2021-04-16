@@ -1,16 +1,18 @@
 import {search, topSearchStore} from './store';
 import {useState} from '@hookstate/core';
-import FadeIn from 'react-fade-in';
 import OutsideClickHandler from 'react-outside-click-handler';
-import SearchListItem from './list-item';
+import SearchListResultsFound from './list/results-found';
 import useInputIntervalHook from '../../lib/hooks/input-interval-hook';
 
 export default function SearchList({inputRef}) {
   const state = useState(topSearchStore);
   const listOpened = state.listOpened.get();
   const inputValue = state.inputValue.get();
+  const localSearching = state.localSearching.get();
+  const registrySearching = state.registrySearching.get();
 
   useInputIntervalHook(state.inputValue, 500, '', (val) => {
+    if (!val || val.replace(/\s/g, '').length === 0) return;
     search(val, state);
   });
 
@@ -24,48 +26,31 @@ export default function SearchList({inputRef}) {
     state.merge({listOpened: false});
   }
 
-  const localSearches = state.localSearches.get();
-  const registrySearches = state.registrySearches.get();
+  if (!listOpened || inputValue.length === 0) return null;
+
   return (
     <OutsideClickHandler onOutsideClick={closeList}>
-      {
-        listOpened && inputValue.length > 0 &&
-        <div className="absolute top-0 mt-20 py-2 px-1 bg-white w-64 overflow-y-hidden">
-          <div style={{minHeight: '5rem'}}>
-            <div className="text-gray-700 text-sm">
-              Known peers:
-            </div>
-
-            {
-              <FadeIn className="local-searches-list">
-                {localSearches.map((identity) => {
-                  return (
-                    <div key={identity.id} className="my-2">
-                      <SearchListItem identity={identity} displayName={identity.name} link={`/u/${identity.id}`} storeState={state}/>
-                    </div>
-                  );
-                })}
-              </FadeIn>
-            }
-          </div>
-
-          <div style={{minHeight: '5rem'}}>
-            <div className="text-gray-700 text-sm">
-              Registry peers:
-            </div>
-
-            <FadeIn className="registry-searches-list">
-              {registrySearches.map((identity) => {
-                return (
-                  <div key={identity.publicKey} className="my-2">
-                    <SearchListItem identity={identity} displayName={`@${identity.username}`} storeState={state}/>
+      <div className="absolute top-0 mt-20 py-2 px-1 bg-white w-64 overflow-y-hidden">
+        {
+          (localSearching || registrySearching) ?
+            (
+              <div>
+                Searching...
+              </div>
+            ) :
+            (
+              (state.localSearches.length > 0 || state.registrySearches.length > 0) ?
+                (
+                  <SearchListResultsFound state={state}/>
+                ) :
+                (
+                  <div>
+                    No result found
                   </div>
-                );
-              })}
-            </FadeIn>
-          </div>
-        </div>
-      }
+                )
+            )
+        }
+      </div>
     </OutsideClickHandler>
   );
 }

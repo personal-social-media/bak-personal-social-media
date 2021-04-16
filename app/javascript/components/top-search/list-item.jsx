@@ -5,7 +5,8 @@ import UserAvatar from '../user/avatar';
 
 export default function SearchListItem({link = '#', identity, displayName, storeState}) {
   const [state, setState] = useState({realDisplayName: displayName, realLink: link});
-  const {username, avatars} = identity;
+  const username = identity.username.get();
+  const avatars = identity.avatars.get();
   const anchor = useRef();
 
   const {realLink, realDisplayName} = state;

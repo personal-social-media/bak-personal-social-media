@@ -11,7 +11,7 @@ export async function handleNewPeer(e, identity, state, setState) {
   try {
     peerInfo = await createNewPeerInfo(identity);
   } catch (e) {
-    return feedBackError(`Unable to fetch server information for ${identity.username}`);
+    return feedBackError(`Unable to fetch server information for ${identity.username.get()}`);
   }
 
   await createNewPreviousSearch(peerInfo);

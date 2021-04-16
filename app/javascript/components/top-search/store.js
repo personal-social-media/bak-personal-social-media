@@ -1,7 +1,6 @@
 import {buildSimpleAxios, localAxios} from '../../lib/http/build-axios';
 import {createState} from '@hookstate/core';
 import {peerInfoVerification} from '../../lib/verifications/peer-info-verification';
-import {pick} from 'lodash';
 const registryAxios = buildSimpleAxios('https://registry.personalsocialmedia.net');
 
 export const topSearchStore = createState({
@@ -34,9 +33,14 @@ export function search(value, state) {
 
 export async function createNewPeerInfo(peerInfo) {
   const data = {
-    peerInfo: pick(peerInfo, ['name', 'username', 'avatars', 'publicKey']),
+    peerInfo: {
+      avatars: peerInfo.avatars.get(),
+      name: peerInfo.name.get(),
+      publicKey: peerInfo.publicKey.get(),
+      username: peerInfo.username.get(),
+    },
   };
-  data.peerInfo.ip = peerInfo.serverIp;
+  data.peerInfo.ip = peerInfo.serverIp.get();
 
   const response = await localAxios.post('/peer_infos', data);
   return response.data.peerInfo;
