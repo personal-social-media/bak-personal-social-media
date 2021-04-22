@@ -5,8 +5,7 @@ import {useState} from '@hookstate/core';
 
 export default function ImageAlbumFocusControls({children}) {
   const state = useState(imageAlbumStore);
-  const currentGalleryElement = state.currentGalleryElement.get();
-  const galleryElements = state.galleryElements.get();
+  const {currentGalleryElement, galleryElements} = state;
 
   useHotkeys('left', () => {
     goBack();
