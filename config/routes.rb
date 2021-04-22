@@ -84,6 +84,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :mobile do
+    resources :notifications, only: :index
+  end
+
   namespace :api do
     post "/server_proof_of_work", to: "server_proof_of_works#show"
     resources :feed_items, only: %i(create destroy)

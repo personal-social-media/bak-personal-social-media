@@ -2,6 +2,7 @@ import {destroyItem} from '../../lib/grid/controls';
 import {downloadFile} from '../../lib/utils/download-file';
 import {feedBackError, feedbackSuccess} from '../../events/feedback';
 import {imageAlbumStore} from './store';
+import {isEmpty} from 'lodash';
 import {removeGalleryElement} from '../../lib/actions/gallery-elements/remove-element';
 import {useState} from '@hookstate/core';
 import FocusedModalPicture from './focused-modal/picture';
@@ -13,8 +14,8 @@ import VideoInformation from './focused-modal/video-information';
 
 export default function ImageAlbumFocusedModal() {
   const state = useState(imageAlbumStore);
-  const currentGalleryElement = state.currentGalleryElement.get();
-  const galleryElements = state.galleryElements.get();
+  const currentGalleryElement = state.currentGalleryElement;
+  const galleryElements = state.galleryElements;
 
   function setModalOpened(modalOpened) {
     state.merge({
@@ -23,7 +24,8 @@ export default function ImageAlbumFocusedModal() {
   }
 
   function download(e) {
-    const {originalUrl, realFileName} = currentGalleryElement.element;
+    const originalUrl = currentGalleryElement.element.originalUrl.get();
+    const realFileName = currentGalleryElement.element.realFileName.get();
     e.preventDefault();
     downloadFile(originalUrl, realFileName);
   }
@@ -45,24 +47,24 @@ export default function ImageAlbumFocusedModal() {
   return (
     <Modal opened={state.modalOpened.get()} setOpened={setModalOpened} modalStyle={{marginTop: '1rem', width: '60%'}}>
       {
-        currentGalleryElement && <ImageAlbumFocusControls>
+        !isEmpty(currentGalleryElement) && <ImageAlbumFocusControls>
           <div className="pb-10">
             {
-              currentGalleryElement.element.type === 'imagefile' &&
+              currentGalleryElement.element.type.get() === 'imagefile' &&
               <ImageInformation currentGalleryElement={currentGalleryElement} download={download} destroy={destroy}/>
             }
             {
-              currentGalleryElement.element.type === 'videofile' &&
+              currentGalleryElement.element.type.get() === 'videofile' &&
               <VideoInformation currentGalleryElement={currentGalleryElement} download={download} destroy={destroy}/>
             }
           </div>
           {
-            currentGalleryElement.element.type === 'imagefile' &&
+            currentGalleryElement.element.type.get() === 'imagefile' &&
             <FocusedModalPicture currentGalleryElement={currentGalleryElement}/>
           }
 
           {
-            currentGalleryElement.element.type === 'videofile' &&
+            currentGalleryElement.element.type.get() === 'videofile' &&
             <FocusedModalVideo currentGalleryElement={currentGalleryElement}/>
           }
         </ImageAlbumFocusControls>

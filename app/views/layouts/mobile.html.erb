@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= PageService::Title.new(@title).call! %></title>
+  <%= favicon_link_tag image_path("logos/psm.svg") %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <% if signed_in? %>
+    <%= render partial: "page/public_key_tag" %>
+  <% end %>
+  <%= render partial: "page/flash" %>
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
+  <%= javascript_include_tag "application", media: "all", 'data-turbo-track': "reload" %>
+  <%= javascript_packs_with_chunks_tag "application", 'data-turbo-track': "reload" %>
+  <%= stylesheet_packs_with_chunks_tag "application", 'data-turbo-track': "reload" %>
+  <%= yield :head %>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes"></head>
+<body class="font-sans">
+  <%= yield %>
+</body>
+</html>

@@ -35,7 +35,7 @@ SecureHeaders::Configuration.default do |config|
     style_src: %w('self' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
     style_src_elem: %w('self' 'unsafe-inline' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
     style_src_attr: %w('self' 'unsafe-inline'),
-    worker_src: %w('self'),
+    worker_src: %w('self' blob:),
     connect_src: %w('self' *)
   }
 

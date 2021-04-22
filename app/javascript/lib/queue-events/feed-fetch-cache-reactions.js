@@ -14,7 +14,6 @@ const queue = new EventQueue(100, 200, async (items) => {
   });
 
   const {data: {cacheReactions}} = await localAxios.post('/client/cache_reactions/search', {search});
-  console.log(cacheReactions);
   cacheReactions.forEach((cacheReaction) => {
     const {item} = items.find((i) => {
       const uid = i.item.uid.get();

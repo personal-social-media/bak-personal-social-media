@@ -1,16 +1,18 @@
+import {getProperties} from '../../lib/utils/get-properties';
+
 export default function GalleryImageFile({galleryElement, state, imageHeight}) {
-  const {element} = galleryElement;
+  const {url} = getProperties(galleryElement.element, 'url');
 
   function open() {
     state.merge({
-      currentGalleryElement: galleryElement,
+      currentGalleryElement: galleryElement.get(),
       modalOpened: true,
     });
   }
 
   return (
     <div className="relative" onClick={open}>
-      <img src={element.url} className="object-cover object-center w-full cursor-pointer" style={{height: imageHeight}}/>
+      <img src={url} className="object-cover object-center w-full cursor-pointer" style={{height: imageHeight}}/>
     </div>
   );
 }

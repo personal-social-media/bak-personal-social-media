@@ -8,9 +8,9 @@ export default function GalleryListItem({data: galleryElement}) {
   const state = useState(imageAlbumStore);
   const cellHeight = '150px';
   const imageHeight = '122px';
-  const {realFileName} = galleryElement.element;
+  const realFileName = galleryElement.element.realFileName.get();
 
-  if (galleryElement.destroyed) {
+  if (galleryElement.destroyed.get()) {
     return null;
   }
 
@@ -21,12 +21,12 @@ export default function GalleryListItem({data: galleryElement}) {
       </div>
 
       {
-        galleryElement.element.type === 'imagefile' &&
+        galleryElement.element.type.get() === 'imagefile' &&
           <GalleryImageFile state={state} galleryElement={galleryElement} imageHeight={imageHeight}/>
       }
 
       {
-        galleryElement.element.type === 'videofile' &&
+        galleryElement.element.type.get() === 'videofile' &&
           <GalleryVideoFile state={state} galleryElement={galleryElement} imageHeight={imageHeight}/>
       }
     </div>

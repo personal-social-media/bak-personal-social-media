@@ -8,7 +8,7 @@ import useWindowSize from '../../lib/hooks/use-window-size';
 
 export default function GalleryList({imageAlbumId, galleryElementsCount}) {
   const state = useState(imageAlbumStore);
-  const galleryElements = state.galleryElements.get();
+  const galleryElements = state.galleryElements;
   const {isMobile, height: windowHeight, width: windowWidth} = useWindowSize();
   const containerRef = useRef(null);
   const columns = isMobile ? 2 : 12;

@@ -24,7 +24,7 @@ module NotificationsService
     private
       def paginate
         if start_index.blank? && end_index.blank?
-          return notifications.page(page).per(50)
+          return notifications.page(page).per(40)
         end
 
         notifications.offset(start_index).limit(limit)

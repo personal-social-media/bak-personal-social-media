@@ -1,8 +1,9 @@
 import {format as formatDate} from 'date-fns';
+import {getProperties} from '../../../lib/utils/get-properties';
 
 export default function ImageInformation({currentGalleryElement, download, destroy}) {
-  const {id, element} = currentGalleryElement;
-  const {realCreatedAt, realFileName, createdAt} = element;
+  const {id} = getProperties(currentGalleryElement, 'id', 'element');
+  const {realCreatedAt, realFileName, createdAt} = getProperties(currentGalleryElement.element, 'realCreatedAt', 'realFileName', 'createdAt');
 
   return (
     <div>
