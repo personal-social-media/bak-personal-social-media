@@ -1,5 +1,6 @@
 import {feedBackError} from '../../events/feedback';
 import {fetchGalleryElements} from './store';
+import {isEmpty} from 'lodash';
 import {useInfiniteLoader} from 'masonic';
 import {useRef} from 'react';
 
@@ -14,7 +15,7 @@ export function useGalleryInfiniteLoad({state, galleryElementsCount, imageAlbumI
     const existing = loadedGalleryItemsIndexes.find((el) => {
       return el.startIndex === newIndex.startIndex && el.endIndex === newIndex.endIndex;
     });
-    if (existing) return;
+    if (existing || (startIndex === endIndex)) return;
     loadedGalleryItemsIndexes.push(newIndex);
 
     try {
@@ -29,7 +30,10 @@ export function useGalleryInfiniteLoad({state, galleryElementsCount, imageAlbumI
     }
   };
   const maybeLoadMore = useRef(useInfiniteLoader(fetchMoreItems, {
-    isItemLoaded: (index, items) => !!items[index],
+    isItemLoaded: (index, items) => {
+      console.log(index);
+      return !isEmpty(items[index]);
+    },
     totalItems: galleryElementsCount + 1,
   }));
 

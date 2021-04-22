@@ -14,7 +14,7 @@ export function useProfilePostInfiniteLoad({state, postsCount, remoteAxios, peer
     const existing = loadedPostsIndexes.find((el) => {
       return el.startIndex === newIndex.startIndex && el.endIndex === newIndex.endIndex;
     });
-    if (existing) return;
+    if (existing || (startIndex === endIndex)) return;
     loadedPostsIndexes.push(newIndex);
 
     try {

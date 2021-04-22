@@ -14,7 +14,7 @@ export function useNotificationsInfiniteLoad({state, notificationsCount}) {
     const existing = loadedNotificationsIndexes.find((el) => {
       return el.startIndex === newIndex.startIndex && el.endIndex === newIndex.endIndex;
     });
-    if (existing) return;
+    if (existing || startIndex === endIndex) return;
     loadedNotificationsIndexes.push(newIndex);
 
     try {
