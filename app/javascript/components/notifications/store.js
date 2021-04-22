@@ -1,8 +1,9 @@
 import {createState} from '@hookstate/core';
+import {isEmpty} from 'lodash';
 import {localAxios} from '../../lib/http/build-axios';
 
 export const defaultNotificationsStore = {
-  notifications: [],
+  notifications: null,
   notificationsCount: 0,
   notificationsNotSeenCount: 0,
 };
@@ -19,3 +20,9 @@ export function fetchNotifications(startIndex, endIndex) {
   return localAxios.get(url);
 }
 
+export function markNotificationsAsSeen(ids) {
+  if (isEmpty(ids)) return;
+
+  const url = '/notifications/mark_as_seen';
+  return localAxios.patch(url, {ids: ids});
+}

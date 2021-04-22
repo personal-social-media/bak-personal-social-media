@@ -24,14 +24,14 @@ module NotificationsService
     private
       def paginate
         if start_index.blank? && end_index.blank?
-          return notifications.page(page).per(40)
+          return notifications.page(page).per(50)
         end
 
         notifications.offset(start_index).limit(limit)
       end
 
       def base_query
-        Notification.order(id: :desc)
+        Notification.includes(:subject).order(id: :desc)
       end
 
       memoize def limit

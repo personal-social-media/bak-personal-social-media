@@ -1,72 +1,50 @@
-import {List, useContainerPosition, usePositioner, useScroller} from 'masonic';
+import {MasonryScroller, useContainerPosition, usePositioner, useResizeObserver} from 'masonic';
+import {getProperties} from '../../lib/utils/get-properties';
 import {notificationsStore} from './store';
+import {useCallback, useRef} from 'react';
 import {useNotificationsInfiniteLoad} from './use-notifications-infinite-load';
 import {useState} from '@hookstate/core';
 import NotificationItem from './notification-item';
 import useWindowSize from '../../lib/hooks/use-window-size';
 
-export default function NotificationsList({containerRef}) {
+export default function NotificationsList() {
   const state = useState(notificationsStore);
   const notifications = state.notifications;
-  const notificationsCount = state.notificationsCount.get();
-  console.log(containerRef);
-
+  const {notificationsCount} = getProperties(state, 'notificationsCount');
   const {height: windowHeight, width: windowWidth} = useWindowSize();
+  const containerRef = useRef(null);
+  const columns = 1;
+
   const {offset, width} = useContainerPosition(containerRef, [
-    windowWidth,
     windowHeight,
+    windowWidth,
   ]);
-  const {scrollTop, isScrolling} = useScroller(offset);
-  const positioner = usePositioner({width});
+
+  const positioner = usePositioner(
+      {columnCount: columns, width},
+      []);
+  const resizeObserver = useResizeObserver(positioner);
+
   const {maybeLoadMore} = useNotificationsInfiniteLoad({notificationsCount, state});
-  console.log(scrollTop, isScrolling);
+
+  const NotificationItemWrapper = useCallback((props) => {
+    return (
+      <NotificationItem {...props} state={state}/>
+    );
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <List
-      items={notifications}
+    <MasonryScroller
       positioner={positioner}
-      // The distance in px between the top of the document and the top of the
-      // masonry grid container
-      offset={offset}
-      // The height of the virtualization window
-      height={windowHeight}
-      // Forwards the ref to the masonry container element
+      resizeObserver={resizeObserver}
       containerRef={containerRef}
+      items={notifications}
+      height={windowHeight}
+      offset={offset}
+      render={NotificationItemWrapper}
       onRender={maybeLoadMore.current}
-      render={NotificationItem}
-      scrollTop={scrollTop}
-      isScrolling={isScrolling}
+      className="outline-none min-h-screen"
+      itemHeightEstimate={75}
     />
   );
-
-  //
-  // const NotificationItemWrapper = useCallback((props) => {
-  //   return (
-  //     <NotificationItem {...props} state={state}/>
-  //   );
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  //
-  // const {maybeLoadMore} = useNotificationsInfiniteLoad({notificationsCount, state});
-  // const {height: windowHeight, width: windowWidth} = useWindowSize()
-  // console.log(windowHeight, windowWidth);
-  // const {offset, width} = useContainerPosition(
-  //   containerRef,
-  //   // In this example, we want to recalculate the `offset` and `width`
-  //   // any time the size of the window changes
-  //   [windowWidth, windowHeight]
-  // );
-  //
-  //
-  // return (
-  //   <List
-  //     items={notifications}
-  //     render={NotificationItemWrapper}
-  //     onRender={maybeLoadMore.current}
-  //     rowGutter={32}
-  //     width={width}
-  //     height={windowHeight}
-  //     containerRef={containerRef}
-  //     offset={offset}
-  //   />
-  // );
 }

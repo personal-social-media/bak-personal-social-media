@@ -1,7 +1,7 @@
 import {MasonryScroller, useContainerPosition, usePositioner, useResizeObserver} from 'masonic';
 import {imageAlbumStore} from './store';
+import {useCallback, useRef} from 'react';
 import {useGalleryInfiniteLoad} from './use-gallery-infinite-load';
-import {useRef} from 'react';
 import {useState} from '@hookstate/core';
 import GalleryListItem from './gallery-list-item';
 import useWindowSize from '../../lib/hooks/use-window-size';
@@ -25,6 +25,12 @@ export default function GalleryList({imageAlbumId, galleryElementsCount}) {
 
   const {maybeLoadMore} = useGalleryInfiniteLoad({galleryElementsCount, imageAlbumId, state});
 
+  const GalleryListItemWrapper = useCallback((props) => {
+    return (
+      <GalleryListItem {...props} state={state}/>
+    );
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <MasonryScroller
       positioner={positioner}
@@ -33,9 +39,10 @@ export default function GalleryList({imageAlbumId, galleryElementsCount}) {
       items={galleryElements}
       height={windowHeight}
       offset={offset}
-      render={GalleryListItem}
+      render={GalleryListItemWrapper}
       overscanBy={columns * 3}
       onRender={maybeLoadMore.current}
+      className="outline-none"
     />
   );
 }

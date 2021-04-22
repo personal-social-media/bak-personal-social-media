@@ -2,13 +2,7 @@
 
 # internal use
 class BaseRailsAdminController < ActionController::Base
-  around_action :skip_bullet, if: -> { defined?(Bullet) }
+  include BulletHelper
 
-  def skip_bullet
-    previous_value = Bullet.enable?
-    Bullet.enable = false
-    yield
-  ensure
-    Bullet.enable = previous_value
-  end
+  around_action :skip_bullet, if: -> { defined?(Bullet) }
 end

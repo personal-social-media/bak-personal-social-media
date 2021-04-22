@@ -6,6 +6,7 @@ module Mobile
     layout "mobile"
 
     def index
+      @title = "Notifications"
     end
   end
 end

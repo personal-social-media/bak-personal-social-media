@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class NotificationsController < Client::BaseController
+  include BulletHelper
+
+  around_action :skip_bullet, only: :index, if: -> { defined?(Bullet) }
+
   def index
     service = NotificationsService::IndexNotificationsSearch.new(params.permit!).call!
     @notifications = service.notifications
