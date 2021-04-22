@@ -36,7 +36,8 @@
           "seen": false,
           "metadata": {},
           "subject_type": "Profile",
-          "subject_id": 1
+          "subject_id": 1,
+          "image_url": "/images/logos/psm.svg"
         },
         {
           "id": 3,
@@ -44,7 +45,8 @@
           "seen": false,
           "metadata": {},
           "subject_type": "Profile",
-          "subject_id": 1
+          "subject_id": 1,
+          "image_url": "/images/logos/psm.svg"
         },
         {
           "id": 2,
@@ -52,7 +54,8 @@
           "seen": false,
           "metadata": {},
           "subject_type": "Profile",
-          "subject_id": 1
+          "subject_id": 1,
+          "image_url": "/images/logos/psm.svg"
         },
         {
           "id": 1,
@@ -60,7 +63,8 @@
           "seen": false,
           "metadata": {},
           "subject_type": "Profile",
-          "subject_id": 1
+          "subject_id": 1,
+          "image_url": "/images/logos/psm.svg"
         }
       ],
       "notifications_count": 4,
