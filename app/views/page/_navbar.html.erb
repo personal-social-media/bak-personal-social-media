@@ -21,7 +21,7 @@
         </div>
 
         <div class="mx-3">
-          <%= react_component "top-notifications" %>
+          <%= react_component "top-notifications", notifications_not_seen_count: current_user.not_seen_notifications_count %>
         </div>
 
         <div class="ml-5">

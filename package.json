@@ -19,6 +19,7 @@
     "axios-case-converter": "^0.7.0",
     "axios-middleware": "^0.3.1",
     "date-fns": "^2.21.0",
+    "deep-camelcase-keys": "^1.0.3",
     "eventing-bus": "^2.0.1",
     "localforage": "^1.9.0",
     "lodash": "^4.17.21",

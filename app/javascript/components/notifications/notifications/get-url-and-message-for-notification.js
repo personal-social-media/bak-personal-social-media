@@ -9,7 +9,6 @@ function getUrlAndMessageForNotification({notificationType, subjectId, subjectTy
   const result = {};
   result.message = getMessage(notificationType, subjectId, subjectType, metadata);
   result.url = getUrl(notificationType, subjectId, subjectType, metadata);
-  console.log(result);
   return result;
 }
 

@@ -5,18 +5,19 @@ module NotificationsService
     class IndexError < Exception; end
     extend Memoist
 
-    attr_reader :notifications, :page, :start_index, :end_index, :count, :not_seen_count
-    def initialize(params)
+    attr_reader :notifications, :page, :start_index, :end_index, :count, :not_seen_count, :profile
+    def initialize(params, profile)
       @conversation_id = params[:conversation_id]
       @start_index = params[:start_index]
       @end_index = params[:end_index]
       @page = params[:page]
+      @profile = profile
     end
 
     def call!
-      @notifications = base_query
-      @count = notifications.count if page.blank? || page == "1"
-      @not_seen_count = base_query.where(seen: false).count if page.blank? || page == "1"
+      @notifications = base_query.includes(:subject).order(id: :desc)
+      @count = base_query.count if page.blank? || page == "1"
+      @not_seen_count = profile.not_seen_notifications_count
       @notifications = paginate
       self
     end
@@ -31,7 +32,7 @@ module NotificationsService
       end
 
       def base_query
-        Notification.includes(:subject).order(id: :desc)
+        Notification
       end
 
       memoize def limit

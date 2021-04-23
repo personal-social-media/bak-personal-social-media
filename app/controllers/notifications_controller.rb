@@ -6,7 +6,7 @@ class NotificationsController < Client::BaseController
   around_action :skip_bullet, only: :index, if: -> { defined?(Bullet) }
 
   def index
-    service = NotificationsService::IndexNotificationsSearch.new(params.permit!).call!
+    service = NotificationsService::IndexNotificationsSearch.new(params.permit!, current_user).call!
     @notifications = service.notifications
     @messages_count = service.count
     @not_seen_count = service.not_seen_count
