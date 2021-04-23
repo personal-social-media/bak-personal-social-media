@@ -10,7 +10,7 @@ describe "recovery" do
 
   it "sets the recovery for user" do
     visit "/sessions/recovery"
-    click_button "Confirm that you saved this information"
+    click_button "Confirm that you saved"
 
     expect(page).to have_current_path "/"
     expect(current_user.reload.recovery_key_plain).to be_blank
