@@ -29,7 +29,7 @@ SecureHeaders::Configuration.default do |config|
     manifest_src: %w('self'),
     media_src: %w('self' blob: data: *),
     object_src: %w('self'),
-    script_src: %w('self' unpkg.com),
+    script_src: %w('self' unpkg.com 'unsafe-eval'),
     script_src_elem: %w('self' 'unsafe-inline' unpkg.com),
     script_src_attr: %w('self'),
     style_src: %w('self' unpkg.com cdnjs.cloudflare.com fonts.googleapis.com),
