@@ -108,7 +108,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.7.4)
       msgpack (~> 1.0)
-    brakeman (5.0.0)
+    brakeman (5.0.1)
     browser (5.3.1)
     bugsnag (6.20.0)
       concurrent-ruby (~> 1.0)
