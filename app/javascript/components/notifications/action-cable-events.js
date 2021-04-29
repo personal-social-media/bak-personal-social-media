@@ -10,15 +10,16 @@ export default function NotificationsActionCableEvents({children, state}) {
   const channelHandlers = {
     received({notification: unformattedNotification}) {
       const notification = camelize(unformattedNotification);
+      const improvedNotification = addDataToNotifications(notification);
       state.merge((s) => {
         return {
           notificationsNotSeenCount: s.notificationsNotSeenCount + 1,
+          latestNotification: s.latestNotification === null ? improvedNotification : null
         };
       });
 
       if (notificationsStoreState.notifications.get() === null) return;
 
-      const improvedNotification = addDataToNotifications(notification);
       notificationsStoreState.notifications.set((n) => {
         n.splice(0, 0, improvedNotification);
         return n;

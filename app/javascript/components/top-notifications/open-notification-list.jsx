@@ -20,6 +20,7 @@ export default function OpenNotificationsList({state, children}) {
       s.merge({
         firstTimeOpened: true,
         opened: true,
+        latestNotification: null
       });
     });
 

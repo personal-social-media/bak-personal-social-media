@@ -9,6 +9,7 @@ function getUrlAndMessageForNotification({notificationType, subjectId, subjectTy
   const result = {};
   result.message = getMessage(notificationType, subjectId, subjectType, metadata);
   result.url = getUrl(notificationType, subjectId, subjectType, metadata);
+  result.icon = getIcon(notificationType, subjectId, subjectType, metadata);
   return result;
 }
 
@@ -18,4 +19,8 @@ function getMessage(notificationType, subjectId, subjectType, metadata) {
 
 function getUrl(notificationType, subjectId, subjectType, metadata) {
   if (notificationType === 'profile_welcome') return '/sessions/profile';
+}
+
+function getIcon(notificationType, subjectId, subjectType, metadata) {
+  if (notificationType === 'profile_welcome') return 'fa fa-trophy text-yellow-400 bg-red-500';
 }
