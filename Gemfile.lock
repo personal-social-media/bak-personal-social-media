@@ -461,7 +461,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stackprof (0.2.16)
+    stackprof (0.2.17)
     str_enum (0.2.0)
       activesupport (>= 5)
     temple (0.8.2)
