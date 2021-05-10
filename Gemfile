@@ -35,7 +35,7 @@ group :development, :test do
   gem "brakeman"
   gem "bundler-audit"
   gem "erb_lint", require: false
-  gem "factory_bot_rails", "~> 6.1"
+  gem "factory_bot_rails", "~> 6.2"
   gem "pg_query", "~> 1.3"
   gem "pry-rails", "~> 0.3.9"
   gem "rspec-rails", "~> 5.0"

@@ -175,10 +175,10 @@ GEM
       json
     exiftool_vendored (12.25.0)
       exiftool (>= 0.7.0)
-    factory_bot (6.1.0)
+    factory_bot (6.2.0)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.1.0)
-      factory_bot (~> 6.1.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     faraday (1.4.1)
       faraday-excon (~> 1.1)
@@ -262,7 +262,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.0.3)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -535,7 +535,7 @@ DEPENDENCIES
   erb_lint
   exiftool
   exiftool_vendored
-  factory_bot_rails (~> 6.1)
+  factory_bot_rails (~> 6.2)
   fastimage (~> 2.2)
   ffi (~> 1.15)
   font-awesome-rails
