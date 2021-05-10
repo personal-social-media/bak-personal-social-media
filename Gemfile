@@ -83,7 +83,7 @@ gem "offline_geocoder", "~> 0.2.1"
 gem "oj"
 gem "pghero"
 gem "pg_search"
-gem "puma", "~> 5.2"
+gem "puma", "~> 5.3"
 gem "rack-cors"
 gem "rails_admin", require: is_dev
 gem "react-rails"
